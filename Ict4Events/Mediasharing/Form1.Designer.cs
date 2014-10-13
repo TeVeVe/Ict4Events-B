@@ -1,4 +1,4 @@
-﻿namespace Mediasharing
+﻿namespace MediaSharingApplication
 {
     partial class Form1
     {

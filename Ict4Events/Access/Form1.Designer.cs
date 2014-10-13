@@ -1,4 +1,4 @@
-﻿namespace Access
+﻿namespace AccessControlSystem
 {
     partial class Form1
     {

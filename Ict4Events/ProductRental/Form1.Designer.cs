@@ -1,4 +1,4 @@
-﻿namespace ProductRental
+﻿namespace ProductRentalApplication
 {
     partial class Form1
     {
