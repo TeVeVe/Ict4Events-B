@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaSharingApplication", "Mediasharing\MediaSharingApplication.csproj", "{43E5767D-8443-423A-A21E-F414F2726701}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaSharingApplication", "MediaSharingApplication\MediaSharingApplication.csproj", "{43E5767D-8443-423A-A21E-F414F2726701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessControlSystem", "Access\AccessControlSystem.csproj", "{81690AF4-465C-45AD-9912-5C5F1EAE30E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessControlSystem", "AccessControlSystem\AccessControlSystem.csproj", "{81690AF4-465C-45AD-9912-5C5F1EAE30E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductRentalApplication", "ProductRental\ProductRentalApplication.csproj", "{8659F9AD-A2E8-4D1D-99F4-5ACD051256A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductRentalApplication", "ProductRentalApplication\ProductRentalApplication.csproj", "{8659F9AD-A2E8-4D1D-99F4-5ACD051256A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationSystem", "Reservation\ReservationSystem.csproj", "{25B5D0A2-AB74-4FD7-AE20-9CDE95EA7EFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationSystem", "ReservationSystem\ReservationSystem.csproj", "{25B5D0A2-AB74-4FD7-AE20-9CDE95EA7EFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedClasses", "SharedClasses\SharedClasses.csproj", "{AF486228-311A-4A2D-BB1A-8B429741A151}"
 EndProject
