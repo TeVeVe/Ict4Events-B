@@ -52,6 +52,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCreservationSystemVisitors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCreservationSystemVisitors.Designer.cs">
+      <DependentUpon>UCreservationSystemVisitors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCreservationSystemVisitorsDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCreservationSystemVisitorsDetail.Designer.cs">
+      <DependentUpon>UCreservationSystemVisitorsDetail.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +77,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCreservationSystemVisitors.resx">
+      <DependentUpon>UCreservationSystemVisitors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCreservationSystemVisitorsDetail.resx">
+      <DependentUpon>UCreservationSystemVisitorsDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
