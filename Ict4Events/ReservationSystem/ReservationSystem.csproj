@@ -52,6 +52,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCreservationSystemEvents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCreservationSystemEvents.Designer.cs">
+      <DependentUpon>UCreservationSystemEvents.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCreservationSystemVisitors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -77,6 +83,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCreservationSystemEvents.resx">
+      <DependentUpon>UCreservationSystemEvents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCreservationSystemVisitors.resx">
       <DependentUpon>UCreservationSystemVisitors.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedClasses\SharedClasses.csproj">
+      <Project>{AF486228-311A-4A2D-BB1A-8B429741A151}</Project>
+      <Name>SharedClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
