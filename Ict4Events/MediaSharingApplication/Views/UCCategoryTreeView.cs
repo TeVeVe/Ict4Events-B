@@ -20,7 +20,7 @@ namespace MediaSharingApplication.Views
             set
             {
                 if (value == textBoxSearchFilter.Text) return;
-                treeViewCategories.Nodes.Cast<TreeNode>().SelectMany<TreeNode>(n => n.Nodes);
+                var nodes = treeViewCategories.Nodes.Cast<TreeNode>();
             }
         }
 

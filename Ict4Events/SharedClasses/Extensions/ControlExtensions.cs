@@ -18,7 +18,12 @@ namespace SharedClasses.Extensions
 
         public static void ShowInView(this Control parent, UserControl target)
         {
-            target.Load += (sender, args) => target.Dock = DockStyle.Fill;
+            parent.ShowInView(target, DockStyle.Fill);
+        }
+
+        public static void ShowInView(this Control parent, UserControl target, DockStyle dock)
+        {
+            target.Load += (sender, args) => target.Dock = dock;
             
             parent.Controls.Clear();
             parent.Controls.Add(target);

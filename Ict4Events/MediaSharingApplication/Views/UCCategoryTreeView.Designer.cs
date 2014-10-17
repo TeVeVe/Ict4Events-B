@@ -28,21 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Node5");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Node4", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Node2", new System.Windows.Forms.TreeNode[] {
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Node0", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Node3");
             this.panelTop = new System.Windows.Forms.Panel();
+            this.textBoxSearchFilter = new System.Windows.Forms.TextBox();
+            this.labelSearch = new System.Windows.Forms.Label();
             this.buttonAddCategory = new System.Windows.Forms.Button();
             this.treeViewCategories = new System.Windows.Forms.TreeView();
-            this.labelSearch = new System.Windows.Forms.Label();
-            this.textBoxSearchFilter = new System.Windows.Forms.TextBox();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +46,24 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(216, 56);
             this.panelTop.TabIndex = 1;
+            // 
+            // textBoxSearchFilter
+            // 
+            this.textBoxSearchFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSearchFilter.Location = new System.Drawing.Point(56, 30);
+            this.textBoxSearchFilter.Name = "textBoxSearchFilter";
+            this.textBoxSearchFilter.Size = new System.Drawing.Size(157, 20);
+            this.textBoxSearchFilter.TabIndex = 2;
+            // 
+            // labelSearch
+            // 
+            this.labelSearch.AutoSize = true;
+            this.labelSearch.Location = new System.Drawing.Point(3, 33);
+            this.labelSearch.Name = "labelSearch";
+            this.labelSearch.Size = new System.Drawing.Size(47, 13);
+            this.labelSearch.TabIndex = 1;
+            this.labelSearch.Text = "Zoeken:";
             // 
             // buttonAddCategory
             // 
@@ -74,41 +82,8 @@
             this.treeViewCategories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewCategories.Location = new System.Drawing.Point(0, 56);
             this.treeViewCategories.Name = "treeViewCategories";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "Node1";
-            treeNode2.Name = "Node5";
-            treeNode2.Text = "Node5";
-            treeNode3.Name = "Node4";
-            treeNode3.Text = "Node4";
-            treeNode4.Name = "Node2";
-            treeNode4.Text = "Node2";
-            treeNode5.Name = "Node0";
-            treeNode5.Text = "Node0";
-            treeNode6.Name = "Node3";
-            treeNode6.Text = "Node3";
-            this.treeViewCategories.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode6});
             this.treeViewCategories.Size = new System.Drawing.Size(216, 284);
             this.treeViewCategories.TabIndex = 2;
-            // 
-            // labelSearch
-            // 
-            this.labelSearch.AutoSize = true;
-            this.labelSearch.Location = new System.Drawing.Point(3, 33);
-            this.labelSearch.Name = "labelSearch";
-            this.labelSearch.Size = new System.Drawing.Size(47, 13);
-            this.labelSearch.TabIndex = 1;
-            this.labelSearch.Text = "Zoeken:";
-            // 
-            // textBoxSearchFilter
-            // 
-            this.textBoxSearchFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSearchFilter.Location = new System.Drawing.Point(56, 30);
-            this.textBoxSearchFilter.Name = "textBoxSearchFilter";
-            this.textBoxSearchFilter.Size = new System.Drawing.Size(157, 20);
-            this.textBoxSearchFilter.TabIndex = 2;
             // 
             // UCCategoryTreeView
             // 
