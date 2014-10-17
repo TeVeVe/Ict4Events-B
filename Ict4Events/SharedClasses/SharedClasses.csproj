@@ -57,11 +57,20 @@
     <Compile Include="Views\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UCFullscreenMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UCFullscreenMessage.Designer.cs">
+      <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UCFullscreenMessage.resx">
+      <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
