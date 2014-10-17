@@ -30,13 +30,16 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.flowLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(0, 37);
             this.groupBox1.Name = "groupBox1";
@@ -55,13 +58,6 @@
             this.panel1.Size = new System.Drawing.Size(446, 37);
             this.panel1.TabIndex = 3;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(69, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 3;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -71,6 +67,21 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Zoeken:";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(69, 3);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 3;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.YellowGreen;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 21);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(434, 328);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
             // UCreservationSystemProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -79,6 +90,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "UCreservationSystemProducts";
             this.Size = new System.Drawing.Size(446, 392);
+            this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -91,6 +103,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 
     }
 }
