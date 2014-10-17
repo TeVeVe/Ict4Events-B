@@ -109,7 +109,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(6, 62);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(193, 265);
+            this.dataGridView1.Size = new System.Drawing.Size(208, 265);
             this.dataGridView1.TabIndex = 28;
             // 
             // button3
@@ -117,14 +117,14 @@
             this.button3.Location = new System.Drawing.Point(6, 31);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 26);
+            this.button3.Size = new System.Drawing.Size(105, 26);
             this.button3.TabIndex = 29;
             this.button3.Text = "Toevoegen";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(104, 31);
+            this.button4.Location = new System.Drawing.Point(117, 31);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(95, 26);
@@ -173,7 +173,7 @@
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Location = new System.Drawing.Point(144, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(205, 334);
+            this.groupBox1.Size = new System.Drawing.Size(220, 334);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producten";
@@ -194,7 +194,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "UCreservationSystemReservationDetail";
-            this.Size = new System.Drawing.Size(1074, 477);
+            this.Size = new System.Drawing.Size(1074, 475);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
