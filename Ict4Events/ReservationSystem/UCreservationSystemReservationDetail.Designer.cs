@@ -194,7 +194,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "UCreservationSystemReservationDetail";
-            this.Size = new System.Drawing.Size(1074, 475);
+            this.Size = new System.Drawing.Size(374, 475);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
