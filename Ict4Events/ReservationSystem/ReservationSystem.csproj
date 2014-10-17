@@ -52,41 +52,41 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UCreservationSystemEvents.cs">
+    <Compile Include="UCReservationSystemEvents.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCreservationSystemEvents.Designer.cs">
-      <DependentUpon>UCreservationSystemEvents.cs</DependentUpon>
+    <Compile Include="UCReservationSystemEvents.Designer.cs">
+      <DependentUpon>UCReservationSystemEvents.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCreservationSystemProducts.cs">
+    <Compile Include="UCReservationSystemProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCreservationSystemProducts.Designer.cs">
-      <DependentUpon>UCreservationSystemProducts.cs</DependentUpon>
+    <Compile Include="UCReservationSystemProducts.Designer.cs">
+      <DependentUpon>UCReservationSystemProducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCreservationSystemReservation.cs">
+    <Compile Include="UCReservationSystemReservation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCreservationSystemReservation.Designer.cs">
-      <DependentUpon>UCreservationSystemReservation.cs</DependentUpon>
+    <Compile Include="UCReservationSystemReservation.Designer.cs">
+      <DependentUpon>UCReservationSystemReservation.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCreservationSystemReservationDetail.cs">
+    <Compile Include="UCReservationSystemReservationDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCreservationSystemReservationDetail.Designer.cs">
-      <DependentUpon>UCreservationSystemReservationDetail.cs</DependentUpon>
+    <Compile Include="UCReservationSystemReservationDetail.Designer.cs">
+      <DependentUpon>UCReservationSystemReservationDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCreservationSystemVisitors.cs">
+    <Compile Include="UCReservationSystemVisitors.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCreservationSystemVisitors.Designer.cs">
-      <DependentUpon>UCreservationSystemVisitors.cs</DependentUpon>
+    <Compile Include="UCReservationSystemVisitors.Designer.cs">
+      <DependentUpon>UCReservationSystemVisitors.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCreservationSystemVisitorsDetail.cs">
+    <Compile Include="UCReservationSystemVisitorsDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCreservationSystemVisitorsDetail.Designer.cs">
-      <DependentUpon>UCreservationSystemVisitorsDetail.cs</DependentUpon>
+    <Compile Include="UCReservationSystemVisitorsDetail.Designer.cs">
+      <DependentUpon>UCReservationSystemVisitorsDetail.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -101,23 +101,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UCreservationSystemEvents.resx">
-      <DependentUpon>UCreservationSystemEvents.cs</DependentUpon>
+    <EmbeddedResource Include="UCReservationSystemEvents.resx">
+      <DependentUpon>UCReservationSystemEvents.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCreservationSystemProducts.resx">
-      <DependentUpon>UCreservationSystemProducts.cs</DependentUpon>
+    <EmbeddedResource Include="UCReservationSystemProducts.resx">
+      <DependentUpon>UCReservationSystemProducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCreservationSystemReservation.resx">
-      <DependentUpon>UCreservationSystemReservation.cs</DependentUpon>
+    <EmbeddedResource Include="UCReservationSystemReservation.resx">
+      <DependentUpon>UCReservationSystemReservation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCreservationSystemReservationDetail.resx">
-      <DependentUpon>UCreservationSystemReservationDetail.cs</DependentUpon>
+    <EmbeddedResource Include="UCReservationSystemReservationDetail.resx">
+      <DependentUpon>UCReservationSystemReservationDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCreservationSystemVisitors.resx">
-      <DependentUpon>UCreservationSystemVisitors.cs</DependentUpon>
+    <EmbeddedResource Include="UCReservationSystemVisitors.resx">
+      <DependentUpon>UCReservationSystemVisitors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCreservationSystemVisitorsDetail.resx">
-      <DependentUpon>UCreservationSystemVisitorsDetail.cs</DependentUpon>
+    <EmbeddedResource Include="UCReservationSystemVisitorsDetail.resx">
+      <DependentUpon>UCReservationSystemVisitorsDetail.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

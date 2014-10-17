@@ -1,6 +1,6 @@
 ﻿namespace ReservationSystem
 {
-    partial class UCreservationSystemReservation
+    partial class UCReservationSystemReservation
     {
         /// <summary> 
         /// Required designer variable.

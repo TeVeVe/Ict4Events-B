@@ -1,6 +1,6 @@
 ﻿namespace ReservationSystem
 {
-    partial class UCreservationSystemProducts
+    partial class UCReservationSystemProducts
     {
         /// <summary> 
         /// Required designer variable.
@@ -82,13 +82,13 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(434, 328);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // UCreservationSystemProducts
+            // UCReservationSystemProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "UCreservationSystemProducts";
+            this.Name = "UCReservationSystemProducts";
             this.Size = new System.Drawing.Size(446, 392);
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

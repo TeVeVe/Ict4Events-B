@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ReservationSystem
 {
-    public partial class UCreservationSystemProducts : UserControl
+    public partial class UCReservationSystemProducts : UserControl
     {
-        public UCreservationSystemProducts()
+        public UCReservationSystemProducts()
         {
             InitializeComponent();
         }
