@@ -29,7 +29,7 @@ namespace ReservationSystem
         protected override void OnLoad(EventArgs e)
         {
             // Display first screen
-            DisplayScreen(new UCreservationSystemReservationDetail());
+            DisplayScreen(new UCreservationSystemProducts());
         }
     }
 }
