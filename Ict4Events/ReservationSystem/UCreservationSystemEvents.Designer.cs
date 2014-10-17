@@ -1,6 +1,6 @@
 ﻿namespace ReservationSystem
 {
-    partial class UCreservationSystemEvents
+    partial class UCReservationSystemEvents
     {
         /// <summary> 
         /// Required designer variable.
@@ -184,14 +184,14 @@
             this.dataGrid1.Size = new System.Drawing.Size(385, 167);
             this.dataGrid1.TabIndex = 21;
             // 
-            // UCreservationSystemEvents
+            // UCReservationSystemEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "UCreservationSystemEvents";
+            this.Name = "UCReservationSystemEvents";
             this.Size = new System.Drawing.Size(385, 335);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
