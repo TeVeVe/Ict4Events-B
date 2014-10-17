@@ -4,4 +4,14 @@
 # But include all directories.
 !*/
 
-*.cs
+# And include these files.
+!.gitignore
+!*.cs
+!*.csproj
+!*.config
+!*.resx
+!*.settings
+!Phidget21.NET.dll
+
+# But not these..
+Temporary*.cs
