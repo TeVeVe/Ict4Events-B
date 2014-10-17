@@ -271,7 +271,7 @@
             this.AutoSize = true;
             this.Controls.Add(this.groupBox1);
             this.Name = "UCreservationSystemVisitorsDetail";
-            this.Size = new System.Drawing.Size(500, 287);
+            this.Size = new System.Drawing.Size(500, 269);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
