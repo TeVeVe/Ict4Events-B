@@ -55,7 +55,7 @@
             this.dataGridViewVisitors.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewVisitors.Name = "dataGridViewVisitors";
             this.dataGridViewVisitors.RowTemplate.Height = 24;
-            this.dataGridViewVisitors.Size = new System.Drawing.Size(385, 181);
+            this.dataGridViewVisitors.Size = new System.Drawing.Size(385, 156);
             this.dataGridViewVisitors.TabIndex = 20;
             // 
             // button2
@@ -207,7 +207,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "UCreservationSystemReservation";
-            this.Size = new System.Drawing.Size(385, 346);
+            this.Size = new System.Drawing.Size(385, 321);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVisitors)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
