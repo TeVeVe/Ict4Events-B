@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+using SharedClasses.Extensions;
 using SharedClasses;
 using SharedClasses.Detectors;
 
@@ -21,29 +21,15 @@ namespace ReservationSystem
             InitializeComponent();
         }
 
-        UserControl mCurrent;
-
         public void DisplayScreen(UserControl uc)
         {
-            if (mCurrent != null)
-            {
-                this.Controls.Remove(mCurrent);
-                mCurrent.Dispose();
-            }
-            mCurrent = uc;
-            if (uc != null)
-            {
-                uc.Location = new Point(5, 5);
-                uc.Size = new Size(this.ClientSize.Width - 10,
-                  this.ClientSize.Height - 10);
-                this.Controls.Add(uc);
-            }
+            panelMainView.ShowInView(uc);
         }
 
         protected override void OnLoad(EventArgs e)
         {
             // Display first screen
-            DisplayScreen(new UCreservationSystemVisitors());
+            DisplayScreen(new UCreservationSystemReservationDetail());
         }
     }
 }

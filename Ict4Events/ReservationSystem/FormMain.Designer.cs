@@ -28,27 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.evenementenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reserveringenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.panelMainView = new System.Windows.Forms.Panel();
+            this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStripMain
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.testToolStripMenuItem,
             this.evenementenToolStripMenuItem,
             this.reserveringenToolStripMenuItem,
             this.productenToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(124, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
+            this.menuStripMain.Name = "menuStripMain";
+            this.menuStripMain.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStripMain.Size = new System.Drawing.Size(653, 28);
+            this.menuStripMain.TabIndex = 3;
+            this.menuStripMain.Text = "menuStrip1";
             // 
             // testToolStripMenuItem
             // 
@@ -74,19 +75,28 @@
             this.productenToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.productenToolStripMenuItem.Text = "Producten";
             // 
+            // panelMainView
+            // 
+            this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMainView.Location = new System.Drawing.Point(0, 28);
+            this.panelMainView.Margin = new System.Windows.Forms.Padding(4);
+            this.panelMainView.Name = "panelMainView";
+            this.panelMainView.Size = new System.Drawing.Size(653, 388);
+            this.panelMainView.TabIndex = 4;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(124, 0);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(653, 416);
+            this.Controls.Add(this.panelMainView);
+            this.Controls.Add(this.menuStripMain);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
             this.Text = "Reserveringssysteem";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStripMain.ResumeLayout(false);
+            this.menuStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,11 +104,13 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem evenementenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reserveringenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productenToolStripMenuItem;
+        private System.Windows.Forms.Panel panelMainView;
+
     }
 }
 
