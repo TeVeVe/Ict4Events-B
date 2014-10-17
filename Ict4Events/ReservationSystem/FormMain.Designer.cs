@@ -45,42 +45,44 @@
             this.productenToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(160, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(124, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.testToolStripMenuItem.Text = "Bezoeker";
             // 
             // evenementenToolStripMenuItem
             // 
             this.evenementenToolStripMenuItem.Name = "evenementenToolStripMenuItem";
-            this.evenementenToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
+            this.evenementenToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
             this.evenementenToolStripMenuItem.Text = "Evenementen";
             // 
             // reserveringenToolStripMenuItem
             // 
             this.reserveringenToolStripMenuItem.Name = "reserveringenToolStripMenuItem";
-            this.reserveringenToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
+            this.reserveringenToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
             this.reserveringenToolStripMenuItem.Text = "Reserveringen";
             // 
             // productenToolStripMenuItem
             // 
             this.productenToolStripMenuItem.Name = "productenToolStripMenuItem";
-            this.productenToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
+            this.productenToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.productenToolStripMenuItem.Text = "Producten";
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(160, 0);
+            this.ClientSize = new System.Drawing.Size(124, 0);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
             this.Text = "Reserveringssysteem";
             this.menuStrip1.ResumeLayout(false);
