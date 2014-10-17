@@ -58,6 +58,18 @@
     <Compile Include="UCreservationSystemEvents.Designer.cs">
       <DependentUpon>UCreservationSystemEvents.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCreservationSystemReservation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCreservationSystemReservation.Designer.cs">
+      <DependentUpon>UCreservationSystemReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCreservationSystemReservationDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCreservationSystemReservationDetail.Designer.cs">
+      <DependentUpon>UCreservationSystemReservationDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCreservationSystemVisitors.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,6 +97,12 @@
     </Compile>
     <EmbeddedResource Include="UCreservationSystemEvents.resx">
       <DependentUpon>UCreservationSystemEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCreservationSystemReservation.resx">
+      <DependentUpon>UCreservationSystemReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCreservationSystemReservationDetail.resx">
+      <DependentUpon>UCreservationSystemReservationDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCreservationSystemVisitors.resx">
       <DependentUpon>UCreservationSystemVisitors.cs</DependentUpon>
