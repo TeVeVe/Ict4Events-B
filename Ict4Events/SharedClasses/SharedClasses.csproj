@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TilePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Detectors\AttachState.cs" />
     <Compile Include="Detectors\Events\DeviceAttachedStateEventArgs.cs" />
