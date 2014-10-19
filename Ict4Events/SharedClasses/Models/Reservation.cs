@@ -9,6 +9,7 @@ namespace SharedClasses.Models
         public bool PaymentStatus { get; set; }
         public IEnumerable<Wristband> Wristbands { get; set; }
         public Reservee Reservee { get; set; }
+        public IEnumerable<Spot> Spots { get; set; } 
 
         public Reservation(Reservee reservee, int amount)
         {

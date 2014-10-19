@@ -10,6 +10,7 @@ namespace SharedClasses.Models
     {
         public string Content { get; set; }
         public DateTime PostTime { get; set; }
+        public UserAccount UserAccount { get; set; }
 
         public FeedPost(UserAccount account, string content)
         {

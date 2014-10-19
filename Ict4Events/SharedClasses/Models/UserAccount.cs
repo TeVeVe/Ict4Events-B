@@ -8,6 +8,7 @@ namespace SharedClasses.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public IEnumerable<Group> Groups { get; set; }
+        public Wristband Wristband { get; set; }
 
         public void Rent()
         {

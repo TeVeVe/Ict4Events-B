@@ -63,6 +63,10 @@
     <Compile Include="Models\Privilege.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Rental.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Reservee.cs" />
+    <Compile Include="Models\Spot.cs" />
+    <Compile Include="Models\SpotType.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\Wristband.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
