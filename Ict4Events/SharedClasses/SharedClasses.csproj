@@ -52,6 +52,7 @@
     <Compile Include="Detectors\Events\TagEventArgs.cs" />
     <Compile Include="Detectors\RadioFrequency.cs" />
     <Compile Include="Models\Group.cs" />
+	<Compile Include="Models\File.cs" />
     <Compile Include="Models\Privilege.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Rental.cs" />
