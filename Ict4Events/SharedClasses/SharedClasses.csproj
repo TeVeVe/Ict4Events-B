@@ -51,6 +51,7 @@
     <Compile Include="Detectors\Events\DeviceAttachedStateEventArgs.cs" />
     <Compile Include="Detectors\Events\TagEventArgs.cs" />
     <Compile Include="Detectors\RadioFrequency.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Privilege.cs" />
     <Compile Include="Models\Product.cs" />
