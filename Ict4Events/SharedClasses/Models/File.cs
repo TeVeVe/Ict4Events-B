@@ -9,6 +9,7 @@ namespace SharedClasses.Models
         public DateTime PostTime { get; set; }
         public int ReportCount { get; set; }
         public UserAccount UserAccount { get; set; }
+        public Category Category { get; set; }
 
         public File(UserAccount userAccount, string decription)
         {

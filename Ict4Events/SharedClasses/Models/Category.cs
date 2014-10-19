@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SharedClasses.Models
 {
-    class Category
+    public class Category
     {
         public string Name { get; set; }
+        public Category ParentCategory { get; set; }
 
         public void AddCategory(Category category)
         {
