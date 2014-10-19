@@ -8,21 +8,36 @@ using TagEventHandler = SharedClasses.Detectors.Events.TagEventHandler;
 
 namespace SharedClasses.Detectors
 {
+    /// <summary>
+    ///     A wrapper for Phidget API - RFID devices.
+    /// </summary>
     public class RadioFrequency : IDisposable
     {
         private bool _ledOnDetecting;
 
+        /// <summary>
+        ///     Creates and waits for a connected RFID USB device and gives it -1 as serialkey.
+        /// </summary>
         public RadioFrequency() : this(-1)
         {
         }
 
+        /// <summary>
+        ///     Creates and waits for a connected RFID USB device.
+        /// </summary>
+        /// <param name="serial">Serialkey of the device as identitfier. Useful when multiple devices are connected.</param>
         public RadioFrequency(int serial)
         {
+            // A cache for all the detected keys.
             Cache = new List<string>();
+
+            // Booting up the base API.
             BaseRFID = new P.RFID();
             BaseRFID.open(serial);
             BaseRFID.waitForAttachment();
             BaseRFID.Antenna = true;
+
+            // Re-route events to use ours instead.
             BaseRFID.Tag += (sender, args) =>
             {
                 Cache.Add(args.Tag);
@@ -42,11 +57,17 @@ namespace SharedClasses.Detectors
 
         protected List<string> Cache { get; set; }
 
+        /// <summary>
+        ///     Previously detected tags in chronological order.
+        /// </summary>
         public IEnumerable<string> TagsDetected
         {
             get { return Cache; }
         }
 
+        /// <summary>
+        ///     Phidget API main RFID object. This is used for wrapping the API.
+        /// </summary>
         protected P.RFID BaseRFID { get; set; }
 
         /// <summary>
@@ -69,16 +90,25 @@ namespace SharedClasses.Detectors
             }
         }
 
+        /// <summary>
+        ///     Device type of the Phidget device.
+        /// </summary>
         public string Type
         {
             get { return BaseRFID.Type; }
         }
 
+        /// <summary>
+        ///     Device version of the Phidget device.
+        /// </summary>
         public int Version
         {
             get { return BaseRFID.Version; }
         }
 
+        /// <summary>
+        ///     When enabled, turns on the LED when a tag is being detected.
+        /// </summary>
         public bool LEDOnDetecting
         {
             set
@@ -99,6 +129,9 @@ namespace SharedClasses.Detectors
             get { return _ledOnDetecting; }
         }
 
+        /// <summary>
+        ///     Closes the connection to the device.
+        /// </summary>
         public void Dispose()
         {
             Close();
@@ -114,7 +147,14 @@ namespace SharedClasses.Detectors
             BaseRFID.LED = true;
         }
 
+        /// <summary>
+        ///     Hits when a tag is being detected.
+        /// </summary>
         public event TagEventHandler Tag;
+
+        /// <summary>
+        ///     Hits when a device is connected.
+        /// </summary>
         public event DeviceAttachedStateEventHandler Attached;
 
         protected virtual void OnAttached(DeviceAttachedStateEventArgs e)
@@ -129,6 +169,9 @@ namespace SharedClasses.Detectors
             if (handler != null) handler(this, e);
         }
 
+        /// <summary>
+        ///     Hits when a tag is no longer detected.
+        /// </summary>
         public event TagEventHandler TagLost;
 
         protected virtual void OnTagLost(Events.TagEventArgs e)
@@ -137,26 +180,35 @@ namespace SharedClasses.Detectors
             if (handler != null) handler(this, e);
         }
 
+        /// <summary>
+        ///     Blocks execution of further code until a Phidget RFID device is attached.
+        /// </summary>
         public void WaitForAttachment()
         {
             BaseRFID.waitForAttachment();
         }
 
+        /// <summary>
+        ///     Writes to an in-range tag when it's writable.
+        /// </summary>
+        /// <param name="value"></param>
         public void Write(string value)
         {
             BaseRFID.write(value, P.RFID.RFIDTagProtocol.EM4100, false);
         }
 
+        /// <summary>
+        ///     Writes to an in-range tag when it's writable and makes the tag unwritable afterwards.
+        /// </summary>
+        /// <param name="value"></param>
         public void WriteLock(string value)
         {
             BaseRFID.write(value, P.RFID.RFIDTagProtocol.EM4100, true);
         }
 
-        public void OpenLabel(string label)
-        {
-            BaseRFID.openLabel(label);
-        }
-
+        /// <summary>
+        ///     Closes the connection to the device.
+        /// </summary>
         public void Close()
         {
             BaseRFID.close();
