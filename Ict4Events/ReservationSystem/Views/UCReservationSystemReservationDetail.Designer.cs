@@ -54,7 +54,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(29, 26);
             this.button1.TabIndex = 22;
-            this.button1.Text = "x";
+            this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -74,7 +74,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(29, 26);
             this.button2.TabIndex = 25;
-            this.button2.Text = "x";
+            this.button2.Text = "...";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -178,7 +178,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producten";
             // 
-            // UCreservationSystemReservationDetail
+            // UCReservationSystemReservationDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -193,7 +193,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Name = "UCreservationSystemReservationDetail";
+            this.Name = "UCReservationSystemReservationDetail";
             this.Size = new System.Drawing.Size(374, 475);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

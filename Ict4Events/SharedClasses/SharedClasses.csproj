@@ -66,6 +66,18 @@
     <Compile Include="Views\UCFullscreenMessage.Designer.cs">
       <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\UCSharedClassesProductDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UCSharedClassesProductDetail.Designer.cs">
+      <DependentUpon>UCSharedClassesProductDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCSharedClassesProductSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UCSharedClassesProductSelection.Designer.cs">
+      <DependentUpon>UCSharedClassesProductSelection.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -74,6 +86,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UCFullscreenMessage.resx">
       <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UCSharedClassesProductDetail.resx">
+      <DependentUpon>UCSharedClassesProductDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UCSharedClassesProductSelection.resx">
+      <DependentUpon>UCSharedClassesProductSelection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

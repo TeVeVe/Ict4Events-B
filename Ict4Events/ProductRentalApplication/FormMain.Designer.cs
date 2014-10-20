@@ -28,12 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.panelMainView = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // panelMainView
+            // 
+            this.panelMainView.BackColor = System.Drawing.SystemColors.Window;
+            this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMainView.Location = new System.Drawing.Point(0, 0);
+            this.panelMainView.Margin = new System.Windows.Forms.Padding(5);
+            this.panelMainView.Name = "panelMainView";
+            this.panelMainView.Size = new System.Drawing.Size(672, 349);
+            this.panelMainView.TabIndex = 5;
+            // 
+            // FormMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(672, 349);
+            this.Controls.Add(this.panelMainView);
+            this.Name = "FormMain";
+            this.Text = "Verhuursysteem";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panelMainView;
     }
 }
 

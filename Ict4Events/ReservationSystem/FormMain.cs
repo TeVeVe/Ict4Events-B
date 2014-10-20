@@ -21,15 +21,10 @@ namespace ReservationSystem
             InitializeComponent();
         }
 
-        public void DisplayScreen(UserControl uc)
-        {
-            panelMainView.ShowInView(uc);
-        }
-
         protected override void OnLoad(EventArgs e)
         {
             // Display first screen
-            DisplayScreen(new UCReservationSystemProducts());
+            panelMainView.ShowInView(new UCReservationSystemProducts());
         }
     }
 }

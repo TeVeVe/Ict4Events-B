@@ -1,6 +1,6 @@
-﻿namespace ReservationSystem
+﻿namespace SharedClasses
 {
-    partial class UCReservationSystemProducts
+    partial class UCSharedClassesProductSelection
     {
         /// <summary> 
         /// Required designer variable.
@@ -91,14 +91,14 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(446, 328);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
-            // UCReservationSystemProducts
+            // UCSharedClassesProductSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "UCReservationSystemProducts";
+            this.Name = "UCSharedClassesProductSelection";
             this.Size = new System.Drawing.Size(446, 392);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
