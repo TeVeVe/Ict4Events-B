@@ -2,9 +2,9 @@
 
 namespace SharedClasses.Controls
 {
-    public partial class UCFeed : UserControl
+    public partial class FeedPanel : UserControl
     {
-        public UCFeed()
+        public FeedPanel()
         {
             InitializeComponent();
         }

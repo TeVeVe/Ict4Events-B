@@ -1,6 +1,6 @@
 ﻿namespace SharedClasses.Controls
 {
-    partial class UCTreeView
+    partial class CategoryTreeView
     {
         /// <summary> 
         /// Required designer variable.

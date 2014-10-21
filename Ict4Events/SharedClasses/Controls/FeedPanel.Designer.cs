@@ -1,6 +1,6 @@
 ﻿namespace SharedClasses.Controls
 {
-    partial class UCFeed
+    partial class FeedPanel
     {
         /// <summary> 
         /// Required designer variable.

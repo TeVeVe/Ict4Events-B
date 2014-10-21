@@ -1,6 +1,6 @@
 ﻿namespace SharedClasses.Controls
 {
-    partial class UCFullscreenMessage
+    partial class FullscreenMessagePanel
     {
         /// <summary> 
         /// Required designer variable.

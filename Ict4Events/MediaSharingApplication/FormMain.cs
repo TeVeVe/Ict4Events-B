@@ -16,7 +16,7 @@ namespace MediaSharingApplication
         protected override void OnLoad(EventArgs e)
         {
             // Display first screen
-            panelMainView.ShowInView(new UCTreeView(), DockStyle.Left);
+            panelMainView.ShowInView(new CategoryTreeView(), DockStyle.Left);
         }
     }
 }

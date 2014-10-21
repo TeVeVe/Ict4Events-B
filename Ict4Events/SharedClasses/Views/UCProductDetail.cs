@@ -2,9 +2,9 @@
 
 namespace SharedClasses.Controls
 {
-    public partial class UCSharedClassesProductDetail : UserControl
+    public partial class UCProductDetail : UserControl
     {
-        public UCSharedClassesProductDetail()
+        public UCProductDetail()
         {
             InitializeComponent();
         }

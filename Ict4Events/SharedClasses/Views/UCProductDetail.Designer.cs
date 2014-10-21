@@ -1,6 +1,6 @@
 ﻿namespace SharedClasses.Controls
 {
-    partial class UCSharedClassesProductDetail
+    partial class UCProductDetail
     {
         /// <summary> 
         /// Required designer variable.

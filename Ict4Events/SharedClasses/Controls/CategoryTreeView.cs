@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace SharedClasses.Controls
 {
-    public partial class UCTreeView : UserControl
+    public partial class CategoryTreeView : UserControl
     {
         private readonly List<TreeNode> _currentNodeMatches = new List<TreeNode>();
 
@@ -15,7 +15,7 @@ namespace SharedClasses.Controls
 
         private string _lastSearchText;
 
-        public UCTreeView()
+        public CategoryTreeView()
         {
             InitializeComponent();
         }
