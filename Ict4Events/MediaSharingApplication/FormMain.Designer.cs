@@ -28,12 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.panelMainView = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // panelMainView
+            // 
+            this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMainView.Location = new System.Drawing.Point(0, 0);
+            this.panelMainView.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelMainView.Name = "panelMainView";
+            this.panelMainView.Size = new System.Drawing.Size(1051, 438);
+            this.panelMainView.TabIndex = 4;
+            // 
+            // FormMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(1051, 438);
+            this.Controls.Add(this.panelMainView);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Name = "FormMain";
+            this.Text = "Media Sharing Applicatie";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panelMainView;
+
     }
 }
 

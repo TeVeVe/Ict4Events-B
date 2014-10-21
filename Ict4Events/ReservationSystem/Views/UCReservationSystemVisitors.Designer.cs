@@ -1,6 +1,6 @@
-﻿namespace ReservationSystem
+﻿namespace ReservationSystem.Views
 {
-    partial class UCreservationSystemVisitors
+    partial class UCReservationSystemVisitors
     {
         /// <summary> 
         /// Required designer variable.

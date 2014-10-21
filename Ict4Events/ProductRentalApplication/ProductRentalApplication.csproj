@@ -52,6 +52,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UCProductRentalApplicationRFID.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UCProductRentalApplicationRFID.Designer.cs">
+      <DependentUpon>UCProductRentalApplicationRFID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UCProductRentalOverview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\UCProductRentalOverview.Designer.cs">
+      <DependentUpon>UCProductRentalOverview.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +77,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\UCProductRentalApplicationRFID.resx">
+      <DependentUpon>UCProductRentalApplicationRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UCProductRentalOverview.resx">
+      <DependentUpon>UCProductRentalOverview.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,7 +97,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\SharedClasses\SharedClasses.csproj">
+      <Project>{af486228-311a-4a2d-bb1a-8b429741a151}</Project>
+      <Name>SharedClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,8 +2,6 @@
 
 namespace SharedClasses.Detectors.Events
 {
-    public delegate void DeviceAttachedStateEventHandler(object sender, DeviceAttachedStateEventArgs e);
-
     public class DeviceAttachedStateEventArgs : EventArgs
     {
         public AttachState State { get; set; }

@@ -1,6 +1,6 @@
-﻿namespace ReservationSystem
+﻿namespace ReservationSystem.Views
 {
-    partial class UCreservationSystemEvents
+    partial class UCReservationSystemEvents
     {
         /// <summary> 
         /// Required designer variable.
@@ -50,7 +50,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 6);
+            this.label1.Location = new System.Drawing.Point(39, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 17);
             this.label1.TabIndex = 4;
@@ -59,7 +59,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(92, 3);
+            this.textBox1.Location = new System.Drawing.Point(94, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(170, 22);
             this.textBox1.TabIndex = 3;
@@ -67,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 36);
+            this.label2.Location = new System.Drawing.Point(7, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 17);
             this.label2.TabIndex = 7;
@@ -76,7 +76,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(92, 31);
+            this.dateTimePicker1.Location = new System.Drawing.Point(94, 32);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(244, 22);
             this.dateTimePicker1.TabIndex = 9;
@@ -84,7 +84,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(92, 59);
+            this.dateTimePicker2.Location = new System.Drawing.Point(94, 60);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(244, 22);
             this.dateTimePicker2.TabIndex = 11;
@@ -92,7 +92,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 64);
+            this.label3.Location = new System.Drawing.Point(9, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 17);
             this.label3.TabIndex = 10;
@@ -101,7 +101,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(197, 87);
+            this.button2.Location = new System.Drawing.Point(199, 88);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 13;
@@ -130,7 +130,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(92, 87);
+            this.button3.Location = new System.Drawing.Point(94, 88);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 28);
             this.button3.TabIndex = 18;
@@ -156,7 +156,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(268, 1);
+            this.button5.Location = new System.Drawing.Point(270, 2);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(29, 26);
@@ -171,27 +171,27 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 131);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(385, 35);
+            this.panel2.Size = new System.Drawing.Size(385, 37);
             this.panel2.TabIndex = 20;
             // 
             // dataGrid1
             // 
             this.dataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGrid1.Location = new System.Drawing.Point(0, 166);
+            this.dataGrid1.Location = new System.Drawing.Point(0, 168);
             this.dataGrid1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGrid1.Name = "dataGrid1";
             this.dataGrid1.RowTemplate.Height = 24;
-            this.dataGrid1.Size = new System.Drawing.Size(385, 169);
+            this.dataGrid1.Size = new System.Drawing.Size(385, 167);
             this.dataGrid1.TabIndex = 21;
             // 
-            // UCreservationSystemEvents
+            // UCReservationSystemEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "UCreservationSystemEvents";
+            this.Name = "UCReservationSystemEvents";
             this.Size = new System.Drawing.Size(385, 335);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

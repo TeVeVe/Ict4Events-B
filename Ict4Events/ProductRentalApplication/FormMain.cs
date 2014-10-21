@@ -7,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProductRentalApplication.Views;
+using SharedClasses;
+using SharedClasses.Views;
+using SharedClasses.Extensions;
+
 
 namespace ProductRentalApplication
 {
@@ -15,6 +20,12 @@ namespace ProductRentalApplication
         public FormMain()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            // Display first screen
+            panelMainView.ShowInView(new UCProductRentalOverview());
         }
     }
 }

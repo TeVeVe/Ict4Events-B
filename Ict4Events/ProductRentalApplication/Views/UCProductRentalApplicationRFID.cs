@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ReservationSystem
+namespace ProductRentalApplication.Views
 {
-    public partial class UCreservationSystemVisitorsDetail : UserControl
+    public partial class UCProductRentalApplicationRFID : UserControl
     {
-        public UCreservationSystemVisitorsDetail()
+        public UCProductRentalApplicationRFID()
         {
             InitializeComponent();
         }

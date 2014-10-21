@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ReservationSystem
+namespace ProductRentalApplication.Views
 {
-    public partial class UCreservationSystemReservationDetail : UserControl
+    public partial class UCProductRentalOverview : UserControl
     {
-        public UCreservationSystemReservationDetail()
+        public UCProductRentalOverview()
         {
             InitializeComponent();
         }
