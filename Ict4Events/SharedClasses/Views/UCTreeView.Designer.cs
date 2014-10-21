@@ -1,6 +1,6 @@
-﻿namespace MediaSharingApplication.Views
+﻿namespace SharedClasses.Views
 {
-    partial class UCCategoryTreeView
+    partial class UCTreeView
     {
         /// <summary> 
         /// Required designer variable.
@@ -33,6 +33,7 @@
             this.labelSearch = new System.Windows.Forms.Label();
             this.buttonAddCategory = new System.Windows.Forms.Button();
             this.treeViewCategories = new System.Windows.Forms.TreeView();
+            this.buttonAddSubcategory = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,26 +41,28 @@
             // 
             this.panelTop.Controls.Add(this.textBoxSearchFilter);
             this.panelTop.Controls.Add(this.labelSearch);
+            this.panelTop.Controls.Add(this.buttonAddSubcategory);
             this.panelTop.Controls.Add(this.buttonAddCategory);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(216, 56);
+            this.panelTop.Size = new System.Drawing.Size(249, 89);
             this.panelTop.TabIndex = 1;
             // 
             // textBoxSearchFilter
             // 
             this.textBoxSearchFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSearchFilter.Location = new System.Drawing.Point(56, 30);
+            this.textBoxSearchFilter.Location = new System.Drawing.Point(56, 61);
             this.textBoxSearchFilter.Name = "textBoxSearchFilter";
-            this.textBoxSearchFilter.Size = new System.Drawing.Size(157, 20);
+            this.textBoxSearchFilter.Size = new System.Drawing.Size(190, 20);
             this.textBoxSearchFilter.TabIndex = 2;
+            this.textBoxSearchFilter.TextChanged += new System.EventHandler(this.textBoxSearchFilter_TextChanged);
             // 
             // labelSearch
             // 
             this.labelSearch.AutoSize = true;
-            this.labelSearch.Location = new System.Drawing.Point(3, 33);
+            this.labelSearch.Location = new System.Drawing.Point(3, 64);
             this.labelSearch.Name = "labelSearch";
             this.labelSearch.Size = new System.Drawing.Size(47, 13);
             this.labelSearch.TabIndex = 1;
@@ -71,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddCategory.Location = new System.Drawing.Point(3, 3);
             this.buttonAddCategory.Name = "buttonAddCategory";
-            this.buttonAddCategory.Size = new System.Drawing.Size(210, 23);
+            this.buttonAddCategory.Size = new System.Drawing.Size(243, 23);
             this.buttonAddCategory.TabIndex = 0;
             this.buttonAddCategory.Text = "Categorie toevoegen";
             this.buttonAddCategory.UseVisualStyleBackColor = true;
@@ -80,10 +83,23 @@
             // treeViewCategories
             // 
             this.treeViewCategories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewCategories.Location = new System.Drawing.Point(0, 56);
+            this.treeViewCategories.Location = new System.Drawing.Point(0, 89);
             this.treeViewCategories.Name = "treeViewCategories";
-            this.treeViewCategories.Size = new System.Drawing.Size(216, 284);
+            this.treeViewCategories.Size = new System.Drawing.Size(249, 251);
             this.treeViewCategories.TabIndex = 2;
+            this.treeViewCategories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeViewCategories_KeyDown);
+            // 
+            // buttonAddSubcategory
+            // 
+            this.buttonAddSubcategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddSubcategory.Location = new System.Drawing.Point(3, 32);
+            this.buttonAddSubcategory.Name = "buttonAddSubcategory";
+            this.buttonAddSubcategory.Size = new System.Drawing.Size(243, 23);
+            this.buttonAddSubcategory.TabIndex = 0;
+            this.buttonAddSubcategory.Text = "Subcategorie toevoegen";
+            this.buttonAddSubcategory.UseVisualStyleBackColor = true;
+            this.buttonAddSubcategory.Click += new System.EventHandler(this.buttonAddSubcategory_Click);
             // 
             // UCCategoryTreeView
             // 
@@ -92,7 +108,7 @@
             this.Controls.Add(this.treeViewCategories);
             this.Controls.Add(this.panelTop);
             this.Name = "UCCategoryTreeView";
-            this.Size = new System.Drawing.Size(216, 340);
+            this.Size = new System.Drawing.Size(249, 340);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.ResumeLayout(false);
@@ -106,5 +122,6 @@
         private System.Windows.Forms.TreeView treeViewCategories;
         private System.Windows.Forms.TextBox textBoxSearchFilter;
         private System.Windows.Forms.Label labelSearch;
+        private System.Windows.Forms.Button buttonAddSubcategory;
     }
 }

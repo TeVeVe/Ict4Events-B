@@ -1,4 +1,4 @@
-﻿namespace MediaSharingApplication.Views
+﻿namespace SharedClasses.Views
 {
     partial class UCFeed
     {

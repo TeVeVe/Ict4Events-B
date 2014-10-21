@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using MediaSharingApplication.Views;
 using SharedClasses.Extensions;
+using SharedClasses.Views;
 
 namespace MediaSharingApplication
 {
@@ -15,7 +15,7 @@ namespace MediaSharingApplication
         protected override void OnLoad(EventArgs e)
         {
             // Display first screen
-            panelMainView.ShowInView(new UCCategoryTreeView(), DockStyle.Left);
+            panelMainView.ShowInView(new UCTreeView(), DockStyle.Left);
         }
     }
 }
