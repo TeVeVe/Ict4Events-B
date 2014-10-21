@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 namespace SharedClasses.Detectors.Events
 {
-    public delegate void TagEventHandler(object sender, TagEventArgs e);
-
     public class TagEventArgs : EventArgs
     {
         public string Value { get; set; }

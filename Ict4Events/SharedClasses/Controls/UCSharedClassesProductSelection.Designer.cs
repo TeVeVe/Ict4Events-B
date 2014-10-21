@@ -1,4 +1,4 @@
-﻿namespace SharedClasses
+﻿namespace SharedClasses.Controls
 {
     partial class UCSharedClassesProductSelection
     {

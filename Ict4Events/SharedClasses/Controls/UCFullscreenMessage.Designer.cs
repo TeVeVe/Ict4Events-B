@@ -1,4 +1,4 @@
-﻿namespace AccessControlSystem.Views
+﻿namespace SharedClasses.Controls
 {
     partial class UCFullscreenMessage
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SharedClasses.Controls;
 using SharedClasses.Extensions;
 using SharedClasses.Views;
 

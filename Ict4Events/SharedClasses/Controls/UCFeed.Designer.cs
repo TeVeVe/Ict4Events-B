@@ -1,4 +1,4 @@
-﻿namespace SharedClasses.Views
+﻿namespace SharedClasses.Controls
 {
     partial class UCFeed
     {

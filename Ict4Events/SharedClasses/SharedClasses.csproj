@@ -45,9 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\FeedPostPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FeedPostPanel.Designer.cs">
+      <DependentUpon>FeedPostPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TilePanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Detectors\Events\DeviceAttachedStateEventHandler.cs" />
+    <Compile Include="Detectors\Events\TagEventHandler.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Detectors\AttachState.cs" />
     <Compile Include="Detectors\Events\DeviceAttachedStateEventArgs.cs" />
@@ -63,55 +71,58 @@
     <Compile Include="Views\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCTreeView.cs">
+    <Compile Include="Controls\UCTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCTreeView.Designer.cs">
+    <Compile Include="Controls\UCTreeView.Designer.cs">
       <DependentUpon>UCTreeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCFeed.cs">
+    <Compile Include="Controls\UCFeed.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCFeed.Designer.cs">
+    <Compile Include="Controls\UCFeed.Designer.cs">
       <DependentUpon>UCFeed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCFullscreenMessage.cs">
+    <Compile Include="Controls\UCFullscreenMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCFullscreenMessage.Designer.cs">
+    <Compile Include="Controls\UCFullscreenMessage.Designer.cs">
       <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCSharedClassesProductDetail.cs">
+    <Compile Include="Controls\UCSharedClassesProductDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCSharedClassesProductDetail.Designer.cs">
+    <Compile Include="Controls\UCSharedClassesProductDetail.Designer.cs">
       <DependentUpon>UCSharedClassesProductDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCSharedClassesProductSelection.cs">
+    <Compile Include="Controls\UCSharedClassesProductSelection.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCSharedClassesProductSelection.Designer.cs">
+    <Compile Include="Controls\UCSharedClassesProductSelection.Designer.cs">
       <DependentUpon>UCSharedClassesProductSelection.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Controls\FeedPostPanel.resx">
+      <DependentUpon>FeedPostPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCTreeView.resx">
+    <EmbeddedResource Include="Controls\UCTreeView.resx">
       <DependentUpon>UCTreeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCFeed.resx">
+    <EmbeddedResource Include="Controls\UCFeed.resx">
       <DependentUpon>UCFeed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCFullscreenMessage.resx">
+    <EmbeddedResource Include="Controls\UCFullscreenMessage.resx">
       <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCSharedClassesProductDetail.resx">
+    <EmbeddedResource Include="Controls\UCSharedClassesProductDetail.resx">
       <DependentUpon>UCSharedClassesProductDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCSharedClassesProductSelection.resx">
+    <EmbeddedResource Include="Controls\UCSharedClassesProductSelection.resx">
       <DependentUpon>UCSharedClassesProductSelection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

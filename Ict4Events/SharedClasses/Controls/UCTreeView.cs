@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace SharedClasses.Views
+namespace SharedClasses.Controls
 {
     public partial class UCTreeView : UserControl
     {
