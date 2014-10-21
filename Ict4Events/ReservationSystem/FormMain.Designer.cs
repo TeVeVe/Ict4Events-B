@@ -54,25 +54,25 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.testToolStripMenuItem.Text = "Bezoeker";
             // 
             // evenementenToolStripMenuItem
             // 
             this.evenementenToolStripMenuItem.Name = "evenementenToolStripMenuItem";
-            this.evenementenToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.evenementenToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
             this.evenementenToolStripMenuItem.Text = "Evenementen";
             // 
             // reserveringenToolStripMenuItem
             // 
             this.reserveringenToolStripMenuItem.Name = "reserveringenToolStripMenuItem";
-            this.reserveringenToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.reserveringenToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
             this.reserveringenToolStripMenuItem.Text = "Reserveringen";
             // 
             // productenToolStripMenuItem
             // 
             this.productenToolStripMenuItem.Name = "productenToolStripMenuItem";
-            this.productenToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.productenToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.productenToolStripMenuItem.Text = "Producten";
             // 
             // panelMainView
