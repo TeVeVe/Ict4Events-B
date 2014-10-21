@@ -89,35 +89,35 @@
     <Compile Include="Views\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UCTreeView.cs">
+    <Compile Include="Controls\CategoryTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UCTreeView.Designer.cs">
-      <DependentUpon>UCTreeView.cs</DependentUpon>
+    <Compile Include="Controls\CategoryTreeView.Designer.cs">
+      <DependentUpon>CategoryTreeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UCFeed.cs">
+    <Compile Include="Controls\FeedPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UCFeed.Designer.cs">
-      <DependentUpon>UCFeed.cs</DependentUpon>
+    <Compile Include="Controls\FeedPanel.Designer.cs">
+      <DependentUpon>FeedPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UCFullscreenMessage.cs">
+    <Compile Include="Controls\FullscreenMessagePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UCFullscreenMessage.Designer.cs">
-      <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
+    <Compile Include="Controls\FullscreenMessagePanel.Designer.cs">
+      <DependentUpon>FullscreenMessagePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UCSharedClassesProductDetail.cs">
+    <Compile Include="Views\UCProductDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UCSharedClassesProductDetail.Designer.cs">
-      <DependentUpon>UCSharedClassesProductDetail.cs</DependentUpon>
+    <Compile Include="Views\UCProductDetail.Designer.cs">
+      <DependentUpon>UCProductDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UCSharedClassesProductSelection.cs">
+    <Compile Include="Views\UCProductSelection.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UCSharedClassesProductSelection.Designer.cs">
-      <DependentUpon>UCSharedClassesProductSelection.cs</DependentUpon>
+    <Compile Include="Views\UCProductSelection.Designer.cs">
+      <DependentUpon>UCProductSelection.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup />
@@ -128,20 +128,20 @@
     <EmbeddedResource Include="Views\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UCTreeView.resx">
-      <DependentUpon>UCTreeView.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CategoryTreeView.resx">
+      <DependentUpon>CategoryTreeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UCFeed.resx">
-      <DependentUpon>UCFeed.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\FeedPanel.resx">
+      <DependentUpon>FeedPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UCFullscreenMessage.resx">
-      <DependentUpon>UCFullscreenMessage.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\FullscreenMessagePanel.resx">
+      <DependentUpon>FullscreenMessagePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UCSharedClassesProductDetail.resx">
-      <DependentUpon>UCSharedClassesProductDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UCProductDetail.resx">
+      <DependentUpon>UCProductDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UCSharedClassesProductSelection.resx">
-      <DependentUpon>UCSharedClassesProductSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UCProductSelection.resx">
+      <DependentUpon>UCProductSelection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
