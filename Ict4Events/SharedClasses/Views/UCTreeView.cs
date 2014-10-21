@@ -20,9 +20,6 @@ namespace SharedClasses.Views
             InitializeComponent();
         }
 
-        public Action AddCategoryAction { get; set; }
-        public Action AddSubcategoryAction { get; set; }
-
         public string SearchFilter
         {
             get { return textBoxSearchFilter.Text; }
@@ -31,6 +28,22 @@ namespace SharedClasses.Views
                 if (value == textBoxSearchFilter.Text) return;
                 IEnumerable<TreeNode> nodes = treeViewCategories.Nodes.Cast<TreeNode>();
             }
+        }
+
+        public event EventHandler CategoryClick;
+
+        protected virtual void OnCategoryClick()
+        {
+            EventHandler handler = CategoryClick;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        public event EventHandler SubcategoryClick;
+
+        protected virtual void OnSubcategoryClick()
+        {
+            EventHandler handler = SubcategoryClick;
+            if (handler != null) handler(this, EventArgs.Empty);
         }
 
         private void textBoxSearchFilter_TextChanged(object sender, EventArgs e)
@@ -140,14 +153,12 @@ namespace SharedClasses.Views
 
         private void buttonAddCategory_Click(object sender, EventArgs e)
         {
-            if (AddCategoryAction == null) return;
-            AddCategoryAction();
+            OnCategoryClick();
         }
 
         private void buttonAddSubcategory_Click(object sender, EventArgs e)
         {
-            if (AddSubcategoryAction == null) return;
-            AddSubcategoryAction();
+            OnSubcategoryClick();
         }
     }
 }

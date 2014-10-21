@@ -55,6 +55,7 @@
     <Compile Include="Detectors\RadioFrequency.cs" />
     <Compile Include="Extensions\LINQExtensions.cs" />
     <Compile Include="Extensions\TreeNodeCollectionExtensions.cs" />
+    <Compile Include="Interfaces\IFeedPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\FormLogin.cs">
       <SubType>Form</SubType>
@@ -62,11 +63,11 @@
     <Compile Include="Views\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCCategoryTreeView.cs">
+    <Compile Include="Views\UCTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCCategoryTreeView.Designer.cs">
-      <DependentUpon>UCCategoryTreeView.cs</DependentUpon>
+    <Compile Include="Views\UCTreeView.Designer.cs">
+      <DependentUpon>UCTreeView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UCFeed.cs">
       <SubType>UserControl</SubType>
@@ -98,8 +99,8 @@
     <EmbeddedResource Include="Views\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCCategoryTreeView.resx">
-      <DependentUpon>UCCategoryTreeView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UCTreeView.resx">
+      <DependentUpon>UCTreeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UCFeed.resx">
       <DependentUpon>UCFeed.cs</DependentUpon>
