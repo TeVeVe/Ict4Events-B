@@ -28,10 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.feedPanel1 = new SharedClasses.Controls.FeedPanel();
+            this.categoryTreeView1 = new SharedClasses.Controls.CategoryTreeView();
+            this.SuspendLayout();
+            // 
+            // feedPanel1
+            // 
+            this.feedPanel1.AutoScroll = true;
+            this.feedPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.feedPanel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.feedPanel1.InputMessage = "";
+            this.feedPanel1.Location = new System.Drawing.Point(566, 0);
+            this.feedPanel1.Name = "feedPanel1";
+            this.feedPanel1.PostButtonText = "Bericht plaatsen";
+            this.feedPanel1.Size = new System.Drawing.Size(305, 425);
+            this.feedPanel1.TabIndex = 1;
+            // 
+            // categoryTreeView1
+            // 
+            this.categoryTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.categoryTreeView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.categoryTreeView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.categoryTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.categoryTreeView1.Name = "categoryTreeView1";
+            this.categoryTreeView1.SearchFilter = "";
+            this.categoryTreeView1.Size = new System.Drawing.Size(257, 425);
+            this.categoryTreeView1.TabIndex = 0;
+            // 
+            // ViewMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.feedPanel1);
+            this.Controls.Add(this.categoryTreeView1);
+            this.Name = "ViewMain";
+            this.Size = new System.Drawing.Size(871, 425);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        public SharedClasses.Controls.FeedPanel feedPanel1;
+        public SharedClasses.Controls.CategoryTreeView categoryTreeView1;
     }
 }

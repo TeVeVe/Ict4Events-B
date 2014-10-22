@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelTop = new System.Windows.Forms.Panel();
             this.textBoxSearchFilter = new System.Windows.Forms.TextBox();
             this.labelSearch = new System.Windows.Forms.Label();
             this.buttonAddSubcategory = new System.Windows.Forms.Button();
             this.buttonAddCategory = new System.Windows.Forms.Button();
             this.treeViewCategories = new System.Windows.Forms.TreeView();
+            this.contextMenuStripTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.expandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTop.SuspendLayout();
+            this.contextMenuStripTreeView.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -94,12 +99,35 @@
             // 
             // treeViewCategories
             // 
+            this.treeViewCategories.ContextMenuStrip = this.contextMenuStripTreeView;
             this.treeViewCategories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewCategories.Location = new System.Drawing.Point(0, 89);
             this.treeViewCategories.Name = "treeViewCategories";
             this.treeViewCategories.Size = new System.Drawing.Size(247, 249);
             this.treeViewCategories.TabIndex = 2;
             this.treeViewCategories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeViewCategories_KeyDown);
+            // 
+            // contextMenuStripTreeView
+            // 
+            this.contextMenuStripTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.expandAllToolStripMenuItem,
+            this.collapseAllToolStripMenuItem});
+            this.contextMenuStripTreeView.Name = "contextMenuStripTreeView";
+            this.contextMenuStripTreeView.Size = new System.Drawing.Size(159, 48);
+            // 
+            // expandAllToolStripMenuItem
+            // 
+            this.expandAllToolStripMenuItem.Name = "expandAllToolStripMenuItem";
+            this.expandAllToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.expandAllToolStripMenuItem.Text = "Alles uitklappen";
+            this.expandAllToolStripMenuItem.Click += new System.EventHandler(this.expandAllToolStripMenuItem_Click);
+            // 
+            // collapseAllToolStripMenuItem
+            // 
+            this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.collapseAllToolStripMenuItem.Text = "Alles inklappen";
+            this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
             // 
             // CategoryTreeView
             // 
@@ -112,6 +140,7 @@
             this.Size = new System.Drawing.Size(247, 338);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
+            this.contextMenuStripTreeView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -124,5 +153,8 @@
         private System.Windows.Forms.TextBox textBoxSearchFilter;
         private System.Windows.Forms.Label labelSearch;
         private System.Windows.Forms.Button buttonAddSubcategory;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTreeView;
+        private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
     }
 }

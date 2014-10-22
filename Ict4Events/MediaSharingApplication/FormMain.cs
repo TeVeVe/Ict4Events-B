@@ -9,14 +9,13 @@ namespace MediaSharingApplication
 {
     public partial class FormMain : Form
     {
+        public ViewMain ViewMain { get; set; }
+
         public FormMain()
         {
             InitializeComponent();
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            panelMainView.ShowInView(new ViewMain());
+            ViewMain = new ViewMain();
+            panelMainView.ShowInView(ViewMain);
         }
     }
 }

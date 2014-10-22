@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SharedClasses.Controls
 {
-    public partial class FeedPostPanel : UserControl
+    internal partial class FeedPostPanel : UserControl
     {
         public FeedPostPanel()
         {
