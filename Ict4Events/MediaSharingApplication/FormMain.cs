@@ -8,6 +8,9 @@ namespace MediaSharingApplication
 {
     public partial class FormMain : Form
     {
+        public CategoryTreeView CategoryTreeView { get; set; }
+        public FeedPanel FeedPanel { get; set; }
+
         public FormMain()
         {
             InitializeComponent();
@@ -15,9 +18,16 @@ namespace MediaSharingApplication
 
         protected override void OnLoad(EventArgs e)
         {
+            // Initialize views.
+            CategoryTreeView = new CategoryTreeView();
+            
+            FeedPanel = new FeedPanel();
+            FeedPanel.PostLabelText = "Uw bericht";
+            FeedPanel.PostButtonText = "Plaats bericht";
+
             // Display first screen
-            panelMainView.ShowInView(new CategoryTreeView(), DockStyle.Left);
-            panelMainView.ShowInView(new FeedPanel(), DockStyle.Right);
+            panelMainView.ShowInView(CategoryTreeView, DockStyle.Left);
+            panelMainView.ShowInView(FeedPanel, DockStyle.Right);
         }
     }
 }

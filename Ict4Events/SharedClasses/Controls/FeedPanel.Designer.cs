@@ -28,35 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.labelYourMessage = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.buttonPost = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBoxInput = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelMessage = new System.Windows.Forms.Panel();
+            this.labelYourMessage = new System.Windows.Forms.Label();
+            this.panelPost = new System.Windows.Forms.Panel();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.flowLayoutPanelFeedPosts = new System.Windows.Forms.FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.panelMessage.SuspendLayout();
+            this.panelPost.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // splitContainer1
             // 
-            this.panel1.CausesValidation = false;
-            this.panel1.Controls.Add(this.textBoxInput);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.labelYourMessage);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 208);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(305, 109);
-            this.panel1.TabIndex = 3;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // flowLayoutPanel1
+            // splitContainer1.Panel1
             // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(305, 208);
-            this.flowLayoutPanel1.TabIndex = 4;
+            this.splitContainer1.Panel1.Controls.Add(this.flowLayoutPanelFeedPosts);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.textBoxInput);
+            this.splitContainer1.Panel2.Controls.Add(this.panelMessage);
+            this.splitContainer1.Panel2.Controls.Add(this.panelPost);
+            this.splitContainer1.Size = new System.Drawing.Size(305, 317);
+            this.splitContainer1.SplitterDistance = 198;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // textBoxInput
+            // 
+            this.textBoxInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxInput.Location = new System.Drawing.Point(0, 20);
+            this.textBoxInput.Multiline = true;
+            this.textBoxInput.Name = "textBoxInput";
+            this.textBoxInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxInput.Size = new System.Drawing.Size(305, 65);
+            this.textBoxInput.TabIndex = 24;
+            // 
+            // panelMessage
+            // 
+            this.panelMessage.Controls.Add(this.labelYourMessage);
+            this.panelMessage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelMessage.Location = new System.Drawing.Point(0, 0);
+            this.panelMessage.Name = "panelMessage";
+            this.panelMessage.Size = new System.Drawing.Size(305, 20);
+            this.panelMessage.TabIndex = 23;
             // 
             // labelYourMessage
             // 
@@ -64,37 +88,37 @@
             this.labelYourMessage.Location = new System.Drawing.Point(3, 3);
             this.labelYourMessage.Name = "labelYourMessage";
             this.labelYourMessage.Size = new System.Drawing.Size(105, 13);
-            this.labelYourMessage.TabIndex = 3;
+            this.labelYourMessage.TabIndex = 4;
             this.labelYourMessage.Text = "[YOUR_MESSAGE]:";
             // 
-            // panel2
+            // panelPost
             // 
-            this.panel2.Controls.Add(this.buttonPost);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 79);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(305, 30);
-            this.panel2.TabIndex = 10;
+            this.panelPost.Controls.Add(this.buttonPost);
+            this.panelPost.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelPost.Location = new System.Drawing.Point(0, 85);
+            this.panelPost.Name = "panelPost";
+            this.panelPost.Size = new System.Drawing.Size(305, 30);
+            this.panelPost.TabIndex = 22;
             // 
             // buttonPost
             // 
-            this.buttonPost.Location = new System.Drawing.Point(229, 3);
+            this.buttonPost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPost.AutoSize = true;
+            this.buttonPost.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonPost.Location = new System.Drawing.Point(264, 3);
             this.buttonPost.Name = "buttonPost";
-            this.buttonPost.Size = new System.Drawing.Size(75, 23);
+            this.buttonPost.Size = new System.Drawing.Size(38, 23);
             this.buttonPost.TabIndex = 5;
             this.buttonPost.Text = "Post";
             this.buttonPost.UseVisualStyleBackColor = true;
-            this.buttonPost.Click += new System.EventHandler(this.buttonPost_Click);
             // 
-            // textBoxInput
+            // flowLayoutPanelFeedPosts
             // 
-            this.textBoxInput.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBoxInput.Location = new System.Drawing.Point(0, 22);
-            this.textBoxInput.Multiline = true;
-            this.textBoxInput.Name = "textBoxInput";
-            this.textBoxInput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxInput.Size = new System.Drawing.Size(305, 57);
-            this.textBoxInput.TabIndex = 11;
+            this.flowLayoutPanelFeedPosts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelFeedPosts.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelFeedPosts.Name = "flowLayoutPanelFeedPosts";
+            this.flowLayoutPanelFeedPosts.Size = new System.Drawing.Size(305, 198);
+            this.flowLayoutPanelFeedPosts.TabIndex = 5;
             // 
             // FeedPanel
             // 
@@ -102,25 +126,32 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "FeedPanel";
             this.Size = new System.Drawing.Size(305, 317);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.panelMessage.ResumeLayout(false);
+            this.panelMessage.PerformLayout();
+            this.panelPost.ResumeLayout(false);
+            this.panelPost.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label labelYourMessage;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFeedPosts;
         private System.Windows.Forms.TextBox textBoxInput;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelMessage;
+        private System.Windows.Forms.Label labelYourMessage;
+        private System.Windows.Forms.Panel panelPost;
         private System.Windows.Forms.Button buttonPost;
+
 
     }
 }

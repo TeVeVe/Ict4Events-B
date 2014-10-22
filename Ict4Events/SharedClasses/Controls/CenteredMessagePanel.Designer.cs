@@ -1,6 +1,6 @@
 ﻿namespace SharedClasses.Controls
 {
-    partial class FullscreenMessagePanel
+    partial class CenteredMessagePanel
     {
         /// <summary> 
         /// Required designer variable.

@@ -2,7 +2,7 @@
 
 namespace SharedClasses.Controls
 {
-    public partial class FullscreenMessagePanel : UserControl
+    public partial class CenteredMessagePanel : UserControl
     {
         public string Message
         {
@@ -10,7 +10,7 @@ namespace SharedClasses.Controls
             set { labelCenteredLabel.Text = value; }
         }
 
-        public FullscreenMessagePanel()
+        public CenteredMessagePanel()
         {
             InitializeComponent();
         }

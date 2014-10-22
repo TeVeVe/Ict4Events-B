@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.evenementenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reserveringenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VisitorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMainView = new System.Windows.Forms.Panel();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
@@ -40,48 +40,48 @@
             // menuStripMain
             // 
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem,
-            this.evenementenToolStripMenuItem,
-            this.reserveringenToolStripMenuItem,
-            this.productenToolStripMenuItem});
+            this.VisitorsToolStripMenuItem,
+            this.eventsToolStripMenuItem,
+            this.reservationsToolStripMenuItem,
+            this.productsToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStripMain.Size = new System.Drawing.Size(653, 28);
+            this.menuStripMain.Size = new System.Drawing.Size(653, 24);
             this.menuStripMain.TabIndex = 3;
             this.menuStripMain.Text = "menuStrip1";
             // 
-            // testToolStripMenuItem
+            // VisitorsToolStripMenuItem
             // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.testToolStripMenuItem.Text = "Bezoeker";
+            this.VisitorsToolStripMenuItem.Name = "VisitorsToolStripMenuItem";
+            this.VisitorsToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.VisitorsToolStripMenuItem.Text = "Bezoekers";
             // 
-            // evenementenToolStripMenuItem
+            // eventsToolStripMenuItem
             // 
-            this.evenementenToolStripMenuItem.Name = "evenementenToolStripMenuItem";
-            this.evenementenToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
-            this.evenementenToolStripMenuItem.Text = "Evenementen";
+            this.eventsToolStripMenuItem.Name = "eventsToolStripMenuItem";
+            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.eventsToolStripMenuItem.Text = "Evenementen";
             // 
-            // reserveringenToolStripMenuItem
+            // reservationsToolStripMenuItem
             // 
-            this.reserveringenToolStripMenuItem.Name = "reserveringenToolStripMenuItem";
-            this.reserveringenToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
-            this.reserveringenToolStripMenuItem.Text = "Reserveringen";
+            this.reservationsToolStripMenuItem.Name = "reservationsToolStripMenuItem";
+            this.reservationsToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.reservationsToolStripMenuItem.Text = "Reserveringen";
             // 
-            // productenToolStripMenuItem
+            // productsToolStripMenuItem
             // 
-            this.productenToolStripMenuItem.Name = "productenToolStripMenuItem";
-            this.productenToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
-            this.productenToolStripMenuItem.Text = "Producten";
+            this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
+            this.productsToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.productsToolStripMenuItem.Text = "Producten";
             // 
             // panelMainView
             // 
             this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMainView.Location = new System.Drawing.Point(0, 28);
+            this.panelMainView.Location = new System.Drawing.Point(0, 24);
             this.panelMainView.Margin = new System.Windows.Forms.Padding(4);
             this.panelMainView.Name = "panelMainView";
-            this.panelMainView.Size = new System.Drawing.Size(653, 388);
+            this.panelMainView.Size = new System.Drawing.Size(653, 392);
             this.panelMainView.TabIndex = 4;
             // 
             // FormMain
@@ -105,10 +105,10 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem evenementenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reserveringenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem productenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VisitorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eventsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem productsToolStripMenuItem;
         private System.Windows.Forms.Panel panelMainView;
 
     }

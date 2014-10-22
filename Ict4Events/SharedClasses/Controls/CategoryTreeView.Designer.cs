@@ -31,9 +31,9 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.textBoxSearchFilter = new System.Windows.Forms.TextBox();
             this.labelSearch = new System.Windows.Forms.Label();
+            this.buttonAddSubcategory = new System.Windows.Forms.Button();
             this.buttonAddCategory = new System.Windows.Forms.Button();
             this.treeViewCategories = new System.Windows.Forms.TreeView();
-            this.buttonAddSubcategory = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(249, 89);
+            this.panelTop.Size = new System.Drawing.Size(247, 89);
             this.panelTop.TabIndex = 1;
             // 
             // textBoxSearchFilter
@@ -55,7 +55,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxSearchFilter.Location = new System.Drawing.Point(56, 61);
             this.textBoxSearchFilter.Name = "textBoxSearchFilter";
-            this.textBoxSearchFilter.Size = new System.Drawing.Size(190, 20);
+            this.textBoxSearchFilter.Size = new System.Drawing.Size(188, 20);
             this.textBoxSearchFilter.TabIndex = 2;
             this.textBoxSearchFilter.TextChanged += new System.EventHandler(this.textBoxSearchFilter_TextChanged);
             // 
@@ -68,13 +68,25 @@
             this.labelSearch.TabIndex = 1;
             this.labelSearch.Text = "Zoeken:";
             // 
+            // buttonAddSubcategory
+            // 
+            this.buttonAddSubcategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddSubcategory.Location = new System.Drawing.Point(3, 32);
+            this.buttonAddSubcategory.Name = "buttonAddSubcategory";
+            this.buttonAddSubcategory.Size = new System.Drawing.Size(241, 23);
+            this.buttonAddSubcategory.TabIndex = 0;
+            this.buttonAddSubcategory.Text = "Subcategorie toevoegen";
+            this.buttonAddSubcategory.UseVisualStyleBackColor = true;
+            this.buttonAddSubcategory.Click += new System.EventHandler(this.buttonAddSubcategory_Click);
+            // 
             // buttonAddCategory
             // 
             this.buttonAddCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddCategory.Location = new System.Drawing.Point(3, 3);
             this.buttonAddCategory.Name = "buttonAddCategory";
-            this.buttonAddCategory.Size = new System.Drawing.Size(243, 23);
+            this.buttonAddCategory.Size = new System.Drawing.Size(241, 23);
             this.buttonAddCategory.TabIndex = 0;
             this.buttonAddCategory.Text = "Categorie toevoegen";
             this.buttonAddCategory.UseVisualStyleBackColor = true;
@@ -85,30 +97,19 @@
             this.treeViewCategories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewCategories.Location = new System.Drawing.Point(0, 89);
             this.treeViewCategories.Name = "treeViewCategories";
-            this.treeViewCategories.Size = new System.Drawing.Size(249, 251);
+            this.treeViewCategories.Size = new System.Drawing.Size(247, 249);
             this.treeViewCategories.TabIndex = 2;
             this.treeViewCategories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeViewCategories_KeyDown);
             // 
-            // buttonAddSubcategory
-            // 
-            this.buttonAddSubcategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddSubcategory.Location = new System.Drawing.Point(3, 32);
-            this.buttonAddSubcategory.Name = "buttonAddSubcategory";
-            this.buttonAddSubcategory.Size = new System.Drawing.Size(243, 23);
-            this.buttonAddSubcategory.TabIndex = 0;
-            this.buttonAddSubcategory.Text = "Subcategorie toevoegen";
-            this.buttonAddSubcategory.UseVisualStyleBackColor = true;
-            this.buttonAddSubcategory.Click += new System.EventHandler(this.buttonAddSubcategory_Click);
-            // 
-            // UCCategoryTreeView
+            // CategoryTreeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.treeViewCategories);
             this.Controls.Add(this.panelTop);
-            this.Name = "UCCategoryTreeView";
-            this.Size = new System.Drawing.Size(249, 340);
+            this.Name = "CategoryTreeView";
+            this.Size = new System.Drawing.Size(247, 338);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.ResumeLayout(false);

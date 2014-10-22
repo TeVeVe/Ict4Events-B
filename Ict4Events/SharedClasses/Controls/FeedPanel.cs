@@ -1,21 +1,28 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using SharedClasses.Events;
 
 namespace SharedClasses.Controls
 {
     public partial class FeedPanel : UserControl
     {
-        public event MessageEventHandler Post;
-
-        protected virtual void OnPost(MessageEventArgs e)
+        public FeedPanel()
         {
-            MessageEventHandler handler = Post;
-            if (handler != null) handler(this, e);
+            InitializeComponent();
         }
 
-        public string LabelMessage
+        public string PostLabelText
         {
             set { labelYourMessage.Text = value.TrimEnd(':') + ':'; }
+        }
+
+        public string PostButtonText
+        {
+            get { return buttonPost.Text; }
+            set
+            {
+                buttonPost.Text = value;
+            }
         }
 
         public string InputMessage
@@ -24,15 +31,12 @@ namespace SharedClasses.Controls
             set { textBoxInput.Text = value; }
         }
 
-        public FeedPanel()
-        {
-            InitializeComponent();
-        }
+        public event MessageEventHandler Post;
 
-        private void buttonPost_Click(object sender, System.EventArgs e)
+        protected virtual void OnPost(MessageEventArgs e)
         {
-            OnPost(new MessageEventArgs(textBoxInput.Text));
-            textBoxInput.Clear();
+            MessageEventHandler handler = Post;
+            if (handler != null) handler(this, e);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -44,6 +48,12 @@ namespace SharedClasses.Controls
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void buttonPost_Click(object sender, EventArgs e)
+        {
+            OnPost(new MessageEventArgs(textBoxInput.Text));
+            textBoxInput.Clear();
         }
     }
 }

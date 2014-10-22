@@ -18,7 +18,7 @@ namespace AccessControlSystem
         protected override void OnLoad(EventArgs e)
         {
             // Display first screen
-            panelMainView.ShowInView(new FullscreenMessagePanel());
+            panelMainView.ShowInView(new CenteredMessagePanel());
         }
     }
 }

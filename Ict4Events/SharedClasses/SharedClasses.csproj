@@ -102,11 +102,11 @@
     <Compile Include="Controls\FeedPanel.Designer.cs">
       <DependentUpon>FeedPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FullscreenMessagePanel.cs">
+    <Compile Include="Controls\CenteredMessagePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\FullscreenMessagePanel.Designer.cs">
-      <DependentUpon>FullscreenMessagePanel.cs</DependentUpon>
+    <Compile Include="Controls\CenteredMessagePanel.Designer.cs">
+      <DependentUpon>CenteredMessagePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UCProductDetail.cs">
       <SubType>UserControl</SubType>
@@ -135,8 +135,8 @@
     <EmbeddedResource Include="Controls\FeedPanel.resx">
       <DependentUpon>FeedPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FullscreenMessagePanel.resx">
-      <DependentUpon>FullscreenMessagePanel.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CenteredMessagePanel.resx">
+      <DependentUpon>CenteredMessagePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UCProductDetail.resx">
       <DependentUpon>UCProductDetail.cs</DependentUpon>
