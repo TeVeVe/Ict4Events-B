@@ -10,7 +10,6 @@ namespace SharedClasses.Extensions
             target.TopLevel = false;
             target.Parent = parent;
 
-            parent.Controls.Clear();
             parent.Controls.Add(target);
             target.FormBorderStyle = FormBorderStyle.None;
             target.Show();
@@ -25,7 +24,6 @@ namespace SharedClasses.Extensions
         {
             target.Load += (sender, args) => target.Dock = dock;
             
-            parent.Controls.Clear();
             parent.Controls.Add(target);
         }
     }

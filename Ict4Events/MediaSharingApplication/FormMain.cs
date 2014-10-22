@@ -17,6 +17,7 @@ namespace MediaSharingApplication
         {
             // Display first screen
             panelMainView.ShowInView(new CategoryTreeView(), DockStyle.Left);
+            panelMainView.ShowInView(new FeedPanel(), DockStyle.Right);
         }
     }
 }

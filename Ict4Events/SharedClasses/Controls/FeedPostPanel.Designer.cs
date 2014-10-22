@@ -35,18 +35,21 @@
             // 
             // pictureBoxImage
             // 
-            this.pictureBoxImage.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxImage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxImage.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxImage.Name = "pictureBoxImage";
-            this.pictureBoxImage.Size = new System.Drawing.Size(50, 50);
+            this.pictureBoxImage.Size = new System.Drawing.Size(50, 53);
             this.pictureBoxImage.TabIndex = 0;
             this.pictureBoxImage.TabStop = false;
             // 
             // textBoxContent
             // 
-            this.textBoxContent.Location = new System.Drawing.Point(59, 3);
+            this.textBoxContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxContent.Location = new System.Drawing.Point(50, 0);
             this.textBoxContent.Multiline = true;
             this.textBoxContent.Name = "textBoxContent";
-            this.textBoxContent.Size = new System.Drawing.Size(213, 50);
+            this.textBoxContent.ReadOnly = true;
+            this.textBoxContent.Size = new System.Drawing.Size(223, 53);
             this.textBoxContent.TabIndex = 1;
             // 
             // FeedPostPanel
@@ -55,10 +58,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.textBoxContent);
             this.Controls.Add(this.pictureBoxImage);
+            this.MinimumSize = new System.Drawing.Size(275, 55);
             this.Name = "FeedPostPanel";
-            this.Size = new System.Drawing.Size(275, 56);
+            this.Size = new System.Drawing.Size(273, 53);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

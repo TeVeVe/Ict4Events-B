@@ -58,12 +58,6 @@
     <Compile Include="Views\UCAccessControlSystemHistory.Designer.cs">
       <DependentUpon>UCAccessControlSystemHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCAccessControlSystemRFID.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UCAccessControlSystemRFID.Designer.cs">
-      <DependentUpon>UCAccessControlSystemRFID.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\UCAccessControlSystemVisitorsPresent.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,9 +85,6 @@
     </Compile>
     <EmbeddedResource Include="Views\UCAccessControlSystemHistory.resx">
       <DependentUpon>UCAccessControlSystemHistory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCAccessControlSystemRFID.resx">
-      <DependentUpon>UCAccessControlSystemRFID.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UCAccessControlSystemVisitorsPresent.resx">
       <DependentUpon>UCAccessControlSystemVisitorsPresent.cs</DependentUpon>
