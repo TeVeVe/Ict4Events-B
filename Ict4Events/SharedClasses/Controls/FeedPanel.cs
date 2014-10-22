@@ -19,10 +19,7 @@ namespace SharedClasses.Controls
         public string PostButtonText
         {
             get { return buttonPost.Text; }
-            set
-            {
-                buttonPost.Text = value;
-            }
+            set { buttonPost.Text = value; }
         }
 
         public string InputMessage
@@ -41,10 +38,16 @@ namespace SharedClasses.Controls
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.Control | Keys.Enter))
+            switch (keyData)
             {
-                buttonPost.PerformClick();
-                return true;
+                case (Keys.Control | Keys.Enter):
+                    buttonPost.PerformClick();
+                    return true;
+                // Apparently this is needed for using Ctrl+A on the FeedPanel. Otherwise Windows gives a *ding* sound.
+                case (Keys.Control | Keys.A):
+                    textBoxInput.Focus();
+                    textBoxInput.SelectAll();
+                    return true;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -53,9 +56,30 @@ namespace SharedClasses.Controls
         private void buttonPost_Click(object sender, EventArgs e)
         {
             OnPost(new MessageEventArgs(textBoxInput.Text));
-            textBoxInput.Clear();
 
-            
+#if DEBUG_NODB
+            // Allow adding of new posts without database.
+            Add(new FeedPostPanel
+            {
+                Content = textBoxInput.Text
+            });
+#endif
+            textBoxInput.Clear();
+        }
+
+        public void Add(FeedPostPanel feedPostPanel)
+        {
+            // Add a new message.
+            flowLayoutPanelFeedPosts.Controls.Add(feedPostPanel);
+
+            // Reapply styling.
+            flowLayoutPanelFeedPosts.Controls[0].Dock = DockStyle.None;
+            flowLayoutPanelFeedPosts.Controls[0].Width = flowLayoutPanelFeedPosts.DisplayRectangle.Width - flowLayoutPanelFeedPosts.Controls[0].Margin.Horizontal;
+
+            for (int i = 1; i < flowLayoutPanelFeedPosts.Controls.Count; i++)
+            {
+                flowLayoutPanelFeedPosts.Controls[i].Dock = DockStyle.Top;
+            }
         }
     }
 }

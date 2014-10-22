@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanelFeedPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.panelMessage = new System.Windows.Forms.Panel();
             this.labelYourMessage = new System.Windows.Forms.Label();
             this.panelPost = new System.Windows.Forms.Panel();
             this.buttonPost = new System.Windows.Forms.Button();
-            this.flowLayoutPanelFeedPosts = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +62,15 @@
             this.splitContainer1.Size = new System.Drawing.Size(305, 317);
             this.splitContainer1.SplitterDistance = 198;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // flowLayoutPanelFeedPosts
+            // 
+            this.flowLayoutPanelFeedPosts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelFeedPosts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanelFeedPosts.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelFeedPosts.Name = "flowLayoutPanelFeedPosts";
+            this.flowLayoutPanelFeedPosts.Size = new System.Drawing.Size(305, 198);
+            this.flowLayoutPanelFeedPosts.TabIndex = 5;
             // 
             // textBoxInput
             // 
@@ -112,14 +121,6 @@
             this.buttonPost.Text = "Post";
             this.buttonPost.UseVisualStyleBackColor = true;
             this.buttonPost.Click += new System.EventHandler(this.buttonPost_Click);
-            // 
-            // flowLayoutPanelFeedPosts
-            // 
-            this.flowLayoutPanelFeedPosts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelFeedPosts.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanelFeedPosts.Name = "flowLayoutPanelFeedPosts";
-            this.flowLayoutPanelFeedPosts.Size = new System.Drawing.Size(305, 198);
-            this.flowLayoutPanelFeedPosts.TabIndex = 5;
             // 
             // FeedPanel
             // 
