@@ -111,6 +111,7 @@
             this.buttonPost.TabIndex = 5;
             this.buttonPost.Text = "Post";
             this.buttonPost.UseVisualStyleBackColor = true;
+            this.buttonPost.Click += new System.EventHandler(this.buttonPost_Click);
             // 
             // flowLayoutPanelFeedPosts
             // 

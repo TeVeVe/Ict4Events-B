@@ -54,6 +54,8 @@ namespace SharedClasses.Controls
         {
             OnPost(new MessageEventArgs(textBoxInput.Text));
             textBoxInput.Clear();
+
+            
         }
     }
 }
