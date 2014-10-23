@@ -15,7 +15,7 @@ namespace MediaSharingApplication
         {
             InitializeComponent();
             ViewMain = new ViewMain();
-            panelMainView.ShowInView(ViewMain);
+            //panelMainView.OpenController(ViewMain);
         }
     }
 }

@@ -61,6 +61,12 @@
     <Compile Include="Controls\FeedPostPanel.Designer.cs">
       <DependentUpon>FeedPostPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MVC\FormMVC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\MVC\FormMVC.Designer.cs">
+      <DependentUpon>FormMVC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TilePanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,25 +80,27 @@
     <Compile Include="Detectors\RadioFrequency.cs" />
     <Compile Include="Extensions\LINQExtensions.cs" />
     <Compile Include="Extensions\TreeNodeCollectionExtensions.cs" />
+    <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IFeedPost.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Comment.cs" />
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\FeedPost.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\File.cs" />
-    <Compile Include="Models\Like.cs" />
-    <Compile Include="Models\LikeType.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Privilege.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Rental.cs" />
-    <Compile Include="Models\Reservation.cs" />
-    <Compile Include="Models\Reservee.cs" />
-    <Compile Include="Models\Spot.cs" />
-    <Compile Include="Models\SpotType.cs" />
-    <Compile Include="Models\UserAccount.cs" />
-    <Compile Include="Models\Wristband.cs" />
+    <Compile Include="Models\Data\Category.cs" />
+    <Compile Include="Models\Data\Comment.cs" />
+    <Compile Include="Models\Data\Event.cs" />
+    <Compile Include="Models\Data\FeedPost.cs" />
+    <Compile Include="Models\Data\Group.cs" />
+    <Compile Include="Models\Data\File.cs" />
+    <Compile Include="Models\Data\Like.cs" />
+    <Compile Include="Models\Data\LikeType.cs" />
+    <Compile Include="Models\Data\Location.cs" />
+    <Compile Include="Models\Data\Privilege.cs" />
+    <Compile Include="Models\Data\Product.cs" />
+    <Compile Include="Models\Data\Rental.cs" />
+    <Compile Include="Models\Data\Reservation.cs" />
+    <Compile Include="Models\Data\Reservee.cs" />
+    <Compile Include="Models\Data\Spot.cs" />
+    <Compile Include="Models\Data\SpotType.cs" />
+    <Compile Include="Models\Data\UserAccount.cs" />
+    <Compile Include="Models\Data\Wristband.cs" />
+    <Compile Include="Models\MVC\ControllerMVC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\FormLogin.cs">
       <SubType>Form</SubType>
@@ -135,6 +143,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\FeedPostPanel.resx">
       <DependentUpon>FeedPostPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MVC\FormMVC.resx">
+      <DependentUpon>FormMVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

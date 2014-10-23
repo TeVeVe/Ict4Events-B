@@ -41,6 +41,7 @@
             this.feedPanel1.Location = new System.Drawing.Point(566, 0);
             this.feedPanel1.Name = "feedPanel1";
             this.feedPanel1.PostButtonText = "Bericht plaatsen";
+            this.feedPanel1.PostLabelText = "Uw bericht:";
             this.feedPanel1.Size = new System.Drawing.Size(305, 425);
             this.feedPanel1.TabIndex = 1;
             // 

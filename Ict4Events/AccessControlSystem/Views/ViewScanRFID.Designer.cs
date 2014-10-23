@@ -1,6 +1,6 @@
 ﻿namespace AccessControlSystem.Views
 {
-    partial class UCMapDetails
+    partial class ViewScanRFID
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelDescription = new System.Windows.Forms.Label();
+            this.centeredMessagePanel1 = new SharedClasses.Controls.CenteredMessagePanel();
             this.SuspendLayout();
             // 
-            // labelDescription
+            // centeredMessagePanel1
             // 
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(4, 0);
-            this.labelDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(0, 17);
-            this.labelDescription.TabIndex = 0;
+            this.centeredMessagePanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.centeredMessagePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.centeredMessagePanel1.Location = new System.Drawing.Point(0, 0);
+            this.centeredMessagePanel1.Message = "Toon uw polsbandje aan de scanner";
+            this.centeredMessagePanel1.Name = "centeredMessagePanel1";
+            this.centeredMessagePanel1.Size = new System.Drawing.Size(606, 321);
+            this.centeredMessagePanel1.TabIndex = 0;
             // 
-            // UCMapDetails
+            // ViewScanRFID
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelDescription);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "UCMapDetails";
-            this.Size = new System.Drawing.Size(485, 411);
+            this.Controls.Add(this.centeredMessagePanel1);
+            this.Name = "ViewScanRFID";
+            this.Size = new System.Drawing.Size(606, 321);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label labelDescription;
-
-
+        private SharedClasses.Controls.CenteredMessagePanel centeredMessagePanel1;
     }
 }

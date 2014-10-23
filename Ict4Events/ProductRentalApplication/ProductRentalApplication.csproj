@@ -62,17 +62,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\UCProductRentalApplicationRFID.cs">
+    <Compile Include="Views\ViewMain.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCProductRentalApplicationRFID.Designer.cs">
-      <DependentUpon>UCProductRentalApplicationRFID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UCProductRentalOverview.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UCProductRentalOverview.Designer.cs">
-      <DependentUpon>UCProductRentalOverview.cs</DependentUpon>
+    <Compile Include="Views\ViewMain.Designer.cs">
+      <DependentUpon>ViewMain.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -87,11 +81,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\UCProductRentalApplicationRFID.resx">
-      <DependentUpon>UCProductRentalApplicationRFID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCProductRentalOverview.resx">
-      <DependentUpon>UCProductRentalOverview.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewMain.resx">
+      <DependentUpon>ViewMain.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -112,6 +103,7 @@
       <Name>SharedClasses</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

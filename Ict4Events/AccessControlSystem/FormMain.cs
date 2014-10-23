@@ -1,24 +1,25 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using AccessControlSystem.Views;
+using AccessControlSystem.Controllers;
 using SharedClasses.Controls;
 using SharedClasses.Extensions;
+using SharedClasses.Interfaces;
 using SharedClasses.Views;
 
 namespace AccessControlSystem
 {
-    public partial class FormMain : Form
+    public partial class FormMain : FormMVC
     {
         public FormMain()
         {
             InitializeComponent();
-        }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            // Display first screen
-            panelMainView.ShowInView(new CenteredMessagePanel());
+            // Add menu items:
+            AddMenuItem("Show location", new ControllerLocationDetails("Test"));
+
+            // First action that this system needs to do:
+            ActiveController = new ControllerScanRFID();
         }
     }
 }

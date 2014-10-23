@@ -16,19 +16,19 @@ namespace SharedClasses.Controls
 
         private string _lastSearchText;
 
-        /// <summary>
-        /// Returns the collection which is used by the TreeView.
-        /// </summary>
-        [Browsable(false)]
-        public TreeNodeCollection Nodes
-        {
-            get { return treeViewCategories.Nodes; } 
-        }
-
         public CategoryTreeView()
         {
             InitializeComponent();
             _currentNodeMatches = new List<TreeNode>();
+        }
+
+        /// <summary>
+        ///     Returns the collection which is used by the TreeView.
+        /// </summary>
+        [Browsable(false)]
+        public TreeNodeCollection Nodes
+        {
+            get { return treeViewCategories.Nodes; }
         }
 
         public string SearchFilter
@@ -138,7 +138,7 @@ namespace SharedClasses.Controls
                 // Allow backspace.
                 if (e.KeyData == Keys.Back && textBoxSearchFilter.TextLength > 0)
                     textBoxSearchFilter.Text = textBoxSearchFilter.Text.Substring(0, textBoxSearchFilter.TextLength - 1);
-                // Allow next node from current selection.
+                    // Allow next node from current selection.
                 else if (e.KeyData.HasFlag(Keys.Enter))
                 {
                     // Search next node.
@@ -180,7 +180,7 @@ namespace SharedClasses.Controls
         }
 
         /// <summary>
-        /// Selects the node in the TreeView and expands it.
+        ///     Selects the node in the TreeView and expands it.
         /// </summary>
         /// <param name="node">Node to be selected.</param>
         private void SelectNode(TreeNode node)

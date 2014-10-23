@@ -59,5 +59,16 @@ namespace AccessControlSystem.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welkom, {0}.
+        ///
+        ///Uw campingplek is hieronder aangegeven..
+        /// </summary>
+        internal static string ViewLocationDetails_VisitorWelcomeText {
+            get {
+                return ResourceManager.GetString("ViewLocationDetails_VisitorWelcomeText", resourceCulture);
+            }
+        }
     }
 }

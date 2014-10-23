@@ -14,6 +14,7 @@ namespace SharedClasses.Controls
 
         public string PostLabelText
         {
+            get { return labelYourMessage.Text; }
             set { labelYourMessage.Text = value.TrimEnd(':') + ':'; }
         }
 

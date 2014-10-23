@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AccessControlSystem.Views
+namespace ProductRentalApplication.Views
 {
-    public partial class UCAccessControlSystemHistory : UserControl
+    public partial class ViewMain : UserControl
     {
-        public UCAccessControlSystemHistory()
+        public ViewMain()
         {
             InitializeComponent();
         }

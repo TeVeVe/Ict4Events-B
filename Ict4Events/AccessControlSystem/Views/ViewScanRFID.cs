@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccessControlSystem.Controllers;
+using SharedClasses.Interfaces;
 
-namespace ProductRentalApplication.Views
+namespace AccessControlSystem.Views
 {
-    public partial class UCProductRentalApplicationRFID : UserControl
+    public partial class ViewScanRFID : UserControl
     {
-        public UCProductRentalApplicationRFID()
+        public ViewScanRFID()
         {
             InitializeComponent();
         }

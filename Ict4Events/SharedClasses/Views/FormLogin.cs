@@ -42,6 +42,9 @@ namespace SharedClasses.Views
                 case Keys.Enter:
                     buttonOK.PerformClick();
                     break;
+                case Keys.Escape:
+                    Close();
+                    break;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
