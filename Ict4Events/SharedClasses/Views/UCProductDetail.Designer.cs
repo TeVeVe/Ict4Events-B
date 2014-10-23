@@ -1,4 +1,4 @@
-﻿namespace SharedClasses.Controls
+﻿namespace SharedClasses.Views
 {
     partial class UCProductDetail
     {

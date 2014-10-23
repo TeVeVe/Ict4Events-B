@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Views
 {
     public partial class UCProductSelection : UserControl
     {

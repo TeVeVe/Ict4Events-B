@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SharedClasses.Models
+namespace SharedClasses.Models.Data
 {
     public class UserAccount
     {

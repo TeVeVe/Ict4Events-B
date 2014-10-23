@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using AccessControlSystem.Controllers;
 using SharedClasses.Controls;
+using SharedClasses.Controls.MVC;
 using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
 using SharedClasses.Views;

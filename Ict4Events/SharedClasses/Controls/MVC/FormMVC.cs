@@ -2,7 +2,7 @@
 using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Controls.MVC
 {
     public partial class FormMVC : Form
     {

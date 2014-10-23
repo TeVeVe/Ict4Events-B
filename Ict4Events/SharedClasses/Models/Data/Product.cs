@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace SharedClasses.Models
+namespace SharedClasses.Models.Data
 {
     public class Product
     {

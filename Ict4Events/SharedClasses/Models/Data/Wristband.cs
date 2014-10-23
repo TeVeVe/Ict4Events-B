@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SharedClasses.Models
+namespace SharedClasses.Models.Data
 {
     public class Wristband
     {

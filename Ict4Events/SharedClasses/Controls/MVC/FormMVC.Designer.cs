@@ -1,4 +1,4 @@
-﻿namespace SharedClasses.Controls
+﻿namespace SharedClasses.Controls.MVC
 {
     partial class FormMVC
     {
