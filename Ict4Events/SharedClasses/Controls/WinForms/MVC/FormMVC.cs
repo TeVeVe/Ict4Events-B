@@ -2,7 +2,7 @@
 using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
 
-namespace SharedClasses.Controls.MVC
+namespace SharedClasses.Controls.WinForms.MVC
 {
     public partial class FormMVC : Form
     {

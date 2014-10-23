@@ -44,30 +44,39 @@
       <HintPath>bin\Debug\Phidget21.NET.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\FeedPostPanel.cs">
+    <Compile Include="Controls\WinForms\PanelFeedPost.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\FeedPostPanel.Designer.cs">
-      <DependentUpon>FeedPostPanel.cs</DependentUpon>
+    <Compile Include="Controls\WinForms\PanelFeedPost.Designer.cs">
+      <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MVC\FormMVC.cs">
+    <Compile Include="Controls\WPF\Converters\InvertBooleanConverter.cs" />
+    <Compile Include="Controls\WPF\Converters\VisibilityBooleanConverter.cs" />
+    <Compile Include="Controls\WPF\InteractiveMap.xaml.cs">
+      <DependentUpon>InteractiveMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForms\MVC\FormMVC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\MVC\FormMVC.Designer.cs">
+    <Compile Include="Controls\WinForms\MVC\FormMVC.Designer.cs">
       <DependentUpon>FormMVC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TilePanel.cs">
+    <Compile Include="Controls\WinForms\PanelTile.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Detectors\Events\DeviceAttachedStateEventHandler.cs" />
@@ -108,23 +117,23 @@
     <Compile Include="Views\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CategoryTreeView.cs">
+    <Compile Include="Controls\WinForms\TreeViewCategory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CategoryTreeView.Designer.cs">
-      <DependentUpon>CategoryTreeView.cs</DependentUpon>
+    <Compile Include="Controls\WinForms\TreeViewCategory.Designer.cs">
+      <DependentUpon>TreeViewCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FeedPanel.cs">
+    <Compile Include="Controls\WinForms\PanelFeed.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\FeedPanel.Designer.cs">
-      <DependentUpon>FeedPanel.cs</DependentUpon>
+    <Compile Include="Controls\WinForms\PanelFeed.Designer.cs">
+      <DependentUpon>PanelFeed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CenteredMessagePanel.cs">
+    <Compile Include="Controls\WinForms\PanelCenteredMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CenteredMessagePanel.Designer.cs">
-      <DependentUpon>CenteredMessagePanel.cs</DependentUpon>
+    <Compile Include="Controls\WinForms\PanelCenteredMessage.Designer.cs">
+      <DependentUpon>PanelCenteredMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UCProductDetail.cs">
       <SubType>UserControl</SubType>
@@ -139,25 +148,30 @@
       <DependentUpon>UCProductSelection.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Controls\FeedPostPanel.resx">
-      <DependentUpon>FeedPostPanel.cs</DependentUpon>
+    <Page Include="Controls\WPF\InteractiveMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
+      <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\MVC\FormMVC.resx">
+    <EmbeddedResource Include="Controls\WinForms\MVC\FormMVC.resx">
       <DependentUpon>FormMVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CategoryTreeView.resx">
-      <DependentUpon>CategoryTreeView.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\WinForms\TreeViewCategory.resx">
+      <DependentUpon>TreeViewCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\FeedPanel.resx">
-      <DependentUpon>FeedPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\WinForms\PanelFeed.resx">
+      <DependentUpon>PanelFeed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CenteredMessagePanel.resx">
-      <DependentUpon>CenteredMessagePanel.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\WinForms\PanelCenteredMessage.resx">
+      <DependentUpon>PanelCenteredMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UCProductDetail.resx">
       <DependentUpon>UCProductDetail.cs</DependentUpon>

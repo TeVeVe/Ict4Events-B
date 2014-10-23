@@ -1,6 +1,6 @@
-﻿namespace SharedClasses.Controls
+﻿namespace SharedClasses.Controls.WinForms
 {
-    partial class FeedPostPanel
+    partial class PanelFeedPost
     {
         /// <summary> 
         /// Required designer variable.

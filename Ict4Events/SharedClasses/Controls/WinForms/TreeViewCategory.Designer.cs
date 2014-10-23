@@ -1,6 +1,6 @@
-﻿namespace SharedClasses.Controls
+﻿namespace SharedClasses.Controls.WinForms
 {
-    partial class CategoryTreeView
+    partial class TreeViewCategory
     {
         /// <summary> 
         /// Required designer variable.

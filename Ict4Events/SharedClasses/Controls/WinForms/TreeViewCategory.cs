@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Controls.WinForms
 {
-    public partial class CategoryTreeView : UserControl
+    public partial class TreeViewCategory : UserControl
     {
         private readonly List<TreeNode> _currentNodeMatches;
 
@@ -16,7 +16,7 @@ namespace SharedClasses.Controls
 
         private string _lastSearchText;
 
-        public CategoryTreeView()
+        public TreeViewCategory()
         {
             InitializeComponent();
             _currentNodeMatches = new List<TreeNode>();

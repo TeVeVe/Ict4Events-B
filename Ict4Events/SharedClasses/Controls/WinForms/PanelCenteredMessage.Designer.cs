@@ -1,6 +1,6 @@
-﻿namespace SharedClasses.Controls
+﻿namespace SharedClasses.Controls.WinForms
 {
-    partial class CenteredMessagePanel
+    partial class PanelCenteredMessage
     {
         /// <summary> 
         /// Required designer variable.

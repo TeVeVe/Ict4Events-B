@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Controls.WinForms
 {
-    internal partial class FeedPostPanel : UserControl
+    internal partial class PanelFeedPost : UserControl
     {
-        public FeedPostPanel()
+        public PanelFeedPost()
         {
             InitializeComponent();
         }

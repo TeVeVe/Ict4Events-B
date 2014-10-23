@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Controls.WinForms
 {
-    public class TilePanel : Panel
+    public class PanelTile : Panel
     {
-        public TilePanel(string imagePath, string primaryText, string secondaryText)
+        public PanelTile(string imagePath, string primaryText, string secondaryText)
         {
             BackColor = Color.Red;
 

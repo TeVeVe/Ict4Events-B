@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Controls.WinForms
 {
-    public partial class CenteredMessagePanel : UserControl
+    public partial class PanelCenteredMessage : UserControl
     {
         public string Message
         {
@@ -10,7 +10,7 @@ namespace SharedClasses.Controls
             set { labelCenteredLabel.Text = value; }
         }
 
-        public CenteredMessagePanel()
+        public PanelCenteredMessage()
         {
             InitializeComponent();
         }

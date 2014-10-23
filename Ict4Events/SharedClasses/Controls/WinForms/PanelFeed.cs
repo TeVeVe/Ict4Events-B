@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Windows.Forms;
 using SharedClasses.Events;
 
-namespace SharedClasses.Controls
+namespace SharedClasses.Controls.WinForms
 {
-    public partial class FeedPanel : UserControl
+    public partial class PanelFeed : UserControl
     {
-        public FeedPanel()
+        public PanelFeed()
         {
             InitializeComponent();
         }
@@ -76,7 +76,7 @@ namespace SharedClasses.Controls
         public void Add(Image image, string message)
         {
             // Add a new message.
-            var newPanel = new FeedPostPanel
+            var newPanel = new PanelFeedPost
             {
                 Content = message,
                 Image = image

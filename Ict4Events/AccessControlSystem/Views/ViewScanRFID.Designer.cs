@@ -1,4 +1,6 @@
-﻿namespace AccessControlSystem.Views
+﻿using SharedClasses.Controls.WinForms;
+
+namespace AccessControlSystem.Views
 {
     partial class ViewScanRFID
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.centeredMessagePanel1 = new SharedClasses.Controls.CenteredMessagePanel();
+            this.centeredMessagePanel1 = new PanelCenteredMessage();
             this.SuspendLayout();
             // 
             // centeredMessagePanel1
@@ -54,6 +56,6 @@
 
         #endregion
 
-        private SharedClasses.Controls.CenteredMessagePanel centeredMessagePanel1;
+        private PanelCenteredMessage centeredMessagePanel1;
     }
 }

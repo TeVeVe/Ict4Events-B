@@ -1,4 +1,6 @@
-﻿namespace MediaSharingApplication.Views
+﻿using SharedClasses.Controls.WinForms;
+
+namespace MediaSharingApplication.Views
 {
     partial class ViewMain
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.feedPanel1 = new SharedClasses.Controls.FeedPanel();
-            this.categoryTreeView1 = new SharedClasses.Controls.CategoryTreeView();
+            this.feedPanel1 = new PanelFeed();
+            this.categoryTreeView1 = new TreeViewCategory();
             this.SuspendLayout();
             // 
             // feedPanel1
@@ -70,7 +72,7 @@
 
         #endregion
 
-        public SharedClasses.Controls.FeedPanel feedPanel1;
-        public SharedClasses.Controls.CategoryTreeView categoryTreeView1;
+        public PanelFeed feedPanel1;
+        public TreeViewCategory categoryTreeView1;
     }
 }
