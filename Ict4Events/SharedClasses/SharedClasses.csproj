@@ -80,6 +80,7 @@
     <Compile Include="Controls\WinForms\PanelTile.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Data\Database.cs" />
     <Compile Include="Detectors\Events\DeviceAttachedStateEventHandler.cs" />
     <Compile Include="Detectors\Events\TagEventHandler.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
@@ -92,25 +93,25 @@
     <Compile Include="Extensions\TreeNodeCollectionExtensions.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IFeedPost.cs" />
-    <Compile Include="Models\Data\Category.cs" />
-    <Compile Include="Models\Data\Comment.cs" />
-    <Compile Include="Models\Data\Event.cs" />
-    <Compile Include="Models\Data\FeedPost.cs" />
-    <Compile Include="Models\Data\Group.cs" />
-    <Compile Include="Models\Data\File.cs" />
-    <Compile Include="Models\Data\Like.cs" />
-    <Compile Include="Models\Data\LikeType.cs" />
-    <Compile Include="Models\Data\Location.cs" />
-    <Compile Include="Models\Data\Privilege.cs" />
-    <Compile Include="Models\Data\Product.cs" />
-    <Compile Include="Models\Data\Rental.cs" />
-    <Compile Include="Models\Data\Reservation.cs" />
-    <Compile Include="Models\Data\Reservee.cs" />
-    <Compile Include="Models\Data\Spot.cs" />
-    <Compile Include="Models\Data\SpotType.cs" />
-    <Compile Include="Models\Data\UserAccount.cs" />
-    <Compile Include="Models\Data\Wristband.cs" />
-    <Compile Include="Models\MVC\ControllerMVC.cs" />
+    <Compile Include="Data\Models\Category.cs" />
+    <Compile Include="Data\Models\Comment.cs" />
+    <Compile Include="Data\Models\Event.cs" />
+    <Compile Include="Data\Models\FeedPost.cs" />
+    <Compile Include="Data\Models\Group.cs" />
+    <Compile Include="Data\Models\File.cs" />
+    <Compile Include="Data\Models\Like.cs" />
+    <Compile Include="Data\Models\LikeType.cs" />
+    <Compile Include="Data\Models\Location.cs" />
+    <Compile Include="Data\Models\Privilege.cs" />
+    <Compile Include="Data\Models\Product.cs" />
+    <Compile Include="Data\Models\Rental.cs" />
+    <Compile Include="Data\Models\Reservation.cs" />
+    <Compile Include="Data\Models\Reservee.cs" />
+    <Compile Include="Data\Models\Spot.cs" />
+    <Compile Include="Data\Models\SpotType.cs" />
+    <Compile Include="Data\Models\UserAccount.cs" />
+    <Compile Include="Data\Models\Wristband.cs" />
+    <Compile Include="MVC\ControllerMVC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\FormLogin.cs">
       <SubType>Form</SubType>
