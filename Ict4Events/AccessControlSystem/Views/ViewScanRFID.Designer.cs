@@ -2,7 +2,7 @@
 
 namespace AccessControlSystem.Views
 {
-    partial class ViewScanRFID
+    sealed partial class ViewScanRFID
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace AccessControlSystem.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.centeredMessagePanel1 = new PanelCenteredMessage();
+            this.centeredMessagePanel1 = new SharedClasses.Controls.WinForms.PanelCenteredMessage();
             this.SuspendLayout();
             // 
             // centeredMessagePanel1

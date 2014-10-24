@@ -1,12 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using AccessControlSystem.Controllers;
-using SharedClasses.Controls;
+﻿using AccessControlSystem.Controllers;
 using SharedClasses.Controls.WinForms.MVC;
-using SharedClasses.Extensions;
-using SharedClasses.Interfaces;
-using SharedClasses.Views;
 
 namespace AccessControlSystem
 {

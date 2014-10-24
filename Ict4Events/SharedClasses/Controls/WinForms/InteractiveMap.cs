@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SharedClasses.Controls.WinForms
@@ -8,8 +10,13 @@ namespace SharedClasses.Controls.WinForms
     /// </summary>
     public partial class InteractiveMap : Control
     {
+        private bool _drawImageRealSize;
+        private Image _imageMap;
+
         public InteractiveMap()
         {
+            Spots = new List<Spot>();
+
             InitializeComponent();
             SetStyle(
                 ControlStyles.DoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.UserPaint |
@@ -20,12 +27,28 @@ namespace SharedClasses.Controls.WinForms
         /// <summary>
         ///     Image that will be used as a background to draw spots on.
         /// </summary>
-        public Image ImageMap { get; set; }
+        public Image ImageMap
+        {
+            get { return _imageMap; }
+            set
+            {
+                _imageMap = value;
+                Invalidate();
+            }
+        }
 
         /// <summary>
         ///     Detemines if <see cref="ImageMap" /> should be drawn in pixel size or scaled (and stretched) to control size.
         /// </summary>
-        public bool DrawImageRealSize { get; set; }
+        public bool DrawImageRealSize
+        {
+            get { return _drawImageRealSize; }
+            set
+            {
+                _drawImageRealSize = value;
+                Invalidate();
+            }
+        }
 
         /// <summary>
         ///     Bounds of the map. Same as image if <see cref="DrawImageRealSize" /> is True.
@@ -51,6 +74,8 @@ namespace SharedClasses.Controls.WinForms
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public List<Spot> Spots { get; set; }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -58,11 +83,15 @@ namespace SharedClasses.Controls.WinForms
 
             // Draw the map on the background.
             Rectangle destRect = MapBounds;
-            if (destRect != null)
+            if (ImageMap != null)
                 pe.Graphics.DrawImage(ImageMap, destRect);
 
             // Draw spots on map.
-            pe.Graphics.DrawRectangle(Pens.Red, destRect);
+            foreach (Spot spot in Spots)
+            {
+                RectangleF drawRect = spot.VisualBounds;
+                pe.Graphics.DrawRectangle(new Pen(spot.Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
+            }
         }
 
         /// <summary>
@@ -73,8 +102,8 @@ namespace SharedClasses.Controls.WinForms
             public Spot(PointF position)
             {
                 Position = position;
-                Size = new SizeF(5, 5);
-                Scale = 1;
+                Color = Color.Black;
+                Size = new SizeF(10, 10);
             }
 
             public Spot(PointF position, object tag)
@@ -83,10 +112,23 @@ namespace SharedClasses.Controls.WinForms
                 Tag = tag;
             }
 
+            public Spot(float x, float y) : this(new PointF(x, y))
+            {
+            }
+
+            public Color Color { get; set; }
             public PointF Position { get; set; }
             public object Tag { get; set; }
             public SizeF Size { get; set; }
-            public float Scale { get; set; }
+
+            public RectangleF VisualBounds
+            {
+                get
+                {
+                    return new RectangleF(Position.X - (Size.Width / 2), Position.Y - (Size.Height / 2), Size.Width,
+                        Size.Height);
+                }
+            }
         }
     }
 }

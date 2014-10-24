@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewLocationDetails));
             this.panelMessage = new System.Windows.Forms.Panel();
             this.labelMessage = new System.Windows.Forms.Label();
+            this.interactiveMap1 = new SharedClasses.Controls.WinForms.InteractiveMap();
             this.panelMessage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,11 +54,22 @@
             this.labelMessage.TabIndex = 1;
             this.labelMessage.Text = "Welkom, {0}\r\n\r\nUw campingplek is hieronder aangegeven:";
             // 
+            // interactiveMap1
+            // 
+            this.interactiveMap1.DrawImageRealSize = false;
+            this.interactiveMap1.ImageMap = ((System.Drawing.Image)(resources.GetObject("interactiveMap1.ImageMap")));
+            this.interactiveMap1.Location = new System.Drawing.Point(3, 53);
+            this.interactiveMap1.Name = "interactiveMap1";
+            this.interactiveMap1.Size = new System.Drawing.Size(339, 290);
+            this.interactiveMap1.TabIndex = 3;
+            this.interactiveMap1.Text = "interactiveMap1";
+            // 
             // ViewLocationDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.interactiveMap1);
             this.Controls.Add(this.panelMessage);
             this.Name = "ViewLocationDetails";
             this.Size = new System.Drawing.Size(345, 346);
@@ -70,6 +83,7 @@
 
         private System.Windows.Forms.Panel panelMessage;
         private System.Windows.Forms.Label labelMessage;
+        private SharedClasses.Controls.WinForms.InteractiveMap interactiveMap1;
 
     }
 }

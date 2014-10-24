@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using AccessControlSystem.Properties;
-using UserControl = System.Windows.Forms.UserControl;
+using SharedClasses.Controls.WinForms;
 
 namespace AccessControlSystem.Views
 {
@@ -17,17 +10,21 @@ namespace AccessControlSystem.Views
     {
         private string _visitorName;
 
-        // TODO: Fix WPF control in WinForms
-        //public ObservableCollection<Spot> Spots
-        //{
-        //    get { return interactiveMap1.Spots; }
-        //}
+        public ViewLocationDetails()
+        {
+            InitializeComponent();
+        }
 
-        //public ImageSource MapImage
-        //{
-        //    get { return interactiveMap1.MapImage; }
-        //    set { interactiveMap1.MapImage = value; }
-        //}
+        public List<InteractiveMap.Spot> Spots
+        {
+            get { return interactiveMap1.Spots; }
+        }
+
+        public Image ImageMap
+        {
+            get { return interactiveMap1.ImageMap; }
+            set { interactiveMap1.ImageMap = value; }
+        }
 
         public string VisitorName
         {
@@ -38,11 +35,6 @@ namespace AccessControlSystem.Views
                 _visitorName = value;
                 labelMessage.Text = string.Format(Resources.ViewLocationDetails_VisitorWelcomeText, _visitorName);
             }
-        }
-
-        public ViewLocationDetails()
-        {
-            InitializeComponent();
         }
     }
 }

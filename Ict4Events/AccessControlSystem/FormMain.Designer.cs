@@ -33,7 +33,7 @@
             // 
             // panelContent
             // 
-            this.panelContent.Size = new System.Drawing.Size(788, 332);
+            this.panelContent.Size = new System.Drawing.Size(1024, 497);
             // 
             // panelMainView
             // 
@@ -41,15 +41,17 @@
             this.panelMainView.Location = new System.Drawing.Point(0, 24);
             this.panelMainView.Margin = new System.Windows.Forms.Padding(4);
             this.panelMainView.Name = "panelMainView";
-            this.panelMainView.Size = new System.Drawing.Size(788, 332);
+            this.panelMainView.Size = new System.Drawing.Size(1024, 497);
             this.panelMainView.TabIndex = 4;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(788, 356);
+            this.ClientSize = new System.Drawing.Size(1024, 521);
             this.Controls.Add(this.panelMainView);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";

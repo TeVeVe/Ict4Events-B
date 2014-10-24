@@ -71,8 +71,6 @@
     <Compile Include="Controls\WinForms\PanelFeedPost.Designer.cs">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WPF\Converters\InvertBooleanConverter.cs" />
-    <Compile Include="Controls\WPF\Converters\VisibilityBooleanConverter.cs" />
     <Compile Include="Controls\WinForms\MVC\FormMVC.cs">
       <SubType>Form</SubType>
     </Compile>

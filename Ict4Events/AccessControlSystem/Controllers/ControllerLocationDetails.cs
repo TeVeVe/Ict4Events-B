@@ -1,11 +1,5 @@
-﻿
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using AccessControlSystem.Views;
-using SharedClasses.Controls.WPF;
+﻿using AccessControlSystem.Views;
+using SharedClasses.Controls.WinForms;
 using SharedClasses.Models.MVC;
 
 namespace AccessControlSystem.Controllers
@@ -15,6 +9,8 @@ namespace AccessControlSystem.Controllers
         public ControllerLocationDetails(string name)
         {
             View.VisitorName = name;
+
+            View.Spots.Add(new InteractiveMap.Spot(0, 0));
         }
     }
 }
