@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using AccessControlSystem.Properties;
-using Spot = SharedClasses.Controls.WPF.Spot;
 using UserControl = System.Windows.Forms.UserControl;
 
 namespace AccessControlSystem.Views

@@ -59,6 +59,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\WinForms\InteractiveMap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForms\InteractiveMap.Designer.cs">
+      <DependentUpon>InteractiveMap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WinForms\PanelFeedPost.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -67,9 +73,6 @@
     </Compile>
     <Compile Include="Controls\WPF\Converters\InvertBooleanConverter.cs" />
     <Compile Include="Controls\WPF\Converters\VisibilityBooleanConverter.cs" />
-    <Compile Include="Controls\WPF\InteractiveMap.xaml.cs">
-      <DependentUpon>InteractiveMap.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\WinForms\MVC\FormMVC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,12 +150,6 @@
     <Compile Include="Views\UCProductSelection.Designer.cs">
       <DependentUpon>UCProductSelection.cs</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\WPF\InteractiveMap.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
