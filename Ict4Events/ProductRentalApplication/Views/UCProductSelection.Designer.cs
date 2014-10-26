@@ -1,4 +1,4 @@
-﻿namespace SharedClasses.Views
+﻿namespace ProductRentalApplication.Views
 {
     partial class UCProductSelection
     {

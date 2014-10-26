@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace SharedClasses.Views
+namespace ProductRentalApplication.Views
 {
     public partial class UCProductDetail : UserControl
     {

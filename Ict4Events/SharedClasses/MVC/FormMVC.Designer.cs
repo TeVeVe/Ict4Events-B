@@ -1,4 +1,4 @@
-﻿namespace SharedClasses.Controls.WinForms.MVC
+﻿namespace SharedClasses.MVC
 {
     partial class FormMVC
     {

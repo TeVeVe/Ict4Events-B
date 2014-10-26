@@ -2,7 +2,7 @@
 using AccessControlSystem.Views;
 using SharedClasses.Controls;
 using SharedClasses.Interfaces;
-using SharedClasses.Models.MVC;
+using SharedClasses.MVC;
 
 namespace AccessControlSystem.Controllers
 {

@@ -1,5 +1,5 @@
 ﻿using AccessControlSystem.Controllers;
-using SharedClasses.Controls.WinForms.MVC;
+using SharedClasses.MVC;
 
 namespace AccessControlSystem
 {

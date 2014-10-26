@@ -1,4 +1,4 @@
-﻿namespace SharedClasses.Models.Data
+﻿namespace SharedClasses.Data.Models
 {
     class Like
     {

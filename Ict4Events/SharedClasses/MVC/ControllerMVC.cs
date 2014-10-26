@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using SharedClasses.Interfaces;
 
-namespace SharedClasses.Models.MVC
+namespace SharedClasses.MVC
 {
     public abstract class ControllerMVC<T> : IController<T> where T : class, new()
     {

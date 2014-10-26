@@ -1,6 +1,6 @@
 ﻿using AccessControlSystem.Views;
 using SharedClasses.Controls.WinForms;
-using SharedClasses.Models.MVC;
+using SharedClasses.MVC;
 
 namespace AccessControlSystem.Controllers
 {

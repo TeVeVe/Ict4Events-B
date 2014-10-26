@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
 
-namespace SharedClasses.Controls.WinForms.MVC
+namespace SharedClasses.MVC
 {
     /// <summary>
     ///     Base <see cref="Form" /> for enabling a MVC architecture.
@@ -46,7 +46,6 @@ namespace SharedClasses.Controls.WinForms.MVC
                 }
 
                 // Mark is selected.
-                // TODO: Fix that this will also work on startup.
                 if (selectedItem != null)
                     selectedItem.BackColor = Color.FromName("Cornflowerblue");
 

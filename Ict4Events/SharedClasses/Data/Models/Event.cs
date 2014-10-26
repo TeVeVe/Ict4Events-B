@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SharedClasses.Models.Data
+namespace SharedClasses.Data.Models
 {
     public class Event
     {

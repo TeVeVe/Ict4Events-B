@@ -1,5 +1,5 @@
 ﻿using MediaSharingApplication.Views;
-using SharedClasses.Models.MVC;
+using SharedClasses.MVC;
 
 namespace MediaSharingApplication.Controllers
 {

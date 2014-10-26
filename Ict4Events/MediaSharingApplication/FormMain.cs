@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using MediaSharingApplication.Controllers;
-using SharedClasses.Controls.WinForms.MVC;
+using SharedClasses.MVC;
 
 namespace MediaSharingApplication
 {
