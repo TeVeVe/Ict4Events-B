@@ -1,21 +1,16 @@
-﻿using System;
-using System.Windows.Forms;
-using MediaSharingApplication.Views;
-using SharedClasses.Controls;
-using SharedClasses.Extensions;
-using SharedClasses.Views;
+﻿using System.Windows.Forms;
+using MediaSharingApplication.Controllers;
+using SharedClasses.Controls.WinForms.MVC;
 
 namespace MediaSharingApplication
 {
-    public partial class FormMain : Form
+    public partial class FormMain : FormMVC
     {
-        public ViewMain ViewMain { get; set; }
-
         public FormMain()
         {
             InitializeComponent();
-            ViewMain = new ViewMain();
-            //panelMainView.OpenController(ViewMain);
+            
+            ActiveController = new ControllerMain();
         }
     }
 }

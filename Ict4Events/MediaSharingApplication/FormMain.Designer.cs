@@ -31,11 +31,15 @@
             this.panelMainView = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
+            // panelContent
+            // 
+            this.panelContent.Size = new System.Drawing.Size(924, 491);
+            // 
             // panelMainView
             // 
             this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMainView.Location = new System.Drawing.Point(0, 0);
-            this.panelMainView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelMainView.Margin = new System.Windows.Forms.Padding(4);
             this.panelMainView.Name = "panelMainView";
             this.panelMainView.Size = new System.Drawing.Size(924, 515);
             this.panelMainView.TabIndex = 4;
@@ -49,9 +53,11 @@
             this.Controls.Add(this.panelMainView);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Media Sharing Applicatie";
+            this.Controls.SetChildIndex(this.panelMainView, 0);
+            this.Controls.SetChildIndex(this.panelContent, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

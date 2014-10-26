@@ -10,6 +10,7 @@ namespace AccessControlSystem
             InitializeComponent();
 
             // Add menu items:
+            AddMenuItem("Show RFID", new ControllerScanRFID());
             AddMenuItem("Show location", new ControllerLocationDetails("Test"));
 
             // First action that this system needs to do:

@@ -71,10 +71,10 @@
     <Compile Include="Controls\WinForms\PanelFeedPost.Designer.cs">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WinForms\MVC\FormMVC.cs">
+    <Compile Include="MVC\FormMVC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controls\WinForms\MVC\FormMVC.Designer.cs">
+    <Compile Include="MVC\FormMVC.Designer.cs">
       <DependentUpon>FormMVC.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\WinForms\PanelTile.cs">
@@ -84,6 +84,7 @@
     <Compile Include="Detectors\Events\DeviceAttachedStateEventHandler.cs" />
     <Compile Include="Detectors\Events\TagEventHandler.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
+    <Compile Include="Events\MessageEventHandler.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Detectors\AttachState.cs" />
     <Compile Include="Detectors\Events\DeviceAttachedStateEventArgs.cs" />
@@ -137,24 +138,12 @@
     <Compile Include="Controls\WinForms\PanelCenteredMessage.Designer.cs">
       <DependentUpon>PanelCenteredMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\UCProductDetail.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UCProductDetail.Designer.cs">
-      <DependentUpon>UCProductDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UCProductSelection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UCProductSelection.Designer.cs">
-      <DependentUpon>UCProductSelection.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\WinForms\MVC\FormMVC.resx">
+    <EmbeddedResource Include="MVC\FormMVC.resx">
       <DependentUpon>FormMVC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormLogin.resx">
@@ -168,12 +157,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\PanelCenteredMessage.resx">
       <DependentUpon>PanelCenteredMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCProductDetail.resx">
-      <DependentUpon>UCProductDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCProductSelection.resx">
-      <DependentUpon>UCProductSelection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

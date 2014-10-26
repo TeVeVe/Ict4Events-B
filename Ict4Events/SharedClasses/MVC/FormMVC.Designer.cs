@@ -42,6 +42,7 @@
             // 
             // panelContent
             // 
+            this.panelContent.BackColor = System.Drawing.SystemColors.Window;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 24);
             this.panelContent.Name = "panelContent";
