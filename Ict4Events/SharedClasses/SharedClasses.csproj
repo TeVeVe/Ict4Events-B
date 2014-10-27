@@ -86,7 +86,6 @@
     <Compile Include="Detectors\Events\DeviceAttachedStateEventHandler.cs" />
     <Compile Include="Detectors\Events\TagEventHandler.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
-    <Compile Include="Events\MessageEventHandler.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Detectors\AttachState.cs" />
     <Compile Include="Detectors\Events\DeviceAttachedStateEventArgs.cs" />

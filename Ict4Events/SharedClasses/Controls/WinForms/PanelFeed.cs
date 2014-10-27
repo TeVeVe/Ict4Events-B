@@ -30,19 +30,20 @@ namespace SharedClasses.Controls.WinForms
             set { textBoxInput.Text = value; }
         }
 
-        public event MessageEventHandler Post;
+        public event EventHandler<MessageEventArgs> Post;
+
+        protected virtual void OnPost(MessageEventArgs e)
+        {
+            EventHandler<MessageEventArgs> handler = Post;
+            if (handler != null) handler(this, e);
+        }
+
         public event EventHandler PostDoubleClicked;
 
         protected virtual void OnPostDoubleClicked(object sender)
         {
             EventHandler handler = PostDoubleClicked;
             if (handler != null) handler(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnPost(MessageEventArgs e)
-        {
-            MessageEventHandler handler = Post;
-            if (handler != null) handler(this, e);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

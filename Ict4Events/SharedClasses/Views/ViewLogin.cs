@@ -30,11 +30,11 @@ namespace SharedClasses.Views
             set { textBoxPassword.Text = value; }
         }
 
-        public event AuthenticateEventHandler Authenticate;
+        public event EventHandler<AuthenticateEventArgs> Authenticate;
 
         protected virtual void OnAuthenticate(AuthenticateEventArgs e)
         {
-            AuthenticateEventHandler handler = Authenticate;
+            var handler = Authenticate;
             if (handler != null) handler(this, e);
         }
 

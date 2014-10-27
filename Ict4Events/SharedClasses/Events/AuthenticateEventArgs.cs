@@ -3,8 +3,6 @@ using System.Windows.Forms;
 
 namespace SharedClasses.Events
 {
-    public delegate void AuthenticateEventHandler(object sender, AuthenticateEventArgs e);
-
     public class AuthenticateEventArgs : EventArgs
     {
         /// <summary>
