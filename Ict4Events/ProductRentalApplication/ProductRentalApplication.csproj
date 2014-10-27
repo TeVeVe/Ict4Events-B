@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerLogin.cs" />
+    <Compile Include="Controllers\ControllerMain.cs" />
+    <Compile Include="Controllers\ControllerProductDetail.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,17 +65,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\UCProductDetail.cs">
+    <Compile Include="Views\ViewProductDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\UCProductDetail.Designer.cs">
-      <DependentUpon>UCProductDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UCProductSelection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\UCProductSelection.Designer.cs">
-      <DependentUpon>UCProductSelection.cs</DependentUpon>
+    <Compile Include="Views\ViewProductDetail.Designer.cs">
+      <DependentUpon>ViewProductDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewMain.cs">
       <SubType>UserControl</SubType>
@@ -93,11 +90,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\UCProductDetail.resx">
-      <DependentUpon>UCProductDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\UCProductSelection.resx">
-      <DependentUpon>UCProductSelection.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewProductDetail.resx">
+      <DependentUpon>ViewProductDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewMain.resx">
       <DependentUpon>ViewMain.cs</DependentUpon>

@@ -1,4 +1,5 @@
 ﻿using AccessControlSystem.Controllers;
+using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
 namespace AccessControlSystem
@@ -9,12 +10,11 @@ namespace AccessControlSystem
         {
             InitializeComponent();
 
-            // Add menu items:
+            // Add menu items, and set active:
             AddMenuItem("Show RFID", new ControllerScanRFID());
             AddMenuItem("Show location", new ControllerLocationDetails("Test"));
 
-            // First action that this system needs to do:
-            ActiveController = new ControllerScanRFID();
+            MarkAsMain<ControllerScanRFID>();
         }
     }
 }

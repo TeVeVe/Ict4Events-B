@@ -38,10 +38,10 @@
             // panelMainView
             // 
             this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMainView.Location = new System.Drawing.Point(0, 0);
+            this.panelMainView.Location = new System.Drawing.Point(0, 24);
             this.panelMainView.Margin = new System.Windows.Forms.Padding(4);
             this.panelMainView.Name = "panelMainView";
-            this.panelMainView.Size = new System.Drawing.Size(924, 515);
+            this.panelMainView.Size = new System.Drawing.Size(924, 491);
             this.panelMainView.TabIndex = 4;
             // 
             // FormMain

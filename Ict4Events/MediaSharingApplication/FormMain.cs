@@ -9,8 +9,8 @@ namespace MediaSharingApplication
         public FormMain()
         {
             InitializeComponent();
-            
-            ActiveController = new ControllerMain();
+
+            MarkAsMain<ControllerMain>();
         }
     }
 }

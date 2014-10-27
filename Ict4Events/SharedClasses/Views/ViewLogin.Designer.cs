@@ -1,13 +1,13 @@
 ﻿namespace SharedClasses.Views
 {
-    partial class FormLogin
+    partial class ViewLogin
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,19 +20,19 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.groupBoxNoAccount = new System.Windows.Forms.GroupBox();
             this.textBoxRFID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,16 +41,26 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPassword.Location = new System.Drawing.Point(96, 50);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(163, 20);
+            this.textBoxPassword.TabIndex = 1;
+            // 
             // groupBoxNoAccount
             // 
             this.groupBoxNoAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxNoAccount.Controls.Add(this.textBoxRFID);
             this.groupBoxNoAccount.Controls.Add(this.label1);
-            this.groupBoxNoAccount.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxNoAccount.Location = new System.Drawing.Point(3, 3);
             this.groupBoxNoAccount.Name = "groupBoxNoAccount";
-            this.groupBoxNoAccount.Size = new System.Drawing.Size(309, 63);
-            this.groupBoxNoAccount.TabIndex = 0;
+            this.groupBoxNoAccount.Size = new System.Drawing.Size(265, 63);
+            this.groupBoxNoAccount.TabIndex = 9;
             this.groupBoxNoAccount.TabStop = false;
             this.groupBoxNoAccount.Text = "Ik heb nog geen account";
             // 
@@ -60,7 +70,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRFID.Location = new System.Drawing.Point(96, 24);
             this.textBoxRFID.Name = "textBoxRFID";
-            this.textBoxRFID.Size = new System.Drawing.Size(207, 20);
+            this.textBoxRFID.Size = new System.Drawing.Size(163, 20);
             this.textBoxRFID.TabIndex = 0;
             // 
             // label1
@@ -80,21 +90,12 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBoxUsername);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 81);
+            this.groupBox1.Location = new System.Drawing.Point(3, 72);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 90);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(265, 90);
+            this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ik heb een account";
-            // 
-            // textBoxPassword
-            // 
-            this.textBoxPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassword.Location = new System.Drawing.Point(96, 50);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(207, 20);
-            this.textBoxPassword.TabIndex = 1;
             // 
             // label3
             // 
@@ -111,7 +112,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxUsername.Location = new System.Drawing.Point(96, 24);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(207, 20);
+            this.textBoxUsername.Size = new System.Drawing.Size(163, 20);
             this.textBoxUsername.TabIndex = 0;
             // 
             // label2
@@ -125,24 +126,23 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(12, 177);
+            this.buttonOK.Location = new System.Drawing.Point(3, 168);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 2;
+            this.buttonOK.TabIndex = 11;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // FormLogin
+            // ViewLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(333, 206);
-            this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxNoAccount);
-            this.Name = "FormLogin";
-            this.Text = "Login";
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.buttonOK);
+            this.Name = "ViewLogin";
+            this.Size = new System.Drawing.Size(271, 195);
             this.groupBoxNoAccount.ResumeLayout(false);
             this.groupBoxNoAccount.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -153,14 +153,14 @@
 
         #endregion
 
+        private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.GroupBox groupBoxNoAccount;
         private System.Windows.Forms.TextBox textBoxRFID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonOK;
     }
 }

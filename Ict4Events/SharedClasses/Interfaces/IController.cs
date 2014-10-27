@@ -6,6 +6,7 @@ namespace SharedClasses.Interfaces
     public interface IController
     {
         Control View { get; set; }
+        bool IsPopup { get; set; }
     }
 
     public interface IController<T> : IController where T : class

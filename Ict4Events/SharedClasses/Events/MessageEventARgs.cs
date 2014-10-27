@@ -1,5 +1,4 @@
 ﻿using System;
-using SharedClasses.Models;
 
 namespace SharedClasses.Events
 {
