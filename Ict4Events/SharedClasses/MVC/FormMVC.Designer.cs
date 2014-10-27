@@ -34,6 +34,7 @@
             // 
             // menuStripNavigation
             // 
+            this.menuStripNavigation.BackColor = System.Drawing.SystemColors.Control;
             this.menuStripNavigation.Location = new System.Drawing.Point(0, 0);
             this.menuStripNavigation.Name = "menuStripNavigation";
             this.menuStripNavigation.Size = new System.Drawing.Size(527, 24);

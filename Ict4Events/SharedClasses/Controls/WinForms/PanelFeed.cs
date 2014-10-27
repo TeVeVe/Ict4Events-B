@@ -68,7 +68,7 @@ namespace SharedClasses.Controls.WinForms
             OnPost(new MessageEventArgs(textBoxInput.Text));
 
 #if DEBUG_NODB
-            // Allow adding of new posts without database.
+    // Allow adding of new posts without database.
             Add(null, textBoxInput.Text);
 #endif
             textBoxInput.Clear();
