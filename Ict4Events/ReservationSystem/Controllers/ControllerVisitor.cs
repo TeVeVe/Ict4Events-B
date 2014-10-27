@@ -10,5 +10,15 @@ namespace ReservationSystem.Controllers
 {
     class ControllerVisitor : ControllerMVC<ViewVisitors>
     {
+
+        public ControllerVisitor()
+        {
+            View.ButtonAddVisitor += ViewOnButtonAddVisitor;
+        }
+
+        private void ViewOnButtonAddVisitor(object sender, EventArgs eventArgs)
+        {
+            MainForm.ActiveController = new ControllerVisitorDetail();
+        }
     }
 }

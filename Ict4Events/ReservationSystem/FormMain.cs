@@ -25,9 +25,11 @@ namespace ReservationSystem
             InitializeComponent();
 
             AddMenuItem("Bezoekers", new ControllerVisitor());
-            AddMenuItem("Evenementen", null);
+            AddMenuItem("Evenementen", new ControllerEvent());
             AddMenuItem("Reserveringen", null);
             AddMenuItem("Producten", null);
+
+            MarkAsMain<ControllerVisitor>();
         }
     }
 }

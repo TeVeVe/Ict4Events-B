@@ -81,7 +81,13 @@ namespace SharedClasses.MVC
                     // Select the menuitem that has the ActiveController.
                     ToolStripMenuItem selectedItem =
                         menuStripNavigation.Items.Cast<ToolStripMenuItem>()
-                            .FirstOrDefault(i => i.Tag.Equals(_activeController));
+                            .FirstOrDefault(i =>
+                            {
+                                var tag = i.Tag;
+                                if (tag != null)
+                                    return tag.Equals(_activeController);
+                                return false;
+                            });
 
                     // Deselect everything.
                     foreach (ToolStripMenuItem item in menuStripNavigation.Items)

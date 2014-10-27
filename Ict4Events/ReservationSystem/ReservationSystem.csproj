@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerEvents.cs" />
     <Compile Include="Controllers\ControllerVisitor.cs" />
+    <Compile Include="Controllers\ControllerVisitorDetail.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

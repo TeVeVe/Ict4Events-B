@@ -35,8 +35,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,8 +60,8 @@
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.button8);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.buttonCancel);
+            this.groupBox1.Controls.Add(this.buttonSave);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.label5);
@@ -142,25 +142,27 @@
             this.button8.Text = "x";
             this.button8.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // buttonCancel
             // 
-            this.button7.Location = new System.Drawing.Point(229, 223);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 29);
-            this.button7.TabIndex = 30;
-            this.button7.Text = "Annuleren";
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonCancel.Location = new System.Drawing.Point(229, 223);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(100, 29);
+            this.buttonCancel.TabIndex = 30;
+            this.buttonCancel.Text = "Annuleren";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // button9
+            // buttonSave
             // 
-            this.button9.Location = new System.Drawing.Point(123, 223);
-            this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 29);
-            this.button9.TabIndex = 29;
-            this.button9.Text = "Opslaan";
-            this.button9.UseVisualStyleBackColor = true;
+            this.buttonSave.Location = new System.Drawing.Point(123, 223);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(100, 29);
+            this.buttonSave.TabIndex = 29;
+            this.buttonSave.Text = "Opslaan";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // label6
             // 
@@ -264,13 +266,13 @@
             this.textBox1.Size = new System.Drawing.Size(225, 22);
             this.textBox1.TabIndex = 9;
             // 
-            // UCreservationSystemVisitorsDetail
+            // ViewVisitorsDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.groupBox1);
-            this.Name = "UCreservationSystemVisitorsDetail";
+            this.Name = "ViewVisitorsDetail";
             this.Size = new System.Drawing.Size(500, 269);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -293,8 +295,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
