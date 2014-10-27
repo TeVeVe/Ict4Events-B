@@ -8,18 +8,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using ReservationSystem.Controllers;
 using ReservationSystem.Views;
 using SharedClasses.Extensions;
 using SharedClasses;
 using SharedClasses.Detectors;
+using SharedClasses.MVC;
 
 namespace ReservationSystem
 {
-    public partial class FormMain : Form
+    public partial class FormMain : FormMVC
     {
         public FormMain()
         {
             InitializeComponent();
+
+            AddMenuItem("Bezoekers", new ControllerVisitor());
+            AddMenuItem("Evenementen", null);
+            AddMenuItem("Reserveringen", null);
+            AddMenuItem("Producten", null);
         }
     }
 }

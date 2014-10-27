@@ -2,9 +2,9 @@
 
 namespace ReservationSystem.Views
 {
-    public partial class UCReservationSystemReservationDetail : UserControl
+    public partial class ViewVisitorsDetail : UserControl
     {
-        public UCReservationSystemReservationDetail()
+        public ViewVisitorsDetail()
         {
             InitializeComponent();
         }

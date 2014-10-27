@@ -29,7 +29,7 @@ namespace ProductRentalApplication.Controller
             }
             else
             {
-                ((FormMVC)View.ParentForm).ActiveController = new ControllerMain();
+                MainForm.ActiveController = new ControllerMain();
             }
         }
     }
