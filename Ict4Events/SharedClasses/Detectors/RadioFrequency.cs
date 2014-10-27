@@ -4,7 +4,6 @@ using System.Linq;
 using SharedClasses.Detectors.Events;
 using P = Phidgets;
 using TagEventArgs = Phidgets.Events.TagEventArgs;
-using TagEventHandler = SharedClasses.Detectors.Events.TagEventHandler;
 
 namespace SharedClasses.Detectors
 {
@@ -150,33 +149,33 @@ namespace SharedClasses.Detectors
         /// <summary>
         ///     Hits when a tag is being detected.
         /// </summary>
-        public event TagEventHandler Tag;
+        public event EventHandler<Events.TagEventArgs> Tag;
 
         /// <summary>
         ///     Hits when a device is connected.
         /// </summary>
-        public event DeviceAttachedStateEventHandler Attached;
+        public event EventHandler<DeviceAttachedStateEventArgs> Attached;
 
         protected virtual void OnAttached(DeviceAttachedStateEventArgs e)
         {
-            DeviceAttachedStateEventHandler handler = Attached;
+            EventHandler<DeviceAttachedStateEventArgs> handler = Attached;
             if (handler != null) handler(this, e);
         }
 
         protected virtual void OnTag(Events.TagEventArgs e)
         {
-            TagEventHandler handler = Tag;
+            EventHandler<Events.TagEventArgs> handler = Tag;
             if (handler != null) handler(this, e);
         }
 
         /// <summary>
         ///     Hits when a tag is no longer detected.
         /// </summary>
-        public event TagEventHandler TagLost;
+        public event EventHandler<Events.TagEventArgs> TagLost;
 
         protected virtual void OnTagLost(Events.TagEventArgs e)
         {
-            TagEventHandler handler = TagLost;
+            EventHandler<Events.TagEventArgs> handler = TagLost;
             if (handler != null) handler(this, e);
         }
 
