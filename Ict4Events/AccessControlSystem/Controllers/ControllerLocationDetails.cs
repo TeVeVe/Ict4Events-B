@@ -1,4 +1,7 @@
-﻿using AccessControlSystem.Views;
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using AccessControlSystem.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.MVC;
 
@@ -9,8 +12,6 @@ namespace AccessControlSystem.Controllers
         public ControllerLocationDetails(string name)
         {
             View.VisitorName = name;
-
-            View.Spots.Add(new InteractiveMap.Spot(0, 0));
         }
     }
 }

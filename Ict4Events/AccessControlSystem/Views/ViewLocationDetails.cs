@@ -15,15 +15,9 @@ namespace AccessControlSystem.Views
             InitializeComponent();
         }
 
-        public List<InteractiveMap.Spot> Spots
+        public InteractiveMap InteractiveMap
         {
-            get { return interactiveMap1.Spots; }
-        }
-
-        public Image ImageMap
-        {
-            get { return interactiveMap1.ImageMap; }
-            set { interactiveMap1.ImageMap = value; }
+            get { return interactiveMap1; }
         }
 
         public string VisitorName

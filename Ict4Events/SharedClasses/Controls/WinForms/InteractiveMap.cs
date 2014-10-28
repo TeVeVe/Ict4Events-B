@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SharedClasses.Controls.WinForms
@@ -15,12 +19,16 @@ namespace SharedClasses.Controls.WinForms
 
         public InteractiveMap()
         {
-            Spots = new List<Spot>();
+            Spots = new SpotCollection();
+            Spots.SpotHover += (sender, args) => OnSpotHover(args);
 
             InitializeComponent();
             SetStyle(
                 ControlStyles.DoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.UserPaint |
                 ControlStyles.OptimizedDoubleBuffer, true);
+
+            MouseMove += OnMouseMove;
+            MouseDown += OnMouseDown;
         }
 
 
@@ -75,7 +83,42 @@ namespace SharedClasses.Controls.WinForms
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public List<Spot> Spots { get; set; }
+        public SpotCollection Spots { get; set; }
+
+        public event EventHandler<SpotHoverEventArgs> SpotHover;
+        public event EventHandler<SpotClickEventArgs> SpotClick;
+
+        protected virtual void OnSpotClick(SpotClickEventArgs e)
+        {
+            EventHandler<SpotClickEventArgs> handler = SpotClick;
+            if (handler != null) handler(this, e);
+        }
+
+        protected virtual void OnSpotHover(SpotHoverEventArgs e)
+        {
+            EventHandler<SpotHoverEventArgs> handler = SpotHover;
+            if (handler != null) handler(this, e);
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            foreach (Spot spot in Spots)
+            {
+                var mouseRect = new Rectangle(e.X - 1, e.Y - 1, 1, 1);
+                spot.IsHover = spot.VisualBounds.IntersectsWith(mouseRect);
+            }
+            Invalidate();
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            // Only with the left mouse button.
+            if (e.Button != MouseButtons.Left) return;
+
+            // Check if a spot is currently being hovered. If so, it's now clicked as well.
+            foreach (Spot spot in Spots.Where(spot => spot.IsHover))
+                OnSpotClick(new SpotClickEventArgs(spot));
+        }
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -88,10 +131,7 @@ namespace SharedClasses.Controls.WinForms
 
             // Draw spots on map.
             foreach (Spot spot in Spots)
-            {
-                RectangleF drawRect = spot.VisualBounds;
-                pe.Graphics.DrawRectangle(new Pen(spot.Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
-            }
+                spot.Draw(pe.Graphics);
         }
 
         /// <summary>
@@ -99,11 +139,17 @@ namespace SharedClasses.Controls.WinForms
         /// </summary>
         public class Spot
         {
+            private const float START_SIZE = 10;
+            private const float MIN_SIZE = 10;
+            private bool _isHover;
+            private SizeF _size;
+
             public Spot(PointF position)
             {
                 Position = position;
                 Color = Color.Black;
-                Size = new SizeF(10, 10);
+                Size = new SizeF(START_SIZE, START_SIZE);
+                Checked = true;
             }
 
             public Spot(PointF position, object tag)
@@ -119,7 +165,33 @@ namespace SharedClasses.Controls.WinForms
             public Color Color { get; set; }
             public PointF Position { get; set; }
             public object Tag { get; set; }
-            public SizeF Size { get; set; }
+
+            public SizeF Size
+            {
+                get { return _size; }
+                set
+                {
+                    if (value.Width < MIN_SIZE)
+                        value.Width = MIN_SIZE;
+                    if (value.Height < MIN_SIZE)
+                        value.Height = MIN_SIZE;
+
+                    _size = value;
+                }
+            }
+
+            public bool? Checked { get; set; }
+
+            public bool IsHover
+            {
+                get { return _isHover; }
+                set
+                {
+                    if (_isHover == value) return;
+                    _isHover = value;
+                    OnHovered(new SpotHoverEventArgs(this));
+                }
+            }
 
             public RectangleF VisualBounds
             {
@@ -129,6 +201,91 @@ namespace SharedClasses.Controls.WinForms
                         Size.Height);
                 }
             }
+
+            public event EventHandler<SpotHoverEventArgs> Hovered;
+
+            protected virtual void OnHovered(SpotHoverEventArgs e)
+            {
+                EventHandler<SpotHoverEventArgs> handler = Hovered;
+                if (handler != null) handler(this, e);
+            }
+
+            public void Draw(Graphics g)
+            {
+                RectangleF drawRect = VisualBounds;
+                float scale = Size.Width / MIN_SIZE;
+
+                // Graphics settings.
+                g.SmoothingMode = SmoothingMode.HighQuality;
+
+                if (!Checked.HasValue)
+                    // Fill in the rectangle.
+                    g.FillRectangle(new SolidBrush(Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
+                else if (Checked.Value)
+                {
+                    // Draw border.
+                    g.DrawRectangle(new Pen(Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
+
+                    // Draw check.
+                    var linePen = new Pen(Color, 1 * scale);
+
+                    // Draw left side of check.
+                    g.DrawLine(linePen, drawRect.X + (1 * scale), drawRect.Y + (drawRect.Height / 2) - (1 * scale),
+                        drawRect.X + (Size.Width / 2), drawRect.Y + Size.Height);
+
+                    // Draw right side of check.
+                    g.DrawLine(linePen, drawRect.X + Size.Width / 2, drawRect.Y + Size.Height,
+                        drawRect.X + drawRect.Width - (2 * scale), drawRect.Y);
+                }
+                else
+                    // Draw border only.
+                    g.DrawRectangle(new Pen(Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
+            }
+        }
+
+        public class SpotClickEventArgs : EventArgs
+        {
+            public SpotClickEventArgs(Spot spot)
+            {
+                Spot = spot;
+            }
+
+            public Spot Spot { get; protected set; }
+        }
+
+        public class SpotCollection : Collection<Spot>
+        {
+            public SpotCollection()
+            {
+            }
+
+            public SpotCollection(IList<Spot> list) : base(list)
+            {
+            }
+
+            public event EventHandler<SpotHoverEventArgs> SpotHover;
+
+            protected virtual void OnSpotHover(SpotHoverEventArgs e)
+            {
+                EventHandler<SpotHoverEventArgs> handler = SpotHover;
+                if (handler != null) handler(this, e);
+            }
+
+            public new void Add(Spot spot)
+            {
+                spot.Hovered += (sender, args) => OnSpotHover(args);
+                base.Add(spot);
+            }
+        }
+
+        public class SpotHoverEventArgs : EventArgs
+        {
+            public SpotHoverEventArgs(Spot spot)
+            {
+                Spot = spot;
+            }
+
+            public Spot Spot { get; protected set; }
         }
     }
 }
