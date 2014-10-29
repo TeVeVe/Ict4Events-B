@@ -3,7 +3,7 @@ using SharedClasses.Events;
 using SharedClasses.MVC;
 using SharedClasses.Views;
 
-namespace ProductRentalApplication.Controller
+namespace ProductRentalApplication.Controllers
 {
     public class ControllerLogin : ControllerMVC<ViewLogin>
     {

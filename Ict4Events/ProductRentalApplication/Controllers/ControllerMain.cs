@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 using ProductRentalApplication.Views;
 using SharedClasses.MVC;
 
-namespace ProductRentalApplication.Controller
+namespace ProductRentalApplication.Controllers
 {
     public class ControllerMain : ControllerMVC<ViewMain>
     {

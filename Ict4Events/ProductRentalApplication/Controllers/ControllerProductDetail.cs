@@ -3,7 +3,7 @@ using ProductRentalApplication.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.MVC;
 
-namespace ProductRentalApplication.Controller
+namespace ProductRentalApplication.Controllers
 {
     public class ControllerProductDetail : ControllerMVC<ViewProductDetail>
     {

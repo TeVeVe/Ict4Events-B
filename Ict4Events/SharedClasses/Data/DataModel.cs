@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -9,7 +8,7 @@ using System.Text;
 using Oracle.ManagedDataAccess.Client;
 using SharedClasses.Data.Attributes;
 
-namespace SharedClasses.Data.AbstractClasses
+namespace SharedClasses.Data
 {
     public abstract class DataModel
     {
@@ -68,54 +67,9 @@ namespace SharedClasses.Data.AbstractClasses
         public static IEnumerable<T> Select(Expression<Func<T, bool>> selector)
         {
             if (Database == null) throw new DataException("Database of database was not set.");
-            var query = new StringBuilder();
-
             var fields = GetFieldNames<T>();
 
-            // Building SELECT..
-            query.Append("SELECT ");
-            query.Append(fields.Select(pair => pair.Value).Aggregate((s1, s2) => s1 + ", " + s2));
-
-            // Building FROM..
-            query.Append(" FROM ");
-            query.Append(GetTableName<T>());
-
-            // Building WHERE..
-            query.Append(" WHERE ");
-
             
-
-            var check = (BinaryExpression)selector.Body;
-            var checkProperty = ((MemberExpression)check.Left).Member.Name;
-            var checkValue = (Expression.Lambda<Func<int>>(check.Right).Compile()());
-
-            query.Append(checkProperty);
-            
-            // Define operator.
-            switch (check.NodeType)
-            {
-                case ExpressionType.Equal:
-                    query.Append("=");
-                    break;
-                case ExpressionType.GreaterThan:
-                    query.Append(">");
-                    break;
-                case ExpressionType.GreaterThanOrEqual:
-                    query.Append(">=");
-                    break;
-                case ExpressionType.LessThan:
-                    query.Append("<");
-                    break;
-                case ExpressionType.LessThanOrEqual:
-                    query.Append("<=");
-                    break;
-            }
-
-            if (checkValue is string)
-                query.Append("\'" + checkValue + "\'");
-            else if (checkValue.GetType().IsValueType)
-                query.Append(checkValue);
-
 
             // Store record data in objects.
             using (var cmd = new OracleCommand(query.ToString(), Database.Connection))

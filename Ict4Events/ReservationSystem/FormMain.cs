@@ -13,7 +13,6 @@ using System.Windows.Forms.VisualStyles;
 using ReservationSystem.Controllers;
 using ReservationSystem.Views;
 using SharedClasses.Data;
-using SharedClasses.Data.AbstractClasses;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses;

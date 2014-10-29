@@ -76,7 +76,7 @@
     <Compile Include="Controls\WinForms\PanelFeedPost.Designer.cs">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\AbstractClasses\DataModel.cs" />
+    <Compile Include="Data\DataModel.cs" />
     <Compile Include="Data\Attributes\DbIgnoreAttribute.cs" />
     <Compile Include="Data\Attributes\FieldNameAttribute.cs" />
     <Compile Include="Data\Attributes\KeyAttribute.cs" />

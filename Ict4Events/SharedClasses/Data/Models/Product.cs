@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using SharedClasses.Data.AbstractClasses;
 using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
