@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using ReservationSystem.Controllers;
 using ReservationSystem.Views;
+using SharedClasses.Data;
+using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses;
 using SharedClasses.Detectors;
@@ -30,6 +32,11 @@ namespace ReservationSystem
             AddMenuItem("Producten", new ControllerProducts());
 
             MarkAsMain<ControllerVisitor>();
+
+            using (Database db = new Database("", "", "", ""))
+            {
+                db.Select<Product>();
+            }
         }
     }
 }

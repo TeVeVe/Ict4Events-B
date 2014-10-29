@@ -11,6 +11,6 @@ namespace SharedClasses.Data.Models
         public FeedPost(UserAccount account, string content)
         {
             throw new NotImplementedException();
-        }
+        }   
     }
 }
