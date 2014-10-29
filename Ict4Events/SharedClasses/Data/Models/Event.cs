@@ -9,7 +9,7 @@ namespace SharedClasses.Data.Models
         [Key]
         public int EventId { get; set; }
         public string Name { get; set; }
-        public string StreetName { get; set; }
+        public string Street { get; set; }
         public string HouseNumber { get; set; }
         public string PostalCode { get; set; }
         public DateTime StartDate { get; set; }
