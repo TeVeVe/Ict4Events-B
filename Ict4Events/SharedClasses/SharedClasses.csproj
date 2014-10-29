@@ -81,6 +81,9 @@
     <Compile Include="Data\Attributes\FieldNameAttribute.cs" />
     <Compile Include="Data\Attributes\KeyAttribute.cs" />
     <Compile Include="Data\Attributes\TableAttribute.cs" />
+    <Compile Include="Data\LINQ\LinqToSqlParser.cs" />
+    <Compile Include="Data\LINQ\Parsers\OracleParser.cs" />
+    <Compile Include="Data\LINQ\QueryBuilder.cs" />
     <Compile Include="Events\AuthenticateEventArgs.cs" />
     <Compile Include="Exceptions\NoActiveControllerException.cs" />
     <Compile Include="MVC\FormMVC.cs">

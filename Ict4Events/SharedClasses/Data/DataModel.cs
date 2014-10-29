@@ -30,7 +30,7 @@ namespace SharedClasses.Data
                 .FirstOrDefault(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
 
-        public static string GetFieldName<T>(string propertyName)
+        public static string GetFieldName<T>(string propertyName) where T : DataModel
         {
             var prop = typeof(T).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
             var attr = prop.GetCustomAttribute<FieldNameAttribute>();
@@ -72,7 +72,7 @@ namespace SharedClasses.Data
             
 
             // Store record data in objects.
-            using (var cmd = new OracleCommand(query.ToString(), Database.Connection))
+            using (var cmd = new OracleCommand("SELECT * FROM " + GetTableName<T>(), Database.Connection))
             using (OracleDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
