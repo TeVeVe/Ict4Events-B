@@ -38,7 +38,8 @@ namespace ReservationSystem
             // DEBUG
             Database db = Database.FromSettings();
             DataModel.Database = db;
-            Product.Select(p => p.Name == "pizza");
+            Debug.WriteLine(Product.Select(p => p.Name.Length > 2).FirstOrDefault().Id);
+            
         }
     }
 }

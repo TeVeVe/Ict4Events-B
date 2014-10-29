@@ -31,6 +31,15 @@ namespace SharedClasses.Data.AbstractClasses
                 .FirstOrDefault(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
 
+        public static string GetFieldName<T>(string propertyName)
+        {
+            var prop = typeof(T).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+            var attr = prop.GetCustomAttribute<FieldNameAttribute>();
+            if (attr != null)
+                return attr.Value;
+            return prop.Name;
+        }
+
         public static IEnumerable<PropertyInfo> GetKeyProperties<T>() where T : DataModel
         {
             return typeof(T)
@@ -38,7 +47,7 @@ namespace SharedClasses.Data.AbstractClasses
                 .Where(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
 
-        public static IEnumerable<string> GetFieldNames<T>() where T : DataModel
+        public static IEnumerable<KeyValuePair<string, string>> GetFieldNames<T>() where T : DataModel
         {
             return
                 typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
@@ -48,43 +57,80 @@ namespace SharedClasses.Data.AbstractClasses
                             {
                                 var attr = prop.GetCustomAttribute<FieldNameAttribute>();
                                 if (attr != null)
-                                    return attr.Value;
-                                return prop.Name;
+                                    return new KeyValuePair<string, string>(prop.Name, attr.Value);
+                                return new KeyValuePair<string, string>(prop.Name, prop.Name);
                             });
         }
     }
 
-    public abstract class DataModel<T> : DataModel where T : DataModel
+    public abstract class DataModel<T> : DataModel where T : DataModel, new()
     {
         public static IEnumerable<T> Select(Expression<Func<T, bool>> selector)
         {
             if (Database == null) throw new DataException("Database of database was not set.");
             var query = new StringBuilder();
+
+            var fields = GetFieldNames<T>();
+
+            // Building SELECT..
             query.Append("SELECT ");
-            query.Append(GetFieldNames<T>().Aggregate((s1, s2) => s1 + ", " + s2));
+            query.Append(fields.Select(pair => pair.Value).Aggregate((s1, s2) => s1 + ", " + s2));
+
+            // Building FROM..
             query.Append(" FROM ");
             query.Append(GetTableName<T>());
 
+            // Building WHERE..
+            query.Append(" WHERE ");
+
             
 
+            var check = (BinaryExpression)selector.Body;
+            var checkProperty = ((MemberExpression)check.Left).Member.Name;
+            var checkValue = (Expression.Lambda<Func<int>>(check.Right).Compile()());
+
+            query.Append(checkProperty);
+            
+            // Define operator.
+            switch (check.NodeType)
+            {
+                case ExpressionType.Equal:
+                    query.Append("=");
+                    break;
+                case ExpressionType.GreaterThan:
+                    query.Append(">");
+                    break;
+                case ExpressionType.GreaterThanOrEqual:
+                    query.Append(">=");
+                    break;
+                case ExpressionType.LessThan:
+                    query.Append("<");
+                    break;
+                case ExpressionType.LessThanOrEqual:
+                    query.Append("<=");
+                    break;
+            }
+
+            if (checkValue is string)
+                query.Append("\'" + checkValue + "\'");
+            else if (checkValue.GetType().IsValueType)
+                query.Append(checkValue);
+
+
+            // Store record data in objects.
             using (var cmd = new OracleCommand(query.ToString(), Database.Connection))
             using (OracleDataReader reader = cmd.ExecuteReader())
             {
-                var sb = new StringBuilder();
                 while (reader.Read())
                 {
+                    var obj = new T();
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        sb.Append(reader[i]);
-                        if (i + 1 < reader.FieldCount)
-                            sb.Append(", ");
+                        typeof(T).GetProperty(fields.ElementAt(i).Key).SetValue(obj, reader[fields.ElementAt(i).Value]);
                     }
-                    sb.AppendLine();
+                    yield return obj;
                 }
-                Debug.WriteLine(sb.ToString());
             }
-
-            return Enumerable.Empty<T>();
         }
     }
 }
