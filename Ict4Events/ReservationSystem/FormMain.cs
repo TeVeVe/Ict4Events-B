@@ -26,8 +26,8 @@ namespace ReservationSystem
 
             AddMenuItem("Bezoekers", new ControllerVisitor());
             AddMenuItem("Evenementen", new ControllerEvent());
-            AddMenuItem("Reserveringen", null);
-            AddMenuItem("Producten", null);
+            AddMenuItem("Reserveringen", new ControllerReservation());
+            AddMenuItem("Producten", new ControllerProducts());
 
             MarkAsMain<ControllerVisitor>();
         }

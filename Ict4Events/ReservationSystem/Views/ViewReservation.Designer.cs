@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonAddReservation = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -65,7 +65,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(29, 26);
             this.button2.TabIndex = 27;
-            this.button2.Text = "x";
+            this.button2.Text = "...";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button5
@@ -121,22 +121,23 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.button6);
+            this.panel2.Controls.Add(this.buttonAddReservation);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 127);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(385, 38);
             this.panel2.TabIndex = 19;
             // 
-            // button6
+            // buttonAddReservation
             // 
-            this.button6.Location = new System.Drawing.Point(3, 5);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 28);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Toevoegen";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonAddReservation.Location = new System.Drawing.Point(3, 5);
+            this.buttonAddReservation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddReservation.Name = "buttonAddReservation";
+            this.buttonAddReservation.Size = new System.Drawing.Size(100, 28);
+            this.buttonAddReservation.TabIndex = 15;
+            this.buttonAddReservation.Text = "Toevoegen";
+            this.buttonAddReservation.UseVisualStyleBackColor = true;
+            this.buttonAddReservation.Click += new System.EventHandler(this.buttonAddReservation_Click);
             // 
             // textBox2
             // 
@@ -171,7 +172,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(29, 26);
             this.button1.TabIndex = 19;
-            this.button1.Text = "x";
+            this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -199,14 +200,14 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(205, 22);
             this.dateTimePicker1.TabIndex = 28;
             // 
-            // UCreservationSystemReservation
+            // ViewReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridViewVisitors);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "UCreservationSystemReservation";
+            this.Name = "ViewReservation";
             this.Size = new System.Drawing.Size(385, 321);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVisitors)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -226,7 +227,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonAddReservation;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;

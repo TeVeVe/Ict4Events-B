@@ -55,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ControllerEvents.cs" />
+    <Compile Include="Controllers\ControllerProducts.cs" />
+    <Compile Include="Controllers\ControllerReservation.cs" />
+    <Compile Include="Controllers\ControllerReservationDetail.cs" />
     <Compile Include="Controllers\ControllerVisitor.cs" />
     <Compile Include="Controllers\ControllerVisitorDetail.cs" />
     <Compile Include="FormMain.cs">

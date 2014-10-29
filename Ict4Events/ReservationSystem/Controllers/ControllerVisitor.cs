@@ -13,10 +13,10 @@ namespace ReservationSystem.Controllers
 
         public ControllerVisitor()
         {
-            View.ButtonAddVisitor += ViewOnButtonAddVisitor;
+            View.ButtonAddVisitorClick += ViewOnButtonAddVisitorClick;
         }
 
-        private void ViewOnButtonAddVisitor(object sender, EventArgs eventArgs)
+        private void ViewOnButtonAddVisitorClick(object sender, EventArgs eventArgs)
         {
             MainForm.ActiveController = new ControllerVisitorDetail();
         }

@@ -34,9 +34,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
@@ -99,34 +97,15 @@
             this.label3.Text = "Einddatum:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(199, 88);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 28);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Annuleren";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(109, 5);
+            this.button7.Location = new System.Drawing.Point(3, 5);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(100, 28);
             this.button7.TabIndex = 17;
             this.button7.Text = "Verwijderen";
             this.button7.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(3, 5);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 28);
-            this.button6.TabIndex = 16;
-            this.button6.Text = "Toevoegen";
-            this.button6.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -146,7 +125,6 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.dateTimePicker2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -167,7 +145,6 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.button6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 131);
             this.panel2.Name = "panel2";
@@ -184,14 +161,14 @@
             this.dataGrid1.Size = new System.Drawing.Size(385, 167);
             this.dataGrid1.TabIndex = 21;
             // 
-            // UCReservationSystemEvents
+            // ViewEvents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGrid1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "UCReservationSystemEvents";
+            this.Name = "ViewEvents";
             this.Size = new System.Drawing.Size(385, 335);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -209,9 +186,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;

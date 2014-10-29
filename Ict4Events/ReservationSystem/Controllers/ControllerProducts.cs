@@ -8,9 +8,9 @@ using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    class ControllerEvent : ControllerMVC<ViewEvents>
+    class ControllerProducts : ControllerMVC<ViewProducts>
     {
-        public ControllerEvent()
+        public ControllerProducts()
         {
 
         }

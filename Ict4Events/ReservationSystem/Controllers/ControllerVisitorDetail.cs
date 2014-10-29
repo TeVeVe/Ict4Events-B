@@ -12,16 +12,16 @@ namespace ReservationSystem.Controllers
     {
         public ControllerVisitorDetail()
         {
-            View.ButtonCancel += ViewOnButtonCancel;
-            View.ButtonSave += ViewOnButtonSave;
+            View.ButtonCancelClick += ViewOnButtonCancelClick;
+            View.ButtonSaveClick += ViewOnButtonSaveClick;
         }
 
-        private void ViewOnButtonCancel(object sender, EventArgs eventArgs)
+        private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
         {
             MainForm.ActiveMenuItemText = "Bezoekers";
         }
 
-        private void ViewOnButtonSave(object sender, EventArgs eventArgs)
+        private void ViewOnButtonSaveClick(object sender, EventArgs eventArgs)
         {
             MainForm.ActiveMenuItemText = "Bezoekers";
         }

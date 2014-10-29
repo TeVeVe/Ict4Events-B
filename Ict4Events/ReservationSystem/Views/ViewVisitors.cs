@@ -10,17 +10,17 @@ namespace ReservationSystem.Views
             InitializeComponent();
         }
 
-        public event EventHandler ButtonAddVisitor;
+        public event EventHandler ButtonAddVisitorClick;
 
-        protected virtual void OnButtonAddVisitor()
+        protected virtual void OnButtonAddVisitorClick()
         {
-            EventHandler handler = ButtonAddVisitor;
+            EventHandler handler = ButtonAddVisitorClick;
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
         private void buttonAddVisitor_Click(object sender, EventArgs e)
         {
-            OnButtonAddVisitor();
+            OnButtonAddVisitorClick();
         }
     }
 }

@@ -10,29 +10,29 @@ namespace ReservationSystem.Views
             InitializeComponent();
         }
 
-        public event EventHandler ButtonCancel;
-        public event EventHandler ButtonSave;
+        public event EventHandler ButtonCancelClick;
+        public event EventHandler ButtonSaveClick;
 
-        protected virtual void OnButtonCancel()
+        protected virtual void OnButtonCancelClick()
         {
-            EventHandler handler = ButtonCancel;
+            EventHandler handler = ButtonCancelClick;
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
-        protected virtual void OnButtonSave()
+        protected virtual void OnButtonSaveClick()
         {
-            EventHandler handler = ButtonSave;
+            EventHandler handler = ButtonSaveClick;
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            OnButtonCancel();
+            OnButtonCancelClick();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            OnButtonSave();
+            OnButtonSaveClick();
         }
     }
 }
