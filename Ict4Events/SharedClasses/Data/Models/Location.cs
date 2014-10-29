@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
     public class Location
     {
+        [Key]
         public int Id { get; set; }
         public string HouseNumber { get; set; }
         public string Name { get; set; }
