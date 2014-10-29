@@ -1,9 +1,13 @@
 ﻿using System;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
+    [Table("EVENT")]
     public class Event
     {
+        [Key]
+        public int EventId { get; set; }
         public DateTime EndDate { get; set; }
         public int MaxGuests { get; set; }
         public String Name { get; set; }

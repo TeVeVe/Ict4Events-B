@@ -9,7 +9,7 @@ namespace SharedClasses.Data.Models
         [Key]
         public int CategoryId { get; set; }
         public string Name { get; set; }
-        [FieldName("PARENTCATID")]
+        [ForeignKey("PARENTCATID", "CATEGORYID")]
         public Category ParentCategory { get; set; }
         public string Description { get; set; } 
 

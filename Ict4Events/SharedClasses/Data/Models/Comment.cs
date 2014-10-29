@@ -10,7 +10,7 @@ namespace SharedClasses.Data.Models
         public int CommentId { get; set; }
         public string Content { get; set; }
         public DateTime PostTime { get; set; }
-        [ForeignKey("PARENTID")]
+        [ForeignKey("PARENTID", "COMMENTID")]
         public Comment ParentComment { get; set; }
         [ForeignKey("USERACCOUNTID")]
         public UserAccount UserAccount { get; set; }
