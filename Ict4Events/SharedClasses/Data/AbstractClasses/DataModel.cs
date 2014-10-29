@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Text;
 using Oracle.ManagedDataAccess.Client;
 using SharedClasses.Data.Attributes;
-using SharedClasses.Data.Models;
 
 namespace SharedClasses.Data.AbstractClasses
 {
@@ -16,60 +15,73 @@ namespace SharedClasses.Data.AbstractClasses
     {
         public static Database Database;
 
-        public PropertyInfo GetKeyProperty()
+        /// <summary>
+        ///     Gets the table name when specified on the <see cref="Type" />.
+        /// </summary>
+        /// <returns>Table name of the <see cref="Type" />.</returns>
+        public static string GetTableName<T>() where T : DataModel
         {
-            return GetType()
+            return typeof(T).GetCustomAttribute<TableAttribute>().Name;
+        }
+
+        public static PropertyInfo GetKeyProperty<T>() where T : DataModel
+        {
+            return typeof(T)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .FirstOrDefault(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
 
-        public IEnumerable<PropertyInfo> GetKeyProperties()
+        public static IEnumerable<PropertyInfo> GetKeyProperties<T>() where T : DataModel
         {
-            return GetType()
+            return typeof(T)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
 
-        /// <summary>
-        /// Gets the table name when specified on the <see cref="Type"/>.
-        /// </summary>
-        /// <returns>Table name of the <see cref="Type"/>.</returns>
-        public string GetTableName()
+        public static IEnumerable<string> GetFieldNames<T>() where T : DataModel
         {
-            return GetType().GetCustomAttribute<TableAttribute>().Name;
+            return
+                typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Except(
+                        typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                            .Where(prop => prop.GetCustomAttributes<DbIgnoreAttribute>().Any())).Select(prop =>
+                            {
+                                var attr = prop.GetCustomAttribute<FieldNameAttribute>();
+                                if (attr != null)
+                                    return attr.Value;
+                                return prop.Name;
+                            });
         }
     }
 
     public abstract class DataModel<T> : DataModel where T : DataModel
     {
-
         public static IEnumerable<T> Select(Expression<Func<T, bool>> selector)
         {
             if (Database == null) throw new DataException("Database of database was not set.");
-            StringBuilder query = new StringBuilder();
-            query.Append("SELECT * FROM");
-            query.Append(" PRODUCT");
+            var query = new StringBuilder();
+            query.Append("SELECT ");
+            query.Append(GetFieldNames<T>().Aggregate((s1, s2) => s1 + ", " + s2));
+            query.Append(" FROM ");
+            query.Append(GetTableName<T>());
 
-            BinaryExpression equality = (BinaryExpression)selector.Body;
-            Debug.WriteLine(equality.NodeType);
+            
 
-            using (OracleCommand cmd = new OracleCommand(query.ToString(), Database.Connection))
+            using (var cmd = new OracleCommand(query.ToString(), Database.Connection))
+            using (OracleDataReader reader = cmd.ExecuteReader())
             {
-                using (OracleDataReader reader = cmd.ExecuteReader())
+                var sb = new StringBuilder();
+                while (reader.Read())
                 {
-                    StringBuilder sb = new StringBuilder();
-                    while (reader.Read())
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        for (int i = 0; i < reader.FieldCount; i++)
-                        {
-                            sb.Append(reader[i]);
-                            if (i + 1 < reader.FieldCount)
-                                sb.Append(", ");
-                        }
-                        sb.AppendLine();
+                        sb.Append(reader[i]);
+                        if (i + 1 < reader.FieldCount)
+                            sb.Append(", ");
                     }
-                    Debug.WriteLine(sb.ToString());
+                    sb.AppendLine();
                 }
+                Debug.WriteLine(sb.ToString());
             }
 
             return Enumerable.Empty<T>();

@@ -37,14 +37,8 @@ namespace ReservationSystem
 
             // DEBUG
             Database db = Database.FromSettings();
-
-            foreach (var record in db.Query("SELECT * FROM PRODUCT"))
-            {
-                for (int i = 0; i < record.Length; i++)
-                {
-                    Debug.WriteLine(record[i]);
-                }
-            }
+            DataModel.Database = db;
+            Product.Select(p => p.Name == "pizza");
         }
     }
 }
