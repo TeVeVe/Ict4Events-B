@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
     public class Reservation
     {
+        [Key]
+        [FieldName("RESERVATION")]
+        public int Id { get; set; }
         public bool PaymentStatus { get; set; }
         public IEnumerable<Wristband> Wristbands { get; set; }
         public Reservee Reservee { get; set; }

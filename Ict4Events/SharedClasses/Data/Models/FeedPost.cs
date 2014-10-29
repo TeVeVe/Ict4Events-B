@@ -7,7 +7,8 @@ namespace SharedClasses.Data.Models
     class FeedPost
     {
         [Key]
-        public int FeedPostId { get; set; }
+        [FieldName("FEEDPOST")]
+        public int Id { get; set; }
         public string Content { get; set; }
         public DateTime PostTime { get; set; }
         [ForeignKey("USERACCOUNTID")]

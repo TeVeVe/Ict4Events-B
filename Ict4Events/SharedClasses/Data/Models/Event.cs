@@ -7,7 +7,8 @@ namespace SharedClasses.Data.Models
     public class Event
     {
         [Key]
-        public int EventId { get; set; }
+        [FieldName("EVENT")]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }
         public string HouseNumber { get; set; }

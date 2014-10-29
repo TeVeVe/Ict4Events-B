@@ -7,7 +7,8 @@ namespace SharedClasses.Data.Models
     public class Comment
     {
         [Key]
-        public int CommentId { get; set; }
+        [FieldName("COMMENT")]
+        public int Id { get; set; }
         public string Content { get; set; }
         public DateTime PostTime { get; set; }
         [ForeignKey("PARENTID", "COMMENTID")]

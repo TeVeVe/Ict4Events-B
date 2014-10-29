@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
     public class UserAccount
     {
+        [Key]
+        [FieldName("USERACCOUNT")]
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public IEnumerable<Group> Groups { get; set; }

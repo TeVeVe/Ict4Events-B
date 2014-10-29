@@ -5,7 +5,8 @@ namespace SharedClasses.Data.Models
     class Like
     {
         [Key]
-        public int LikeId { get; set; }
+        [FieldName("LIKE")]
+        public int Id { get; set; }
         [ForeignKey("FILEID")]
         public File File { get; set; }  
         [DbIgnore]
