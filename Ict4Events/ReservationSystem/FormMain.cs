@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,8 +36,15 @@ namespace ReservationSystem
             MarkAsMain<ControllerVisitor>();
 
             // DEBUG
-            DataModel.Database = new Database("", "", "", "");
+            Database db = Database.FromSettings();
 
+            foreach (var record in db.Query("SELECT * FROM PRODUCT"))
+            {
+                for (int i = 0; i < record.Length; i++)
+                {
+                    Debug.WriteLine(record[i]);
+                }
+            }
         }
     }
 }
