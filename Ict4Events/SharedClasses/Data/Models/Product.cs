@@ -13,6 +13,7 @@ namespace SharedClasses.Data.Models
         public string Description { get; set; }
         [DbIgnore]
         public Image Image { get; set; }
+        [DbIgnore]
         public bool Inactive { get; set; }
         public string Name { get; set; }
     }
