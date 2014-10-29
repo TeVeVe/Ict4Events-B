@@ -6,7 +6,7 @@ namespace SharedClasses.Data.Models
 {
 
     [Table("PRODUCT")]
-    public class Product : DataModel
+    public class Product : DataModel<Product>
     {
         [Key]
         public int Id { get; set; }

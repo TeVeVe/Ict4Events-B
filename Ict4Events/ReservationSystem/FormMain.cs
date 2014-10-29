@@ -12,6 +12,7 @@ using System.Windows.Forms.VisualStyles;
 using ReservationSystem.Controllers;
 using ReservationSystem.Views;
 using SharedClasses.Data;
+using SharedClasses.Data.AbstractClasses;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses;
@@ -33,10 +34,9 @@ namespace ReservationSystem
 
             MarkAsMain<ControllerVisitor>();
 
-            using (Database db = new Database("", "", "", ""))
-            {
-                db.Select<Product>();
-            }
+            // DEBUG
+            DataModel.Database = new Database("", "", "", "");
+
         }
     }
 }
