@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.Windows.Forms;
+using SharedClasses.Data.Models;
 using SharedClasses.Events;
 using SharedClasses.MVC;
 using SharedClasses.Views;
@@ -15,7 +17,12 @@ namespace MediaSharingApplication.Controllers
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
             // Authenticate user.
-            e.Authorized = true;
+            var accounts = UserAccount.Select("1=1");
+
+            foreach (var userAccount in accounts)
+            {
+                Debug.WriteLine(userAccount.Password);
+            }
 
             // Report back to user.
             if (!e.Authorized)

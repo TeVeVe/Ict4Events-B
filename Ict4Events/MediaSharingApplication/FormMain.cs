@@ -13,7 +13,7 @@ namespace MediaSharingApplication
 
             MarkAsMain<ControllerLogin>();
 
-            DataModel.Database = new Database("SYSTEM", "admin", "localhost", null, "xe");
+            DataModel.Database = new Database("SYSTEM", "admin", "localhost");
         }
     }
 }

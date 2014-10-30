@@ -4,14 +4,19 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
-    public class UserAccount
+    [Table("USERACCOUNT")]
+    public class UserAccount : DataModel<UserAccount>
     {
         [Key]
-        [FieldName("USERACCOUNT")]
+        [FieldName("USERACCOUNTID")]
         public int Id { get; set; }
+
+        public string VisitorCode { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        [DbIgnore]
         public Group Group { get; set; }
+        [DbIgnore]
         public Wristband Wristband { get; set; }
 
         public void Rent()
@@ -22,13 +27,6 @@ namespace SharedClasses.Data.Models
         public void SetGroup(Group group)
         {
             throw new NotImplementedException();
-        }
-
-        public UserAccount(string username, string password, Group group)
-        {
-            Username = username;
-            Password = password;
-            Group = group;
         }
     }
 }

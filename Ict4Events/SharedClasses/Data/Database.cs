@@ -8,14 +8,13 @@ namespace SharedClasses.Data
 {
     public class Database : IDisposable
     {
-        public Database(string username, string password, string host, string service = null, string sid = null)
+        public Database(string username, string password, string host, string service = null)
         {
             Username = username;
             Password = password;
             Host = host;
             Port = 1521;
             Service = service;
-            SID = sid;
 
             Open();
         }
@@ -54,7 +53,7 @@ namespace SharedClasses.Data
                            "))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = " + Service + ")));Password=" +
                            Password +
                            ";User ID=" + Username;
-                return "User Id=SYSTEM;Password=admin;Data Source=127.0.0.1";
+                return string.Format("User Id={0};Password={1};Data Source={2}", Username, Password, Host);
             }
         }
 
