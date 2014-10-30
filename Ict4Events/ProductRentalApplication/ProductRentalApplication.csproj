@@ -57,6 +57,7 @@
     <Compile Include="Controllers\ControllerLogin.cs" />
     <Compile Include="Controllers\ControllerMain.cs" />
     <Compile Include="Controllers\ControllerProductDetail.cs" />
+    <Compile Include="Controllers\ControllerRegisterAccount.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
