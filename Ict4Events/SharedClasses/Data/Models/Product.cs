@@ -11,10 +11,13 @@ namespace SharedClasses.Data.Models
         [FieldName("PRODUCTID")]
         public int Id { get; set; }
         public string Description { get; set; }
-        [DbIgnore]
         public Image Image { get; set; }
-        [DbIgnore]
         public bool Inactive { get; set; }
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Id: {0}, Name: {1}, Description: {2}, Inactive: {3}", Id, Name, Description, Inactive);
+        }
     }
 }

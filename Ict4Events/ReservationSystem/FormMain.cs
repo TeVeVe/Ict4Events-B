@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,6 +36,13 @@ namespace ReservationSystem
             MarkAsMain<ControllerVisitor>();
 
             AllowUserResize = true;
+
+            DataModel.Database = Database.FromSettings();
+            var products =  Product.Select("PRODUCTID > 0");
+            foreach (var product in products)
+            {
+                Debug.WriteLine(product);
+            }
         }
     }
 }
