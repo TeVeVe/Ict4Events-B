@@ -3,9 +3,9 @@ using SharedClasses.Events;
 using SharedClasses.MVC;
 using SharedClasses.Views;
 
-namespace ProductRentalApplication.Controller
+namespace MediaSharingApplication.Controllers
 {
-    public class ControllerLogin : ControllerMVC<ViewLogin>
+    class ControllerLogin : ControllerMVC<ViewLogin>
     {
         public ControllerLogin()
         {
