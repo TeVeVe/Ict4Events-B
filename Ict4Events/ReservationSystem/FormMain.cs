@@ -13,7 +13,6 @@ using System.Windows.Forms.VisualStyles;
 using ReservationSystem.Controllers;
 using ReservationSystem.Views;
 using SharedClasses.Data;
-using SharedClasses.Data.AbstractClasses;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses;
@@ -35,16 +34,7 @@ namespace ReservationSystem
 
             MarkAsMain<ControllerVisitor>();
 
-            // DEBUG
-            Database db = Database.FromSettings();
-
-            foreach (var record in db.Query("SELECT * FROM PRODUCT"))
-            {
-                for (int i = 0; i < record.Length; i++)
-                {
-                    Debug.WriteLine(record[i]);
-                }
-            }
+            AllowUserResize = true;
         }
     }
 }

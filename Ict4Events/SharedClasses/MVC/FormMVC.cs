@@ -21,7 +21,6 @@ namespace SharedClasses.MVC
 
         private IController _activeController;
 
-
         public FormMVC()
         {
             InitializeComponent();
@@ -59,7 +58,12 @@ namespace SharedClasses.MVC
         public bool AllowUserResize
         {
             get { return AutoSizeMode == AutoSizeMode.GrowOnly; }
-            set { AutoSizeMode = value ? AutoSizeMode.GrowOnly : AutoSizeMode.GrowAndShrink; }
+            set
+            {
+                AutoSizeMode = value ? AutoSizeMode.GrowOnly : AutoSizeMode.GrowAndShrink;
+                FormBorderStyle = value ? FormBorderStyle.Sizable : FormBorderStyle.FixedToolWindow;
+                ResetController();
+            }
         }
 
         /// <summary>
@@ -215,9 +219,17 @@ namespace SharedClasses.MVC
             if (_activeController == null) return;
             panelContent.AssignView(_activeController.View);
 
-            // Resize form to content.
-            ClientSize = new Size(_activeController.View.Width,
-                _activeController.View.Height + (menuStripNavigation.Visible ? menuStripNavigation.Height : 0));
+            if (!AllowUserResize)
+            {
+                // Resize form to content.
+                _activeController.View.Dock = DockStyle.None;
+                ClientSize = new Size(_activeController.View.Width,
+                    _activeController.View.Height + (menuStripNavigation.Visible ? menuStripNavigation.Height : 0));
+            }
+            else
+            {
+                _activeController.View.Dock = DockStyle.Fill;
+            }
 
             // Reposition screen.
             CenterToScreen();

@@ -1,4 +1,4 @@
-﻿using ProductRentalApplication.Controller;
+﻿using ProductRentalApplication.Controllers;
 using SharedClasses.Events;
 using SharedClasses.MVC;
 using SharedClasses.Views;
