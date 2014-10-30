@@ -33,6 +33,8 @@ namespace ReservationSystem
             AddMenuItem("Producten", new ControllerProducts());
 
             MarkAsMain<ControllerVisitor>();
+
+            AllowUserResize = true;
         }
     }
 }
