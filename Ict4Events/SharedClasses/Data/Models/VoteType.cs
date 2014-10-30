@@ -1,6 +1,6 @@
 ﻿namespace SharedClasses.Data.Models
 {
-    enum LikeType
+    enum VoteType
     {
         Like,
         Dislike

@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
     public class Privilege
     {
+        [Key]
+        [FieldName("PRIVILEGE")]
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 

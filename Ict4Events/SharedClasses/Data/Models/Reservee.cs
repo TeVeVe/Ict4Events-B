@@ -1,7 +1,12 @@
-﻿namespace SharedClasses.Data.Models
+﻿using SharedClasses.Data.Attributes;
+
+namespace SharedClasses.Data.Models
 {
     public class Reservee
     {
+        [Key]
+        [FieldName("RESERVEE")]
+        public int Id { get; set; }
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
         public string Insertion { get; set; }
