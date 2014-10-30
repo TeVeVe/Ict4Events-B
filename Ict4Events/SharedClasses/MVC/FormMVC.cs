@@ -59,7 +59,11 @@ namespace SharedClasses.MVC
         public bool AllowUserResize
         {
             get { return AutoSizeMode == AutoSizeMode.GrowOnly; }
-            set { AutoSizeMode = value ? AutoSizeMode.GrowOnly : AutoSizeMode.GrowAndShrink; }
+            set
+            {
+                AutoSizeMode = value ? AutoSizeMode.GrowOnly : AutoSizeMode.GrowAndShrink;
+                FormBorderStyle = value ? FormBorderStyle.FixedSingle : FormBorderStyle.Sizable;
+            }
         }
 
         /// <summary>

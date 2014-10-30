@@ -33,12 +33,6 @@ namespace ReservationSystem
             AddMenuItem("Producten", new ControllerProducts());
 
             MarkAsMain<ControllerVisitor>();
-
-            // DEBUG
-            Database db = Database.FromSettings();
-            DataModel.Database = db;
-            Debug.WriteLine(Product.Select(p => p.Name.Length > 2).FirstOrDefault().Id);
-            
         }
     }
 }

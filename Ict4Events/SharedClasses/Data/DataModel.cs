@@ -64,15 +64,52 @@ namespace SharedClasses.Data
 
     public abstract class DataModel<T> : DataModel where T : DataModel, new()
     {
-        public static IEnumerable<T> Select(Expression<Func<T, bool>> selector)
+        public static IEnumerable<T> Select(string whereStatement, string ignoreFields = null)
         {
             if (Database == null) throw new DataException("Database of database was not set.");
             var fields = GetFieldNames<T>();
 
-            
+            // Build select.
+            var builder = new StringBuilder();
+            builder.Append("SELECT ");
+            builder.Append(fields.Select(p => p.Value).Where(v => !string.IsNullOrWhiteSpace(ignoreFields) && ignoreFields.IndexOf(v, StringComparison.OrdinalIgnoreCase) < 0).Aggregate((s1, s2) => s1 + ", " + s2));
+            builder.Append(" FROM ");
+            builder.Append(GetTableName<T>());
+            builder.Append(" WHERE ");
+            builder.Append(whereStatement);
 
             // Store record data in objects.
-            using (var cmd = new OracleCommand("SELECT * FROM " + GetTableName<T>(), Database.Connection))
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var obj = new T();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        typeof(T).GetProperty(fields.ElementAt(i).Key).SetValue(obj, reader[fields.ElementAt(i).Value]);
+                    }
+                    yield return obj;
+                }
+            }
+        }
+
+        public static IEnumerable<T> Update(string updateStatement, string ignoreFields = null)
+        {
+            if (Database == null) throw new DataException("Database of database was not set.");
+            var fields = GetFieldNames<T>();
+
+            // Build select.
+            var builder = new StringBuilder();
+            builder.Append("SELECT ");
+            builder.Append(fields.Select(p => p.Value).Where(v => !string.IsNullOrWhiteSpace(ignoreFields) && ignoreFields.IndexOf(v, StringComparison.OrdinalIgnoreCase) < 0).Aggregate((s1, s2) => s1 + ", " + s2));
+            builder.Append(" FROM ");
+            builder.Append(GetTableName<T>());
+            builder.Append(" WHERE ");
+            builder.Append(updateStatement);
+
+            // Store record data in objects.
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
             using (OracleDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
