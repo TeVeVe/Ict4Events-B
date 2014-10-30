@@ -8,7 +8,11 @@ namespace SharedClasses.Data.Models
     public class Product : DataModel<Product>
     {
         [Key]
+<<<<<<< HEAD
         [FieldName("PRODUCTID")]
+=======
+        [FieldName("PRODUCT")]
+>>>>>>> datacontroller2
         public int Id { get; set; }
         public string Description { get; set; }
         [DbIgnore]

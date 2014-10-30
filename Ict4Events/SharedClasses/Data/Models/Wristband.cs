@@ -1,9 +1,13 @@
 ﻿using System;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
     public class Wristband
     {
+        [Key]
+        [FieldName("WRISTBAND")]
+        public int Id { get; set; }
         public string VisitorCode { get; set; }
         public UserAccount UserAccount { get; set; }
 
