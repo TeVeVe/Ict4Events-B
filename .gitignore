@@ -12,6 +12,7 @@
 !*.resx
 !*.settings
 !Phidget21.NET.dll
+!Oracle.ManagedDataAccess.dll
 
 # But not these..
 Temporary*.cs
