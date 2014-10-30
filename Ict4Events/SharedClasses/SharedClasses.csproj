@@ -153,6 +153,12 @@
     <Compile Include="Views\ViewLogin.Designer.cs">
       <DependentUpon>ViewLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewRegisterAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewRegisterAccount.Designer.cs">
+      <DependentUpon>ViewRegisterAccount.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewLogin.resx">
       <DependentUpon>ViewLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewRegisterAccount.resx">
+      <DependentUpon>ViewRegisterAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

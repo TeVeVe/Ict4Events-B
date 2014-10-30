@@ -33,25 +33,26 @@
             // 
             // panelContent
             // 
-            this.panelContent.Size = new System.Drawing.Size(924, 491);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(4);
+            this.panelContent.Size = new System.Drawing.Size(1232, 610);
             // 
             // panelMainView
             // 
             this.panelMainView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMainView.Location = new System.Drawing.Point(0, 24);
-            this.panelMainView.Margin = new System.Windows.Forms.Padding(4);
+            this.panelMainView.Margin = new System.Windows.Forms.Padding(5);
             this.panelMainView.Name = "panelMainView";
-            this.panelMainView.Size = new System.Drawing.Size(924, 491);
+            this.panelMainView.Size = new System.Drawing.Size(1232, 610);
             this.panelMainView.TabIndex = 4;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(924, 515);
+            this.ClientSize = new System.Drawing.Size(1232, 634);
             this.Controls.Add(this.panelMainView);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "FormMain";
             this.Text = "Media Sharing Applicatie";
             this.Controls.SetChildIndex(this.panelMainView, 0);
