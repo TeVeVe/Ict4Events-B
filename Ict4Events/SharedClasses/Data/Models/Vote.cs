@@ -2,14 +2,14 @@
 
 namespace SharedClasses.Data.Models
 {
-    class Like
+    class Vote
     {
         [Key]
-        [FieldName("LIKE")]
+        [FieldName("VOTE")]
         public int Id { get; set; }
         [ForeignKey("FILEID")]
         public File File { get; set; }  
         [DbIgnore]
-        public LikeType Type { get; set; }
+        public VoteType Type { get; set; }
     }
 }

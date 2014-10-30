@@ -105,8 +105,8 @@
     <Compile Include="Data\Models\FeedPost.cs" />
     <Compile Include="Data\Models\Group.cs" />
     <Compile Include="Data\Models\File.cs" />
-    <Compile Include="Data\Models\Like.cs" />
-    <Compile Include="Data\Models\LikeType.cs" />
+    <Compile Include="Data\Models\Vote.cs" />
+    <Compile Include="Data\Models\VoteType.cs" />
     <Compile Include="Data\Models\Location.cs" />
     <Compile Include="Data\Models\Privilege.cs" />
     <Compile Include="Data\Models\Product.cs" />

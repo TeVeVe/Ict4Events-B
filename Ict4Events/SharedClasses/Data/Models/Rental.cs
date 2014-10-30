@@ -7,10 +7,13 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("RENTAL")]
-        public int Id { get; set; } 
-        public TimeSpan BorrowLength { get; set; }
+        public int Id { get; set; }
+        [ForeignKey("VISITORCODE")]
+        public Wristband VisitorCode { get; set; }
+        public TimeSpan RentalLength { get; set; }
         public bool IsPaid { get; set; }
         public DateTime StartTime { get; set; }
+        [ForeignKey("ProductId")]
         public Product Product { get; set; }
 
         public void GetFine()

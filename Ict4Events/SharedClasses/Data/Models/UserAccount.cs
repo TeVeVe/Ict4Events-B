@@ -11,7 +11,7 @@ namespace SharedClasses.Data.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public IEnumerable<Group> Groups { get; set; }
+        public Group Group { get; set; }
         public Wristband Wristband { get; set; }
 
         public void Rent()
@@ -24,11 +24,11 @@ namespace SharedClasses.Data.Models
             throw new NotImplementedException();
         }
 
-        public UserAccount(string username, string password, IEnumerable<Group> groups)
+        public UserAccount(string username, string password, Group group)
         {
             Username = username;
             Password = password;
-            Groups = groups;
+            Group = group;
         }
     }
 }
