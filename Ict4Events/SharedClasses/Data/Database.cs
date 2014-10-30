@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Oracle.DataAccess.Client;
+using Oracle.ManagedDataAccess.Client;
+using SharedClasses.Properties;
 
 namespace SharedClasses.Data
 {
     public class Database : IDisposable
     {
-        public Database(string username, string password, string host, string service)
+        public Database(string username, string password, string host, string service = null, string sid = null)
         {
             Username = username;
             Password = password;
             Host = host;
             Port = 1521;
             Service = service;
+            SID = sid;
 
             Open();
         }
@@ -29,21 +31,12 @@ namespace SharedClasses.Data
             Open();
         }
 
-        /// <summary>
-        /// Creates a new database instance with <see cref="ConnectionString"/> from the settings file.
-        /// </summary>
-        /// <returns></returns>
-        public static Database FromSettings()
-        {
-            return new Database((string)Properties.Settings.Default["DB_UserID"], (string)Properties.Settings.Default["DB_Password"],
-                (string)Properties.Settings.Default["DB_Server"], (string)Properties.Settings.Default["DB_Service"]);
-        }
-
         public string Host { get; set; }
         public string Username { get; set; }
         public string Password { protected get; set; }
         public string Service { get; set; }
         public int Port { get; set; }
+        public string SID { get; set; }
         public OracleConnection Connection { get; protected set; }
 
         /// <summary>
@@ -54,12 +47,14 @@ namespace SharedClasses.Data
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(Host) || string.IsNullOrWhiteSpace(Username) ||
-                    string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(Service))
-                    throw new FormatException("ConnectionString could not be build. Missing information.");
-                return "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = " + Host + ")(PORT = " + Port +
-                       "))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = " + Service + ")));Password=" + Password +
-                       ";User ID=" + Username;
+                if (!string.IsNullOrWhiteSpace(Host) && !string.IsNullOrWhiteSpace(Username) &&
+                    !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(Service))
+
+                    return "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = " + Host + ")(PORT = " + Port +
+                           "))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = " + Service + ")));Password=" +
+                           Password +
+                           ";User ID=" + Username;
+                return "User Id=SYSTEM;Password=admin;Data Source=127.0.0.1";
             }
         }
 
@@ -69,6 +64,16 @@ namespace SharedClasses.Data
         public void Dispose()
         {
             Close();
+        }
+
+        /// <summary>
+        ///     Creates a new database instance with <see cref="ConnectionString" /> from the settings file.
+        /// </summary>
+        /// <returns></returns>
+        public static Database FromSettings()
+        {
+            return new Database((string) Settings.Default["DB_UserID"], (string) Settings.Default["DB_Password"],
+                (string) Settings.Default["DB_Server"], (string) Settings.Default["DB_Service"]);
         }
 
         /// <summary>
