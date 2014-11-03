@@ -82,17 +82,5 @@ namespace SharedClasses.Properties {
                 this["DB_Port"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DB_ {
-            get {
-                return ((string)(this["DB_"]));
-            }
-            set {
-                this["DB_"] = value;
-            }
-        }
     }
 }

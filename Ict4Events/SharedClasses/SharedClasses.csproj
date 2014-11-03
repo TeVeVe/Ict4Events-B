@@ -82,8 +82,11 @@
     <Compile Include="Data\Attributes\ForeignKeyAttribute.cs" />
     <Compile Include="Data\Attributes\KeyAttribute.cs" />
     <Compile Include="Data\Attributes\TableAttribute.cs" />
+    <Compile Include="Data\Models\SpotType.cs" />
+    <Compile Include="Data\Models\Types\DbImage.cs" />
     <Compile Include="Events\AuthenticateEventArgs.cs" />
     <Compile Include="Exceptions\NoActiveControllerException.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
@@ -122,7 +125,6 @@
     <Compile Include="Data\Models\Reservation.cs" />
     <Compile Include="Data\Models\Reservee.cs" />
     <Compile Include="Data\Models\Spot.cs" />
-    <Compile Include="Data\Models\SpotType.cs" />
     <Compile Include="Data\Models\UserAccount.cs" />
     <Compile Include="Data\Models\Wristband.cs" />
     <Compile Include="MVC\ControllerMVC.cs" />
@@ -193,6 +195,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

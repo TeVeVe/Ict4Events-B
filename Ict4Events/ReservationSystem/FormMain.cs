@@ -36,8 +36,6 @@ namespace ReservationSystem
             MarkAsMain<ControllerVisitor>();
 
             AllowUserResize = true;
-
-            DataModel.Database = Database.ConnectToSid("SYSTEM", "admin", "192.168.19.24", "xe");
         }
     }
 }

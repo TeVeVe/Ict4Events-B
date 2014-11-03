@@ -5,7 +5,7 @@ namespace SharedClasses.Data.Models
     class Vote
     {
         [Key]
-        [FieldName("VOTE")]
+        [FieldName("VOTEID")]
         public int Id { get; set; }
         [ForeignKey("FILEID")]
         public File File { get; set; }  

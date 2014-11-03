@@ -17,8 +17,5 @@
     <Setting Name="DB_Port" Type="System.String" Scope="User">
       <Value Profile="(Default)">1521</Value>
     </Setting>
-    <Setting Name="DB_" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
   </Settings>
 </SettingsFile>

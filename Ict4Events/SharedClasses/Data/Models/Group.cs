@@ -8,10 +8,12 @@ namespace SharedClasses.Data.Models
     public class Group
     {
         [Key]
-        [FieldName("GROUP")]
+        [FieldName("GROUPID")]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        
+        [DbIgnore]
         [ForeignKey("PRIVELEGEID")]
         public IEnumerable<Privilege> Privileges { get; set; }
 

@@ -7,7 +7,7 @@ namespace SharedClasses.Data.Models
     public class File
     {
         [Key]
-        [FieldName("FILE")]
+        [FieldName("FILEID")]
         public int Id { get; set; }
         public string Decription { get; set; }
         public string Name { get; set; }

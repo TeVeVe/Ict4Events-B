@@ -1,9 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace SharedClasses.Extensions
 {
     public static class TypeExtensions
     {
+        private static HashSet<Type> _numericTypes = new HashSet<Type>()
+        {
+            typeof(float),
+            typeof(double),
+            typeof(decimal),
+            typeof(byte),
+            typeof(sbyte),
+            typeof(ushort),
+            typeof(short),
+            typeof(uint),
+            typeof(int),
+            typeof(long),
+            typeof(ulong)
+        }; 
+
+        private static HashSet<Type> _floatingPointNumberTypes = new HashSet<Type>()
+        {
+            typeof(float),
+            typeof(decimal),
+            typeof(double)
+        };
+
+        private static HashSet<Type> _wholeNumberTypes = new HashSet<Type>()
+        {
+            typeof(byte),
+            typeof(sbyte),
+            typeof(ushort),
+            typeof(short),
+            typeof(uint),
+            typeof(int),
+            typeof(long),
+            typeof(ulong)
+        };
+
         /// <summary>
         /// Returns the default value of the supplied <see cref="Type"/>.
         /// </summary>
@@ -14,6 +51,21 @@ namespace SharedClasses.Extensions
             if (type.IsValueType)
                 return Activator.CreateInstance(type);
             return null;
+        }
+
+        public static bool IsNumericType( this Type type)
+        {
+            return _numericTypes.Contains(type);
+        }
+
+        public static bool IsFloatingPointType(this Type type)
+        {
+            return _floatingPointNumberTypes.Contains(type);
+        }
+
+        public static bool IsWholeNumberType(this Type type)
+        {
+            return _wholeNumberTypes.Contains(type);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace SharedClasses.Data.Models
     public class Location
     {
         [Key]
-        [FieldName("LOCATION")]
+        [FieldName("LOCATIONID")]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Street { get; set; }

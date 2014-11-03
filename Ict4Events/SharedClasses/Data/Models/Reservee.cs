@@ -5,7 +5,7 @@ namespace SharedClasses.Data.Models
     public class Reservee
     {
         [Key]
-        [FieldName("RESERVEE")]
+        [FieldName("RESERVEEID")]
         public int Id { get; set; }
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
