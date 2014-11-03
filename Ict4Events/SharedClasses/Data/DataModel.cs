@@ -69,7 +69,7 @@ namespace SharedClasses.Data
 
     public abstract class DataModel<T> : DataModel where T : DataModel, new()
     {
-        public static IEnumerable<T> Select(string whereStatement, string ignoreFields = null)
+        public static IEnumerable<T> Select(string whereStatement = null, string ignoreFields = null)
         {
             if (Database == null) throw new DataException("Database of database was not set.");
             var fields = GetFieldNames<T>();
@@ -80,8 +80,12 @@ namespace SharedClasses.Data
             builder.Append(fields.Select(p => p.Value).Aggregate((s1, s2) => s1 + ", " + s2));
             builder.Append(" FROM ");
             builder.Append(GetTableName<T>());
-            builder.Append(" WHERE ");
-            builder.Append(whereStatement);
+
+            if (!string.IsNullOrWhiteSpace(whereStatement))
+            {
+                builder.Append(" WHERE ");
+                builder.Append(whereStatement);
+            }
 
             // Store record data in objects.
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))

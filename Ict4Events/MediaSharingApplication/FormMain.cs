@@ -13,7 +13,7 @@ namespace MediaSharingApplication
 
             MarkAsMain<ControllerLogin>();
 
-            DataModel.Database = Database.ConnectToSid("SYSTEM", "admin", "192.168.19.24", "xe");
+            DataModel.Database = Database.FromSettings();
         }
     }
 }
