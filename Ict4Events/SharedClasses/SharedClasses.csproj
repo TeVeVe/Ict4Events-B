@@ -64,6 +64,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\WinForms\CommentSection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForms\CommentSection.Designer.cs">
+      <DependentUpon>CommentSection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WinForms\InteractiveMap.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\WinForms\CommentSection.resx">
+      <DependentUpon>CommentSection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </EmbeddedResource>
