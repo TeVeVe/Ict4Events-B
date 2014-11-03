@@ -1,6 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 using MediaSharingApplication.Controllers;
 using SharedClasses.Data;
+using SharedClasses.Data.Models;
 using SharedClasses.MVC;
 
 namespace MediaSharingApplication
@@ -14,6 +17,13 @@ namespace MediaSharingApplication
             MarkAsMain<ControllerLogin>();
 
             DataModel.Database = Database.FromSettings();
+
+            // DB Test:
+            var products = Product.Select();
+            foreach (var product in products)
+            {
+                Debug.WriteLine(product.Name);
+            }
         }
     }
 }

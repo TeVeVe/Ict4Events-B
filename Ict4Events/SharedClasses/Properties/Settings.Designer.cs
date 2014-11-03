@@ -25,7 +25,7 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.19.24")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.19.17")]
         public string DB_Server {
             get {
                 return ((string)(this["DB_Server"]));
