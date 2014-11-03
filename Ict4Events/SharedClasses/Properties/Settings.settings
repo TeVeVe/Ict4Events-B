@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DB_Server" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.19.24</Value>
+      <Value Profile="(Default)">192.168.19.17</Value>
     </Setting>
     <Setting Name="DB_Service" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
