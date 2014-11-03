@@ -8,28 +8,6 @@ namespace SharedClasses.Data
 {
     public class Database : IDisposable
     {
-        public Database(string username, string password, string host, string service = null)
-        {
-            Username = username;
-            Password = password;
-            Host = host;
-            Port = 1521;
-            Service = service;
-
-            Open();
-        }
-
-        public Database(string username, string password, string host, int port, string service)
-        {
-            Username = username;
-            Password = password;
-            Host = host;
-            Service = service;
-            Port = port;
-
-            Open();
-        }
-
         public string Host { get; set; }
         public string Username { get; set; }
         public string Password { protected get; set; }
@@ -46,14 +24,17 @@ namespace SharedClasses.Data
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(Host) && !string.IsNullOrWhiteSpace(Username) &&
-                    !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(Service))
-
-                    return "Data Source=(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = " + Host + ")(PORT = " + Port +
-                           "))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = " + Service + ")));Password=" +
-                           Password +
-                           ";User ID=" + Username;
-                return string.Format("User Id={0};Password={1};Data Source={2}", Username, Password, Host);
+                if (!string.IsNullOrWhiteSpace(SID))
+                {
+                    return
+                        string.Format(
+                            "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SID={2})));User ID={3};Password={4}",
+                            Host, Port, SID, Username, Password);
+                }
+                return
+                    string.Format(
+                        "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVIE_NAME={2})));User ID={3};Password={4}",
+                        Host, Port, Service, Username, Password);
             }
         }
 
@@ -65,14 +46,44 @@ namespace SharedClasses.Data
             Close();
         }
 
+        public static Database ConnectToService(string username, string password, string host, string service)
+        {
+            var db = new Database();
+
+            db.Username = username;
+            db.Password = password;
+            db.Host = host;
+            db.Port = 1521;
+            db.Service = service;
+
+            db.Open();
+
+            return db;
+        }
+
+        public static Database ConnectToSid(string username, string password, string host, string sid)
+        {
+            var db = new Database();
+
+            db.Username = username;
+            db.Password = password;
+            db.Host = host;
+            db.Port = 1521;
+            db.SID = sid;
+
+            db.Open();
+
+            return db;
+        }
+
         /// <summary>
         ///     Creates a new database instance with <see cref="ConnectionString" /> from the settings file.
         /// </summary>
         /// <returns></returns>
         public static Database FromSettings()
         {
-            return new Database((string) Settings.Default["DB_UserID"], (string) Settings.Default["DB_Password"],
-                (string) Settings.Default["DB_Server"], (string) Settings.Default["DB_Service"]);
+            return ConnectToService((string)Settings.Default["DB_UserID"], (string)Settings.Default["DB_Password"],
+                (string)Settings.Default["DB_Server"], (string)Settings.Default["DB_Service"]);
         }
 
         /// <summary>

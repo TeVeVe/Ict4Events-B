@@ -3,16 +3,22 @@
   <Profiles />
   <Settings>
     <Setting Name="DB_Server" Type="System.String" Scope="User">
-      <Value Profile="(Default)">fhictora01.fhict.local</Value>
+      <Value Profile="(Default)">192.168.19.24</Value>
     </Setting>
     <Setting Name="DB_Service" Type="System.String" Scope="User">
-      <Value Profile="(Default)">fhictora</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DB_UserID" Type="System.String" Scope="User">
-      <Value Profile="(Default)">dbi329383</Value>
+      <Value Profile="(Default)">SYSTEM</Value>
     </Setting>
     <Setting Name="DB_Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">XTccaagzmf</Value>
+      <Value Profile="(Default)">admin</Value>
+    </Setting>
+    <Setting Name="DB_Port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1521</Value>
+    </Setting>
+    <Setting Name="DB_" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
