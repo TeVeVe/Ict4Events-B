@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using Oracle.ManagedDataAccess.Client;
+using Oracle.DataAccess.Client;
 using SharedClasses.Data.Attributes;
 using SharedClasses.Extensions;
 
