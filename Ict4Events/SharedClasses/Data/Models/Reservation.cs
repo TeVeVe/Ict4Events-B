@@ -7,7 +7,7 @@ namespace SharedClasses.Data.Models
     public class Reservation
     {
         [Key]
-        [FieldName("RESERVATION")]
+        [FieldName("RESERVATIONID")]
         public int Id { get; set; }
         public bool PaymentStatus { get; set; }
         public int AmountOfPeople { get; set; }

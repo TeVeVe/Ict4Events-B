@@ -6,7 +6,7 @@ namespace SharedClasses.Data.Models
     public class Rental
     {
         [Key]
-        [FieldName("RENTAL")]
+        [FieldName("RENTALID")]
         public int Id { get; set; }
         [ForeignKey("VISITORCODE")]
         public Wristband VisitorCode { get; set; }

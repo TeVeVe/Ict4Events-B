@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 using MediaSharingApplication.Controllers;
 using SharedClasses.Data;
@@ -19,11 +20,10 @@ namespace MediaSharingApplication
             DataModel.Database = Database.FromSettings();
 
             // DB Test:
-            var products = Product.Select();
-            foreach (var product in products)
-            {
-                Debug.WriteLine(product.Name);
-            }
+            var product = Product.Select().First();
+            Debug.WriteLine(product.Name);
+            product.Name = "Test :D";
+            product.Update();
         }
     }
 }

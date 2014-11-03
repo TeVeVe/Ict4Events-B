@@ -7,7 +7,7 @@ namespace SharedClasses.Data.Models
     public class Comment
     {
         [Key]
-        [FieldName("COMMENT")]
+        [FieldName("COMMENTID")]
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime PostTime { get; set; }

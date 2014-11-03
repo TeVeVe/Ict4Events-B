@@ -1,17 +1,17 @@
-﻿using System.Drawing;
-using SharedClasses.Data.Attributes;
+﻿using SharedClasses.Data.Attributes;
+using SharedClasses.Data.Models.Types;
 
 namespace SharedClasses.Data.Models
 {
-
     [Table("PRODUCT")]
     public class Product : DataModel<Product>
     {
         [Key]
         [FieldName("PRODUCTID")]
         public int Id { get; set; }
+
         public string Description { get; set; }
-        public Image Image { get; set; }
+        public DbImage Image { get; set; }
         public bool Inactive { get; set; }
         public string Name { get; set; }
 
