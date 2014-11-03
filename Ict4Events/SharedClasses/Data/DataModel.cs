@@ -148,7 +148,7 @@ namespace SharedClasses.Data
 
             // Build select.
             var builder = new StringBuilder();
-            builder.Append("SELECT ");
+            builder.Append("UPDATE INTO ");
             builder.Append(fields.Select(p => p.Value).Where(v => !string.IsNullOrWhiteSpace(ignoreFields) && ignoreFields.IndexOf(v, StringComparison.OrdinalIgnoreCase) < 0).Aggregate((s1, s2) => s1 + ", " + s2));
             builder.Append(" FROM ");
             builder.Append(GetTableName<T>());
