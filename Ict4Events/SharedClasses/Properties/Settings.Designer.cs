@@ -25,7 +25,7 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fhictora01.fhict.local")]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.19.24")]
         public string DB_Server {
             get {
                 return ((string)(this["DB_Server"]));
@@ -37,7 +37,7 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fhictora")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DB_Service {
             get {
                 return ((string)(this["DB_Service"]));
@@ -49,7 +49,7 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("dbi329383")]
+        [global::System.Configuration.DefaultSettingValueAttribute("SYSTEM")]
         public string DB_UserID {
             get {
                 return ((string)(this["DB_UserID"]));
@@ -61,13 +61,37 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("XTccaagzmf")]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
         public string DB_Password {
             get {
                 return ((string)(this["DB_Password"]));
             }
             set {
                 this["DB_Password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1521")]
+        public string DB_Port {
+            get {
+                return ((string)(this["DB_Port"]));
+            }
+            set {
+                this["DB_Port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DB_ {
+            get {
+                return ((string)(this["DB_"]));
+            }
+            set {
+                this["DB_"] = value;
             }
         }
     }

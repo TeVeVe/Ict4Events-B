@@ -37,12 +37,7 @@ namespace ReservationSystem
 
             AllowUserResize = true;
 
-            DataModel.Database = Database.FromSettings();
-            var products =  Product.Select("PRODUCTID > 0");
-            foreach (var product in products)
-            {
-                Debug.WriteLine(product);
-            }
+            DataModel.Database = Database.ConnectToSid("SYSTEM", "admin", "192.168.19.24", "xe");
         }
     }
 }
