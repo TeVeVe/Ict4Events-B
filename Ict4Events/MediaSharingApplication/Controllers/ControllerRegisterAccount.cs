@@ -10,6 +10,14 @@ namespace MediaSharingApplication.Controllers
 {
     class ControllerRegisterAccount : ControllerMVC<ViewRegisterAccount>
     {
+        public ControllerRegisterAccount()
+        {
+            View.RegisterClick += ViewOnRegisterClick;
+        }
 
+        private void ViewOnRegisterClick(object sender, EventArgs eventArgs)
+        {
+            
+        }
     }
 }
