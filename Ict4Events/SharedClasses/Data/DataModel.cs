@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using System.Windows;
 using Oracle.DataAccess.Client;
 using SharedClasses.Data.Attributes;
 using SharedClasses.Data.Models.Types;
@@ -24,6 +23,12 @@ namespace SharedClasses.Data
         }
 
         private static Database _database;
+
+        static DataModel()
+        {
+            Database = Database.FromSettings();
+        }
+
         public static Database Database
         {
             get { return _database; }
@@ -39,11 +44,6 @@ namespace SharedClasses.Data
                 if (_database != null)
                     AppDomain.CurrentDomain.ProcessExit += (sender, args) => _database.Dispose();
             }
-        }
-
-        static DataModel()
-        {
-            Database = Database.FromSettings();
         }
 
         /// <summary>
@@ -81,6 +81,11 @@ namespace SharedClasses.Data
             return prop.Name;
         }
 
+        /// <summary>
+        /// Get all <see cref="PropertyInfo"/>'s from the <see cref="Type"/>.
+        /// </summary>
+        /// <typeparam name="T">Any type of <see cref="DataModel"/>.</typeparam>
+        /// <returns>All <see cref="PropertyInfo"/>'s that have a <see cref="KeyAttribute"/>.</returns>
         public static IEnumerable<PropertyInfo> GetKeyProperties<T>() where T : DataModel
         {
             return typeof(T)
@@ -88,6 +93,11 @@ namespace SharedClasses.Data
                 .Where(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
 
+        /// <summary>
+        /// Get all database field names from the properties of type <seealso cref="T"/>.
+        /// </summary>
+        /// <typeparam name="T">Any type of <see cref="DataModel"/>.</typeparam>
+        /// <returns>A pair of names. Key is the <see cref="PropertyInfo.Name"/> and the Value is the database field name.</returns>
         public static IEnumerable<KeyValuePair<string, string>> GetFieldNames<T>() where T : DataModel
         {
             return
@@ -106,6 +116,13 @@ namespace SharedClasses.Data
 
     public abstract class DataModel<T> : DataModel where T : DataModel, new()
     {
+        /// <summary>
+        ///     Executes a new SELECT query.
+        /// </summary>
+        /// <param name="whereStatement">WHERE statement to use for the SELECT statement.</param>
+        /// <param name="options">Special options for the SQL to Objects.</param>
+        /// <param name="ignoreFields">Fieds to exclude from SQL to Objects.</param>
+        /// <returns></returns>
         public static IEnumerable<T> Select(string whereStatement = null, QueryOptions options = 0,
             string ignoreFields = null)
         {
@@ -193,7 +210,8 @@ namespace SharedClasses.Data
         public int Update()
         {
             if (Database == null) throw new DataException("Database of database was not set.");
-            var fields = GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
+            IEnumerable<KeyValuePair<string, string>> fields =
+                GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
             // Build UPDATE.
             var builder = new StringBuilder();
@@ -224,14 +242,18 @@ namespace SharedClasses.Data
             builder.Append(GetKeyProperty<T>().GetValue(this));
 
             // Store record data in objects.
-            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
-                return cmd.ExecuteNonQuery();
+            return Database.ExecuteNonQuery(builder.ToString());
         }
 
+        /// <summary>
+        ///     Creates a new record from the <see cref="DataModel" /> type in the database.
+        /// </summary>
+        /// <returns>Records affected.</returns>
         public int Insert()
         {
             if (Database == null) throw new DataException("Database of database was not set.");
-            var fields = GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
+            IEnumerable<KeyValuePair<string, string>> fields =
+                GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
             // Build UPDATE.
             var builder = new StringBuilder();
@@ -275,13 +297,18 @@ namespace SharedClasses.Data
                 return cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        ///     Deletes a record from the table using the primary key.
+        /// </summary>
+        /// <returns>Records affected.</returns>
         public int Delete()
         {
             if (Database == null) throw new DataException("Database of database was not set.");
-            var fields = GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
+            IEnumerable<KeyValuePair<string, string>> fields =
+                GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
             // Build UPDATE.
-            var key = GetKeyProperty<T>();
+            PropertyInfo key = GetKeyProperty<T>();
 
             var builder = new StringBuilder();
             builder.Append("DELETE FROM ");

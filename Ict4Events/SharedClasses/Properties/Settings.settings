@@ -17,5 +17,8 @@
     <Setting Name="DB_Port" Type="System.String" Scope="User">
       <Value Profile="(Default)">1521</Value>
     </Setting>
+    <Setting Name="DB_QueryTimeout" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
