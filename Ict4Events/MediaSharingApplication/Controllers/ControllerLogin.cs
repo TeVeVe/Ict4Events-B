@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 using SharedClasses.Data.Models;
 using SharedClasses.Events;
+using SharedClasses.Extensions;
 using SharedClasses.MVC;
 using SharedClasses.Views;
 
@@ -17,11 +19,16 @@ namespace MediaSharingApplication.Controllers
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
             // Authenticate user.
-            var accounts = UserAccount.Select("1=1");
-
-            foreach (var userAccount in accounts)
+            switch (e.AuthMethod)
             {
-                Debug.WriteLine(userAccount.Password);
+                case AuthenticateEventArgs.AuthenticationMethod.Account:
+                    var account = UserAccount.Select(string.Format("USERNAME = {0} AND PASSWORD = {1}", e.Username.ToSqlFormat(), e.Password.ToSqlFormat())).FirstOrDefault();
+                    e.Authorized = account != null;
+                    break;
+                case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
+                    account = UserAccount.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
+                    e.Authorized = account != null;
+                    break;
             }
 
             // Report back to user.

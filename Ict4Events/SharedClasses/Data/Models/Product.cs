@@ -14,10 +14,11 @@ namespace SharedClasses.Data.Models
         public DbImage Image { get; set; }
         public bool Inactive { get; set; }
         public string Name { get; set; }
+        public decimal Price { get; set; }
 
         public override string ToString()
         {
-            return string.Format("Id: {0}, Name: {1}, Description: {2}, Inactive: {3}", Id, Name, Description, Inactive);
+            return string.Format("Name: {0}, Description: {1}, Price: {2}, Inactive: {3}", Name, Description, Price, Inactive);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using SharedClasses.Data.Models.Types;
 
 namespace SharedClasses.Extensions
 {
@@ -12,9 +13,13 @@ namespace SharedClasses.Extensions
         /// <returns>A SQL-friendly representation of the value.</returns>
         public static string ToSqlFormat(this object obj)
         {
+            if (obj == null) return "NULL";
+
             Type type = obj.GetType();
             if (!typeof(IConvertible).IsAssignableFrom(type))
                 return "NULL";
+            if (typeof(DbImage).IsAssignableFrom(type))
+                return '\'' + ((DbImage)obj).Uri.AbsoluteUri + '\'';
             if (type.IsWholeNumberType())
                 return ((int)Convert.ChangeType(obj, typeof(int))).ToString(CultureInfo.InvariantCulture);
             if (type.IsFloatingPointType())

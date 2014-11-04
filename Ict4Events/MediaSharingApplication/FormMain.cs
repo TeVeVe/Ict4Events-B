@@ -16,14 +16,6 @@ namespace MediaSharingApplication
             InitializeComponent();
 
             MarkAsMain<ControllerLogin>();
-
-            DataModel.Database = Database.FromSettings();
-
-            // DB Test:
-            var product = Product.Select().First();
-            Debug.WriteLine(product.Name);
-            product.Name = "Test :D";
-            product.Update();
         }
     }
 }

@@ -29,10 +29,21 @@ namespace SharedClasses.Data
             get { return _database; }
             set
             {
+                // Dispose of old.
+                if (_database != null)
+                    _database.Dispose();
+
                 _database = value;
+
+                // Dispose when application closes.
                 if (_database != null)
                     AppDomain.CurrentDomain.ProcessExit += (sender, args) => _database.Dispose();
             }
+        }
+
+        static DataModel()
+        {
+            Database = Database.FromSettings();
         }
 
         /// <summary>
@@ -118,9 +129,13 @@ namespace SharedClasses.Data
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
             using (OracleDataReader reader = cmd.ExecuteReader())
             {
+                // Read a new record.
                 while (reader.Read())
                 {
+                    // Create a new object to represent this record.
                     var obj = new T();
+
+                    // Loop through all the fields of this record and store the values in their properties.
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
                         PropertyInfo prop = typeof(T).GetProperty(fields.ElementAt(i).Key);
@@ -140,7 +155,7 @@ namespace SharedClasses.Data
                                     value = val == 'Y';
                             }
 
-                            // If property is of type Image then we expect a string.
+                            // If property is of type DbImage then we expect a string.
                             if (options.HasFlag(QueryOptions.InternetAccess) && prop.PropertyType == typeof(DbImage))
                             {
                                 var val = new Uri((string)value);
@@ -148,7 +163,7 @@ namespace SharedClasses.Data
                                 {
                                     using (var client = new WebClient())
                                     using (var imageStream = new MemoryStream(client.DownloadData(val)))
-                                        value = Image.FromStream(imageStream);
+                                        value = new DbImage(Image.FromStream(imageStream), val);
                                 }
                                 else
                                     throw new FileLoadException("Local path supplied. Must be remote a remote path.");
@@ -162,8 +177,10 @@ namespace SharedClasses.Data
                                 value = value.GetType().GetDefaultValue();
                         }
 
+                        // Set the propertie's value.
                         prop.SetValue(obj, value);
                     }
+                    // Add a new object to the return result.
                     yield return obj;
                 }
             }
@@ -209,6 +226,83 @@ namespace SharedClasses.Data
             // Store record data in objects.
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
                 return cmd.ExecuteNonQuery();
+        }
+
+        public int Insert()
+        {
+            if (Database == null) throw new DataException("Database of database was not set.");
+            var fields = GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
+
+            // Build UPDATE.
+            var builder = new StringBuilder();
+            builder.Append("INSERT INTO ");
+            builder.Append(GetTableName<T>());
+            builder.Append("(");
+            builder.Append(GetPrimaryKey<T>());
+            builder.Append(", ");
+
+            // Build COLUMN NAMES.
+            for (int i = 0; i < fields.Count(); i++)
+            {
+                KeyValuePair<string, string> setField = fields.ElementAt(i);
+
+                // Save field to database.
+                builder.Append(setField.Value);
+
+                if (i < fields.Count() - 1)
+                    builder.Append(',');
+            }
+
+            builder.Append(") VALUES(NULL, ");
+
+            // Build VALUES.
+            for (int i = 0; i < fields.Count(); i++)
+            {
+                KeyValuePair<string, string> setField = fields.ElementAt(i);
+                PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
+
+                // Save field to database.
+                builder.Append(prop.GetValue(this).ToSqlFormat());
+
+                if (i < fields.Count() - 1)
+                    builder.Append(',');
+            }
+
+            builder.Append(")");
+
+            // Store record data in objects.
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+                return cmd.ExecuteNonQuery();
+        }
+
+        public int Delete()
+        {
+            if (Database == null) throw new DataException("Database of database was not set.");
+            var fields = GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
+
+            // Build UPDATE.
+            var key = GetKeyProperty<T>();
+
+            var builder = new StringBuilder();
+            builder.Append("DELETE FROM ");
+            builder.Append(GetTableName<T>());
+            builder.Append(" WHERE ");
+            builder.Append(GetPrimaryKey<T>());
+            builder.Append(" = ");
+            builder.Append(key.GetValue(this).ToSqlFormat());
+
+            // Store record data in objects.
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+            {
+                try
+                {
+                    return cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                }
+            }
+            return 0;
         }
     }
 }
