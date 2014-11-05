@@ -41,7 +41,7 @@
             this.panelMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMessage.Location = new System.Drawing.Point(0, 0);
             this.panelMessage.Name = "panelMessage";
-            this.panelMessage.Size = new System.Drawing.Size(868, 47);
+            this.panelMessage.Size = new System.Drawing.Size(474, 47);
             this.panelMessage.TabIndex = 2;
             // 
             // labelMessage
@@ -62,7 +62,7 @@
             this.interactiveMap1.ImageMap = ((System.Drawing.Image)(resources.GetObject("interactiveMap1.ImageMap")));
             this.interactiveMap1.Location = new System.Drawing.Point(0, 47);
             this.interactiveMap1.Name = "interactiveMap1";
-            this.interactiveMap1.Size = new System.Drawing.Size(868, 593);
+            this.interactiveMap1.Size = new System.Drawing.Size(474, 464);
             this.interactiveMap1.TabIndex = 3;
             this.interactiveMap1.Text = "interactiveMap1";
             this.interactiveMap1.Click += new System.EventHandler(this.interactiveMap1_Click);
@@ -75,7 +75,7 @@
             this.Controls.Add(this.interactiveMap1);
             this.Controls.Add(this.panelMessage);
             this.Name = "ViewLocationDetails";
-            this.Size = new System.Drawing.Size(868, 640);
+            this.Size = new System.Drawing.Size(474, 511);
             this.panelMessage.ResumeLayout(false);
             this.panelMessage.PerformLayout();
             this.ResumeLayout(false);
