@@ -4,12 +4,14 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
+using SharedClasses.Events;
 using SharedClasses.Properties;
 
 namespace SharedClasses.Data
 {
     public class Database : IDisposable
     {
+        private OracleConnection _connection;
         public int QueryTimeout { get; set; }
 
         /// <summary>
@@ -45,7 +47,19 @@ namespace SharedClasses.Data
         /// <summary>
         ///     Connection which holds the session to the database.
         /// </summary>
-        public OracleConnection Connection { get; protected set; }
+        public OracleConnection Connection
+        {
+            get { return _connection; }
+            protected set
+            {
+                if (_connection != null)
+                    _connection.Dispose();
+                _connection = value;
+                _connection.StateChange +=
+                    (sender, args) =>
+                        OnConnectionStateChanged(new DatabaseConnectionChangedEventArgs(_connection.State));
+            }
+        }
 
         /// <summary>
         ///     ConnectionString used for connecting to the database. This property generates a new <see cref="ConnectionString" />
@@ -125,6 +139,14 @@ namespace SharedClasses.Data
             return db;
         }
 
+        public event EventHandler<DatabaseConnectionChangedEventArgs> ConnectionStateChanged;
+
+        protected virtual void OnConnectionStateChanged(DatabaseConnectionChangedEventArgs e)
+        {
+            EventHandler<DatabaseConnectionChangedEventArgs> handler = ConnectionStateChanged;
+            if (handler != null) handler(this, e);
+        }
+
         /// <summary>
         ///     Creates a new database instance with <see cref="ConnectionString" /> from the settings file.
         /// </summary>
@@ -143,7 +165,11 @@ namespace SharedClasses.Data
             if (Connection != null && Connection.State == ConnectionState.Open) return;
 
             Connection = new OracleConnection(ConnectionString);
-            Connection.Open();
+            var openTask = Task.Factory.StartNew(() => Connection.Open(), TaskCreationOptions.LongRunning);
+            openTask.Wait(QueryTimeout);
+
+            if (!openTask.IsCompleted)
+                throw new TimeoutException("Could not find and connect database.");
         }
 
         /// <summary>

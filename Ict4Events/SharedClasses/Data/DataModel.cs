@@ -24,11 +24,6 @@ namespace SharedClasses.Data
 
         private static Database _database;
 
-        static DataModel()
-        {
-            Database = Database.FromSettings();
-        }
-
         public static Database Database
         {
             get { return _database; }
@@ -82,10 +77,10 @@ namespace SharedClasses.Data
         }
 
         /// <summary>
-        /// Get all <see cref="PropertyInfo"/>'s from the <see cref="Type"/>.
+        ///     Get all <see cref="PropertyInfo" />'s from the <see cref="Type" />.
         /// </summary>
-        /// <typeparam name="T">Any type of <see cref="DataModel"/>.</typeparam>
-        /// <returns>All <see cref="PropertyInfo"/>'s that have a <see cref="KeyAttribute"/>.</returns>
+        /// <typeparam name="T">Any type of <see cref="DataModel" />.</typeparam>
+        /// <returns>All <see cref="PropertyInfo" />'s that have a <see cref="KeyAttribute" />.</returns>
         public static IEnumerable<PropertyInfo> GetKeyProperties<T>() where T : DataModel
         {
             return typeof(T)
@@ -94,10 +89,10 @@ namespace SharedClasses.Data
         }
 
         /// <summary>
-        /// Get all database field names from the properties of type <seealso cref="T"/>.
+        ///     Get all database field names from the properties of type <seealso cref="T" />.
         /// </summary>
-        /// <typeparam name="T">Any type of <see cref="DataModel"/>.</typeparam>
-        /// <returns>A pair of names. Key is the <see cref="PropertyInfo.Name"/> and the Value is the database field name.</returns>
+        /// <typeparam name="T">Any type of <see cref="DataModel" />.</typeparam>
+        /// <returns>A pair of names. Key is the <see cref="PropertyInfo.Name" /> and the Value is the database field name.</returns>
         public static IEnumerable<KeyValuePair<string, string>> GetFieldNames<T>() where T : DataModel
         {
             return
