@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
-using AccessControlSystem.Properties;
 using SharedClasses.Controls.WinForms;
 
 namespace AccessControlSystem.Views
 {
     public partial class ViewLocationDetails : UserControl
     {
-        private string _visitorName;
-
         public ViewLocationDetails()
         {
             InitializeComponent();
@@ -20,15 +16,13 @@ namespace AccessControlSystem.Views
             get { return interactiveMap1; }
         }
 
-        public string VisitorName
+        private void interactiveMap1_Click(object sender, EventArgs e)
         {
-            get { return _visitorName; }
-            set
-            {
-                if (_visitorName == value) return;
-                _visitorName = value;
-                labelMessage.Text = string.Format(Resources.ViewLocationDetails_VisitorWelcomeText, _visitorName);
-            }
+        }
+
+        private void labelMessage_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,9 +13,6 @@ namespace AccessControlSystem.Controllers
         {
         }
 
-        public ControllerLocationDetails(string name)
-        {
-            View.VisitorName = name;
-        }
+   
     }
 }

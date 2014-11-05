@@ -42,6 +42,7 @@ namespace AccessControlSystem.Views
             this.centeredMessagePanel1.Name = "centeredMessagePanel1";
             this.centeredMessagePanel1.Size = new System.Drawing.Size(606, 321);
             this.centeredMessagePanel1.TabIndex = 0;
+            this.centeredMessagePanel1.Load += new System.EventHandler(this.centeredMessagePanel1_Load);
             // 
             // ViewScanRFID
             // 

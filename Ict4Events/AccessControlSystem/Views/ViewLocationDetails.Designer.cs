@@ -52,7 +52,8 @@
             this.labelMessage.Name = "labelMessage";
             this.labelMessage.Size = new System.Drawing.Size(209, 39);
             this.labelMessage.TabIndex = 1;
-            this.labelMessage.Text = "Welkom, {0}\r\n\r\nUw campingplek is hieronder aangegeven:";
+            this.labelMessage.Text = "Welkom! \r\n\r\nUw campingplek is hieronder aangegeven:";
+            this.labelMessage.Click += new System.EventHandler(this.labelMessage_Click);
             // 
             // interactiveMap1
             // 
@@ -64,6 +65,7 @@
             this.interactiveMap1.Size = new System.Drawing.Size(868, 593);
             this.interactiveMap1.TabIndex = 3;
             this.interactiveMap1.Text = "interactiveMap1";
+            this.interactiveMap1.Click += new System.EventHandler(this.interactiveMap1_Click);
             // 
             // ViewLocationDetails
             // 

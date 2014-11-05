@@ -33,13 +33,14 @@
             // 
             // panelCenteredMessage1
             // 
-            this.panelCenteredMessage1.BackColor = System.Drawing.SystemColors.Control;
+            this.panelCenteredMessage1.BackColor = System.Drawing.Color.Red;
             this.panelCenteredMessage1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCenteredMessage1.Location = new System.Drawing.Point(0, 0);
-            this.panelCenteredMessage1.Message = "Access denied";
+            this.panelCenteredMessage1.Message = "Toegang geweigerd! Betaling niet in orde...";
             this.panelCenteredMessage1.Name = "panelCenteredMessage1";
             this.panelCenteredMessage1.Size = new System.Drawing.Size(718, 434);
             this.panelCenteredMessage1.TabIndex = 0;
+            this.panelCenteredMessage1.Load += new System.EventHandler(this.panelCenteredMessage1_Load_1);
             // 
             // ViewAccessDenied
             // 

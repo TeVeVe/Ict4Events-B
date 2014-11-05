@@ -34,6 +34,11 @@ namespace SharedClasses.MVC
         /// </summary>
         public bool IsPopup { get; set; }
 
+        public virtual void Create()
+        {
+            
+        }
+
         /// <summary>
         ///     View that's binded by this <see cref="IController" />.
         /// </summary>
