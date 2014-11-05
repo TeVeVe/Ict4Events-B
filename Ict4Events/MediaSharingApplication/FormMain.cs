@@ -12,11 +12,15 @@ namespace MediaSharingApplication
 {
     public partial class FormMain : FormMVC
     {
+        public UserAccount UserSession { get; set; }
+
         public FormMain()
         {
             InitializeComponent();
+            
+            MarkAsMain<ControllerMain>();
 
-            MarkAsMain<ControllerLogin>();
+            ActiveController = new ControllerLogin();
         }
     }
 }
