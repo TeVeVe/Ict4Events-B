@@ -32,39 +32,39 @@ namespace SharedClasses.Detectors
             Cache = new List<string>();
 
             // Booting up the base API.
-            Action initRfid = () =>
-            {
-                BaseRFID.Antenna = true;
-
-                // Re-route events to use ours instead.
-                BaseRFID.Tag += (sender, args) =>
-                {
-                    Cache.Add(args.Tag);
-                    OnTag(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
-                };
-                BaseRFID.TagLost +=
-                    (sender, args) => OnTagLost(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
-                BaseRFID.Attach +=
-                    (sender, args) =>
-                        OnAttached(new DeviceAttachedStateEventArgs(AttachState.Connected, args.Device.Type,
-                            args.Device.Name));
-                BaseRFID.Detach +=
-                    (sender, args) =>
-                        OnAttached(new DeviceAttachedStateEventArgs(AttachState.Disconnected, args.Device.Type,
-                            args.Device.Name));
-            };
-            
             BaseRFID = new P.RFID();
             BaseRFID.open(serial);
             if (waitForAttachment)
             {
                 BaseRFID.waitForAttachment();
-                initRfid();
+                InitRadioFrequency();
             }
             else
             {
-                BaseRFID.Attach += (sender, args) => initRfid();
+                BaseRFID.Attach += (sender, args) => InitRadioFrequency();
             }
+        }
+
+        private void InitRadioFrequency()
+        {
+            BaseRFID.Antenna = true;
+
+            // Re-route events to use ours instead.
+            BaseRFID.Tag += (sender, args) =>
+            {
+                Cache.Add(args.Tag);
+                OnTag(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
+            };
+            BaseRFID.TagLost +=
+                (sender, args) => OnTagLost(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
+            BaseRFID.Attach +=
+                (sender, args) =>
+                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Connected, args.Device.Type,
+                        args.Device.Name));
+            BaseRFID.Detach +=
+                (sender, args) =>
+                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Disconnected, args.Device.Type,
+                        args.Device.Name));
         }
 
         protected List<string> Cache { get; set; }
@@ -223,6 +223,8 @@ namespace SharedClasses.Detectors
         /// </summary>
         public void Close()
         {
+            BaseRFID.Antenna = false;
+            BaseRFID.LED = false;
             BaseRFID.close();
         }
     }

@@ -7,19 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AccessControlSystem.Controllers;
-using SharedClasses.Interfaces;
 
 namespace AccessControlSystem.Views
 {
-    public partial class ViewScanRFID : UserControl
+    public partial class ViewVisitorExit : UserControl
     {
-        public ViewScanRFID()
+        public ViewVisitorExit()
         {
             InitializeComponent();
         }
 
-        private void centeredMessagePanel1_Load(object sender, EventArgs e)
+        private void panelCenteredMessage1_Load(object sender, EventArgs e)
         {
 
         }

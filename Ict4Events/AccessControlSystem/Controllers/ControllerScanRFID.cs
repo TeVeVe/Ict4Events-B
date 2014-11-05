@@ -1,23 +1,17 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using AccessControlSystem.Views;
-using SharedClasses.Controls;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
 using SharedClasses.Extensions;
-using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
 namespace AccessControlSystem.Controllers
 {
     public class ControllerScanRFID : ControllerMVC<ViewScanRFID>
     {
-        public ControllerScanRFID()
-        {
-            StartRFIDListener();
-        }
-
-        public void StartRFIDListener()
+        public override void Create()
         {
             // TODO: Identify user with RFID tag.
             // 1. Wait for RFID reader event.
@@ -31,21 +25,39 @@ namespace AccessControlSystem.Controllers
             // Retrieve payment status of scanned wristband
             rfid.Tag += (sender, args) =>
             {
-                if (MainForm == null || MainForm.ActiveController.GetType() != GetType()) return;
-
-                var wristband = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
-                var reservation = Reservation.Select("RESERVATIONID = " + wristband.First().ReservationId);
-                // MessageBox.Show(reservation.First().PaymentStatus.ToString());
-                if (reservation.First().PaymentStatus)
+                IEnumerable<Wristband> wristbands = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
+                if (wristbands.Count() == 0)
                 {
-                    MainForm.Open<ControllerLocationDetails>();
+                    //MessageBox.Show("Niet herkend.");
+                    FormMain.Form.Open<ControllerUnknownWristband>();
                 }
                 else
                 {
-                    MainForm.Open<ControllerAccessDenied>();
+                    IEnumerable<Reservation> reservation =
+                        Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
+                    if (reservation.First().PaymentStatus)
+                    {
+                        FormMain.Form.Open<ControllerLocationDetails>();
+                        var wristband = wristbands.First();
+                        if (!wristband.IsOnSite)
+                        {
+                            wristband.IsOnSite = true;
+                            wristband.Update();
+                        }
+                        else
+                        {
+                            FormMain.Form.Open<ControllerVisitorExit>();
+                            wristband.IsOnSite = false;
+                            wristband.Update();
+                        }
+                        
+                    }
+                    else
+                    {
+                        FormMain.Form.Open<ControllerAccessDenied>();
+                    }
                 }
             };
-
         }
     }
 }

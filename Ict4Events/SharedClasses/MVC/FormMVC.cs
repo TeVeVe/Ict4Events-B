@@ -130,6 +130,8 @@ namespace SharedClasses.MVC
                     // Show a blank page.
                     panelContent.Controls.Clear();
                 }
+
+                if (_activeController != null) _activeController.Create();
             }
         }
 
@@ -268,13 +270,13 @@ namespace SharedClasses.MVC
                     CenterToScreen();
             }
             else
-                CenterToScreen();
+                this.InvokeSafe((c) => CenterToScreen());
         }
 
         /// <summary>
         ///     Returns the controller that has been stored by the <see cref="ToolStripMenuItem.Tag" />.
         /// </summary>
-        /// <param name="menuItemName">Text of a <see cref="ToolStripMenuItem" /> to search for.</param>
+        /// <param name="menuItemName"Text of a <see cref="ToolStripMenuItem" /> to search for.</param>
         /// <returns>A controller that has been matched, or null.</returns>
         public IController GetController(string menuItemName)
         {

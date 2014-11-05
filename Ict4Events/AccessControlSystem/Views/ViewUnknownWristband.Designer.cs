@@ -1,8 +1,6 @@
-﻿using SharedClasses.Controls.WinForms;
-
-namespace AccessControlSystem.Views
+﻿namespace AccessControlSystem.Views
 {
-    sealed partial class ViewScanRFID
+    partial class ViewUnknownWristband
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,33 +28,32 @@ namespace AccessControlSystem.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.centeredMessagePanel1 = new SharedClasses.Controls.WinForms.PanelCenteredMessage();
+            this.panelCenteredMessage1 = new SharedClasses.Controls.WinForms.PanelCenteredMessage();
             this.SuspendLayout();
             // 
-            // centeredMessagePanel1
+            // panelCenteredMessage1
             // 
-            this.centeredMessagePanel1.BackColor = System.Drawing.SystemColors.Window;
-            this.centeredMessagePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centeredMessagePanel1.Location = new System.Drawing.Point(0, 0);
-            this.centeredMessagePanel1.Message = "Toon uw polsbandje aan de scanner";
-            this.centeredMessagePanel1.Name = "centeredMessagePanel1";
-            this.centeredMessagePanel1.Size = new System.Drawing.Size(606, 321);
-            this.centeredMessagePanel1.TabIndex = 0;
-            this.centeredMessagePanel1.Load += new System.EventHandler(this.centeredMessagePanel1_Load);
+            this.panelCenteredMessage1.BackColor = System.Drawing.Color.Gold;
+            this.panelCenteredMessage1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCenteredMessage1.Location = new System.Drawing.Point(0, 0);
+            this.panelCenteredMessage1.Message = "Polsbandje niet herkend!";
+            this.panelCenteredMessage1.Name = "panelCenteredMessage1";
+            this.panelCenteredMessage1.Size = new System.Drawing.Size(641, 305);
+            this.panelCenteredMessage1.TabIndex = 0;
             // 
-            // ViewScanRFID
+            // ViewUnknownWristband
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.centeredMessagePanel1);
-            this.Name = "ViewScanRFID";
-            this.Size = new System.Drawing.Size(606, 321);
+            this.Controls.Add(this.panelCenteredMessage1);
+            this.Name = "ViewUnknownWristband";
+            this.Size = new System.Drawing.Size(641, 305);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private PanelCenteredMessage centeredMessagePanel1;
+        private SharedClasses.Controls.WinForms.PanelCenteredMessage panelCenteredMessage1;
     }
 }

@@ -63,6 +63,8 @@
     <Compile Include="Controllers\ControllerAccessDenied.cs" />
     <Compile Include="Controllers\ControllerLocationDetails.cs" />
     <Compile Include="Controllers\ControllerScanRFID.cs" />
+    <Compile Include="Controllers\ControllerUnknownWristband.cs" />
+    <Compile Include="Controllers\ControllerVisitorExit.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +91,18 @@
     <Compile Include="Views\ViewScanRFID.Designer.cs">
       <DependentUpon>ViewScanRFID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewUnknownWristband.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewUnknownWristband.Designer.cs">
+      <DependentUpon>ViewUnknownWristband.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ViewVisitorExit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewVisitorExit.Designer.cs">
+      <DependentUpon>ViewVisitorExit.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewScanRFID.resx">
       <DependentUpon>ViewScanRFID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewUnknownWristband.resx">
+      <DependentUpon>ViewUnknownWristband.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewVisitorExit.resx">
+      <DependentUpon>ViewVisitorExit.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -7,21 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AccessControlSystem.Controllers;
-using SharedClasses.Interfaces;
 
 namespace AccessControlSystem.Views
 {
-    public partial class ViewScanRFID : UserControl
+    public partial class ViewUnknownWristband : UserControl
     {
-        public ViewScanRFID()
+        public ViewUnknownWristband()
         {
             InitializeComponent();
-        }
-
-        private void centeredMessagePanel1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
