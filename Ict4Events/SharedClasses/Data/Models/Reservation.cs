@@ -4,6 +4,7 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
+    [Table("RESERVATION")]
     public class Reservation : DataModel<Reservation>
     {
         [Key]
@@ -13,6 +14,7 @@ namespace SharedClasses.Data.Models
         public int AmountOfPeople { get; set; }
         [DbIgnore]
         public IEnumerable<Wristband> Wristbands { get; set; }
+        [DbIgnore]
         [ForeignKey("ReserveeId")]
         public Reservee Reservee { get; set; }
         [DbIgnore]

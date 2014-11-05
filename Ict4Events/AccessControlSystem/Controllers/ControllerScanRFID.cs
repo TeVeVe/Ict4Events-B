@@ -1,8 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using System.Linq;
+using System.Windows.Forms;
 using AccessControlSystem.Views;
 using SharedClasses.Controls;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
+using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
@@ -10,6 +12,11 @@ namespace AccessControlSystem.Controllers
 {
     public class ControllerScanRFID : ControllerMVC<ViewScanRFID>
     {
+        public ControllerScanRFID()
+        {
+            StartRFIDListener();
+        }
+
         public void StartRFIDListener()
         {
             // TODO: Identify user with RFID tag.
@@ -33,7 +40,7 @@ namespace AccessControlSystem.Controllers
                 }
                 else
                 {
-                    MainForm.ActiveController = new ControllerAccessDenied();
+                    MainForm.Open<ControllerLocationDetails>();
                 }
                 rfid.Dispose();
             };

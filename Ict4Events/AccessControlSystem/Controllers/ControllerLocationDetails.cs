@@ -9,6 +9,10 @@ namespace AccessControlSystem.Controllers
 {
     public class ControllerLocationDetails : ControllerMVC<ViewLocationDetails>
     {
+        public ControllerLocationDetails()
+        {
+        }
+
         public ControllerLocationDetails(string name)
         {
             View.VisitorName = name;

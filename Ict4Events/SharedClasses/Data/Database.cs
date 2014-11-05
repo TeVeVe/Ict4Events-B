@@ -108,7 +108,7 @@ namespace SharedClasses.Data
             db.Host = host;
             db.Port = 1521;
             db.Service = service;
-            db.QueryTimeout = (int)Settings.Default["DB_QueryTimeout"];
+            db.QueryTimeout = int.Parse((string) Settings.Default["DB_QueryTimeout"]);
 
             db.Open();
 
@@ -132,7 +132,7 @@ namespace SharedClasses.Data
             db.Host = host;
             db.Port = 1521;
             db.SID = sid;
-            db.QueryTimeout = (int)Settings.Default["DB_QueryTimeout"];
+            db.QueryTimeout = int.Parse((string)Settings.Default["DB_QueryTimeout"]);
 
             db.Open();
 
@@ -153,8 +153,8 @@ namespace SharedClasses.Data
         /// <returns></returns>
         public static Database FromSettings()
         {
-            return ConnectToService((string)Settings.Default["DB_UserID"], (string)Settings.Default["DB_Password"],
-                (string)Settings.Default["DB_Server"], (string)Settings.Default["DB_Service"]);
+            return ConnectToService((string) Settings.Default["DB_UserID"], (string) Settings.Default["DB_Password"],
+                (string) Settings.Default["DB_Server"], (string) Settings.Default["DB_Service"]);
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace SharedClasses.Data
             if (Connection != null && Connection.State == ConnectionState.Open) return;
 
             Connection = new OracleConnection(ConnectionString);
-            var openTask = Task.Factory.StartNew(() => Connection.Open(), TaskCreationOptions.LongRunning);
+            Task openTask = Task.Factory.StartNew(() => Connection.Open(), TaskCreationOptions.LongRunning);
             openTask.Wait(QueryTimeout);
 
             if (!openTask.IsCompleted)

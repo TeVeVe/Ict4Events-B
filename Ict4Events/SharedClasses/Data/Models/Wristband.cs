@@ -3,15 +3,12 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
+    [Table("WRISTBAND")]
     public class Wristband : DataModel<Wristband>
     {
         [Key]
-        [FieldName("WRISTBANDID")]
-<<<<<<< HEAD
-        public int Id { get; set; }
-=======
->>>>>>> origin/master
         public string VisitorCode { get; set; }
+        public int ReservationId { get; set; }
         [DbIgnore]
         public UserAccount UserAccount { get; set; }
     }
