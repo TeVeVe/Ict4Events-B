@@ -5,6 +5,23 @@ namespace SharedClasses.Views
 {
     public partial class ViewRegisterAccount : UserControl
     {
+        public string Username
+        {
+            get { return textBoxUsername.Text; }
+            set { textBoxUsername.Text = value; }
+        }
+
+        public string Password
+        {
+            get { return textBoxPassword.Text; }
+            set { textBoxPassword.Text = value; }
+        }
+
+        public bool PasswordIsMatch
+        {
+            get { return Password == textBoxPasswordCheck.Text; }
+        }
+
         public ViewRegisterAccount()
         {
             InitializeComponent();
@@ -18,7 +35,7 @@ namespace SharedClasses.Views
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonRegister_Click(object sender, EventArgs e)
         {
             OnRegisterClick();
         }
