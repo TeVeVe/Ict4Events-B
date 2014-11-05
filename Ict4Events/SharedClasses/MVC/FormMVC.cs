@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using SharedClasses.Events;
 using SharedClasses.Exceptions;
 using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
@@ -21,6 +23,14 @@ namespace SharedClasses.MVC
 
         private IController _activeController;
 
+        public event EventHandler<ViewClosingEventArgs> ViewClosing;
+
+        protected virtual void OnViewClosing(ViewClosingEventArgs e)
+        {
+            EventHandler<ViewClosingEventArgs> handler = ViewClosing;
+            if (handler != null) handler(this, e);
+        }
+
         public FormMVC()
         {
             InitializeComponent();
@@ -33,7 +43,7 @@ namespace SharedClasses.MVC
                 menuStripNavigation.Visible = menuStripNavigation.Items.Count > 0;
 
                 // Show main controller if nothing specified.
-                if (MainController != null)
+                if (ActiveController == null && MainController != null)
                 {
                     // Check if a menu item has the controller. Then select it.
                     var item =
@@ -79,6 +89,7 @@ namespace SharedClasses.MVC
             {
                 if (_activeController == value) return;
                 _activeController = value;
+
 
                 if (_activeController != null)
                 {
@@ -231,8 +242,15 @@ namespace SharedClasses.MVC
                 _activeController.View.Dock = DockStyle.Fill;
             }
 
-            // Reposition screen.
-            CenterToScreen();
+            if (_activeController.GetType() != MainController)
+            {
+                // If view falls outside of Screen boundries we should reset it.
+                var screen = Screen.FromRectangle(_activeController.View.Bounds);
+                if (!screen.Bounds.Contains(_activeController.View.Bounds))
+                    CenterToScreen();
+            }
+            else
+                CenterToScreen();
         }
 
         /// <summary>

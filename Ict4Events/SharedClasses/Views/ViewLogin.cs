@@ -18,6 +18,12 @@ namespace SharedClasses.Views
             InitializeComponent();
         }
 
+        public string RFID
+        {
+            get { return textBoxRFID.Text; }
+            set { textBoxRFID.Invoke(new Action(() => textBoxRFID.Text = value)); }
+        }
+
         public string Username
         {
             get { return textBoxUsername.Text; }
@@ -46,14 +52,32 @@ namespace SharedClasses.Views
                 // RFID authentication.
                 authArgs = new AuthenticateEventArgs(textBoxRFID.Text);
             }
-            else
+            else if (!string.IsNullOrWhiteSpace(textBoxUsername.Text) && !string.IsNullOrWhiteSpace(textBoxPassword.Text))
             {
                 // Account authentication.
                 authArgs = new AuthenticateEventArgs(textBoxUsername.Text, textBoxPassword.Text);
             }
+            else
+            {
+                MessageBox.Show("U dient de velden in een van de groepen in te vullen voordat u kunt inloggen.",
+                    "Velden zijn leeg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             // Allow authorizers to authenticate the input.
             OnAuthenticate(authArgs);
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Control | Keys.Enter:
+                    buttonOK.PerformClick();
+                    break;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

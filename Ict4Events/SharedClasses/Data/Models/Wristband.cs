@@ -7,13 +7,8 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("WRISTBANDID")]
-        public int Id { get; set; }
         public string VisitorCode { get; set; }
+        [DbIgnore]
         public UserAccount UserAccount { get; set; }
-
-        public void SetAccount(UserAccount userAccount)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
