@@ -3,7 +3,7 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
-    public class Wristband
+    public class Wristband : DataModel<Wristband>
     {
         [Key]
         [FieldName("WRISTBAND")]

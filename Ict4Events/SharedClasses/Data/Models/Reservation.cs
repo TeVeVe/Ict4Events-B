@@ -4,7 +4,7 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
-    public class Reservation
+    public class Reservation : DataModel<Reservation>
     {
         [Key]
         [FieldName("RESERVATION")]
@@ -17,13 +17,5 @@ namespace SharedClasses.Data.Models
         public Reservee Reservee { get; set; }
         [DbIgnore]
         public IEnumerable<Spot> Spots { get; set; } 
-
-        public Reservation(Reservee reservee, int amount)
-        {
-            Reservee = reservee;
-
-            // TODO: Implement wristband creation based on param "amount".
-            throw new NotImplementedException();
-        }
     }
 }
