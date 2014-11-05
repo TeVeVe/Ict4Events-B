@@ -82,5 +82,17 @@ namespace SharedClasses.Properties {
                 this["DB_Port"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
+        public string DB_QueryTimeout {
+            get {
+                return ((string)(this["DB_QueryTimeout"]));
+            }
+            set {
+                this["DB_QueryTimeout"] = value;
+            }
+        }
     }
 }

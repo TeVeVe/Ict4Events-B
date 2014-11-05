@@ -20,7 +20,7 @@ namespace MediaSharingApplication
             
             MarkAsMain<ControllerMain>();
 
-            ActiveController = new ControllerLogin();
+            Open<ControllerLogin>();
         }
     }
 }

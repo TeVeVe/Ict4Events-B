@@ -57,7 +57,7 @@ namespace MediaSharingApplication.Controllers
             else
             {
                 ((FormMain)MainForm).UserSession = account;
-                MainForm.ActiveController = new ControllerMain();
+                MainForm.Open<ControllerRegisterAccount>();
             }
         }
     }
