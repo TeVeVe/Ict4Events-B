@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SharedClasses.Events;
 using SharedClasses.Interfaces;
 
 namespace SharedClasses.MVC

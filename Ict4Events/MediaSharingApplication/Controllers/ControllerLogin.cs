@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using SharedClasses.Data.Models;
+using SharedClasses.Detectors;
 using SharedClasses.Events;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
@@ -11,18 +12,26 @@ namespace MediaSharingApplication.Controllers
 {
     class ControllerLogin : ControllerMVC<ViewLogin>
     {
+        private RadioFrequency _rfidDetector;
+
         public ControllerLogin()
         {
+            _rfidDetector = new RadioFrequency();
             View.Authenticate += ViewOnAuthenticate;
+
+            // Fill in the RFID tag automatically on scan.
+            _rfidDetector.Tag += (sender, args) => View.RFID = args.Value;
         }
 
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
+            UserAccount account = null;
+
             // Authenticate user.
             switch (e.AuthMethod)
             {
                 case AuthenticateEventArgs.AuthenticationMethod.Account:
-                    var account = UserAccount.Select(string.Format("USERNAME = {0} AND PASSWORD = {1}", e.Username.ToSqlFormat(), e.Password.ToSqlFormat())).FirstOrDefault();
+                    account = UserAccount.Select(string.Format("USERNAME = {0} AND PASSWORD = {1}", e.Username.ToSqlFormat(), e.Password.ToSqlFormat())).FirstOrDefault();
                     e.Authorized = account != null;
                     break;
                 case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
@@ -43,11 +52,12 @@ namespace MediaSharingApplication.Controllers
             }
             else if (e.AuthMethod == AuthenticateEventArgs.AuthenticationMethod.RFIDNumber)
             {
-                MainForm.PopupController(new ControllerRegisterAccount());
+                MainForm.ActiveController = new ControllerRegisterAccount();
             }
             else
             {
-                MainForm.ActiveController = new ControllerMain();
+                ((FormMain)MainForm).UserSession = account;
+                MainForm.Open<ControllerRegisterAccount>();
             }
         }
     }

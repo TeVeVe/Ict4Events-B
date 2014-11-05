@@ -17,7 +17,7 @@ namespace SharedClasses.Detectors
         /// <summary>
         ///     Creates and waits for a connected RFID USB device and gives it -1 as serialkey.
         /// </summary>
-        public RadioFrequency() : this(-1)
+        public RadioFrequency(bool waitForAttachment = false) : this(-1, waitForAttachment)
         {
         }
 
@@ -25,33 +25,46 @@ namespace SharedClasses.Detectors
         ///     Creates and waits for a connected RFID USB device.
         /// </summary>
         /// <param name="serial">Serialkey of the device as identitfier. Useful when multiple devices are connected.</param>
-        public RadioFrequency(int serial)
+        /// <param name="waitForAttachment">If true, waits for attachment</param>
+        public RadioFrequency(int serial, bool waitForAttachment = false)
         {
             // A cache for all the detected keys.
             Cache = new List<string>();
 
             // Booting up the base API.
+            Action initRfid = () =>
+            {
+                BaseRFID.Antenna = true;
+
+                // Re-route events to use ours instead.
+                BaseRFID.Tag += (sender, args) =>
+                {
+                    Cache.Add(args.Tag);
+                    OnTag(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
+                };
+                BaseRFID.TagLost +=
+                    (sender, args) => OnTagLost(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
+                BaseRFID.Attach +=
+                    (sender, args) =>
+                        OnAttached(new DeviceAttachedStateEventArgs(AttachState.Connected, args.Device.Type,
+                            args.Device.Name));
+                BaseRFID.Detach +=
+                    (sender, args) =>
+                        OnAttached(new DeviceAttachedStateEventArgs(AttachState.Disconnected, args.Device.Type,
+                            args.Device.Name));
+            };
+            
             BaseRFID = new P.RFID();
             BaseRFID.open(serial);
-            BaseRFID.waitForAttachment();
-            BaseRFID.Antenna = true;
-
-            // Re-route events to use ours instead.
-            BaseRFID.Tag += (sender, args) =>
+            if (waitForAttachment)
             {
-                Cache.Add(args.Tag);
-                OnTag(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
-            };
-            BaseRFID.TagLost +=
-                (sender, args) => OnTagLost(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
-            BaseRFID.Attach +=
-                (sender, args) =>
-                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Connected, args.Device.Type,
-                        args.Device.Name));
-            BaseRFID.Detach +=
-                (sender, args) =>
-                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Disconnected, args.Device.Type,
-                        args.Device.Name));
+                BaseRFID.waitForAttachment();
+                initRfid();
+            }
+            else
+            {
+                BaseRFID.Attach += (sender, args) => initRfid();
+            }
         }
 
         protected List<string> Cache { get; set; }

@@ -1,6 +1,8 @@
 ﻿using System.Windows.Forms;
 using AccessControlSystem.Views;
 using SharedClasses.Controls;
+using SharedClasses.Data.Models;
+using SharedClasses.Detectors;
 using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
@@ -16,6 +18,26 @@ namespace AccessControlSystem.Controllers
             // 3. Check payments.
             // 4. If all good: Show map with location to go to.
             // 4. If all bad: Notify user what is wrong.
+
+            var rfid = new RadioFrequency();
+
+            // Retrieve payment status of scanned wristband
+            rfid.Tag += (sender, args) =>
+            {
+                var wristband = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
+                var reservation = Reservation.Select("RESERVATIONID = " + wristband.First().ReservationId);
+                // MessageBox.Show(reservation.First().PaymentStatus.ToString());
+                if (reservation.First().PaymentStatus)
+                {
+                    MessageBox.Show("Gebruiker " + args.Value + " heeft betaald.");
+                }
+                else
+                {
+                    MainForm.ActiveController = new ControllerAccessDenied();
+                }
+                rfid.Dispose();
+            };
+
         }
     }
 }

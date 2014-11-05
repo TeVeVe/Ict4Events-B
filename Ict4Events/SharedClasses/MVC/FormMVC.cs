@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using SharedClasses.Events;
 using SharedClasses.Exceptions;
 using SharedClasses.Extensions;
 using SharedClasses.Interfaces;
@@ -14,6 +17,8 @@ namespace SharedClasses.MVC
     /// </summary>
     public partial class FormMVC : Form
     {
+        private Dictionary<Type, IController> _controllerCache; 
+
         /// <summary>
         ///     Color that will indicate that a <see cref="ToolStripMenuItem" /> is currently active.
         /// </summary>
@@ -21,9 +26,18 @@ namespace SharedClasses.MVC
 
         private IController _activeController;
 
+        public event EventHandler<ViewClosingEventArgs> ViewClosing;
+
+        protected virtual void OnViewClosing(ViewClosingEventArgs e)
+        {
+            EventHandler<ViewClosingEventArgs> handler = ViewClosing;
+            if (handler != null) handler(this, e);
+        }
+
         public FormMVC()
         {
             InitializeComponent();
+            _controllerCache = new Dictionary<Type, IController>();
 
             AllowUserResize = false;
 
@@ -33,7 +47,7 @@ namespace SharedClasses.MVC
                 menuStripNavigation.Visible = menuStripNavigation.Items.Count > 0;
 
                 // Show main controller if nothing specified.
-                if (MainController != null)
+                if (ActiveController == null && MainController != null)
                 {
                     // Check if a menu item has the controller. Then select it.
                     var item =
@@ -80,6 +94,7 @@ namespace SharedClasses.MVC
                 if (_activeController == value) return;
                 _activeController = value;
 
+
                 if (_activeController != null)
                 {
                     // Select the menuitem that has the ActiveController.
@@ -114,6 +129,18 @@ namespace SharedClasses.MVC
                     panelContent.Controls.Clear();
                 }
             }
+        }
+
+        /// <summary>
+        /// Opens the new controller and creates it if it doesn't exist.
+        /// </summary>
+        /// <typeparam name="T">Any <see cref="Type"/> of <see cref="IController"/>.</typeparam>
+        public void Open<T>() where T : IController, new()
+        {
+            if (!_controllerCache.ContainsKey(typeof(T)))
+                _controllerCache.Add(typeof(T), new T());
+
+            ActiveController = _controllerCache[typeof(T)];
         }
 
         /// <summary>
@@ -231,8 +258,15 @@ namespace SharedClasses.MVC
                 _activeController.View.Dock = DockStyle.Fill;
             }
 
-            // Reposition screen.
-            CenterToScreen();
+            if (_activeController.GetType() != MainController)
+            {
+                // If view falls outside of Screen boundries we should reset it.
+                var screen = Screen.FromRectangle(_activeController.View.Bounds);
+                if (!screen.Bounds.Contains(_activeController.View.Bounds))
+                    CenterToScreen();
+            }
+            else
+                CenterToScreen();
         }
 
         /// <summary>

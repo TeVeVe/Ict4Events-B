@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SharedClasses.Views
@@ -15,6 +8,19 @@ namespace SharedClasses.Views
         public ViewRegisterAccount()
         {
             InitializeComponent();
+        }
+
+        public event EventHandler<EventArgs> RegisterClick;
+
+        protected virtual void OnRegisterClick()
+        {
+            EventHandler<EventArgs> handler = RegisterClick;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OnRegisterClick();
         }
     }
 }

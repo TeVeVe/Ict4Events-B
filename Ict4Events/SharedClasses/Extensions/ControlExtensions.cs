@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using SharedClasses.Interfaces;
 
 namespace SharedClasses.Extensions
@@ -23,6 +24,14 @@ namespace SharedClasses.Extensions
                 form.TopLevel = false;
                 form.Show();
             }
+        }
+
+        public static void InvokeSafe<T>(this T control, Action<T> action) where T : Control
+        {
+            if (control.InvokeRequired)
+                control.Invoke(new Action(() => action(control)));
+            else
+                action(control);
         }
     }
 }
