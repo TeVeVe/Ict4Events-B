@@ -245,7 +245,7 @@ namespace SharedClasses.Data
             builder.Append(" WHERE ");
             builder.Append(GetPrimaryKey<T>());
             builder.Append(" = ");
-            builder.Append(GetKeyProperty<T>().GetValue(this));
+            builder.Append(GetKeyProperty<T>().GetValue(this).ToSqlFormat());
 
             // Store record data in objects.
             return Database.ExecuteNonQuery(builder.ToString());

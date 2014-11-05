@@ -25,8 +25,8 @@ namespace AccessControlSystem.Controllers
             // Retrieve payment status of scanned wristband
             rfid.Tag += (sender, args) =>
             {
-                IEnumerable<Wristband> wristband = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
-                if (wristband.Count() == 0)
+                IEnumerable<Wristband> wristbands = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
+                if (wristbands.Count() == 0)
                 {
                     //MessageBox.Show("Niet herkend.");
                     FormMain.Form.Open<ControllerUnknownWristband>();
@@ -34,10 +34,23 @@ namespace AccessControlSystem.Controllers
                 else
                 {
                     IEnumerable<Reservation> reservation =
-                        Reservation.Select("RESERVATIONID = " + wristband.First().ReservationId);
+                        Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
                     if (reservation.First().PaymentStatus)
                     {
                         FormMain.Form.Open<ControllerLocationDetails>();
+                        var wristband = wristbands.First();
+                        if (!wristband.IsOnSite)
+                        {
+                            wristband.IsOnSite = true;
+                            wristband.Update();
+                        }
+                        else
+                        {
+                            FormMain.Form.Open<ControllerVisitorExit>();
+                            wristband.IsOnSite = false;
+                            wristband.Update();
+                        }
+                        
                     }
                     else
                     {
