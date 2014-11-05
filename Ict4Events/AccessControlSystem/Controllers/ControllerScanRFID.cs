@@ -31,18 +31,19 @@ namespace AccessControlSystem.Controllers
             // Retrieve payment status of scanned wristband
             rfid.Tag += (sender, args) =>
             {
+                if (MainForm == null || MainForm.ActiveController.GetType() != GetType()) return;
+
                 var wristband = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
                 var reservation = Reservation.Select("RESERVATIONID = " + wristband.First().ReservationId);
                 // MessageBox.Show(reservation.First().PaymentStatus.ToString());
                 if (reservation.First().PaymentStatus)
                 {
-                    MessageBox.Show("Gebruiker " + args.Value + " heeft betaald.");
+                    MainForm.Open<ControllerLocationDetails>();
                 }
                 else
                 {
-                    MainForm.Open<ControllerLocationDetails>();
+                    MainForm.Open<ControllerAccessDenied>();
                 }
-                rfid.Dispose();
             };
 
         }

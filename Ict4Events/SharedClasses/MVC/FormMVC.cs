@@ -110,11 +110,11 @@ namespace SharedClasses.MVC
 
                     // Deselect everything.
                     foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        item.BackColor = Color.FromKnownColor(KnownColor.Control);
+                        menuStripNavigation.InvokeSafe((c) => item.BackColor = Color.FromKnownColor(KnownColor.Control));
 
                     // Mark selected item.
                     if (selectedItem != null)
-                        selectedItem.BackColor = ActiveColor;
+                        menuStripNavigation.InvokeSafe((c) => selectedItem.BackColor = ActiveColor);
 
                     // Init the controller on the screen (first "reset").
                     ResetController();
@@ -123,7 +123,7 @@ namespace SharedClasses.MVC
                 {
                     // Deselect everything.
                     foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        item.BackColor = Color.FromKnownColor(KnownColor.Control);
+                        menuStripNavigation.InvokeSafe((c) => item.BackColor = Color.FromKnownColor(KnownColor.Control));
 
                     // Show a blank page.
                     panelContent.Controls.Clear();
@@ -250,8 +250,8 @@ namespace SharedClasses.MVC
             {
                 // Resize form to content.
                 _activeController.View.Dock = DockStyle.None;
-                ClientSize = new Size(_activeController.View.Width,
-                    _activeController.View.Height + (menuStripNavigation.Visible ? menuStripNavigation.Height : 0));
+                this.InvokeSafe(c => ClientSize = new Size(_activeController.View.Width,
+                    _activeController.View.Height + (menuStripNavigation.Visible ? menuStripNavigation.Height : 0)));
             }
             else
             {

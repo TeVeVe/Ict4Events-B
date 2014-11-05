@@ -60,6 +60,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerAccessDenied.cs" />
     <Compile Include="Controllers\ControllerLocationDetails.cs" />
     <Compile Include="Controllers\ControllerScanRFID.cs" />
     <Compile Include="FormMain.cs">
@@ -70,6 +71,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ViewAccessDenied.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewAccessDenied.Designer.cs">
+      <DependentUpon>ViewAccessDenied.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewLocationDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,6 +102,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\ViewAccessDenied.resx">
+      <DependentUpon>ViewAccessDenied.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewLocationDetails.resx">
       <DependentUpon>ViewLocationDetails.cs</DependentUpon>
     </EmbeddedResource>
