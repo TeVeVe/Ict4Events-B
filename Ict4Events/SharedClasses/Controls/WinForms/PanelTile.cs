@@ -10,8 +10,8 @@ namespace SharedClasses.Controls.WinForms
         {
             BackColor = Color.Red;
 
-            Width = 150;
-            Height = 150;
+            Width = 140;
+            Height = 140;
 
             Panel textPanel = new Panel();
             textPanel.BackColor = Color.Black;
@@ -40,6 +40,8 @@ namespace SharedClasses.Controls.WinForms
             BorderStyle = BorderStyle.FixedSingle;
             base.OnMouseHover(e);
         }
+
+
 
         protected override void OnMouseLeave(EventArgs e)
         {

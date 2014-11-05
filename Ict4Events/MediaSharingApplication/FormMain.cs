@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using MediaSharingApplication.Controllers;
 using SharedClasses.Data;
+using MediaSharingApplication.Controllers;
+using SharedClasses;
 using SharedClasses.Data.Models;
 using SharedClasses.MVC;
 
@@ -14,6 +16,7 @@ namespace MediaSharingApplication
         {
             InitializeComponent();
 
+            MarkAsMain<ControllerMain>();
             MarkAsMain<ControllerLogin>();
 
             DataModel.Database = Database.FromSettings();

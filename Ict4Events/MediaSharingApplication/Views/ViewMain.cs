@@ -8,15 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharedClasses.Controls;
+using SharedClasses.Controls.WinForms;
 using SharedClasses.Extensions;
 
 namespace MediaSharingApplication.Views
 {
     public partial class ViewMain : UserControl
     {
+
         public ViewMain()
         {
             InitializeComponent();
+        }
+
+        private void ViewMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FlowLayoutPanelFiles_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

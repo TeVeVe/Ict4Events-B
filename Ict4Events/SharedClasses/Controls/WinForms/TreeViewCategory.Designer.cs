@@ -105,6 +105,7 @@
             this.treeViewCategories.Name = "treeViewCategories";
             this.treeViewCategories.Size = new System.Drawing.Size(247, 249);
             this.treeViewCategories.TabIndex = 2;
+            this.treeViewCategories.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewCategories_NodeMouseClick);
             this.treeViewCategories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeViewCategories_KeyDown);
             // 
             // contextMenuStripTreeView
@@ -129,14 +130,14 @@
             this.collapseAllToolStripMenuItem.Text = "Alles inklappen";
             this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
             // 
-            // CategoryTreeView
+            // TreeViewCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.treeViewCategories);
             this.Controls.Add(this.panelTop);
-            this.Name = "CategoryTreeView";
+            this.Name = "TreeViewCategory";
             this.Size = new System.Drawing.Size(247, 338);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
