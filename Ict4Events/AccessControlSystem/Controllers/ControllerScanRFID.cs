@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using AccessControlSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
@@ -37,25 +36,17 @@ namespace AccessControlSystem.Controllers
                         Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
                     if (reservation.First().PaymentStatus)
                     {
-                        FormMain.Form.Open<ControllerLocationDetails>();
-                        var wristband = wristbands.First();
-                        if (!wristband.IsOnSite)
-                        {
-                            wristband.IsOnSite = true;
-                            wristband.Update();
-                        }
+                        Wristband wristband = wristbands.First();
+                        wristband.IsOnSite = !wristband.IsOnSite;
+                        wristband.Update();
+
+                        if (wristband.IsOnSite)
+                            FormMain.Form.Open<ControllerLocationDetails>();
                         else
-                        {
                             FormMain.Form.Open<ControllerVisitorExit>();
-                            wristband.IsOnSite = false;
-                            wristband.Update();
-                        }
-                        
                     }
                     else
-                    {
                         FormMain.Form.Open<ControllerAccessDenied>();
-                    }
                 }
             };
         }

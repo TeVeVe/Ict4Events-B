@@ -33,7 +33,7 @@
             // 
             // panelCenteredMessage1
             // 
-            this.panelCenteredMessage1.BackColor = System.Drawing.Color.Red;
+            this.panelCenteredMessage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panelCenteredMessage1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCenteredMessage1.Location = new System.Drawing.Point(0, 0);
             this.panelCenteredMessage1.Message = "Toegang geweigerd! Betaling niet in orde...";
