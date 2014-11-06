@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows.Forms;
-using MediaSharingApplication.Controllers;
-using SharedClasses;
-using MediaSharingApplication.Controllers;
-using SharedClasses;
+﻿using MediaSharingApplication.Controllers;
 using SharedClasses.Data.Models;
 using SharedClasses.MVC;
 

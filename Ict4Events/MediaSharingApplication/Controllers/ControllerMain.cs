@@ -1,7 +1,4 @@
-﻿using System.Windows.Forms;
-using System.Windows.Forms;
-using MediaSharingApplication.Views;
-using SharedClasses.Data.Models;
+﻿using MediaSharingApplication.Views;
 using SharedClasses.MVC;
 
 namespace MediaSharingApplication.Controllers
@@ -10,7 +7,6 @@ namespace MediaSharingApplication.Controllers
     {
         public override void Create()
         {
-            
         }
     }
 }
