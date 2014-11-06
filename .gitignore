@@ -16,3 +16,4 @@
 
 # But not these..
 Temporary*.cs
+*BACKUP*.cs
