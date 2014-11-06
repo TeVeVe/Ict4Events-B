@@ -21,7 +21,10 @@ namespace ReservationSystem.Controllers
         {
             if (View.CheckBoxIsOnSite.Checked)
             {
+                // All visitors on site
                 IEnumerable<Wristband> wristbands = Wristband.Select("IsOnSite = 'Y'");
+
+                // Storing the amount of visitors on site
                 int NumberOfVisitorsOnSite = wristbands.Count();
                 if (NumberOfVisitorsOnSite > 0)
                 {
@@ -34,6 +37,10 @@ namespace ReservationSystem.Controllers
                         MessageBox.Show("Er zijn " + NumberOfVisitorsOnSite + " gasten aanwezig.");
                     }
                     View.DataGridViewVisitors.DataSource = Wristband.Select("IsOnSite = 'Y'").ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Er zijn momenteel geen gasten aanwezig.");
                 }
             }
             else
