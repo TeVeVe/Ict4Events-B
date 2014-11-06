@@ -38,16 +38,32 @@ namespace MediaSharingApplication.Controllers
                 return;
             }
 
-            account = new UserAccount()
+            // Check if both username and password are filled in.
+            if (!string.IsNullOrWhiteSpace(View.Username) && !string.IsNullOrWhiteSpace(View.Password))
             {
-                Username = View.Username,
-                Password = View.Password,
-                VisitorCode = (string)Values["VisitorCode"]
-            };
-            account.Insert();
+                // TODO: Show message.
+            }
 
-            MessageBox.Show("Uw account is aangemaakt.", "Account aangemaakt", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            MainForm.Open<ControllerMain>();
+            // Insert a new account in the group "Gebruikers".
+            var group = Group.Select("NAME = 'Gebruikers'").FirstOrDefault();
+            if (group != null)
+            {
+                account = new UserAccount()
+                {
+                    Username = View.Username,
+                    Password = View.Password,
+                    VisitorCode = (string)Values["VisitorCode"],
+                    GroupId = group.Id
+                };
+                account.Insert();
+
+                MessageBox.Show("Uw account is aangemaakt.", "Account aangemaakt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MainForm.Open<ControllerMain>();
+            }
+            else
+            {
+                MessageBox.Show("De gebruikers groep bestaat niet in de database.");
+            }
         }
     }
 }

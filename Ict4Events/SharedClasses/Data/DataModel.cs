@@ -144,8 +144,9 @@ namespace SharedClasses.Data
             var builder = new StringBuilder();
             builder.Append("SELECT ");
             builder.Append(fields.Select(p => p.Value).Aggregate((s1, s2) => s1 + ", " + s2));
-            builder.Append(" FROM ");
+            builder.Append(" FROM \"");
             builder.Append(GetTableName<T>());
+            builder.Append("\"");
 
             if (!string.IsNullOrWhiteSpace(whereStatement))
             {
