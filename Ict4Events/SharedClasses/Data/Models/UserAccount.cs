@@ -14,19 +14,9 @@ namespace SharedClasses.Data.Models
         public string VisitorCode { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        [DbIgnore]
-        public Group Group { get; set; }
+        [FieldName("GroupId")]
+        public int GroupId { get; set; }
         [DbIgnore]
         public Wristband Wristband { get; set; }
-
-        public void Rent()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetGroup(Group group)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
