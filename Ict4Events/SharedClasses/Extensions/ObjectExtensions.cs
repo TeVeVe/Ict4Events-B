@@ -1,11 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using SharedClasses.Data.Models.Types;
 
 namespace SharedClasses.Extensions
 {
     public static class ObjectExtensions
     {
+        private static readonly Dictionary<Type, OracleDbType> OracleDbTypes = new Dictionary<Type, OracleDbType>()
+        {
+            { typeof(byte), OracleDbType.Byte },
+            { typeof(byte[]), OracleDbType.Raw },
+            { typeof(char), OracleDbType.Varchar2 },
+            { typeof(char[]), OracleDbType.Varchar2 },
+            { typeof(DateTime), OracleDbType.TimeStamp },
+            { typeof(short), OracleDbType.Int16 },
+            { typeof(int), OracleDbType.Int32 },
+            { typeof(long), OracleDbType.Int64 },
+            { typeof(float), OracleDbType.Single },
+            { typeof(double), OracleDbType.Double },
+            { typeof(decimal), OracleDbType.Decimal },
+            { typeof(string), OracleDbType.Varchar2 },
+            { typeof(TimeSpan), OracleDbType.IntervalDS },
+            { typeof(OracleBFile), OracleDbType.BFile },
+            { typeof(OracleBinary), OracleDbType.Raw },
+            { typeof(OracleBlob), OracleDbType.Blob },
+            { typeof(OracleClob), OracleDbType.Clob },
+            { typeof(OracleDate), OracleDbType.Date },
+            { typeof(OracleDecimal), OracleDbType.Decimal },
+            { typeof(OracleIntervalDS), OracleDbType.IntervalDS },
+            { typeof(OracleIntervalYM), OracleDbType.IntervalYM },
+            { typeof(OracleRefCursor), OracleDbType.RefCursor },
+            { typeof(OracleString), OracleDbType.Varchar2 },
+            { typeof(OracleTimeStamp), OracleDbType.TimeStamp },
+            { typeof(OracleTimeStampLTZ), OracleDbType.TimeStampLTZ },
+            { typeof(OracleTimeStampTZ), OracleDbType.TimeStampTZ },
+            { typeof(OracleXmlType), OracleDbType.XmlType },
+            { typeof(OracleRef), OracleDbType.Ref }
+        };
+
         /// <summary>
         ///     Converts the object to a string suitable for SQL statements.
         /// </summary>
@@ -27,6 +65,30 @@ namespace SharedClasses.Extensions
             if (type == typeof(bool))
                 return '\'' + ((bool)obj ? "Y" : "N") + '\'';
             return '\'' + (string)obj + '\'';
+        }
+
+        public static OracleDbType GetOrableDbType(this object obj)
+        {
+            if (obj == null) return OracleDbType.Object;
+
+            Type type = obj.GetType();
+            if (OracleDbTypes.ContainsKey(type))
+                return OracleDbTypes[type];
+            return OracleDbType.Object;
+        }
+
+        /// <summary>
+        /// Returns a (possible larger) byte length to store the object.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetByteSize(this object obj)
+        {
+            using (Stream s = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(s, obj);
+                return (int)s.Length;
+            }
         }
     }
 }

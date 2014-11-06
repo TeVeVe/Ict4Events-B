@@ -56,6 +56,7 @@
             this.textBoxPassword.Location = new System.Drawing.Point(136, 41);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(150, 20);
             this.textBoxPassword.TabIndex = 1;
             // 
@@ -67,7 +68,7 @@
             this.textBoxUsername.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(150, 20);
-            this.textBoxUsername.TabIndex = 2;
+            this.textBoxUsername.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -85,7 +86,7 @@
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(300, 119);
-            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nieuw account";
             // 
@@ -125,7 +126,7 @@
             this.buttonRegister.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(71, 24);
-            this.buttonRegister.TabIndex = 4;
+            this.buttonRegister.TabIndex = 3;
             this.buttonRegister.Text = "Registreren";
             this.buttonRegister.UseVisualStyleBackColor = true;
             this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
@@ -137,8 +138,9 @@
             this.textBoxPasswordCheck.Location = new System.Drawing.Point(136, 65);
             this.textBoxPasswordCheck.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPasswordCheck.Name = "textBoxPasswordCheck";
+            this.textBoxPasswordCheck.PasswordChar = '*';
             this.textBoxPasswordCheck.Size = new System.Drawing.Size(150, 20);
-            this.textBoxPasswordCheck.TabIndex = 3;
+            this.textBoxPasswordCheck.TabIndex = 2;
             // 
             // ViewRegisterAccount
             // 

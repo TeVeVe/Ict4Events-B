@@ -14,6 +14,9 @@ using SharedClasses.Extensions;
 
 namespace SharedClasses.Data
 {
+    /// <summary>
+    ///     A template for a ORM supporting entity.
+    /// </summary>
     public abstract class DataModel
     {
         [Flags]
@@ -23,6 +26,11 @@ namespace SharedClasses.Data
         }
 
         private static Database _database;
+
+        static DataModel()
+        {
+            Database = Database.FromSettings();
+        }
 
         public static Database Database
         {
@@ -41,11 +49,6 @@ namespace SharedClasses.Data
             }
         }
 
-        static DataModel()
-        {
-            Database = Database.FromSettings();
-        }
-
         /// <summary>
         ///     Gets the table name when specified on the <see cref="Type" />.
         /// </summary>
@@ -58,13 +61,14 @@ namespace SharedClasses.Data
             }
             catch (NullReferenceException ex)
             {
-                throw new NullReferenceException(string.Format("DataModel {0} has no TableAttribute specified.", typeof(T)));
+                throw new NullReferenceException(string.Format("DataModel {0} has no TableAttribute specified.",
+                    typeof(T)));
             }
         }
 
         public static PropertyInfo GetKeyProperty<T>() where T : DataModel
         {
-            return typeof (T)
+            return typeof(T)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .FirstOrDefault(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
@@ -81,7 +85,7 @@ namespace SharedClasses.Data
 
         public static string GetFieldName<T>(string propertyName) where T : DataModel
         {
-            PropertyInfo prop = typeof (T).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo prop = typeof(T).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance);
             var attr = prop.GetCustomAttribute<FieldNameAttribute>();
             if (attr != null)
                 return attr.Value;
@@ -95,7 +99,7 @@ namespace SharedClasses.Data
         /// <returns>All <see cref="PropertyInfo" />'s that have a <see cref="KeyAttribute" />.</returns>
         public static IEnumerable<PropertyInfo> GetKeyProperties<T>() where T : DataModel
         {
-            return typeof (T)
+            return typeof(T)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                 .Where(prop => prop.GetCustomAttributes<KeyAttribute>(true).Any());
         }
@@ -108,9 +112,9 @@ namespace SharedClasses.Data
         public static IEnumerable<KeyValuePair<string, string>> GetFieldNames<T>() where T : DataModel
         {
             return
-                typeof (T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .Except(
-                        typeof (T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                        typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance)
                             .Where(prop => prop.GetCustomAttributes<DbIgnoreAttribute>().Any())).Select(prop =>
                             {
                                 var attr = prop.GetCustomAttribute<FieldNameAttribute>();
@@ -124,7 +128,7 @@ namespace SharedClasses.Data
     public abstract class DataModel<T> : DataModel where T : DataModel, new()
     {
         /// <summary>
-        ///     Executes a new SELECT query.
+        ///     Executes a new SELECT query using input directly as specified.
         /// </summary>
         /// <param name="whereStatement">WHERE statement to use for the SELECT statement.</param>
         /// <param name="options">Special options for the SQL to Objects.</param>
@@ -162,16 +166,16 @@ namespace SharedClasses.Data
                     // Loop through all the fields of this record and store the values in their properties.
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        PropertyInfo prop = typeof (T).GetProperty(fields.ElementAt(i).Key);
+                        PropertyInfo prop = typeof(T).GetProperty(fields.ElementAt(i).Key);
                         object value = reader[fields.ElementAt(i).Value];
 
 
                         if (value is string)
                         {
-                            if (((string) value).Length == 1)
+                            if (((string)value).Length == 1)
                             {
                                 // Convert string Y or N to boolean.
-                                char val = ((string) value)[0];
+                                char val = ((string)value)[0];
                                 if (new[]
                                 {
                                     'Y', 'N'
@@ -180,9 +184,9 @@ namespace SharedClasses.Data
                             }
 
                             // If property is of type DbImage then we expect a string.
-                            if (options.HasFlag(QueryOptions.InternetAccess) && prop.PropertyType == typeof (DbImage))
+                            if (options.HasFlag(QueryOptions.InternetAccess) && prop.PropertyType == typeof(DbImage))
                             {
-                                var val = new Uri((string) value);
+                                var val = new Uri((string)value);
                                 if (!val.IsLocal())
                                 {
                                     using (var client = new WebClient())
@@ -211,13 +215,106 @@ namespace SharedClasses.Data
         }
 
         /// <summary>
+        ///     Executes a new SELECT query using SQL-Injection safe parameters.
+        /// </summary>
+        /// <param name="whereStatement">WHERE statement to add to the SELECT.</param>
+        /// <param name="options">Specific options for SQL to Objects.</param>
+        /// <param name="parms">Parameters to add to the WHERE statement.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> Select(string whereStatement, QueryOptions options = 0,
+            params KeyValuePair<string, string>[] parms)
+        {
+            if (Database == null) throw new DataException("Database of database was not set.");
+            IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
+
+            // Build select.
+            var builder = new StringBuilder();
+            builder.Append("SELECT ");
+            builder.Append(fields.Select(p => p.Value).Aggregate((s1, s2) => s1 + ", " + s2));
+            builder.Append(" FROM ");
+            builder.Append(GetTableName<T>());
+
+            if (!string.IsNullOrWhiteSpace(whereStatement))
+            {
+                builder.Append(" WHERE ");
+                builder.Append(whereStatement);
+            }
+
+            // Store record data in objects.
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+            {
+                // Add SQL-Injection safe parameters.
+                cmd.Parameters.AddRange(parms.Select(p => new OracleParameter(p.Key, p.Value.GetOrableDbType(), p.Value, ParameterDirection.Input)).ToArray());
+
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    // Read a new record.
+                    while (reader.Read())
+                    {
+                        // Create a new object to represent this record.
+                        var obj = new T();
+
+                        // Loop through all the fields of this record and store the values in their properties.
+                        for (int i = 0; i < reader.FieldCount; i++)
+                        {
+                            PropertyInfo prop = typeof(T).GetProperty(fields.ElementAt(i).Key);
+                            object value = reader[fields.ElementAt(i).Value];
+
+
+                            if (value is string)
+                            {
+                                if (((string)value).Length == 1)
+                                {
+                                    // Convert string Y or N to boolean.
+                                    char val = ((string)value)[0];
+                                    if (new[]
+                                    {
+                                        'Y', 'N'
+                                    }.Contains(val))
+                                        value = val == 'Y';
+                                }
+
+                                // If property is of type DbImage then we expect a string.
+                                if (options.HasFlag(QueryOptions.InternetAccess) && prop.PropertyType == typeof(DbImage))
+                                {
+                                    var val = new Uri((string)value);
+                                    if (!val.IsLocal())
+                                    {
+                                        using (var client = new WebClient())
+                                        using (var imageStream = new MemoryStream(client.DownloadData(val)))
+                                            value = new DbImage(Image.FromStream(imageStream), val);
+                                    }
+                                    else
+                                        throw new FileLoadException("Local path supplied. Must be remote a remote path.");
+                                }
+                            }
+
+                            // Convert DBNull to default type value.
+                            if (value is DBNull)
+                            {
+                                if (Nullable.GetUnderlyingType(prop.PropertyType) == null)
+                                    value = value.GetType().GetDefaultValue();
+                            }
+
+                            // Set the propertie's value.
+                            prop.SetValue(obj, value);
+                        }
+                        // Add a new object to the return result.
+                        yield return obj;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         ///     Updates a record in the database by using the primary key.
         /// </summary>
         /// <returns>A value bigger than zero if succeeded.</returns>
         public int Update()
         {
             if (Database == null) throw new DataException("Database of database was not set.");
-            var fields = GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
+            IEnumerable<KeyValuePair<string, string>> fields =
+                GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
             // Build UPDATE.
             var builder = new StringBuilder();
@@ -233,7 +330,7 @@ namespace SharedClasses.Data
                 builder.Append(setField.Value);
                 builder.Append(" = ");
 
-                PropertyInfo prop = typeof (T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
                 builder.Append(prop.GetValue(this).ToSqlFormat());
@@ -287,7 +384,7 @@ namespace SharedClasses.Data
             for (int i = 0; i < fields.Count(); i++)
             {
                 KeyValuePair<string, string> setField = fields.ElementAt(i);
-                PropertyInfo prop = typeof (T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
                 builder.Append(prop.GetValue(this).ToSqlFormat());
@@ -329,7 +426,7 @@ namespace SharedClasses.Data
                 builder.Append(setField.Value);
                 builder.Append(" = ");
 
-                PropertyInfo prop = typeof (T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
                 builder.Append(prop.GetValue(this).ToSqlFormat());

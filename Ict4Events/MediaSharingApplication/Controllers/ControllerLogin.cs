@@ -26,7 +26,6 @@ namespace MediaSharingApplication.Controllers
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
             UserAccount account = null;
-            Wristband wristband = null;
 
             // Authenticate user.
             switch (e.AuthMethod)
@@ -36,7 +35,7 @@ namespace MediaSharingApplication.Controllers
                     e.Authorized = account != null;
                     break;
                 case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
-                    wristband = Wristband.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
+                    Wristband wristband = Wristband.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
                     e.Authorized = wristband != null;
                     break;
             }

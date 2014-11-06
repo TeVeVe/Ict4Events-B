@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccessControlSystem.Views;
 using SharedClasses.Controls.WinForms;
@@ -9,10 +10,13 @@ namespace AccessControlSystem.Controllers
 {
     public class ControllerLocationDetails : ControllerMVC<ViewLocationDetails>
     {
-        public ControllerLocationDetails()
+        public override void Create()
         {
+            Task.Factory.StartNew(() =>
+            {
+                Task.Delay(5000).Wait();
+                MainForm.Open<ControllerScanRFID>();
+            });
         }
-
-   
     }
 }
