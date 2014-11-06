@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DataGridViewReservees = new System.Windows.Forms.DataGridView();
             this.buttonAddVisitor = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewReservees)).BeginInit();
+            this.DataGridViewReservees = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewReservees)).BeginInit();
             this.SuspendLayout();
-            // 
-            // DataGridViewReservees
-            // 
-            this.DataGridViewReservees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewReservees.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridViewReservees.Location = new System.Drawing.Point(0, 0);
-            this.DataGridViewReservees.Name = "DataGridViewReservees";
-            this.DataGridViewReservees.Size = new System.Drawing.Size(987, 395);
-            this.DataGridViewReservees.TabIndex = 0;
-            this.DataGridViewReservees.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewReservees_CellContentDoubleClick);
             // 
             // buttonAddVisitor
             // 
@@ -77,26 +67,35 @@
             this.panel1.Size = new System.Drawing.Size(987, 27);
             this.panel1.TabIndex = 18;
             // 
+            // DataGridViewReservees
+            // 
+            this.DataGridViewReservees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewReservees.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewReservees.Location = new System.Drawing.Point(0, 27);
+            this.DataGridViewReservees.Name = "DataGridViewReservees";
+            this.DataGridViewReservees.Size = new System.Drawing.Size(987, 368);
+            this.DataGridViewReservees.TabIndex = 19;
+            // 
             // ViewReservees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.DataGridViewReservees);
+            this.Controls.Add(this.panel1);
             this.Name = "ViewReservees";
             this.Size = new System.Drawing.Size(987, 395);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewReservees)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewReservees)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.DataGridView DataGridViewReservees;
         private System.Windows.Forms.Button buttonAddVisitor;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.DataGridView DataGridViewReservees;
 
     }
 }

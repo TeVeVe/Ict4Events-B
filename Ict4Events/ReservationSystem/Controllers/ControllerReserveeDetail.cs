@@ -21,19 +21,19 @@ namespace ReservationSystem.Controllers
             if (Values.ContainsKey("USERACCOUNT"))
             {
                 // Fill fields with UserAccount properties.
-                var account = (UserAccount) Values["USERACCOUNT"];
+                var account = (UserAccount)Values["USERACCOUNT"];
                 View.TextBoxName.Text = account.Username;
             }
         }
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveMenuItemText = "Bezoekers";
+            MainForm.Open<ControllerReservees>();
         }
 
         private void ViewOnButtonSaveClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveMenuItemText = "Bezoekers";
+            MainForm.Open<ControllerReservees>();
             // TODO:  Validation of data
             // TODO: Insert data in database
 
@@ -61,26 +61,25 @@ namespace ReservationSystem.Controllers
 
             using (var mail = new MailMessage())
             {
-                
-                    mail.From = new MailAddress(emailFrom);
-                    mail.To.Add(emailTo);
-                    mail.Subject = subject;
-                    mail.Body = body;
-                    mail.IsBodyHtml = true;
+                mail.From = new MailAddress(emailFrom);
+                mail.To.Add(emailTo);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
 
 
-                    using (var smtp = new SmtpClient(smtpAddress, portNumber))
-                    {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        smtp.Credentials = new NetworkCredential(emailFrom, password);
-                        smtp.EnableSsl = enableSSL;
-                        smtp.Timeout = 10000;
-                        smtp.Send(mail);
-                    }
-                    MessageBox.Show("Bevestigingsmail succesvol verstuurd!");
+                using (var smtp = new SmtpClient(smtpAddress, portNumber))
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Credentials = new NetworkCredential(emailFrom, password);
+                    smtp.EnableSsl = enableSSL;
+                    smtp.Timeout = 10000;
+                    smtp.Send(mail);
+                }
+                MessageBox.Show("Bevestigingsmail succesvol verstuurd!");
             }
         }
     }

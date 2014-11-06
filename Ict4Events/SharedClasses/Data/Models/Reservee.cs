@@ -10,7 +10,7 @@ namespace SharedClasses.Data.Models
         public int ReserveeId { get; set; }
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
-        public string Insertian { get; set; }
+        public string Insertion { get; set; }
         public string LastName { get; set; }
 
         public string HouseNumber { get; set; }
