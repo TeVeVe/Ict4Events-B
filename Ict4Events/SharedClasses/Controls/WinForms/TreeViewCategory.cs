@@ -68,6 +68,14 @@ namespace SharedClasses.Controls.WinForms
         /// </summary>
         public event EventHandler CategoryClick;
 
+        public event EventHandler<TreeNodeMouseClickEventArgs> NodeClick;
+
+        protected virtual void OnNodeClick(TreeNodeMouseClickEventArgs e)
+        {
+            EventHandler<TreeNodeMouseClickEventArgs> handler = NodeClick;
+            if (handler != null) handler(this, e);
+        }
+
         protected virtual void OnCategoryClick()
         {
             EventHandler handler = CategoryClick;
@@ -209,6 +217,11 @@ namespace SharedClasses.Controls.WinForms
         private void collapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             treeViewCategories.CollapseAll();
+        }
+
+        private void treeViewCategories_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            OnNodeClick(e);
         }
     }
 }

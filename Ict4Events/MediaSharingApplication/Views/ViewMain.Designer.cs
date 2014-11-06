@@ -30,23 +30,23 @@ namespace MediaSharingApplication.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.feedPanel1 = new SharedClasses.Controls.WinForms.PanelFeed();
+            this.FeedPanel = new SharedClasses.Controls.WinForms.PanelFeed();
             this.CategoryTreeView = new SharedClasses.Controls.WinForms.TreeViewCategory();
             this.CategoryFiles = new SharedClasses.Controls.WinForms.CategoryFiles();
             this.SuspendLayout();
             // 
-            // feedPanel1
+            // FeedPanel
             // 
-            this.feedPanel1.AutoScroll = true;
-            this.feedPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.feedPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.feedPanel1.InputMessage = "";
-            this.feedPanel1.Location = new System.Drawing.Point(566, 0);
-            this.feedPanel1.Name = "feedPanel1";
-            this.feedPanel1.PostButtonText = "Bericht plaatsen";
-            this.feedPanel1.PostLabelText = "Uw bericht:";
-            this.feedPanel1.Size = new System.Drawing.Size(305, 425);
-            this.feedPanel1.TabIndex = 1;
+            this.FeedPanel.AutoScroll = true;
+            this.FeedPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FeedPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.FeedPanel.InputMessage = "";
+            this.FeedPanel.Location = new System.Drawing.Point(566, 0);
+            this.FeedPanel.Name = "FeedPanel";
+            this.FeedPanel.PostButtonText = "Bericht plaatsen";
+            this.FeedPanel.PostLabelText = "Uw bericht:";
+            this.FeedPanel.Size = new System.Drawing.Size(305, 425);
+            this.FeedPanel.TabIndex = 1;
             // 
             // CategoryTreeView
             // 
@@ -72,17 +72,18 @@ namespace MediaSharingApplication.Views
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.CategoryFiles);
-            this.Controls.Add(this.feedPanel1);
+            this.Controls.Add(this.FeedPanel);
             this.Controls.Add(this.CategoryTreeView);
             this.Name = "ViewMain";
             this.Size = new System.Drawing.Size(871, 425);
+            this.Load += new System.EventHandler(this.ViewMain_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public PanelFeed feedPanel1;
+        public PanelFeed FeedPanel;
         public TreeViewCategory CategoryTreeView;
         private CategoryFiles CategoryFiles;
     }
