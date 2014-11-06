@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using AccessControlSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
@@ -38,7 +37,7 @@ namespace AccessControlSystem.Controllers
                     if (reservation.First().PaymentStatus)
                     {
                         FormMain.Form.Open<ControllerLocationDetails>();
-                        var wristband = wristbands.First();
+                        Wristband wristband = wristbands.First();
                         if (!wristband.IsOnSite)
                         {
                             wristband.IsOnSite = true;
@@ -50,7 +49,6 @@ namespace AccessControlSystem.Controllers
                             wristband.IsOnSite = false;
                             wristband.Update();
                         }
-                        
                     }
                     else
                     {
