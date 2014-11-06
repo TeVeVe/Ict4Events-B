@@ -30,8 +30,9 @@ namespace MediaSharingApplication.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.feedPanel1 = new PanelFeed();
-            this.categoryTreeView1 = new TreeViewCategory();
+            this.feedPanel1 = new SharedClasses.Controls.WinForms.PanelFeed();
+            this.CategoryTreeView = new SharedClasses.Controls.WinForms.TreeViewCategory();
+            this.CategoryFiles = new SharedClasses.Controls.WinForms.CategoryFiles();
             this.SuspendLayout();
             // 
             // feedPanel1
@@ -47,23 +48,32 @@ namespace MediaSharingApplication.Views
             this.feedPanel1.Size = new System.Drawing.Size(305, 425);
             this.feedPanel1.TabIndex = 1;
             // 
-            // categoryTreeView1
+            // CategoryTreeView
             // 
-            this.categoryTreeView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.categoryTreeView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.categoryTreeView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.categoryTreeView1.Location = new System.Drawing.Point(0, 0);
-            this.categoryTreeView1.Name = "categoryTreeView1";
-            this.categoryTreeView1.SearchFilter = "";
-            this.categoryTreeView1.Size = new System.Drawing.Size(257, 425);
-            this.categoryTreeView1.TabIndex = 0;
+            this.CategoryTreeView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CategoryTreeView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.CategoryTreeView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.CategoryTreeView.Location = new System.Drawing.Point(0, 0);
+            this.CategoryTreeView.Name = "CategoryTreeView";
+            this.CategoryTreeView.SearchFilter = "";
+            this.CategoryTreeView.Size = new System.Drawing.Size(257, 425);
+            this.CategoryTreeView.TabIndex = 0;
+            // 
+            // CategoryFiles
+            // 
+            this.CategoryFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CategoryFiles.Location = new System.Drawing.Point(257, 0);
+            this.CategoryFiles.Name = "CategoryFiles";
+            this.CategoryFiles.Size = new System.Drawing.Size(309, 425);
+            this.CategoryFiles.TabIndex = 2;
             // 
             // ViewMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CategoryFiles);
             this.Controls.Add(this.feedPanel1);
-            this.Controls.Add(this.categoryTreeView1);
+            this.Controls.Add(this.CategoryTreeView);
             this.Name = "ViewMain";
             this.Size = new System.Drawing.Size(871, 425);
             this.ResumeLayout(false);
@@ -73,6 +83,7 @@ namespace MediaSharingApplication.Views
         #endregion
 
         public PanelFeed feedPanel1;
-        public TreeViewCategory categoryTreeView1;
+        public TreeViewCategory CategoryTreeView;
+        private CategoryFiles CategoryFiles;
     }
 }
