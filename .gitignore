@@ -10,7 +10,7 @@
 !*.csproj
 !*.config
 !*.resx
-!*.settings
+!*.*settings*
 !Phidget21.NET.dll
 !Oracle.DataAccess.dll
 
