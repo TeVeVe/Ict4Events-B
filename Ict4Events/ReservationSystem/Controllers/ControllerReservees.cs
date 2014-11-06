@@ -12,12 +12,15 @@ namespace ReservationSystem.Controllers
 {
     class ControllerReservees : ControllerMVC<ViewReservees>
     {
-        public override void Create()
+        public ControllerReservees()
         {
-            View.DataGridViewReservees.DataSource = Reservee.Select().ToList();
             View.DataGridViewReserveesDoubleClick += ViewOnDataGridViewReserveesDoubleClick;
             View.ButtonReserveesAdd += ViewOnAddClick;
+        }
 
+        public override void Activate()
+        {
+            View.DataGridViewReservees.DataSource = Reservee.Select().ToList();
         }
 
         private void ViewOnDataGridViewReserveesDoubleClick(object sender, DataGridViewCellEventArgs e)

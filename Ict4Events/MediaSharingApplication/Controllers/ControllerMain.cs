@@ -5,7 +5,7 @@ namespace MediaSharingApplication.Controllers
 {
     public class ControllerMain : ControllerMVC<ViewMain>
     {
-        public override void Create()
+        public override void Activate()
         {
         }
     }

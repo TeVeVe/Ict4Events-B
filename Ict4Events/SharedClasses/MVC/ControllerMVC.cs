@@ -37,7 +37,7 @@ namespace SharedClasses.MVC
 
         public Dictionary<string, object> Values { get; set; }
 
-        public virtual void Create()
+        public virtual void Activate()
         {
         }
 

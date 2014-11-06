@@ -18,7 +18,7 @@ namespace SharedClasses.Data.Models
 
         public override string ToString()
         {
-            return string.Format("Name: {0}, Description: {1}, Price: {2}, Inactive: {3}", Name, Description, Price, Inactive);
+            return string.Format("LabelText: {0}, Description: {1}, Price: {2}, Inactive: {3}", Name, Description, Price, Inactive);
         }
     }
 }

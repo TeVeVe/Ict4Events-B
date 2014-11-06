@@ -83,7 +83,8 @@ namespace SharedClasses.MVC
             get { return _activeController; }
             set
             {
-                if (_activeController == value) return;
+                if (_activeController == value)
+                    return;
                 _activeController = value;
 
 
@@ -121,7 +122,9 @@ namespace SharedClasses.MVC
                     panelContent.Controls.Clear();
                 }
 
-                if (_activeController != null) _activeController.Create();
+                // Refresh user code in controller.
+                if (_activeController != null)
+                    _activeController.Activate();
             }
         }
 
@@ -165,19 +168,21 @@ namespace SharedClasses.MVC
         protected virtual void OnViewClosing(ViewClosingEventArgs e)
         {
             EventHandler<ViewClosingEventArgs> handler = ViewClosing;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         /// <summary>
         ///     Opens the new controller and creates it if it doesn't exist.
         /// </summary>
         /// <typeparam name="T">Any <see cref="Type" /> of <see cref="IController" />.</typeparam>
-        public void Open<T>(params KeyValuePair<string, object>[] values ) where T : IController, new()
+        public void Open<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
         {
             if (!_controllerCache.ContainsKey(typeof(T)))
                 _controllerCache.Add(typeof(T), new T());
 
             IController controller = _controllerCache[typeof(T)];
+
             if (values != null)
             {
                 foreach (var keyValuePair in values)
@@ -203,7 +208,7 @@ namespace SharedClasses.MVC
         /// <returns></returns>
         public T PopupController<T>(T controller) where T : class, IController
         {
-            // Create a new temporary host.
+            // Activate a new temporary host.
             var host = new FormMVC();
 
             // Mark controller as popup.
@@ -251,7 +256,8 @@ namespace SharedClasses.MVC
         /// </summary>
         public void ResetController()
         {
-            if (_activeController == null) return;
+            if (_activeController == null)
+                return;
             panelContent.AssignView(_activeController.View);
 
             if (!AllowUserResize)

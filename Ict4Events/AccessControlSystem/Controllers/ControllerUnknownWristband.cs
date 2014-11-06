@@ -10,7 +10,7 @@ namespace AccessControlSystem.Controllers
 {
     public class ControllerUnknownWristband : ControllerMVC<ViewUnknownWristband>
     {
-        public override void Create()
+        public override void Activate()
         {
             Task.Factory.StartNew(() =>
             {

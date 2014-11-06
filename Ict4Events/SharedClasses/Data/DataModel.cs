@@ -162,7 +162,7 @@ namespace SharedClasses.Data
                 // Read a new record.
                 while (reader.Read())
                 {
-                    // Create a new object to represent this record.
+                    // Activate a new object to represent this record.
                     var obj = new T();
 
                     // Loop through all the fields of this record and store the values in their properties.
@@ -257,7 +257,7 @@ namespace SharedClasses.Data
                     // Read a new record.
                     while (reader.Read())
                     {
-                        // Create a new object to represent this record.
+                        // Activate a new object to represent this record.
                         var obj = new T();
 
                         // Loop through all the fields of this record and store the values in their properties.
@@ -310,7 +310,7 @@ namespace SharedClasses.Data
                     }
                 }
             }
-        }
+        } 
 
         /// <summary>
         ///     Updates a record in the database by using the primary key.
