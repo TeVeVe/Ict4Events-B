@@ -107,6 +107,7 @@
     <Compile Include="Events\ViewClosingEventArgs.cs" />
     <Compile Include="Exceptions\NoActiveControllerException.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />

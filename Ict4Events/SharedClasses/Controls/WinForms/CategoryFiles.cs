@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
+using SharedClasses.FTP;
 
 namespace SharedClasses.Controls.WinForms
 {
@@ -24,8 +25,15 @@ namespace SharedClasses.Controls.WinForms
                 Debug.WriteLine(ofd.FileName);
                 filePath = ofd.FileName;
 
-                categories.AddRange(new List<string> {"Media", "Muziek"});
+                categories.AddRange(new List<string> {"testmap1", "testmap2"});
                 FileTransfer.UploadFile(filePath, categories);
             }
         }
+
+        private void DownloadButton_Click(object sender, EventArgs e)
+        {
+            string filePath = String.Format("ftp://{0}/Media/Bestanden/bookmarks.html", Properties.Settings.Default.FTP_Server);
+            FileTransfer.DownloadFile(filePath);
+        }
     }
+}

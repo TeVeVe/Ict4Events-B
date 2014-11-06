@@ -4,7 +4,7 @@ using SharedClasses.Data.Attributes;
 namespace SharedClasses.Data.Models
 {
     [Table("CATEGORY")]
-    public class Category
+    public class Category : DataModel<Category>
     {
         [Key]
         [FieldName("CATEGORYID")]

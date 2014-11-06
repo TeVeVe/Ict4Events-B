@@ -5,13 +5,18 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
+using SharedClasses.Extensions;
+using SharedClasses.Properties;
+using MessageBox = System.Windows.MessageBox;
 
-namespace SharedClasses
+namespace SharedClasses.FTP
 {
     public class FileTransfer
     {
+        private static readonly NetworkCredential credentials = new NetworkCredential(Settings.Default.FTP_UserID,
+            Settings.Default.FTP_Password);
+
         public static bool UploadFile(string filePath, List<string> categories)
         {
             string fileName = "";
@@ -31,10 +36,10 @@ namespace SharedClasses
             {
                 var uploadRequest =
                     (FtpWebRequest)
-                        WebRequest.Create(String.Format("ftp://{0}/{1}{2}", Properties.Settings.Default.FTP_Server, categoriesPath, fileName));
+                        WebRequest.Create(String.Format("ftp://{0}/{1}{2}", Settings.Default.FTP_Server, categoriesPath,
+                            fileName));
                 uploadRequest.Method = WebRequestMethods.Ftp.UploadFile;
-
-                uploadRequest.Credentials = new NetworkCredential(Properties.Settings.Default.FTP_UserID, Properties.Settings.Default.FTP_Password);
+                uploadRequest.Credentials = credentials;
 
                 var reader = new StreamReader(filePath);
                 Byte[] fileContents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
@@ -53,24 +58,22 @@ namespace SharedClasses
                 return true;
             }
 
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
-
         /* Creating the directory on the FTP server */
+
         private static bool CreateFolder(string categoriesPath)
         {
             try
             {
                 var directoryRequest =
-                    (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Properties.Settings.Default.FTP_Server, categoriesPath));
+                    (FtpWebRequest)
+                        WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, categoriesPath));
                 directoryRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
-                directoryRequest.Credentials = new NetworkCredential(Properties.Settings.Default.DB_UserID, Properties.Settings.Default.FTP_Password);
+                directoryRequest.Credentials = credentials;
 
-                using (var resp = (FtpWebResponse)directoryRequest.GetResponse())
+                using (var resp = (FtpWebResponse) directoryRequest.GetResponse())
                 {
                     Console.WriteLine(resp.StatusCode);
                 }
@@ -80,19 +83,44 @@ namespace SharedClasses
 
             catch (WebException ex)
             {
-                var response = (FtpWebResponse)ex.Response;
+                var response = (FtpWebResponse) ex.Response;
                 if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                 {
                     response.Close();
                     return true;
                 }
-                else
+                response.Close();
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public static bool DownloadFile(string path)
+        {
+            var request = (FtpWebRequest) WebRequest.Create(path);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = new NetworkCredential(Settings.Default.FTP_UserID, Settings.Default.FTP_Password);
+
+            string fileName = path.Split('/').Last();
+
+            var response = (FtpWebResponse) request.GetResponse();
+
+            Stream responseStream = response.GetResponseStream();
+
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                if (result == DialogResult.OK)
                 {
+                    File.WriteAllBytes(String.Format("{0}\\{1}", fbd.SelectedPath, fileName), responseStream.ReadAllBytes());
+                    Debug.WriteLine("Download Complete, status {0}", response.StatusDescription);
                     response.Close();
-                    MessageBox.Show(ex.Message);
-                    return false;
+                    return true;
                 }
             }
+
+            response.Close();
+            return false;
         }
     }
 }
