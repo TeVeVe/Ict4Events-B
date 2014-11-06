@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace ReservationSystem.Views
 {
-    public partial class ViewVisitorsDetail : UserControl
+    public partial class ViewReserveeDetail : UserControl
     {
-        public ViewVisitorsDetail()
+        public ViewReserveeDetail()
         {
             InitializeComponent();
         }
@@ -33,11 +33,6 @@ namespace ReservationSystem.Views
         private void buttonSave_Click(object sender, EventArgs e)
         {
             OnButtonSaveClick();
-        }
-
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

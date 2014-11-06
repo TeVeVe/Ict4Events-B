@@ -58,8 +58,9 @@
     <Compile Include="Controllers\ControllerProducts.cs" />
     <Compile Include="Controllers\ControllerReservation.cs" />
     <Compile Include="Controllers\ControllerReservationDetail.cs" />
+    <Compile Include="Controllers\ControllerReservees.cs" />
     <Compile Include="Controllers\ControllerVisitor.cs" />
-    <Compile Include="Controllers\ControllerVisitorDetail.cs" />
+    <Compile Include="Controllers\ControllerReserveeDetail.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,17 +93,23 @@
     <Compile Include="Views\ViewReservationDetail.Designer.cs">
       <DependentUpon>ViewReservationDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewReservees.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewReservees.Designer.cs">
+      <DependentUpon>ViewReservees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewVisitors.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\ViewVisitors.Designer.cs">
       <DependentUpon>ViewVisitors.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewVisitorsDetail.cs">
+    <Compile Include="Views\ViewReserveeDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ViewVisitorsDetail.Designer.cs">
-      <DependentUpon>ViewVisitorsDetail.cs</DependentUpon>
+    <Compile Include="Views\ViewReserveeDetail.Designer.cs">
+      <DependentUpon>ViewReserveeDetail.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -129,11 +136,14 @@
     <EmbeddedResource Include="Views\ViewReservationDetail.resx">
       <DependentUpon>ViewReservationDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewReservees.resx">
+      <DependentUpon>ViewReservees.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewVisitors.resx">
       <DependentUpon>ViewVisitors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ViewVisitorsDetail.resx">
-      <DependentUpon>ViewVisitorsDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewReserveeDetail.resx">
+      <DependentUpon>ViewReserveeDetail.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

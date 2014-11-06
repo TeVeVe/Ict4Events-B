@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
@@ -69,6 +70,11 @@ namespace SharedClasses.Data
         {
             get
             {
+                if (File.Exists("connection.txt"))
+                {
+                    return File.ReadAllText("connection.txt");
+                }
+
                 if (!string.IsNullOrWhiteSpace(SID))
                 {
                     return
@@ -78,7 +84,7 @@ namespace SharedClasses.Data
                 }
                 return
                     string.Format(
-                       "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVIE_NAME={2})));User ID={3};Password={4}",
+                        "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVIE_NAME={2})));User ID={3};Password={4}",
                         Host, Port, Service, Username, Password);
             }
         }
@@ -132,7 +138,7 @@ namespace SharedClasses.Data
             db.Host = host;
             db.Port = 1521;
             db.SID = sid;
-            db.QueryTimeout = int.Parse((string)Settings.Default["DB_QueryTimeout"]);
+            db.QueryTimeout = int.Parse((string) Settings.Default["DB_QueryTimeout"]);
 
             db.Open();
 

@@ -2,34 +2,30 @@
 
 namespace SharedClasses.Data.Models
 {
-    public class Reservee
+    [Table("RESERVEE")]
+    public class Reservee : DataModel<Reservee>
     {
         [Key]
-        [FieldName("RESERVEEID")]
-        public int Id { get; set; }
+        //[FieldName("RESERVEEID")]
+        public int ReserveeId { get; set; }
         public string EmailAddress { get; set; }
         public string FirstName { get; set; }
-        public string Insertion { get; set; }
+        public string Insertian { get; set; }
         public string LastName { get; set; }
 
         public string HouseNumber { get; set; }
-        
+
+        public string City { get; set; }
+
+
         public string PostalCode { get; set; }
         public string Street { get; set; }
 
-        public string FullName
-        {
-            get { return FirstName + Insertion + LastName; }
-        }
+        //public string FullName
+        //{
+        //    get { return FirstName + Insertion + LastName; }
+        //}
 
-        public Reservee(string firstName, string insertion, string lastName, string postalCode, string street, string houseNumber)
-        {
-            FirstName = firstName;
-            Insertion = insertion;
-            LastName = lastName;
-            PostalCode = postalCode;
-            Street = street;
-            HouseNumber = houseNumber;
-        }
+  
     }
 }

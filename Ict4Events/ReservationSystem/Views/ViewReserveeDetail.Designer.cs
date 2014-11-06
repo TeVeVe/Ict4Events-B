@@ -1,6 +1,6 @@
 ﻿namespace ReservationSystem.Views
 {
-    partial class ViewVisitorsDetail
+    partial class ViewReserveeDetail
     {
         /// <summary> 
         /// Required designer variable.
@@ -38,17 +38,17 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.TextBoxEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.TextBoxPhone = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.TextBoxPostalCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TextBoxCity = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TextBoxAddress = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.TextBoxName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,22 +63,22 @@
             this.groupBox1.Controls.Add(this.buttonCancel);
             this.groupBox1.Controls.Add(this.buttonSave);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBoxEmail);
+            this.groupBox1.Controls.Add(this.TextBoxEmail);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.TextBoxPhone);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.TextBoxPostalCode);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.TextBoxCity);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.TextBoxAddress);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBoxName);
+            this.groupBox1.Controls.Add(this.TextBoxName);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(375, 219);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -87,7 +87,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(266, 141);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(22, 21);
             this.button5.TabIndex = 36;
@@ -97,7 +97,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(266, 118);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(22, 21);
             this.button4.TabIndex = 35;
@@ -107,7 +107,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(266, 95);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(22, 21);
             this.button3.TabIndex = 34;
@@ -117,7 +117,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(266, 72);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(22, 21);
             this.button2.TabIndex = 33;
@@ -127,7 +127,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(266, 50);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(22, 21);
             this.button1.TabIndex = 32;
@@ -137,7 +137,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(266, 27);
-            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(22, 21);
             this.button8.TabIndex = 31;
@@ -147,7 +147,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(172, 181);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 24);
             this.buttonCancel.TabIndex = 30;
@@ -158,7 +158,7 @@
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(92, 181);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 24);
             this.buttonSave.TabIndex = 29;
@@ -177,14 +177,13 @@
             this.label6.Text = "E-mailadres:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBoxEmail
+            // TextBoxEmail
             // 
-            this.textBoxEmail.Location = new System.Drawing.Point(92, 142);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(170, 20);
-            this.textBoxEmail.TabIndex = 24;
-            this.textBoxEmail.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.TextBoxEmail.Location = new System.Drawing.Point(92, 142);
+            this.TextBoxEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxEmail.Name = "TextBoxEmail";
+            this.TextBoxEmail.Size = new System.Drawing.Size(170, 20);
+            this.TextBoxEmail.TabIndex = 24;
             // 
             // label5
             // 
@@ -197,13 +196,13 @@
             this.label5.Text = "Telefoon:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBox5
+            // TextBoxPhone
             // 
-            this.textBox5.Location = new System.Drawing.Point(92, 119);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(170, 20);
-            this.textBox5.TabIndex = 21;
+            this.TextBoxPhone.Location = new System.Drawing.Point(92, 119);
+            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxPhone.Name = "TextBoxPhone";
+            this.TextBoxPhone.Size = new System.Drawing.Size(170, 20);
+            this.TextBoxPhone.TabIndex = 21;
             // 
             // label4
             // 
@@ -216,13 +215,13 @@
             this.label4.Text = "Postcode:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBox4
+            // TextBoxPostalCode
             // 
-            this.textBox4.Location = new System.Drawing.Point(92, 97);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(170, 20);
-            this.textBox4.TabIndex = 18;
+            this.TextBoxPostalCode.Location = new System.Drawing.Point(92, 97);
+            this.TextBoxPostalCode.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxPostalCode.Name = "TextBoxPostalCode";
+            this.TextBoxPostalCode.Size = new System.Drawing.Size(170, 20);
+            this.TextBoxPostalCode.TabIndex = 18;
             // 
             // label3
             // 
@@ -235,13 +234,13 @@
             this.label3.Text = "Woonplaats:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBox3
+            // TextBoxCity
             // 
-            this.textBox3.Location = new System.Drawing.Point(92, 74);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(170, 20);
-            this.textBox3.TabIndex = 15;
+            this.TextBoxCity.Location = new System.Drawing.Point(92, 74);
+            this.TextBoxCity.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxCity.Name = "TextBoxCity";
+            this.TextBoxCity.Size = new System.Drawing.Size(170, 20);
+            this.TextBoxCity.TabIndex = 15;
             // 
             // label2
             // 
@@ -254,13 +253,13 @@
             this.label2.Text = "Adres:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBox2
+            // TextBoxAddress
             // 
-            this.textBox2.Location = new System.Drawing.Point(92, 51);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(170, 20);
-            this.textBox2.TabIndex = 12;
+            this.TextBoxAddress.Location = new System.Drawing.Point(92, 51);
+            this.TextBoxAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxAddress.Name = "TextBoxAddress";
+            this.TextBoxAddress.Size = new System.Drawing.Size(170, 20);
+            this.TextBoxAddress.TabIndex = 12;
             // 
             // label1
             // 
@@ -273,22 +272,22 @@
             this.label1.Text = "Naam:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // textBoxName
+            // TextBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(92, 28);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(170, 20);
-            this.textBoxName.TabIndex = 9;
+            this.TextBoxName.Location = new System.Drawing.Point(92, 28);
+            this.TextBoxName.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBoxName.Name = "TextBoxName";
+            this.TextBoxName.Size = new System.Drawing.Size(170, 20);
+            this.TextBoxName.TabIndex = 9;
             // 
-            // ViewVisitorsDetail
+            // ViewReserveeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "ViewVisitorsDetail";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "ViewReserveeDetail";
             this.Size = new System.Drawing.Size(375, 219);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -301,13 +300,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
@@ -317,7 +312,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button8;
-        public System.Windows.Forms.TextBox textBoxEmail;
-        public System.Windows.Forms.TextBox textBoxName;
+        public System.Windows.Forms.TextBox TextBoxEmail;
+        public System.Windows.Forms.TextBox TextBoxName;
+        public System.Windows.Forms.TextBox TextBoxPhone;
+        public System.Windows.Forms.TextBox TextBoxPostalCode;
+        public System.Windows.Forms.TextBox TextBoxCity;
+        public System.Windows.Forms.TextBox TextBoxAddress;
     }
 }

@@ -15,6 +15,13 @@ namespace ReservationSystem.Controllers
             View.ButtonAddVisitorClick += ViewOnButtonAddVisitorClick;
             View.CheckboxIsOnSiteCheckChanged += ViewOnCheckboxIsOnSiteCheckChanged;
             View.DataGridViewVisitors.DataSource = Wristband.Select().ToList();
+
+            View.CellModifyVisitorClick += ViewOnCellModifyVisitorClick;
+        }
+
+        private void ViewOnCellModifyVisitorClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            MainForm.Open<ControllerReserveeDetail>(new KeyValuePair<string, object>("USERACCOUNT", View.DataGridViewVisitors.Rows[e.RowIndex].DataBoundItem));
         }
 
         private void ViewOnCheckboxIsOnSiteCheckChanged(object sender, EventArgs eventArgs)
@@ -51,7 +58,7 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnButtonAddVisitorClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveController = new ControllerVisitorDetail();
+            MainForm.ActiveController = new ControllerReserveeDetail();
         }
     }
 }

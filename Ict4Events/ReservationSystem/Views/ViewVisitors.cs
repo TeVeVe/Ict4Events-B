@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace ReservationSystem.Views
@@ -11,6 +12,13 @@ namespace ReservationSystem.Views
         }
 
         public event EventHandler ButtonAddVisitorClick;
+        public event EventHandler<DataGridViewCellMouseEventArgs> CellModifyVisitorClick;
+
+        protected virtual void OnCellModifyVisitorClick(DataGridViewCellMouseEventArgs e)
+        {
+            EventHandler<DataGridViewCellMouseEventArgs> handler = CellModifyVisitorClick;
+            if (handler != null) handler(this, e);
+        }
 
         protected virtual void OnButtonAddVisitorClick()
         {
@@ -34,6 +42,16 @@ namespace ReservationSystem.Views
         {
             EventHandler handler = CheckboxIsOnSiteCheckChanged;
             if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        private void DataGridViewVisitors_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            OnCellModifyVisitorClick(e);
+        }
+
+        private void DataGridViewVisitors_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

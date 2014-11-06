@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using AccessControlSystem.Views;
@@ -18,7 +19,7 @@ namespace AccessControlSystem.Controllers
             // Retrieve payment status of scanned wristband
             rfid.Tag += (sender, args) =>
             {
-                IEnumerable<Wristband> wristbands = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
+                    IEnumerable<Wristband> wristbands = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
 
                 // If wristband doesn't occur in database
                 if (wristbands.Count() == 0)
