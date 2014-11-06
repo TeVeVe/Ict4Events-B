@@ -44,6 +44,7 @@ namespace SharedClasses.MVC
 
             Load += (sender, args) =>
             {
+                
                 // Hide menu if it's not in use.
                 menuStripNavigation.Visible = menuStripNavigation.Items.Count > 0;
 
@@ -53,7 +54,7 @@ namespace SharedClasses.MVC
                     // Check if a menu item has the controller. Then select it.
                     var item =
                         menuStripNavigation.Items.Cast<ToolStripMenuItem>().FirstOrDefault(i => i.Tag.GetType() == MainController);
-
+                    
                     if (item != null)
                         ActiveController = (IController)item.Tag;
                     else
@@ -94,7 +95,7 @@ namespace SharedClasses.MVC
             {
                 if (_activeController == value) return;
                 _activeController = value;
-
+                
 
                 if (_activeController != null)
                 {

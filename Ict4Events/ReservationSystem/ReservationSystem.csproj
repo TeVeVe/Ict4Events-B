@@ -60,6 +60,7 @@
     <Compile Include="Controllers\ControllerReservationDetail.cs" />
     <Compile Include="Controllers\ControllerVisitor.cs" />
     <Compile Include="Controllers\ControllerVisitorDetail.cs" />
+    <Compile Include="Controllers\ControllerVitsitorsOnSite.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +105,12 @@
     <Compile Include="Views\ViewVisitorsDetail.Designer.cs">
       <DependentUpon>ViewVisitorsDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewVisitorsOnSite.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewVisitorsOnSite.Designer.cs">
+      <DependentUpon>ViewVisitorsOnSite.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewVisitorsDetail.resx">
       <DependentUpon>ViewVisitorsDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ViewVisitorsOnSite.resx">
+      <DependentUpon>ViewVisitorsOnSite.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

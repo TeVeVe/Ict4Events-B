@@ -14,10 +14,6 @@ namespace AccessControlSystem
         {
             InitializeComponent();
 
-            // Add menu items, and set active:
-            AddMenuItem("Show RFID", new ControllerScanRFID());
-            AddMenuItem("Show location", new ControllerLocationDetails());
-
             MarkAsMain<ControllerScanRFID>();
 
             Form = this;

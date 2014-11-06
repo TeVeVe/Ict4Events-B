@@ -94,5 +94,41 @@ namespace SharedClasses.Properties {
                 this["DB_QueryTimeout"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SYSTEM")]
+        public string FTP_UserID {
+            get {
+                return ((string)(this["FTP_UserID"]));
+            }
+            set {
+                this["FTP_UserID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        public string FTP_Password {
+            get {
+                return ((string)(this["FTP_Password"]));
+            }
+            set {
+                this["FTP_Password"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("localhost")]
+        public string FTP_Server {
+            get {
+                return ((string)(this["FTP_Server"]));
+            }
+            set {
+                this["FTP_Server"] = value;
+            }
+        }
     }
 }
