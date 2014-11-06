@@ -40,15 +40,8 @@ namespace SharedClasses.MVC
                 // Show main controller if nothing specified.
                 if (ActiveController == null && MainController != null)
                 {
-                    // Check if a menu item has the controller. Then select it.
-                    ToolStripMenuItem item =
-                        menuStripNavigation.Items.Cast<ToolStripMenuItem>()
-                            .FirstOrDefault(i => i.Tag.GetType() == MainController);
-
-                    if (item != null)
-                        ActiveController = (IController)item.Tag;
-                    else
-                        ActiveController = (IController)Activator.CreateInstance(MainController);
+                    // Creates a new controller if it doesn't exist already.
+                    Open(MainController);
                 }
             };
         }
@@ -74,6 +67,7 @@ namespace SharedClasses.MVC
 
         /// <summary>
         ///     Gets or sets the currently active controller. If changed, will update UI automatically.
+        ///     Does not reuse existing controllers.
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -90,33 +84,16 @@ namespace SharedClasses.MVC
 
                 if (_activeController != null)
                 {
-                    // Select the menuitem that has the ActiveController.
-                    ToolStripMenuItem selectedItem =
-                        menuStripNavigation.Items.Cast<ToolStripMenuItem>()
-                            .FirstOrDefault(i =>
-                            {
-                                object tag = i.Tag;
-                                if (tag != null)
-                                    return tag.Equals(_activeController);
-                                return false;
-                            });
-
-                    // Deselect everything.
-                    foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        menuStripNavigation.InvokeSafe(c => item.BackColor = Color.FromKnownColor(KnownColor.Control));
-
-                    // Mark selected item.
-                    if (selectedItem != null)
-                        menuStripNavigation.InvokeSafe(c => selectedItem.BackColor = ActiveColor);
+                    // Select active controller in menu.
+                    MenuSelect();
 
                     // Init the controller on the screen (first "reset").
                     ResetController();
                 }
                 else
                 {
-                    // Deselect everything.
-                    foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        menuStripNavigation.InvokeSafe(c => item.BackColor = Color.FromKnownColor(KnownColor.Control));
+                    // Deselect every menu item.
+                    MenuSelect(SelectionMode.None);
 
                     // Show a blank page.
                     panelContent.Controls.Clear();
@@ -163,6 +140,45 @@ namespace SharedClasses.MVC
             }
         }
 
+        /// <summary>
+        ///     Iterates the menu using the <see cref="SelectionMode" />.
+        /// </summary>
+        /// <param name="mode"><see cref="SelectionMode" /> to use on the menu.</param>
+        public void MenuSelect(SelectionMode mode = SelectionMode.One)
+        {
+            switch (mode)
+            {
+                case SelectionMode.None:
+                    // Deselect everything.
+                    menuStripNavigation.InvokeSafe(c =>
+                    {
+                        foreach (ToolStripMenuItem item in menuStripNavigation.Items)
+                            item.BackColor = Color.FromKnownColor(KnownColor.Control);
+                    });
+                    break;
+                default:
+                    // Select the menuitem that has the ActiveController.
+                    ToolStripMenuItem selectedItem =
+                        menuStripNavigation.Items.Cast<ToolStripMenuItem>()
+                            .FirstOrDefault(i =>
+                            {
+                                object tag = i.Tag;
+                                if (tag != null)
+                                    return tag.Equals(_activeController.GetType());
+                                return false;
+                            });
+
+                    // Deselect everything.
+                    foreach (ToolStripMenuItem item in menuStripNavigation.Items)
+                        menuStripNavigation.InvokeSafe(c => item.BackColor = Color.FromKnownColor(KnownColor.Control));
+
+                    // Mark selected item.
+                    if (selectedItem != null)
+                        menuStripNavigation.InvokeSafe(c => selectedItem.BackColor = ActiveColor);
+                    break;
+            }
+        }
+
         public event EventHandler<ViewClosingEventArgs> ViewClosing;
 
         protected virtual void OnViewClosing(ViewClosingEventArgs e)
@@ -178,10 +194,15 @@ namespace SharedClasses.MVC
         /// <typeparam name="T">Any <see cref="Type" /> of <see cref="IController" />.</typeparam>
         public void Open<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
         {
-            if (!_controllerCache.ContainsKey(typeof(T)))
-                _controllerCache.Add(typeof(T), new T());
+            Open(typeof(T), values);
+        }
 
-            IController controller = _controllerCache[typeof(T)];
+        private void Open(Type type, params KeyValuePair<string, object>[] values)
+        {
+            if (!_controllerCache.ContainsKey(type))
+                _controllerCache.Add(type, (IController)Activator.CreateInstance(type));
+
+            IController controller = _controllerCache[type];
 
             if (values != null)
             {
@@ -224,16 +245,17 @@ namespace SharedClasses.MVC
         /// <summary>
         ///     Adds a new menuitem to the menustrip.
         /// </summary>
+        /// <typeparam name="T">Any <see cref="Type" /> of <see cref="IController" />.</typeparam>
         /// <param name="text">Text of the new menuitem.</param>
-        /// <param name="controller">Object responsible for showing the new UI.</param>
-        public ToolStripMenuItem AddMenuItem(string text, IController controller)
+        /// <returns>A new <see cref="ToolStripMenuItem" />.</returns>
+        public ToolStripMenuItem AddMenuItem<T>(string text) where T : IController, new()
         {
             var item = new ToolStripMenuItem
             {
                 Text = text,
-                Tag = controller
+                Tag = typeof(T)
             };
-            item.Click += (sender, args) => ActiveController = controller;
+            item.Click += (sender, args) => Open<T>();
             menuStripNavigation.Items.Add(item);
             return item;
         }
