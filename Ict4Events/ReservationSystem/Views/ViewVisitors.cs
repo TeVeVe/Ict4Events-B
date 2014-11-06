@@ -22,5 +22,18 @@ namespace ReservationSystem.Views
         {
             OnButtonAddVisitorClick();
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            OnCheckboxIsOnSiteCheckChanged();
+        }
+
+        public event EventHandler CheckboxIsOnSiteCheckChanged;
+
+        protected virtual void OnCheckboxIsOnSiteCheckChanged()
+        {
+            EventHandler handler = CheckboxIsOnSiteCheckChanged;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
     }
 }
