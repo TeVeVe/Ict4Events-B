@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.ComTypes;
+﻿using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 
 namespace SharedClasses.Interfaces
@@ -7,6 +8,7 @@ namespace SharedClasses.Interfaces
     {
         Control View { get; set; }
         bool IsPopup { get; set; }
+        Dictionary<string, object> Values { get; set; } 
 
         void Create();
     }

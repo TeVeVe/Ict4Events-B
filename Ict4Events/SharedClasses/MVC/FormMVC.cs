@@ -139,12 +139,14 @@ namespace SharedClasses.MVC
         /// Opens the new controller and creates it if it doesn't exist.
         /// </summary>
         /// <typeparam name="T">Any <see cref="Type"/> of <see cref="IController"/>.</typeparam>
-        public void Open<T>() where T : IController, new()
+        public void Open<T>(Dictionary<string, object> values = null) where T : IController, new()
         {
             if (!_controllerCache.ContainsKey(typeof(T)))
                 _controllerCache.Add(typeof(T), new T());
 
-            ActiveController = _controllerCache[typeof(T)];
+            var controller = _controllerCache[typeof(T)];
+            ActiveController.Values = values;
+            ActiveController = controller;
         }
 
         /// <summary>

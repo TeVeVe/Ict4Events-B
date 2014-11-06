@@ -30,8 +30,24 @@ namespace MediaSharingApplication.Controllers
             }
             
             // Check if user already exists.
-            var account = UserAccount.Select("VISITORCODE = :parmVisitorCode", 0, new KeyValuePair<string, string>(":parmVisitorCode", View.Username)).FirstOrDefault();
-            Debug.WriteLine(account != null);
+            var account = UserAccount.Select(string.Format("upper(USERNAME) = upper({0})", View.Username.ToSqlFormat())).FirstOrDefault();
+            if (account != null)
+            {
+                MessageBox.Show("Deze gebruikersnaam is al in gebruik.", "Gebruikersnaam in gebruik.",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            account = new UserAccount()
+            {
+                Username = View.Username,
+                Password = View.Password,
+                VisitorCode = (string)Values["VisitorCode"]
+            };
+            account.Insert();
+
+            MessageBox.Show("Uw account is aangemaakt.", "Account aangemaakt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MainForm.Open<ControllerMain>();
         }
     }
 }

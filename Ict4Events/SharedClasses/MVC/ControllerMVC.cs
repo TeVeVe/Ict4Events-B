@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using SharedClasses.Interfaces;
 
@@ -32,6 +33,8 @@ namespace SharedClasses.MVC
         ///     If true, this controller is being hosted on a seperate <see cref="Form" />.
         /// </summary>
         public bool IsPopup { get; set; }
+
+        public Dictionary<string, object> Values { get; set; }
 
         public virtual void Create()
         {

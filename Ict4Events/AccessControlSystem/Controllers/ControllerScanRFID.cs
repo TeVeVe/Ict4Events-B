@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using AccessControlSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
