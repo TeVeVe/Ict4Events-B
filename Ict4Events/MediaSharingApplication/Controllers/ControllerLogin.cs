@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 using SharedClasses.Data.Models;
@@ -26,6 +27,7 @@ namespace MediaSharingApplication.Controllers
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
             UserAccount account = null;
+            Wristband wristband = null;
 
             // Authenticate user.
             switch (e.AuthMethod)
@@ -35,7 +37,7 @@ namespace MediaSharingApplication.Controllers
                     e.Authorized = account != null;
                     break;
                 case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
-                    Wristband wristband = Wristband.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
+                    wristband = Wristband.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
                     e.Authorized = wristband != null;
                     break;
             }
@@ -52,7 +54,17 @@ namespace MediaSharingApplication.Controllers
             }
             else if (e.AuthMethod == AuthenticateEventArgs.AuthenticationMethod.RFIDNumber)
             {
-                MainForm.Open<ControllerRegisterAccount>();
+                // Check if the RFID number already has an account.
+                var rfidAccount =
+                    UserAccount.Select("VISITORCODE = " + wristband.VisitorCode.ToSqlFormat()).FirstOrDefault();
+                if (rfidAccount != null)
+                {
+                    MessageBox.Show("Er is al een account aangemaakt voor het pasnummer.", "Account bestaat al",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                MainForm.Open<ControllerRegisterAccount>(new KeyValuePair<string, object>("VisitorCode", wristband.VisitorCode));
             }
             else
             {

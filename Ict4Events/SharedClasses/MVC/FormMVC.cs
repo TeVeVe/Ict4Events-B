@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SharedClasses.Events;
 using SharedClasses.Exceptions;
@@ -18,22 +16,14 @@ namespace SharedClasses.MVC
     /// </summary>
     public partial class FormMVC : Form
     {
-        private Dictionary<Type, IController> _controllerCache; 
-
         /// <summary>
         ///     Color that will indicate that a <see cref="ToolStripMenuItem" /> is currently active.
         /// </summary>
         public static readonly Color ActiveColor = Color.FromName("Cornflowerblue");
 
+        private readonly Dictionary<Type, IController> _controllerCache;
+
         private IController _activeController;
-
-        public event EventHandler<ViewClosingEventArgs> ViewClosing;
-
-        protected virtual void OnViewClosing(ViewClosingEventArgs e)
-        {
-            EventHandler<ViewClosingEventArgs> handler = ViewClosing;
-            if (handler != null) handler(this, e);
-        }
 
         public FormMVC()
         {
@@ -44,7 +34,6 @@ namespace SharedClasses.MVC
 
             Load += (sender, args) =>
             {
-                
                 // Hide menu if it's not in use.
                 menuStripNavigation.Visible = menuStripNavigation.Items.Count > 0;
 
@@ -52,9 +41,10 @@ namespace SharedClasses.MVC
                 if (ActiveController == null && MainController != null)
                 {
                     // Check if a menu item has the controller. Then select it.
-                    var item =
-                        menuStripNavigation.Items.Cast<ToolStripMenuItem>().FirstOrDefault(i => i.Tag.GetType() == MainController);
-                    
+                    ToolStripMenuItem item =
+                        menuStripNavigation.Items.Cast<ToolStripMenuItem>()
+                            .FirstOrDefault(i => i.Tag.GetType() == MainController);
+
                     if (item != null)
                         ActiveController = (IController)item.Tag;
                     else
@@ -95,7 +85,7 @@ namespace SharedClasses.MVC
             {
                 if (_activeController == value) return;
                 _activeController = value;
-                
+
 
                 if (_activeController != null)
                 {
@@ -104,7 +94,7 @@ namespace SharedClasses.MVC
                         menuStripNavigation.Items.Cast<ToolStripMenuItem>()
                             .FirstOrDefault(i =>
                             {
-                                var tag = i.Tag;
+                                object tag = i.Tag;
                                 if (tag != null)
                                     return tag.Equals(_activeController);
                                 return false;
@@ -112,11 +102,11 @@ namespace SharedClasses.MVC
 
                     // Deselect everything.
                     foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        menuStripNavigation.InvokeSafe((c) => item.BackColor = Color.FromKnownColor(KnownColor.Control));
+                        menuStripNavigation.InvokeSafe(c => item.BackColor = Color.FromKnownColor(KnownColor.Control));
 
                     // Mark selected item.
                     if (selectedItem != null)
-                        menuStripNavigation.InvokeSafe((c) => selectedItem.BackColor = ActiveColor);
+                        menuStripNavigation.InvokeSafe(c => selectedItem.BackColor = ActiveColor);
 
                     // Init the controller on the screen (first "reset").
                     ResetController();
@@ -125,7 +115,7 @@ namespace SharedClasses.MVC
                 {
                     // Deselect everything.
                     foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        menuStripNavigation.InvokeSafe((c) => item.BackColor = Color.FromKnownColor(KnownColor.Control));
+                        menuStripNavigation.InvokeSafe(c => item.BackColor = Color.FromKnownColor(KnownColor.Control));
 
                     // Show a blank page.
                     panelContent.Controls.Clear();
@@ -133,20 +123,6 @@ namespace SharedClasses.MVC
 
                 if (_activeController != null) _activeController.Create();
             }
-        }
-
-        /// <summary>
-        /// Opens the new controller and creates it if it doesn't exist.
-        /// </summary>
-        /// <typeparam name="T">Any <see cref="Type"/> of <see cref="IController"/>.</typeparam>
-        public void Open<T>(Dictionary<string, object> values = null) where T : IController, new()
-        {
-            if (!_controllerCache.ContainsKey(typeof(T)))
-                _controllerCache.Add(typeof(T), new T());
-
-            var controller = _controllerCache[typeof(T)];
-            ActiveController.Values = values;
-            ActiveController = controller;
         }
 
         /// <summary>
@@ -182,6 +158,32 @@ namespace SharedClasses.MVC
                 else
                     throw new NoActiveControllerException(value);
             }
+        }
+
+        public event EventHandler<ViewClosingEventArgs> ViewClosing;
+
+        protected virtual void OnViewClosing(ViewClosingEventArgs e)
+        {
+            EventHandler<ViewClosingEventArgs> handler = ViewClosing;
+            if (handler != null) handler(this, e);
+        }
+
+        /// <summary>
+        ///     Opens the new controller and creates it if it doesn't exist.
+        /// </summary>
+        /// <typeparam name="T">Any <see cref="Type" /> of <see cref="IController" />.</typeparam>
+        public void Open<T>(params KeyValuePair<string, object>[] values ) where T : IController, new()
+        {
+            if (!_controllerCache.ContainsKey(typeof(T)))
+                _controllerCache.Add(typeof(T), new T());
+
+            IController controller = _controllerCache[typeof(T)];
+            if (values != null)
+            {
+                foreach (var keyValuePair in values)
+                    controller.Values.Add(keyValuePair.Key, keyValuePair.Value);
+            }
+            ActiveController = controller;
         }
 
         /// <summary>
@@ -260,25 +262,26 @@ namespace SharedClasses.MVC
                     _activeController.View.Height + (menuStripNavigation.Visible ? menuStripNavigation.Height : 0)));
             }
             else
-            {
                 _activeController.View.Dock = DockStyle.Fill;
-            }
 
             if (_activeController.GetType() != MainController)
             {
                 // If view falls outside of Screen boundries we should reset it.
-                var screen = Screen.FromRectangle(_activeController.View.Bounds);
+                Screen screen = Screen.FromRectangle(_activeController.View.Bounds);
                 if (!screen.Bounds.Contains(_activeController.View.Bounds))
                     CenterToScreen();
             }
             else
-                this.InvokeSafe((c) => CenterToScreen());
+                this.InvokeSafe(c => CenterToScreen());
         }
 
         /// <summary>
         ///     Returns the controller that has been stored by the <see cref="ToolStripMenuItem.Tag" />.
         /// </summary>
-        /// <param name="menuItemName"Text of a <see cref="ToolStripMenuItem" /> to search for.</param>
+        /// <param name="menuItemName" Text of a
+        /// <see cref="ToolStripMenuItem" />
+        /// to search for.
+        /// </param>
         /// <returns>A controller that has been matched, or null.</returns>
         public IController GetController(string menuItemName)
         {

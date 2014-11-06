@@ -9,6 +9,7 @@ namespace SharedClasses.MVC
     {
         protected ControllerMVC()
         {
+            Values = new Dictionary<string, object>();
             View = new T();
         }
 
