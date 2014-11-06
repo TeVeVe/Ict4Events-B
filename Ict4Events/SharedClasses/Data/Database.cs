@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
 using SharedClasses.Events;
+using SharedClasses.Extensions;
 using SharedClasses.Properties;
 
 namespace SharedClasses.Data
@@ -98,7 +99,7 @@ namespace SharedClasses.Data
         }
 
         /// <summary>
-        ///     Create a new database connection.
+        ///     Activate a new database connection.
         /// </summary>
         /// <param name="username">Login username to access the database.</param>
         /// <param name="password">Login password to access the database.</param>
@@ -122,7 +123,7 @@ namespace SharedClasses.Data
         }
 
         /// <summary>
-        ///     Create a new database connection.
+        ///     Activate a new database connection.
         /// </summary>
         /// <param name="username">Login username to access the database.</param>
         /// <param name="password">Login password to access the database.</param>
@@ -205,7 +206,7 @@ namespace SharedClasses.Data
                 // Get the reader from the database.
                 OracleDataReader reader = readTask.Result;
 
-                // Create the objects from the rows and return them as a collection.
+                // Activate the objects from the rows and return them as a collection.
                 while (reader.Read())
                 {
                     var objs = new object[reader.FieldCount];
@@ -213,6 +214,35 @@ namespace SharedClasses.Data
                         objs[i] = reader[i];
                     yield return objs;
                 }
+            }
+        }
+
+        public DataTable ExecuteCursorProcedure(string procedureName, params KeyValuePair<string, object>[] parms)
+        {
+            if (string.IsNullOrWhiteSpace(procedureName))
+                throw new ArgumentException("ProcedureName must not be empty.", "procedureName");
+
+            using (OracleDataAdapter da = new OracleDataAdapter())
+            using (OracleCommand cmd = new OracleCommand())
+            {
+                cmd.Connection = Connection;
+                cmd.CommandText = "SYSTEM." + procedureName;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Add default OUT cursor.
+                cmd.Parameters.Add("P_CURSOR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                // Add stored procedure parameters.
+                foreach (var parm in parms)
+                {
+                    cmd.Parameters.Add(parm.Key, parm.Value.GetOrableDbType()).Value = parm.Value;
+                }
+
+                da.SelectCommand = cmd;
+                var table = new DataTable();
+                da.Fill(table);
+
+                return table;
             }
         }
 

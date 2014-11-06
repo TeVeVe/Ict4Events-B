@@ -12,7 +12,7 @@ namespace AccessControlSystem.Controllers
 {
     public class ControllerScanRFID : ControllerMVC<ViewScanRFID>
     {
-        public override void Create()
+        public override void Activate()
         {
             var rfid = new RadioFrequency();
 

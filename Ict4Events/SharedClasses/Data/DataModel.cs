@@ -59,7 +59,7 @@ namespace SharedClasses.Data
             {
                 return typeof(T).GetCustomAttribute<TableAttribute>().Name;
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
                 throw new NullReferenceException(string.Format("DataModel {0} has no TableAttribute specified.",
                     typeof(T)));
@@ -137,7 +137,8 @@ namespace SharedClasses.Data
         public static IEnumerable<T> Select(string whereStatement = null, QueryOptions options = 0,
             string ignoreFields = null)
         {
-            if (Database == null) throw new DataException("Database of database was not set.");
+            if (Database == null)
+                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
 
             // Build select.
@@ -161,7 +162,7 @@ namespace SharedClasses.Data
                 // Read a new record.
                 while (reader.Read())
                 {
-                    // Create a new object to represent this record.
+                    // Activate a new object to represent this record.
                     var obj = new T();
 
                     // Loop through all the fields of this record and store the values in their properties.
@@ -225,7 +226,8 @@ namespace SharedClasses.Data
         public static IEnumerable<T> Select(string whereStatement, QueryOptions options = 0,
             params KeyValuePair<string, string>[] parms)
         {
-            if (Database == null) throw new DataException("Database of database was not set.");
+            if (Database == null)
+                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
 
             // Build select.
@@ -245,14 +247,17 @@ namespace SharedClasses.Data
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
             {
                 // Add SQL-Injection safe parameters.
-                cmd.Parameters.AddRange(parms.Select(p => new OracleParameter(p.Key, p.Value.GetOrableDbType(), p.Value, ParameterDirection.Input)).ToArray());
+                cmd.Parameters.AddRange(
+                    parms.Select(
+                        p => new OracleParameter(p.Key, p.Value.GetOrableDbType(), p.Value, ParameterDirection.Input))
+                        .ToArray());
 
                 using (OracleDataReader reader = cmd.ExecuteReader())
                 {
                     // Read a new record.
                     while (reader.Read())
                     {
-                        // Create a new object to represent this record.
+                        // Activate a new object to represent this record.
                         var obj = new T();
 
                         // Loop through all the fields of this record and store the values in their properties.
@@ -305,7 +310,7 @@ namespace SharedClasses.Data
                     }
                 }
             }
-        }
+        } 
 
         /// <summary>
         ///     Updates a record in the database by using the primary key.
@@ -313,7 +318,8 @@ namespace SharedClasses.Data
         /// <returns>A value bigger than zero if succeeded.</returns>
         public int Update()
         {
-            if (Database == null) throw new DataException("Database of database was not set.");
+            if (Database == null)
+                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields =
                 GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
@@ -355,7 +361,8 @@ namespace SharedClasses.Data
         /// <returns>Records affected.</returns>
         public int Insert()
         {
-            if (Database == null) throw new DataException("Database of database was not set.");
+            if (Database == null)
+                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields =
                 GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
@@ -407,7 +414,8 @@ namespace SharedClasses.Data
         /// <returns>Records affected.</returns>
         public int Delete()
         {
-            if (Database == null) throw new DataException("Database of database was not set.");
+            if (Database == null)
+                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields =
                 GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 

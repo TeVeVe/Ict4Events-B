@@ -18,7 +18,7 @@ namespace SharedClasses.MVC
         /// </summary>
         public FormMVC MainForm
         {
-            get { return (FormMVC) View.ParentForm; }
+            get { return (FormMVC)View.ParentForm; }
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace SharedClasses.MVC
         Control IController.View
         {
             get { return View; }
-            set { View = (T) value; }
+            set { View = (T)value; }
         }
 
         /// <summary>
@@ -37,9 +37,8 @@ namespace SharedClasses.MVC
 
         public Dictionary<string, object> Values { get; set; }
 
-        public virtual void Create()
+        public virtual void Activate()
         {
-            
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace SharedClasses.MVC
             if (IsPopup)
                 MainForm.Close();
             else if (MainForm.MainController != null)
-                MainForm.ActiveController = (IController) Activator.CreateInstance(MainForm.MainController);
+                MainForm.ActiveController = (IController)Activator.CreateInstance(MainForm.MainController);
             else
                 MainForm.ActiveController = null;
         }

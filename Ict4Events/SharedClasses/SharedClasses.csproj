@@ -88,6 +88,12 @@
     <Compile Include="Controls\WinForms\InteractiveMap.Designer.cs">
       <DependentUpon>InteractiveMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WinForms\NamedClearableTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForms\NamedClearableTextBox.Designer.cs">
+      <DependentUpon>NamedClearableTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WinForms\PanelFeedPost.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\CommentSection.resx">
       <DependentUpon>CommentSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForms\NamedClearableTextBox.resx">
+      <DependentUpon>NamedClearableTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>

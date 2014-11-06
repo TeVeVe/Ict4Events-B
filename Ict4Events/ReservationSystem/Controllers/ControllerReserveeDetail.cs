@@ -10,40 +10,48 @@ namespace ReservationSystem.Controllers
 {
     internal class ControllerReserveeDetail : ControllerMVC<ViewReserveeDetail>
     {
-        private string emailTo;
-        private string name;
+        private Reservee reservee;
 
-        public override void Create()
+        public ControllerReserveeDetail()
         {
             View.ButtonCancelClick += ViewOnButtonCancelClick;
             View.ButtonSaveClick += ViewOnButtonSaveClick;
 
-            if (Values.ContainsKey("USERACCOUNT"))
+            if (Values.ContainsKey("RESERVEE"))
             {
                 // Fill fields with UserAccount properties.
-                var account = (UserAccount) Values["USERACCOUNT"];
-                View.TextBoxName.Text = account.Username;
+                reservee = (Reservee)Values["RESERVEE"];
+                View.TextBoxName.Text = reservee.FirstName;
             }
+        }
+
+        public override void Activate()
+        {
+            
         }
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveMenuItemText = "Bezoekers";
+            MainForm.Open<ControllerReservees>();
         }
 
         private void ViewOnButtonSaveClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveMenuItemText = "Bezoekers";
-            // TODO:  Validation of data
-            // TODO: Insert data in database
+            if (reservee == null)
+                throw new NullReferenceException("Reservee was not send to the detail page.");
 
-            emailTo = View.TextBoxEmail.Text;
-            name = View.TextBoxName.Text;
-            SendReservationConfirmationEmail(emailTo);
+            reservee.FirstName = View.TextBoxName.Text;
+            reservee.Insertion = View.TextBoxInsertion.Text;
+
+            MainForm.Open<ControllerReservees>();
+            //SendReservationConfirmationEmail(emailTo);
         }
 
         public void SendReservationConfirmationEmail(string email)
         {
+            if (string.IsNullOrWhiteSpace(reservee.EmailAddress))
+                return;
+
             string smtpAddress = "smtp.gmail.com";
             int portNumber = 587;
             bool enableSSL = true;
@@ -57,30 +65,32 @@ namespace ReservationSystem.Controllers
                     "Geachte {0}, <br><br>bij deze is uw reservering succesvol verwerkt in ons systeem! <br>Uw bestelde polsbandjes zullen zo snel mogelijk naar u verstuurd worden. <br>" +
                     "Op de dag van het evenement kunt u dit polsbandje gebruiken om toegang te krijgen tot het evenemententerein. <br>" +
                     "U kunt het te betalen bedrag overmaken naar het volgende rekeningnummer: <b>123456</b>.<br><br>" +
-                    "Veel plezier op het event!", name);
+                    "Veel plezier op het event!",
+                    reservee.FirstName +
+                    (!string.IsNullOrWhiteSpace(reservee.Insertion) ? " " + reservee.Insertion + " " : "") +
+                    reservee.LastName);
 
             using (var mail = new MailMessage())
             {
-                
-                    mail.From = new MailAddress(emailFrom);
-                    mail.To.Add(emailTo);
-                    mail.Subject = subject;
-                    mail.Body = body;
-                    mail.IsBodyHtml = true;
+                mail.From = new MailAddress(emailFrom);
+                mail.To.Add(reservee.EmailAddress);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
 
 
-                    using (var smtp = new SmtpClient(smtpAddress, portNumber))
-                    {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                        smtp.Credentials = new NetworkCredential(emailFrom, password);
-                        smtp.EnableSsl = enableSSL;
-                        smtp.Timeout = 10000;
-                        smtp.Send(mail);
-                    }
-                    MessageBox.Show("Bevestigingsmail succesvol verstuurd!");
+                using (var smtp = new SmtpClient(smtpAddress, portNumber))
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Credentials = new NetworkCredential(emailFrom, password);
+                    smtp.EnableSsl = enableSSL;
+                    smtp.Timeout = 10000;
+                    smtp.Send(mail);
+                }
+                MessageBox.Show("Bevestigingsmail verstuurd.");
             }
         }
     }

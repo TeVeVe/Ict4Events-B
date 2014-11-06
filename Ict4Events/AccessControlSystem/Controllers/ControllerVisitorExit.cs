@@ -10,7 +10,7 @@ namespace AccessControlSystem.Controllers
 {
     class ControllerVisitorExit : ControllerMVC<ViewVisitorExit>
     {
-        public override void Create()
+        public override void Activate()
         {
             Task.Factory.StartNew(() =>
             {

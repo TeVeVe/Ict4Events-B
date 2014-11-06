@@ -6,7 +6,7 @@ namespace AccessControlSystem.Controllers
 {
     public class ControllerAccessDenied : ControllerMVC<ViewAccessDenied>
     {
-        public override void Create()
+        public override void Activate()
         {
             Task.Factory.StartNew(() =>
             {
