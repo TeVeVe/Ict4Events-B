@@ -6,7 +6,7 @@ namespace SharedClasses.Controls.WinForms
 {
     public class PanelTile : Panel
     {
-        public PanelTile(string imagePath, string primaryText, string secondaryText)
+        public PanelTile(string primaryText, string secondaryText, string imagePath = null)
         {
             BackColor = Color.Red;
 
@@ -25,7 +25,6 @@ namespace SharedClasses.Controls.WinForms
             primaryLabel.ForeColor = Color.White;
             primaryLabel.AutoSize = true;
             
-
             Label secondaryLabel = new Label();
             textPanel.Controls.Add(secondaryLabel);
             secondaryLabel.Text = secondaryText;

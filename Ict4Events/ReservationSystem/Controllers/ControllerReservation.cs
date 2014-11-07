@@ -11,6 +11,11 @@ namespace ReservationSystem.Controllers
 {
     class ControllerReservation : ControllerMVC<ViewReservation>
     {
+        public override void Activate()
+        {
+            View.dataGridViewVisitors.DataSource = Reservation.Select().ToList();
+        }
+
         public ControllerReservation()
         {
             View.ButtonAddReservationClick += ViewOnButtonAddReservationClick;

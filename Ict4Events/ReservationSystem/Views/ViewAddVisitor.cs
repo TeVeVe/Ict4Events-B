@@ -7,16 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SharedClasses.Controls;
-using SharedClasses.Controls.WinForms;
-using SharedClasses.Extensions;
 
-namespace MediaSharingApplication.Views
+namespace ReservationSystem.Views
 {
-    public partial class ViewMain : UserControl
+    public partial class ViewAddVisitor : UserControl
     {
-
-        public ViewMain()
+        public ViewAddVisitor()
         {
             InitializeComponent();
         }

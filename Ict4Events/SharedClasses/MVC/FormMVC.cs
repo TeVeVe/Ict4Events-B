@@ -213,12 +213,12 @@ namespace SharedClasses.MVC
         ///     Opens the new controller and creates it if it doesn't exist.
         /// </summary>
         /// <typeparam name="T">Any <see cref="Type" /> of <see cref="IController" />.</typeparam>
-        public void Open<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
+        public IController Open<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
         {
-            Open(typeof(T), values);
+            return Open(typeof(T), values);
         }
 
-        internal void Open(Type type, params KeyValuePair<string, object>[] values)
+        internal IController Open(Type type, params KeyValuePair<string, object>[] values)
         {
             // Controller must be of the right type.
             if (!typeof(IController).IsAssignableFrom(type))
@@ -247,6 +247,8 @@ namespace SharedClasses.MVC
 
             // Move controller into view and mark it as active.
             ActiveController = controller;
+
+            return controller;
         }
 
         /// <summary>
@@ -264,19 +266,20 @@ namespace SharedClasses.MVC
         /// <typeparam name="T">A type of controller for displaying.</typeparam>
         /// <param name="controller">A controller to display.</param>
         /// <returns></returns>
-        public T PopupController<T>(T controller) where T : class, IController
+        public T PopupController<T>() where T : IController, new()
         {
             // Activate a new temporary host.
             var host = new FormMVC();
 
             // Mark controller as popup.
+            var controller = Open<T>();
             controller.IsPopup = true;
             host.ActiveController = controller;
 
             // Show and block code.
             host.ShowDialog();
 
-            return controller;
+            return (T)controller;
         }
 
         /// <summary>

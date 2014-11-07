@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
+            this.filePicture = new System.Windows.Forms.PictureBox();
+            this.downloadButton = new System.Windows.Forms.Button();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.DescriptionLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,52 +47,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Naam:";
             // 
-            // button1
+            // backButton
             // 
-            this.button1.Location = new System.Drawing.Point(3, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(51, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Terug";
-            this.button1.UseVisualStyleBackColor = true;
+            this.backButton.Location = new System.Drawing.Point(3, 36);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(51, 23);
+            this.backButton.TabIndex = 2;
+            this.backButton.Text = "Terug";
+            this.backButton.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // filePicture
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(62, 36);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 150);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.filePicture.Location = new System.Drawing.Point(62, 36);
+            this.filePicture.Name = "filePicture";
+            this.filePicture.Size = new System.Drawing.Size(200, 150);
+            this.filePicture.TabIndex = 3;
+            this.filePicture.TabStop = false;
             // 
-            // button2
+            // downloadButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(268, 8);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Download";
-            this.button2.UseVisualStyleBackColor = true;
+            this.downloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.downloadButton.Location = new System.Drawing.Point(268, 8);
+            this.downloadButton.Name = "downloadButton";
+            this.downloadButton.Size = new System.Drawing.Size(75, 23);
+            this.downloadButton.TabIndex = 4;
+            this.downloadButton.Text = "Download";
+            this.downloadButton.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // nameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(59, 13);
-            this.label2.MaximumSize = new System.Drawing.Size(150, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(59, 13);
+            this.nameLabel.MaximumSize = new System.Drawing.Size(150, 0);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(35, 13);
+            this.nameLabel.TabIndex = 5;
+            this.nameLabel.Text = "label2";
             // 
-            // label3
+            // DescriptionLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 189);
-            this.label3.MaximumSize = new System.Drawing.Size(150, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
+            this.DescriptionLabel.AutoSize = true;
+            this.DescriptionLabel.Location = new System.Drawing.Point(59, 189);
+            this.DescriptionLabel.MaximumSize = new System.Drawing.Size(150, 0);
+            this.DescriptionLabel.Name = "DescriptionLabel";
+            this.DescriptionLabel.Size = new System.Drawing.Size(64, 13);
+            this.DescriptionLabel.TabIndex = 6;
+            this.DescriptionLabel.Text = "Beschrijving";
             // 
             // panel1
             // 
@@ -101,20 +101,20 @@
             this.panel1.Size = new System.Drawing.Size(281, 206);
             this.panel1.TabIndex = 7;
             // 
-            // FileDetail
+            // ViewFileDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DescriptionLabel);
+            this.Controls.Add(this.nameLabel);
+            this.Controls.Add(this.downloadButton);
+            this.Controls.Add(this.filePicture);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.label1);
-            this.Name = "FileDetail";
+            this.Name = "ViewFileDetail";
             this.Size = new System.Drawing.Size(346, 414);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,11 +123,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.PictureBox filePicture;
+        public System.Windows.Forms.Label nameLabel;
+        public System.Windows.Forms.Label DescriptionLabel;
     }
 }

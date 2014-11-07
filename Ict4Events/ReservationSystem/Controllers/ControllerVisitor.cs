@@ -14,9 +14,12 @@ namespace ReservationSystem.Controllers
         {
             View.ButtonAddVisitorClick += ViewOnButtonAddVisitorClick;
             View.CheckboxIsOnSiteCheckChanged += ViewOnCheckboxIsOnSiteCheckChanged;
-            View.DataGridViewVisitors.DataSource = Wristband.Select().ToList();
-
             View.CellModifyVisitorClick += ViewOnCellModifyVisitorClick;
+        }
+
+        public override void Activate()
+        {
+            View.DataGridViewVisitors.DataSource = Wristband.Select().ToList();
         }
 
         private void ViewOnCellModifyVisitorClick(object sender, DataGridViewCellMouseEventArgs e)

@@ -7,6 +7,10 @@ namespace ProductRentalApplication.Controllers
 {
     public class ControllerProductDetail : ControllerMVC<ViewProductDetail>
     {
+        public ControllerProductDetail()
+        {
+        }
+
         public ControllerProductDetail(Product product = null)
         {
             View.Product = product;
