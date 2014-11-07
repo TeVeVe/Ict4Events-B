@@ -4,12 +4,12 @@ using SharedClasses.Data.Attributes;
 namespace SharedClasses.Data.Models
 {
     [Table("FILE")]
-    public class File
+    public class File : DataModel<File>
     {
         [Key]
         [FieldName("FILEID")]
         public int Id { get; set; }
-        public string Decription { get; set; }
+        public string Description { get; set; }
         public string Name { get; set; }
         public DateTime PostTime { get; set; }
         public int ReportCount { get; set; }
@@ -18,10 +18,9 @@ namespace SharedClasses.Data.Models
         [DbIgnore]
         public Category Category { get; set; }
 
-        public File(UserAccount userAccount, string decription)
+        public File()
         {
-            UserAccount = userAccount;
-            Decription = decription;
+            
         }
 
         public void AddLike(UserAccount userAccount)

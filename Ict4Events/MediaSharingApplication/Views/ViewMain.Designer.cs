@@ -76,7 +76,6 @@ namespace MediaSharingApplication.Views
             this.Controls.Add(this.CategoryTreeView);
             this.Name = "ViewMain";
             this.Size = new System.Drawing.Size(871, 425);
-            this.Load += new System.EventHandler(this.ViewMain_Load);
             this.ResumeLayout(false);
 
         }
@@ -85,6 +84,6 @@ namespace MediaSharingApplication.Views
 
         public PanelFeed FeedPanel;
         public TreeViewCategory CategoryTreeView;
-        private CategoryFiles CategoryFiles;
+        public CategoryFiles CategoryFiles;
     }
 }

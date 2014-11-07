@@ -20,15 +20,5 @@ namespace MediaSharingApplication.Views
         {
             InitializeComponent();
         }
-
-        private void ViewMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FlowLayoutPanelFiles_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
