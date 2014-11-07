@@ -15,7 +15,7 @@ namespace ReservationSystem.Controllers
         public ControllerReservees()
         {
             View.DataGridViewReserveesDoubleClick += ViewOnDataGridViewReserveesDoubleClick;
-            View.ButtonReserveesAdd += ViewOnAddClick;
+            View.ButtonAddRowClick += ViewOnAddRowClickClick;
         }
 
         public override void Activate()
@@ -29,7 +29,7 @@ namespace ReservationSystem.Controllers
             MainForm.Open<ControllerReserveeDetail>(new KeyValuePair<string, object>("RESERVEE", reservee));
         }
 
-        private void ViewOnAddClick(object sender, EventArgs e)
+        private void ViewOnAddRowClickClick(object sender, EventArgs e)
         {
             MainForm.Open<ControllerReserveeDetail>(new KeyValuePair<string, object>("RESERVEE", null));
         }
