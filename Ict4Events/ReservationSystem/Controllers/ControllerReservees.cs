@@ -16,6 +16,17 @@ namespace ReservationSystem.Controllers
         {
             View.DataGridViewReserveesDoubleClick += ViewOnDataGridViewReserveesDoubleClick;
             View.ButtonAddRowClick += ViewOnAddRowClickClick;
+            View.ButtonDeleteRowClick += ViewOnButtonDeleteRowClick;
+        }
+
+        private void ViewOnButtonDeleteRowClick(object sender, EventArgs eventArgs)
+        {
+            if (View.DataGridViewReservees.SelectedCells.Count == 0)
+                return;
+
+            var reservee = (Reservee)View.DataGridViewReservees.SelectedCells[0].OwningRow.DataBoundItem;
+            reservee.Delete();
+            MainForm.ResetController();
         }
 
         public override void Activate()
