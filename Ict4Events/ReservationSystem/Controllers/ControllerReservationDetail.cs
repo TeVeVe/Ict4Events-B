@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReservationSystem.Views;
+using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
@@ -15,6 +16,12 @@ namespace ReservationSystem.Controllers
             View.ButtonAddProductClick += ViewOnButtonAddProductClick;
             View.ButtonSaveReservationClick += ViewOnButtonSaveReservationClick;
             View.ButtonCancelClick += ViewOnButtonCancelClick;
+            View.ButtonAddVisitorClick += ViewOnButtonAddVisitorClick;
+        }
+
+        private void ViewOnButtonAddVisitorClick(object sender, EventArgs e)
+        {
+            MainForm.PopupController<ControllerAddVisitor>();
         }
 
         private void ViewOnButtonAddProductClick(object sender, EventArgs eventArgs)

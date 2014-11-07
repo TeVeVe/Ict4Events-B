@@ -52,7 +52,7 @@
             // 
             this.dataGridViewVisitors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewVisitors.Location = new System.Drawing.Point(0, 134);
-            this.dataGridViewVisitors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewVisitors.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewVisitors.Name = "dataGridViewVisitors";
             this.dataGridViewVisitors.RowTemplate.Height = 24;
             this.dataGridViewVisitors.Size = new System.Drawing.Size(497, 343);
@@ -61,7 +61,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(201, 22);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(22, 21);
             this.button2.TabIndex = 27;
@@ -71,7 +71,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(148, 66);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 24);
             this.button5.TabIndex = 26;
@@ -81,7 +81,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(68, 66);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 24);
             this.button4.TabIndex = 25;
@@ -113,7 +113,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(82, 4);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 16;
@@ -126,7 +126,7 @@
             this.panel2.Controls.Add(this.buttonAddReservation);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 103);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(497, 31);
             this.panel2.TabIndex = 19;
@@ -134,7 +134,7 @@
             // buttonAddReservation
             // 
             this.buttonAddReservation.Location = new System.Drawing.Point(2, 4);
-            this.buttonAddReservation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddReservation.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddReservation.Name = "buttonAddReservation";
             this.buttonAddReservation.Size = new System.Drawing.Size(75, 23);
             this.buttonAddReservation.TabIndex = 15;
@@ -145,7 +145,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(69, 24);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(128, 20);
             this.textBox2.TabIndex = 20;
@@ -164,7 +164,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(69, 2);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(128, 20);
             this.textBox1.TabIndex = 16;
@@ -172,7 +172,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(201, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(22, 21);
             this.button1.TabIndex = 19;
@@ -193,7 +193,7 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(497, 103);
             this.panel1.TabIndex = 18;
@@ -201,7 +201,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(69, 44);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(155, 20);
             this.dateTimePicker1.TabIndex = 28;
@@ -213,7 +213,7 @@
             this.Controls.Add(this.dataGridViewVisitors);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservation";
             this.Size = new System.Drawing.Size(497, 477);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVisitors)).EndInit();
@@ -226,7 +226,6 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewVisitors;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
@@ -241,5 +240,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        public System.Windows.Forms.DataGridView dataGridViewVisitors;
     }
 }

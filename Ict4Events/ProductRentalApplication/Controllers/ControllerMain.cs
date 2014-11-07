@@ -13,7 +13,7 @@ namespace ProductRentalApplication.Controllers
 
         private void ViewOnAddProductClick(object sender, EventArgs eventArgs)
         {
-            MainForm.PopupController(new ControllerProductDetail());
+            MainForm.PopupController<ControllerProductDetail>();
         }
     }
 }

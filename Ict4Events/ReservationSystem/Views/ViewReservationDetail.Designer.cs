@@ -50,12 +50,13 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(240, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(22, 21);
             this.button1.TabIndex = 22;
             this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -71,7 +72,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(240, 25);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(22, 21);
             this.button2.TabIndex = 25;
@@ -92,7 +93,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(108, 51);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(31, 20);
             this.numericUpDown1.TabIndex = 26;
@@ -111,7 +112,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(4, 50);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(156, 215);
@@ -120,7 +121,7 @@
             // buttonAddProduct
             // 
             this.buttonAddProduct.Location = new System.Drawing.Point(4, 25);
-            this.buttonAddProduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonAddProduct.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddProduct.Name = "buttonAddProduct";
             this.buttonAddProduct.Size = new System.Drawing.Size(79, 21);
             this.buttonAddProduct.TabIndex = 29;
@@ -131,7 +132,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(88, 25);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(71, 21);
             this.button4.TabIndex = 30;
@@ -141,7 +142,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(108, 2);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(128, 20);
             this.textBox1.TabIndex = 31;
@@ -149,7 +150,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(108, 27);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(128, 20);
             this.textBox2.TabIndex = 32;
@@ -157,7 +158,7 @@
             // buttonSaveReservation
             // 
             this.buttonSaveReservation.Location = new System.Drawing.Point(108, 359);
-            this.buttonSaveReservation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSaveReservation.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveReservation.Name = "buttonSaveReservation";
             this.buttonSaveReservation.Size = new System.Drawing.Size(59, 21);
             this.buttonSaveReservation.TabIndex = 33;
@@ -168,7 +169,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(172, 359);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(69, 21);
             this.buttonCancel.TabIndex = 34;
@@ -182,9 +183,9 @@
             this.groupBox1.Controls.Add(this.buttonAddProduct);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Location = new System.Drawing.Point(108, 74);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(165, 271);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
@@ -205,7 +206,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservationDetail";
             this.Size = new System.Drawing.Size(280, 386);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
