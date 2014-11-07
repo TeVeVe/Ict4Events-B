@@ -64,6 +64,8 @@ namespace SharedClasses.Extensions
                 return ((decimal)Convert.ChangeType(obj, typeof(decimal))).ToString(CultureInfo.InvariantCulture);
             if (type == typeof(bool))
                 return '\'' + ((bool)obj ? "Y" : "N") + '\'';
+            if (type == typeof (DateTime))
+                return string.Format("TO_DATE('{0}', 'yyyy-MM-dd hh:mi:ss')", ((DateTime)obj).ToString("yyyy-MM-dd hh:mm:ss")); 
             return '\'' + (string)obj + '\'';
         }
 

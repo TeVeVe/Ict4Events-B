@@ -369,7 +369,7 @@ namespace SharedClasses.Data
             // Build UPDATE.
             var builder = new StringBuilder();
             builder.Append("INSERT INTO ");
-            builder.Append(GetTableName<T>());
+            builder.Append("\"" + GetTableName<T>() + "\"");
             builder.Append("(");
             builder.Append(GetPrimaryKey<T>());
             builder.Append(", ");
