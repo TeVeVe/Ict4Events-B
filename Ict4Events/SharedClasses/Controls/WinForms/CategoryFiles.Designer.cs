@@ -43,7 +43,6 @@
             this.AddFileButton.TabIndex = 0;
             this.AddFileButton.Text = "Toevoegen";
             this.AddFileButton.UseVisualStyleBackColor = true;
-            this.AddFileButton.Click += new System.EventHandler(this.AddFileButton_Click);
             // 
             // FileFlowLayout
             // 
@@ -88,9 +87,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button AddFileButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button DownloadButton;
         public System.Windows.Forms.FlowLayoutPanel FileFlowLayout;
+        public System.Windows.Forms.Button AddFileButton;
     }
 }

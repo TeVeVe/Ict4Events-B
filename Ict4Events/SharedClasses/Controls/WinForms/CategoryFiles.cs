@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
+using SharedClasses.Data.Models;
 using SharedClasses.FTP;
 
 namespace SharedClasses.Controls.WinForms
@@ -13,22 +14,22 @@ namespace SharedClasses.Controls.WinForms
             InitializeComponent();
         }
 
-        private void AddFileButton_Click(object sender, EventArgs e)
-        {
-            var categories = new List<string>();
-            string filePath = "";
+        //private void AddFileButton_Click(object sender, EventArgs e)
+        //{
+        //    var categories = new List<string>();
+        //    string filePath = "";
 
-            var ofd = new OpenFileDialog();
-            DialogResult result = ofd.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                Debug.WriteLine(ofd.FileName);
-                filePath = ofd.FileName;
+        //    var ofd = new OpenFileDialog();
+        //    DialogResult result = ofd.ShowDialog();
+        //    if (result == DialogResult.OK)
+        //    {
+        //        Debug.WriteLine(ofd.FileName);
+        //        filePath = ofd.FileName;
 
-                categories.AddRange(new List<string> {"testmap1", "testmap2"});
-                FileTransfer.UploadFile(filePath, categories);
-            }
-        }
+        //        categories = GetAllParents(View.)
+        //        FileTransfer.UploadFile(filePath, categories);
+        //    }
+        //}
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {

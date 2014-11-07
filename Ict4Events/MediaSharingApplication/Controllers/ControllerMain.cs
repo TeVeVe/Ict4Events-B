@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data;
-using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
+using SharedClasses.FTP;
 using SharedClasses.MVC;
+using File = SharedClasses.Data.Models.File;
 
 namespace MediaSharingApplication.Controllers
 {
@@ -16,11 +20,71 @@ namespace MediaSharingApplication.Controllers
         public override void Activate()
         {
             CreateNodes();
-            FillFileFlowPanel("Muziek");
+
+            View.CategoryTreeView.NodeClick += CategoryTreeView_NodeClick;
+            View.CategoryFiles.AddFileButton.Click += AddFileButton_Click;
+        }
+
+        void AddFileButton_Click(object sender, EventArgs e)
+        {
+            if (View.CategoryTreeView.SelectedNode == null)
+            {
+                MessageBox.Show("Selecteer een categorie om een bestand toe te kunnen voegen.");
+                return;
+            }
+            string filePath = "";
+            
+
+            var ofd = new OpenFileDialog();
+            DialogResult result = ofd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                filePath = ofd.FileName;
+
+                var directoryNames = GetDirectoryNames(View.CategoryTreeView.SelectedNode);
+                FileTransfer.UploadFile(filePath, directoryNames);
+
+                // Insert file into database.
+                File file = new File();
+                file.Name = Path.GetFileName(filePath);
+                file.PostTime = DateTime.Now;
+                file.ReportCount = 0;
+                file.CategoryId = (int)View.CategoryTreeView.SelectedNode.Tag;
+                file.Description = "File";
+#if DEBUG
+                file.UserAccountId = 1;
+#else
+                file.UserAccountId = MainForm.UserSession;
+#endif
+                file.Insert();
+            }
+        }
+
+        private IEnumerable<string> GetDirectoryNames(TreeNode node)
+        {
+            List<String> categoryList = new List<String>();
+            TreeNode parent = node.Parent;
+
+            categoryList.Add(node.Text);
+            while (parent != null)
+            {
+                categoryList.Add(parent.Text);
+                parent = parent.Parent;
+            }
+
+            categoryList.Reverse();
+            return categoryList;
+        }
+
+        void CategoryTreeView_NodeClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            FillFileFlowPanel(e.Node.Text);
         }
 
         private void FillFileFlowPanel(string catName)
         {
+            View.CategoryFiles.FileFlowLayout.Controls.Clear();
+
             IEnumerable<File> files =
                 File.Select("CATEGORYID = (SELECT CATEGORYID FROM CATEGORY WHERE NAME = " + catName.ToSqlFormat() + ")");
 
@@ -72,6 +136,7 @@ namespace MediaSharingApplication.Controllers
                     root = new TreeNode();
                     root.Text = (string)dr["NAME"];
                     root.ToolTipText = (string)dr["DESCRIPTION"];
+                    root.Tag = (int) dr["CATEGORYID"];
 
                     treeView.Nodes.Add(root);
                     prevNode = root;
@@ -83,6 +148,7 @@ namespace MediaSharingApplication.Controllers
                     node = new TreeNode();
                     node.Text = (string)dr["NAME"];
                     node.ToolTipText = (string)dr["DESCRIPTION"];
+                    node.Tag = (int)dr["CATEGORYID"];
 
                     parent.Nodes.Add(node);
                     prevNode = node;
@@ -92,6 +158,7 @@ namespace MediaSharingApplication.Controllers
                     node = new TreeNode();
                     node.Text = (string)dr["NAME"];
                     node.ToolTipText = (string)dr["DESCRIPTION"];
+                    node.Tag = (int)dr["CATEGORYID"];
 
                     prevNode.Parent.Nodes.Add(node);
                 }

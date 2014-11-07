@@ -31,6 +31,11 @@ namespace SharedClasses.Controls.WinForms
             get { return treeViewCategories.Nodes; }
         }
 
+        public TreeNode SelectedNode
+        {
+            get { return treeViewCategories.SelectedNode; }
+        }
+
         public string SearchFilter
         {
             get { return textBoxSearchFilter.Text; }

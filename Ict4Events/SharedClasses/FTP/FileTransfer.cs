@@ -17,7 +17,7 @@ namespace SharedClasses.FTP
         private static readonly NetworkCredential credentials = new NetworkCredential(Settings.Default.FTP_UserID,
             Settings.Default.FTP_Password);
 
-        public static bool UploadFile(string filePath, List<string> categories)
+        public static bool UploadFile(string filePath, IEnumerable<string> categories)
         {
             string fileName = "";
             string categoriesPath = "";
@@ -29,7 +29,7 @@ namespace SharedClasses.FTP
             /* Creating a path from the categories */
             foreach (string c in categories)
             {
-                categoriesPath += c + "/";
+                categoriesPath += c + '/';
             }
 
             if (CreateFolder(categoriesPath))
