@@ -33,7 +33,7 @@
             this.filePicture = new System.Windows.Forms.PictureBox();
             this.downloadButton = new System.Windows.Forms.Button();
             this.nameLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.DescriptionLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.SuspendLayout();
@@ -84,15 +84,15 @@
             this.nameLabel.TabIndex = 5;
             this.nameLabel.Text = "label2";
             // 
-            // label3
+            // DescriptionLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 189);
-            this.label3.MaximumSize = new System.Drawing.Size(150, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Beschrijving";
+            this.DescriptionLabel.AutoSize = true;
+            this.DescriptionLabel.Location = new System.Drawing.Point(59, 189);
+            this.DescriptionLabel.MaximumSize = new System.Drawing.Size(150, 0);
+            this.DescriptionLabel.Name = "DescriptionLabel";
+            this.DescriptionLabel.Size = new System.Drawing.Size(64, 13);
+            this.DescriptionLabel.TabIndex = 6;
+            this.DescriptionLabel.Text = "Beschrijving";
             // 
             // panel1
             // 
@@ -106,7 +106,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.DescriptionLabel);
             this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.downloadButton);
             this.Controls.Add(this.filePicture);
@@ -124,10 +124,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.PictureBox filePicture;
         private System.Windows.Forms.Button downloadButton;
-        private System.Windows.Forms.Label nameLabel;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.PictureBox filePicture;
+        public System.Windows.Forms.Label nameLabel;
+        public System.Windows.Forms.Label DescriptionLabel;
     }
 }

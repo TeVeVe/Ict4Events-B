@@ -16,7 +16,7 @@ namespace MediaSharingApplication.Controllers
     {
         public override void Activate()
         {
-            CreateNodes();
+            //CreateNodes();
             FillFileFlowPanel("Muziek");
         }
 
@@ -27,6 +27,7 @@ namespace MediaSharingApplication.Controllers
             foreach (var file in files)
             {
                 var pt = new PanelTile(file.Name, file.Description);
+                pt.Tag = file;
                 pt.Click += pt_Click;
                 View.CategoryFiles.FileFlowLayout.Controls.Add(pt);
 
@@ -36,7 +37,7 @@ namespace MediaSharingApplication.Controllers
 
         void pt_Click(object sender, System.EventArgs e)
         {
-            MainForm.Open<ControllerFileDetail>();
+            MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTile)sender).Tag));
         }
 
         private void CreateNodes()

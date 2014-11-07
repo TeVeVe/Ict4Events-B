@@ -85,7 +85,7 @@ namespace SharedClasses.Data
                 }
                 return
                     string.Format(
-                        "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVIE_NAME={2})));User ID={3};Password={4}",
+                        "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVICE_NAME={2})));User ID={3};Password={4}",
                         Host, Port, Service, Username, Password);
             }
         }
