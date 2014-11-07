@@ -29,11 +29,11 @@ namespace ProductRentalApplication.Controllers
             }
             else if (e.AuthMethod == AuthenticateEventArgs.AuthenticationMethod.RFIDNumber)
             {
-                MainForm.PopupController(new ControllerRegisterAccount());
+                MainForm.PopupController<ControllerRegisterAccount>();
             }
             else
             {
-                MainForm.ActiveController = new ControllerMain();
+                MainForm.Open<ControllerMain>();
             }
         }
     }
