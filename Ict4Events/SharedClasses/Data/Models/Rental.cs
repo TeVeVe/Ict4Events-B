@@ -3,7 +3,7 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
-    public class Rental
+    public class Rental : DataModel<Rental>
     {
         [Key]
         [FieldName("RENTALID")]

@@ -47,6 +47,7 @@ namespace ReservationSystem.Controllers
                 }
                 else
                 {
+                    View.DataGridViewVisitors.DataSource = Wristband.Select("IsOnSite = 'Y'").ToList();
                     MessageBox.Show("Er zijn momenteel geen gasten aanwezig.");
                 }
             }

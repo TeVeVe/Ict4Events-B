@@ -327,7 +327,6 @@ namespace SharedClasses.Data
             var builder = new StringBuilder();
             builder.Append("UPDATE ");
             builder.Append(GetTableName<T>());
-            builder.Append(" SET ");
 
             // Build SET.
             for (int i = 0; i < fields.Count(); i++)
@@ -425,24 +424,8 @@ namespace SharedClasses.Data
             var builder = new StringBuilder();
             builder.Append("DELETE FROM ");
             builder.Append(GetTableName<T>());
-            builder.Append(" SET ");
 
-            // Build SET.
-            for (int i = 0; i < fields.Count(); i++)
-            {
-                KeyValuePair<string, string> setField = fields.ElementAt(i);
-
-                builder.Append(setField.Value);
-                builder.Append(" = ");
-
-                PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
-
-                // Save field to database.
-                builder.Append(prop.GetValue(this).ToSqlFormat());
-
-                if (i < fields.Count() - 1)
-                    builder.Append(',');
-            }
+            
 
             builder.Append(" WHERE ");
             builder.Append(GetPrimaryKey<T>());

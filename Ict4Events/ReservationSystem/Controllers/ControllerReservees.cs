@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ReservationSystem.Views;
+using SharedClasses.Data;
 using SharedClasses.Data.Models;
 using SharedClasses.MVC;
 
@@ -25,6 +26,11 @@ namespace ReservationSystem.Controllers
                 return;
 
             var reservee = (Reservee)View.DataGridViewReservees.SelectedCells[0].OwningRow.DataBoundItem;
+            var reserveeId = reservee.ReserveeId;
+            DataModel.Database.ExecuteNonQuery("DELETE FROM Rental r WHERE r.VISITORCODE IN (SELECT VISITORCODE FROM Wristband w JOIN reservation re ON w.RESERVATIONID = re.RESERVATIONID WHERE re.RESERVATIONID =  " + reserveeId+")");
+            DataModel.Database.ExecuteNonQuery("DELETE FROM Wristband w JOIN Reservation r ON w.ReservationID = r.ReservationID WHERE r.reserveeID = " + reserveeId);
+            DataModel.Database.ExecuteNonQuery("DELETE FROM Reservation WHERE reserveeID = "+reserveeId);
+
             reservee.Delete();
             MainForm.ResetController();
         }
