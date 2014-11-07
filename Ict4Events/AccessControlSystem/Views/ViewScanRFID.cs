@@ -18,10 +18,5 @@ namespace AccessControlSystem.Views
         {
             InitializeComponent();
         }
-
-        private void centeredMessagePanel1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

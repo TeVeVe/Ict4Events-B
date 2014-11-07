@@ -40,7 +40,6 @@
             this.panelCenteredMessage1.Name = "panelCenteredMessage1";
             this.panelCenteredMessage1.Size = new System.Drawing.Size(501, 238);
             this.panelCenteredMessage1.TabIndex = 0;
-            this.panelCenteredMessage1.Load += new System.EventHandler(this.panelCenteredMessage1_Load);
             // 
             // ViewVisitorExit
             // 

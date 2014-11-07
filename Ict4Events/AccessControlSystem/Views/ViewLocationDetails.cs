@@ -10,19 +10,5 @@ namespace AccessControlSystem.Views
         {
             InitializeComponent();
         }
-
-        public InteractiveMap InteractiveMap
-        {
-            get { return interactiveMap1; }
-        }
-
-        private void interactiveMap1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void labelMessage_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

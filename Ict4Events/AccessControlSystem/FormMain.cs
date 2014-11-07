@@ -8,15 +8,11 @@ namespace AccessControlSystem
 {
     public partial class FormMain : FormMVC
     {
-        public static FormMain Form;
-
         public FormMain()
         {
             InitializeComponent();
 
             MarkAsMain<ControllerScanRFID>();
-
-            Form = this;
         }
     }
 }

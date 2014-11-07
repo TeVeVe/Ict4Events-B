@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewLocationDetails));
             this.panelMessage = new System.Windows.Forms.Panel();
             this.labelMessage = new System.Windows.Forms.Label();
-            this.interactiveMap1 = new SharedClasses.Controls.WinForms.InteractiveMap();
+            this.InteractiveMap = new SharedClasses.Controls.WinForms.InteractiveMap();
             this.panelMessage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,26 +53,24 @@
             this.labelMessage.Size = new System.Drawing.Size(209, 39);
             this.labelMessage.TabIndex = 1;
             this.labelMessage.Text = "Welkom! \r\n\r\nUw campingplek is hieronder aangegeven:";
-            this.labelMessage.Click += new System.EventHandler(this.labelMessage_Click);
             // 
-            // interactiveMap1
+            // InteractiveMap
             // 
-            this.interactiveMap1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.interactiveMap1.DrawImageRealSize = false;
-            this.interactiveMap1.ImageMap = ((System.Drawing.Image)(resources.GetObject("interactiveMap1.ImageMap")));
-            this.interactiveMap1.Location = new System.Drawing.Point(0, 47);
-            this.interactiveMap1.Name = "interactiveMap1";
-            this.interactiveMap1.Size = new System.Drawing.Size(474, 464);
-            this.interactiveMap1.TabIndex = 3;
-            this.interactiveMap1.Text = "interactiveMap1";
-            this.interactiveMap1.Click += new System.EventHandler(this.interactiveMap1_Click);
+            this.InteractiveMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InteractiveMap.DrawImageRealSize = false;
+            this.InteractiveMap.ImageMap = ((System.Drawing.Image)(resources.GetObject("InteractiveMap.ImageMap")));
+            this.InteractiveMap.Location = new System.Drawing.Point(0, 47);
+            this.InteractiveMap.Name = "InteractiveMap";
+            this.InteractiveMap.Size = new System.Drawing.Size(474, 464);
+            this.InteractiveMap.TabIndex = 3;
+            this.InteractiveMap.Text = "interactiveMap";
             // 
             // ViewLocationDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.Controls.Add(this.interactiveMap1);
+            this.Controls.Add(this.InteractiveMap);
             this.Controls.Add(this.panelMessage);
             this.Name = "ViewLocationDetails";
             this.Size = new System.Drawing.Size(474, 511);
@@ -86,7 +84,7 @@
 
         private System.Windows.Forms.Panel panelMessage;
         private System.Windows.Forms.Label labelMessage;
-        private SharedClasses.Controls.WinForms.InteractiveMap interactiveMap1;
+        public SharedClasses.Controls.WinForms.InteractiveMap InteractiveMap;
 
     }
 }
