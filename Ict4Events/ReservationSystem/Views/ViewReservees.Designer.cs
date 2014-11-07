@@ -75,6 +75,7 @@
             this.DataGridViewReservees.Name = "DataGridViewReservees";
             this.DataGridViewReservees.Size = new System.Drawing.Size(987, 368);
             this.DataGridViewReservees.TabIndex = 19;
+            this.DataGridViewReservees.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewReservees_CellDoubleClick);
             // 
             // ViewReservees
             // 

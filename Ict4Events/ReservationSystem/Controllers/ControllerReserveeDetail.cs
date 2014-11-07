@@ -3,7 +3,9 @@ using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
 using ReservationSystem.Views;
+using SharedClasses.Controls.WinForms;
 using SharedClasses.Data.Models;
+using SharedClasses.Extensions;
 using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
@@ -16,18 +18,32 @@ namespace ReservationSystem.Controllers
         {
             View.ButtonCancelClick += ViewOnButtonCancelClick;
             View.ButtonSaveClick += ViewOnButtonSaveClick;
-
-            if (Values.ContainsKey("RESERVEE"))
-            {
-                // Fill fields with UserAccount properties.
-                reservee = (Reservee)Values["RESERVEE"];
-                View.TextBoxName.Text = reservee.FirstName;
-            }
         }
 
         public override void Activate()
         {
-            
+            reservee = Values.SafeGetValue<Reservee>("RESERVEE");
+            if (reservee != null)
+            {
+                // Fill fields with UserAccount properties.
+                View.TextBoxName.Text = reservee.FirstName;
+                View.TextBoxInsertion.Text = reservee.Insertion;
+                View.TextBoxLastName.Text = reservee.LastName;
+                View.TextBoxStreet.Text = reservee.Street;
+                View.TextBoxCity.Text = reservee.City;
+                View.TextBoxPostalCode.Text = reservee.PostalCode;
+
+                // TODO: add property.
+                //View.TextBoxPhone.Text = reservee.Phone;
+
+                View.TextBoxEmail.Text = reservee.EmailAddress;
+            }
+            else
+            {
+                View.InvokeAll<NamedClearableTextBox>(t => t.Clear());
+            }
+
+            View.TextBoxName.FocusSelectAll();
         }
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
@@ -37,11 +53,26 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnButtonSaveClick(object sender, EventArgs eventArgs)
         {
-            if (reservee == null)
-                throw new NullReferenceException("Reservee was not send to the detail page.");
+            bool insertNew = reservee == null;
+            if (reservee == null) reservee = new Reservee();
 
+            // Set fields.
             reservee.FirstName = View.TextBoxName.Text;
             reservee.Insertion = View.TextBoxInsertion.Text;
+            reservee.LastName = View.TextBoxLastName.Text;
+            reservee.Street = View.TextBoxStreet.Text;
+            reservee.City = View.TextBoxCity.Text;
+            reservee.PostalCode = View.TextBoxPostalCode.Text;
+
+            // TODO: add property.
+            //reservee.Phone = View.TextBoxPhone.Text;
+
+            reservee.EmailAddress = View.TextBoxEmail.Text;
+
+            if (insertNew)
+                reservee.Insert();
+            else
+                reservee.Update();
 
             MainForm.Open<ControllerReservees>();
             //SendReservationConfirmationEmail(emailTo);

@@ -50,6 +50,7 @@
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(24, 22);
             this.buttonClear.TabIndex = 2;
+            this.buttonClear.TabStop = false;
             this.buttonClear.Text = "X";
             this.buttonClear.UseVisualStyleBackColor = true;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);

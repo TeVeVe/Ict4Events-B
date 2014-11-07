@@ -12,9 +12,6 @@ namespace SharedClasses.Controls.WinForms
             Custom
         }
 
-        [DefaultValue(ClearButtonActionType.ClearText)]
-        public ClearButtonActionType ButtonActionType { get; set; }
-
         private bool _hideClearButton;
         private string _labelText;
 
@@ -22,6 +19,9 @@ namespace SharedClasses.Controls.WinForms
         {
             InitializeComponent();
         }
+
+        [DefaultValue(ClearButtonActionType.ClearText)]
+        public ClearButtonActionType ButtonActionType { get; set; }
 
         [Browsable(false)]
         public Action ClearButtonAction { get; set; }
@@ -48,6 +48,50 @@ namespace SharedClasses.Controls.WinForms
             }
         }
 
+        /// <summary>
+        ///     Gets or sets the input text.
+        /// </summary>
+        public override string Text
+        {
+            get { return textBoxInput.Text; }
+            set { textBoxInput.Text = value; }
+        }
+
+        /// <summary>
+        /// Clears the <see cref="TextBox.Text"/>.
+        /// </summary>
+        public void Clear()
+        {
+            textBoxInput.Clear();
+        }
+
+        /// <summary>
+        ///     Moves the cursor at the first position in the <see cref="TextBox" />.
+        /// </summary>
+        public void FocusStart()
+        {
+            textBoxInput.Focus();
+            textBoxInput.Select(0, 0);
+        }
+
+        /// <summary>
+        ///     /Moves the cursor at the last position in the <see cref="TextBox" />.
+        /// </summary>
+        public void FocusEnd()
+        {
+            textBoxInput.Focus();
+            textBoxInput.Select(textBoxInput.TextLength, 0);
+        }
+
+        /// <summary>
+        ///     Moves the cursor in the <see cref="TextBox" /> and selects all the text.
+        /// </summary>
+        public void FocusSelectAll()
+        {
+            textBoxInput.Focus();
+            textBoxInput.SelectAll();
+        }
+
         private void buttonClear_Click(object sender, EventArgs e)
         {
             switch (ButtonActionType)
@@ -60,6 +104,18 @@ namespace SharedClasses.Controls.WinForms
                     textBoxInput.Clear();
                     break;
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Escape:
+                    buttonClear.PerformClick();
+                    return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

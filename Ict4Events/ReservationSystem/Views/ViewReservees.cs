@@ -34,14 +34,14 @@ namespace ReservationSystem.Views
 
         }
 
-        private void DataGridViewReservees_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            OnDataGridViewReserveesDoubleClick(e);
-        }
-
         private void buttonAddVisitor_Click(object sender, EventArgs e)
         {
             OnBottonReserveesAdd(e);
+        }
+
+        private void DataGridViewReservees_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OnDataGridViewReserveesDoubleClick(e);
         }
     }
 }

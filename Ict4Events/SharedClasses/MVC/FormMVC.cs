@@ -31,6 +31,7 @@ namespace SharedClasses.MVC
             _controllerCache = new Dictionary<Type, IController>();
 
             AllowUserResize = false;
+            AlwaysOneMenuItemSelected = true;
 
             Load += (sender, args) =>
             {
@@ -45,6 +46,8 @@ namespace SharedClasses.MVC
                 }
             };
         }
+
+        public bool AlwaysOneMenuItemSelected { get; set; }
 
         /// <summary>
         ///     Fallback controller.
@@ -168,13 +171,31 @@ namespace SharedClasses.MVC
                                 return false;
                             });
 
+
+                    if (AlwaysOneMenuItemSelected && selectedItem == null)
+                    {
+                        // Do nothing, keep current item selected.
+                        break;
+                    }
+
                     // Deselect everything.
-                    foreach (ToolStripMenuItem item in menuStripNavigation.Items)
-                        menuStripNavigation.InvokeSafe(c => item.BackColor = Color.FromKnownColor(KnownColor.Control));
+                    menuStripNavigation.InvokeSafe(c =>
+                    {
+                        foreach (ToolStripMenuItem item in menuStripNavigation.Items)
+                            item.BackColor = Color.FromKnownColor(KnownColor.Control);
+                    });
 
                     // Mark selected item.
-                    if (selectedItem != null)
-                        menuStripNavigation.InvokeSafe(c => selectedItem.BackColor = ActiveColor);
+                    menuStripNavigation.InvokeSafe(c =>
+                    {
+                        foreach (ToolStripMenuItem item in menuStripNavigation.Items)
+                        {
+                            if (item != selectedItem)
+                                item.BackColor = Color.FromKnownColor(KnownColor.Control);
+                            else
+                                item.BackColor = ActiveColor;
+                        }
+                    });
                     break;
             }
         }
@@ -197,18 +218,34 @@ namespace SharedClasses.MVC
             Open(typeof(T), values);
         }
 
-        private void Open(Type type, params KeyValuePair<string, object>[] values)
+        internal void Open(Type type, params KeyValuePair<string, object>[] values)
         {
+            // Controller must be of the right type.
+            if (!typeof(IController).IsAssignableFrom(type))
+            {
+                throw new TypeLoadException(string.Format("Type '{0}' cannot be casted to '{1}'.", type.FullName,
+                    typeof(IController).FullName));
+            }
+
+            // Create controller if it doesn't exist.
             if (!_controllerCache.ContainsKey(type))
                 _controllerCache.Add(type, (IController)Activator.CreateInstance(type));
 
             IController controller = _controllerCache[type];
 
+            // Add or update the values of the controller.
             if (values != null)
             {
                 foreach (var keyValuePair in values)
-                    controller.Values.Add(keyValuePair.Key, keyValuePair.Value);
+                {
+                    if (controller.Values.ContainsKey(keyValuePair.Key))
+                        controller.Values[keyValuePair.Key] = keyValuePair.Value;
+                    else
+                        controller.Values.Add(keyValuePair.Key, keyValuePair.Value);
+                }
             }
+
+            // Move controller into view and mark it as active.
             ActiveController = controller;
         }
 
@@ -291,16 +328,6 @@ namespace SharedClasses.MVC
             }
             else
                 _activeController.View.Dock = DockStyle.Fill;
-
-            if (_activeController.GetType() != MainController)
-            {
-                // If view falls outside of Screen boundries we should reset it.
-                Screen screen = Screen.FromRectangle(_activeController.View.Bounds);
-                if (!screen.Bounds.Contains(_activeController.View.Bounds))
-                    CenterToScreen();
-            }
-            else
-                this.InvokeSafe(c => CenterToScreen());
         }
 
         /// <summary>
@@ -318,6 +345,24 @@ namespace SharedClasses.MVC
             if (toolStripMenuItem != null)
                 return toolStripMenuItem.Tag as IController;
             return null;
+        }
+
+        /// <summary>
+        ///     Processes every key input on the form.
+        /// </summary>
+        /// <param name="msg">Windows message received.</param>
+        /// <param name="keyData">Key information that was received from input.</param>
+        /// <returns>If true, captures the keypress and doesn't send it further.</returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Shift | Keys.Escape:
+                    Close();
+                    return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

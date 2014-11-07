@@ -112,6 +112,7 @@
     <Compile Include="Events\DatabaseConnectionChangedEventArgs.cs" />
     <Compile Include="Events\ViewClosingEventArgs.cs" />
     <Compile Include="Exceptions\NoActiveControllerException.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

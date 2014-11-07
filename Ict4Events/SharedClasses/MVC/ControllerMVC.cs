@@ -9,7 +9,8 @@ namespace SharedClasses.MVC
     {
         protected ControllerMVC()
         {
-            Values = new Dictionary<string, object>();
+            if (Values == null)
+                Values = new Dictionary<string, object>();
             View = new T();
         }
 
@@ -55,7 +56,7 @@ namespace SharedClasses.MVC
             if (IsPopup)
                 MainForm.Close();
             else if (MainForm.MainController != null)
-                MainForm.ActiveController = (IController)Activator.CreateInstance(MainForm.MainController);
+                MainForm.Open(MainForm.MainController);
             else
                 MainForm.ActiveController = null;
         }
