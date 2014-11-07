@@ -15,7 +15,7 @@ namespace MediaSharingApplication.Controllers
     {
         public override void Activate()
         {
-            //CreateNodes();
+            CreateNodes();
             FillFileFlowPanel("Muziek");
         }
 
