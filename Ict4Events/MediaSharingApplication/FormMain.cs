@@ -10,7 +10,7 @@ namespace MediaSharingApplication
         {
             InitializeComponent();
 
-            MarkAsMain<ControllerLogin>();
+            MarkAsMain<ControllerMain>();
         }
 
         public UserAccount UserSession { get; set; }

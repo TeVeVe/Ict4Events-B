@@ -226,7 +226,7 @@ namespace SharedClasses.Data
             using (OracleCommand cmd = new OracleCommand())
             {
                 cmd.Connection = Connection;
-                cmd.CommandText = "SYSTEM." + procedureName;
+                cmd.CommandText = procedureName;
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 // Add default OUT cursor.

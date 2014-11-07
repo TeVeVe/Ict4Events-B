@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using MediaSharingApplication.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
 using SharedClasses.Events;
@@ -17,11 +18,11 @@ namespace MediaSharingApplication.Controllers
 
         public ControllerLogin()
         {
-            _rfidDetector = new RadioFrequency();
-            View.Authenticate += ViewOnAuthenticate;
+            //_rfidDetector = new RadioFrequency();
+            //View.Authenticate += ViewOnAuthenticate;
 
-            // Fill in the RFID tag automatically on scan.
-            _rfidDetector.Tag += (sender, args) => View.RFID = args.Value;
+            //// Fill in the RFID tag automatically on scan.
+            //_rfidDetector.Tag += (sender, args) => View.RFID = args.Value;
         }
 
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)

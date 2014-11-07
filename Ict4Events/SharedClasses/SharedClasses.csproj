@@ -211,6 +211,9 @@
     <EmbeddedResource Include="Controls\WinForms\PanelFeedPost.resx">
       <DependentUpon>PanelFeedPost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForms\PanelTile.resx">
+      <DependentUpon>PanelTile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MVC\FormMVC.resx">
       <DependentUpon>FormMVC.cs</DependentUpon>
     </EmbeddedResource>
