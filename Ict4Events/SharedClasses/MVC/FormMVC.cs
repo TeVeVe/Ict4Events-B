@@ -331,6 +331,8 @@ namespace SharedClasses.MVC
             }
             else
                 _activeController.View.Dock = DockStyle.Fill;
+
+            _activeController.Activate();
         }
 
         /// <summary>
