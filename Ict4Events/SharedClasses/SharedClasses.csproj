@@ -155,7 +155,7 @@
     <Compile Include="Data\Models\Reservee.cs" />
     <Compile Include="Data\Models\Spot.cs" />
     <Compile Include="Data\Models\UserAccount.cs" />
-    <Compile Include="Data\Models\Wristband.cs" />
+    <Compile Include="Data\Models\Visitor.cs" />
     <Compile Include="MVC\ControllerMVC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\WinForms\TreeViewCategory.cs">

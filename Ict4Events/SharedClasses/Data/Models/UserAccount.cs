@@ -17,6 +17,6 @@ namespace SharedClasses.Data.Models
         [FieldName("GroupId")]
         public int GroupId { get; set; }
         [DbIgnore]
-        public Wristband Wristband { get; set; }
+        public Visitor Visitor { get; set; }
     }
 }

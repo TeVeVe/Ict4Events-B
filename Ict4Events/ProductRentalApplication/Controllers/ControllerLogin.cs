@@ -26,7 +26,7 @@ namespace ProductRentalApplication.Controllers
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
             UserAccount account = null;
-            Wristband wristband = null;
+            Visitor visitor = null;
 
             // Authenticate user.
             switch (e.AuthMethod)
@@ -36,8 +36,8 @@ namespace ProductRentalApplication.Controllers
                     e.Authorized = account != null;
                     break;
                 case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
-                    wristband = Wristband.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
-                    e.Authorized = wristband != null;
+                    visitor = Visitor.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
+                    e.Authorized = visitor != null;
                     break;
             }
 
@@ -54,7 +54,7 @@ namespace ProductRentalApplication.Controllers
             else if (e.AuthMethod == AuthenticateEventArgs.AuthenticationMethod.RFIDNumber)
             {
                 // Check if the RFID number already has an account.
-                var rfidAccount = UserAccount.Select("VISITORCODE = " + wristband.VisitorCode.ToSqlFormat()).FirstOrDefault();
+                var rfidAccount = UserAccount.Select("VISITORCODE = " + visitor.VisitorCode.ToSqlFormat()).FirstOrDefault();
                 if (rfidAccount != null)
                 {
                     MessageBox.Show("Er is al een account aangemaakt voor het pasnummer.", "Account bestaat al",
@@ -62,7 +62,7 @@ namespace ProductRentalApplication.Controllers
                     return;
                 }
 
-                MainForm.Open<ControllerRegisterAccount>(new KeyValuePair<string, object>("VisitorCode", wristband.VisitorCode));
+                MainForm.Open<ControllerRegisterAccount>(new KeyValuePair<string, object>("VisitorCode", visitor.VisitorCode));
             }
             else
             {

@@ -29,12 +29,12 @@ namespace ReservationSystem.Controllers
             // TODO: Instead of removing all references we should update the reservee with a active boolean in the database. Then check further.
             var reservee = (Reservee)View.DataGridViewReservees.SelectedCells[0].OwningRow.DataBoundItem;
             var reserveeId = reservee.ReserveeId;
-            DataModel.Database.ExecuteNonQuery("DELETE FROM Rental r WHERE r.VISITORCODE IN (SELECT VISITORCODE FROM Wristband w JOIN reservation re ON w.RESERVATIONID = re.RESERVATIONID WHERE re.RESERVATIONID =  " + reserveeId.ToSqlFormat()+")");
+            DataModel.Database.ExecuteNonQuery("DELETE FROM Rental r WHERE r.VISITORCODE IN (SELECT VISITORCODE FROM Visitor w JOIN reservation re ON w.RESERVATIONID = re.RESERVATIONID WHERE re.RESERVATIONID =  " + reserveeId.ToSqlFormat()+")");
             DataModel.Database.ExecuteNonQuery(
     string.Format(
-        "DELETE FROM FEEDPOST fp WHERE fp.USERACCOUNTID IN (SELECT ua.USERACCOUNTID FROM USERACCOUNT ua WHERE ua.VISITORCODE IN (SELECT w.VISITORCODE FROM Wristband w WHERE w.RESERVATIONID IN (SELECT r.RESERVATIONID FROM RESERVATION R WHERE R.RESERVEEID = {0})))", reserveeId.ToSqlFormat()));
-            DataModel.Database.ExecuteNonQuery(string.Format("DELETE FROM USERACCOUNT a WHERE a.VISITORCODE IN (SELECT w.VISITORCODE FROM Wristband w WHERE w.RESERVATIONID IN (SELECT r.reservationid FROM RESERVATION r WHERE r.RESERVEEID = {0}))", reserveeId));
-            DataModel.Database.ExecuteNonQuery("DELETE FROM Wristband w WHERE w.RESERVATIONID IN (SELECT r.RESERVATIONID FROM Reservation r WHERE r.ReserveeID = " + reserveeId.ToSqlFormat() + ")");
+        "DELETE FROM FEEDPOST fp WHERE fp.USERACCOUNTID IN (SELECT ua.USERACCOUNTID FROM USERACCOUNT ua WHERE ua.VISITORCODE IN (SELECT w.VISITORCODE FROM Visitor w WHERE w.RESERVATIONID IN (SELECT r.RESERVATIONID FROM RESERVATION R WHERE R.RESERVEEID = {0})))", reserveeId.ToSqlFormat()));
+            DataModel.Database.ExecuteNonQuery(string.Format("DELETE FROM USERACCOUNT a WHERE a.VISITORCODE IN (SELECT w.VISITORCODE FROM Visitor w WHERE w.RESERVATIONID IN (SELECT r.reservationid FROM RESERVATION r WHERE r.RESERVEEID = {0}))", reserveeId));
+            DataModel.Database.ExecuteNonQuery("DELETE FROM Visitor w WHERE w.RESERVATIONID IN (SELECT r.RESERVATIONID FROM Reservation r WHERE r.ReserveeID = " + reserveeId.ToSqlFormat() + ")");
             DataModel.Database.ExecuteNonQuery("DELETE FROM Reservation WHERE reserveeID = "+reserveeId.ToSqlFormat());
 
             reservee.Delete();
