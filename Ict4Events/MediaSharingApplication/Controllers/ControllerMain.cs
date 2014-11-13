@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Windows.Forms;
+using MediaSharingApplication.Properties;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data;
@@ -15,6 +21,8 @@ namespace MediaSharingApplication.Controllers
 {
     public class ControllerMain : ControllerMVC<ViewMain>
     {
+        ResourceManager rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
+
         public override void Activate()
         {
             CreateNodes();
@@ -84,15 +92,15 @@ namespace MediaSharingApplication.Controllers
         private void FillFileFlowPanel(string catName)
         {
             View.CategoryFiles.FileFlowLayout.Controls.Clear();
-
             IEnumerable<File> files =
                 File.Select("CATEGORYID = (SELECT CATEGORYID FROM CATEGORY WHERE NAME = " + catName.ToSqlFormat() + ")");
 
-
+            
             foreach (File file in files)
             {
                 var pt = new PanelTile(file.Name, file.Description);
                 pt.Tag = file;
+                pt.pictureBox1.ImageLocation = setFileImage(file.Name);
                 pt.Click += pt_Click;
                 View.CategoryFiles.FileFlowLayout.Controls.Add(pt);
             }
@@ -100,9 +108,35 @@ namespace MediaSharingApplication.Controllers
 
         private void pt_Click(object sender, EventArgs e)
         {
-            MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTile) sender).Tag),
+            MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTileOld) sender).Tag),
                 new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),
                 new KeyValuePair<string, object>("fileName", sender));
+        }
+
+        private string setFileImage(string fileName)
+        {
+            string ext = Path.GetExtension(fileName);
+            Debug.WriteLine(ext);
+
+            if (new[] { ".png", ".jpg", ".gif"}.Contains(ext))
+            {
+                return "Icons\\camera.png";
+            }
+
+            else if (new[] { ".avi", ".mkv", ".wmv"}.Contains(ext))
+            {
+                return "Icons\\music.png";
+            }
+
+            else if (new[] { ".mp3", ".aac", ".ac3"}.Contains(ext))
+            {
+                return "Icons\\wmp.png";
+            }
+
+            else
+            {
+                return "Icons\\writing.png";
+            }
         }
 
         private void CreateNodes()
