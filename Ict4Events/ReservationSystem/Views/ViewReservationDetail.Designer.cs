@@ -212,6 +212,7 @@
             this.buttonSaveReservation.TabIndex = 40;
             this.buttonSaveReservation.Text = "Opslaan";
             this.buttonSaveReservation.UseVisualStyleBackColor = true;
+            this.buttonSaveReservation.Click += new System.EventHandler(this.buttonSaveReservation_Click_1);
             // 
             // ViewReservationDetail
             // 

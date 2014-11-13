@@ -13,6 +13,14 @@ namespace ReservationSystem.Views
         public event EventHandler ButtonSaveReservationClick;
         public event EventHandler ButtonCancelClick;
         public event EventHandler ButtonAddEvent;
+        public event EventHandler ButtonAddGroupNames;
+
+        protected virtual void OnButtonAddGroupNames()
+        {
+            EventHandler handler = ButtonAddGroupNames;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
 
         protected virtual void OnButtonAddEvent()
         {
@@ -60,6 +68,11 @@ namespace ReservationSystem.Views
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             OnButtonCancelClick();
+        }
+
+        private void buttonSaveReservation_Click_1(object sender, EventArgs e)
+        {
+            OnButtonAddGroupNames();
         }
     }
 }
