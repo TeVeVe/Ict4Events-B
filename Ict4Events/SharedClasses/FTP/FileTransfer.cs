@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using SharedClasses.Extensions;
@@ -20,12 +21,8 @@ namespace SharedClasses.FTP
 
         public static bool UploadFile(string filePath, IEnumerable<string> categories)
         {
-            string fileName = "";
             string categoriesPath = "";
-
-            /* Getting the filename from the path */
-            string[] paths = filePath.Split('\\');
-            fileName = paths.Last();
+            string fileName = Path.GetFileName(filePath);
 
             /* Creating a path from the categories */
             foreach (string c in categories)
@@ -35,26 +32,23 @@ namespace SharedClasses.FTP
 
             if (CreateFolder(categoriesPath))
             {
-                var uploadRequest =
-                    (FtpWebRequest)
-                        WebRequest.Create(String.Format("ftp://{0}/{1}{2}", Settings.Default.FTP_Server, categoriesPath,
-                            fileName));
+                var uploadRequest = (FtpWebRequest) WebRequest.Create(String.Format("ftp://{0}/{1}{2}", Settings.Default.FTP_Server, categoriesPath, fileName));
                 uploadRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 uploadRequest.Credentials = credentials;
 
-                var reader = new StreamReader(filePath);
-                Byte[] fileContents = Encoding.UTF8.GetBytes(reader.ReadToEnd());
-                reader.Close();
-                uploadRequest.ContentLength = fileContents.Length;
-
-                Stream requestStream = uploadRequest.GetRequestStream();
-                requestStream.Write(fileContents, 0, fileContents.Length);
-                requestStream.Close();
+                using (FileStream fs = File.OpenRead(filePath))
+                {
+                    var buffer = new byte[fs.Length];
+                    fs.Read(buffer, 0, buffer.Length);
+                    fs.Close();
+                    Stream requestStream = uploadRequest.GetRequestStream();
+                    requestStream.Write(buffer, 0, buffer.Length);
+                    requestStream.Close();
+                    requestStream.Flush();
+                }
 
                 var response = (FtpWebResponse) uploadRequest.GetResponse();
-
                 MessageBox.Show(String.Format("File upload complete, status: {0}", response.StatusDescription));
-
                 response.Close();
                 return true;
             }
@@ -68,9 +62,7 @@ namespace SharedClasses.FTP
         {
             try
             {
-                var directoryRequest =
-                    (FtpWebRequest)
-                        WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, categoriesPath));
+                var directoryRequest = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, categoriesPath));
                 directoryRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
                 directoryRequest.Credentials = credentials;
 
@@ -98,14 +90,15 @@ namespace SharedClasses.FTP
 
         public static bool DownloadFile(string fileName)
         {
-            var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
+            var request =
+                (FtpWebRequest) WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(Settings.Default.FTP_UserID, Settings.Default.FTP_Password);
 
             FtpWebResponse response = null;
             try
             {
-                response = (FtpWebResponse)request.GetResponse();
+                response = (FtpWebResponse) request.GetResponse();
             }
             catch (WebException ex)
             {
@@ -116,25 +109,31 @@ namespace SharedClasses.FTP
 
             Stream responseStream = response.GetResponseStream();
 
-            using (var fbd = new FolderBrowserDialog())
+            var openFileTask = TaskExt.StartSTATask(() =>
             {
-                DialogResult result = fbd.ShowDialog();
-                if (result == DialogResult.OK)
+                using (var fbd = new FolderBrowserDialog())
                 {
-                    File.WriteAllBytes(String.Format("{0}\\{1}", fbd.SelectedPath, Path.GetFileName(fileName)), responseStream.ReadAllBytes());
-                    Debug.WriteLine("Download Complete, status {0}", response.StatusDescription);
-                    response.Close();
-                    return true;
+                    DialogResult result = fbd.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        File.WriteAllBytes(String.Format("{0}\\{1}", fbd.SelectedPath, Path.GetFileName(fileName)),
+                            responseStream.ReadAllBytes());
+                        Debug.WriteLine("Download Complete, status {0}", response.StatusDescription);
+                        response.Close();
+                        return true;
+                    }
                 }
-            }
+                return false;
+            });
+            openFileTask.Wait();
 
             response.Close();
-            return false;
+            return openFileTask.Result;
         }
 
         public static IEnumerable<string> GetDirectoryNames(TreeNode node)
         {
-            List<String> categoryList = new List<String>();
+            var categoryList = new List<String>();
             TreeNode parent = node.Parent;
 
             categoryList.Add(node.Text);
