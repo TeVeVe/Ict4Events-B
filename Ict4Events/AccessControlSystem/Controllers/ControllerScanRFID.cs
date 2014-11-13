@@ -36,7 +36,6 @@ namespace AccessControlSystem.Controllers
                     if (reservation.First().PaymentStatus)
                     {
                         // if payment status is OK
-                        FormMain.Form.Open<ControllerLocationDetails>();
                         Visitor visitor = wristbands.First();
 
                         if (!visitor.IsOnSite)
@@ -44,12 +43,14 @@ namespace AccessControlSystem.Controllers
                             // User is not yet on site but checkin is successful: access granted, update database to set guest as present (on site).
                             visitor.IsOnSite = true;
                             visitor.Update();
+                            FormMain.Form.Open<ControllerLocationDetails>();
                         }
                         else
                         {
                             // User was already on site but checked out: update database to set guest as away (not on site).
-                            visitor.IsOnSite = !visitor.IsOnSite;
+                            visitor.IsOnSite = false;
                             visitor.Update();
+                            FormMain.Form.Open<ControllerVisitorExit>();
                         }
                     }
                         // Access denied due to negative payment status.
