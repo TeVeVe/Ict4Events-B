@@ -28,35 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonAddVisitor = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonAddEvent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonAddProduct = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.buttonSaveReservation = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSaveReservation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonAddVisitor
             // 
-            this.button1.Location = new System.Drawing.Point(240, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 21);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAddVisitor.Location = new System.Drawing.Point(240, 1);
+            this.buttonAddVisitor.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddVisitor.Name = "buttonAddVisitor";
+            this.buttonAddVisitor.Size = new System.Drawing.Size(22, 21);
+            this.buttonAddVisitor.TabIndex = 22;
+            this.buttonAddVisitor.Text = "...";
+            this.buttonAddVisitor.UseVisualStyleBackColor = true;
+            this.buttonAddVisitor.Click += new System.EventHandler(this.buttonAddVisitor_Click);
             // 
             // label1
             // 
@@ -69,15 +73,16 @@
             this.label1.Text = "Bezoeker:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // button2
+            // buttonAddEvent
             // 
-            this.button2.Location = new System.Drawing.Point(240, 25);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(22, 21);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonAddEvent.Location = new System.Drawing.Point(240, 25);
+            this.buttonAddEvent.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddEvent.Name = "buttonAddEvent";
+            this.buttonAddEvent.Size = new System.Drawing.Size(22, 21);
+            this.buttonAddEvent.TabIndex = 25;
+            this.buttonAddEvent.Text = "...";
+            this.buttonAddEvent.UseVisualStyleBackColor = true;
+            this.buttonAddEvent.Click += new System.EventHandler(this.buttonAddEvent_Click);
             // 
             // label2
             // 
@@ -95,7 +100,7 @@
             this.numericUpDown1.Location = new System.Drawing.Point(108, 51);
             this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(31, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(43, 20);
             this.numericUpDown1.TabIndex = 26;
             // 
             // label3
@@ -111,33 +116,13 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 50);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(2, 15);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(156, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(341, 254);
             this.dataGridView1.TabIndex = 28;
-            // 
-            // buttonAddProduct
-            // 
-            this.buttonAddProduct.Location = new System.Drawing.Point(4, 25);
-            this.buttonAddProduct.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonAddProduct.Name = "buttonAddProduct";
-            this.buttonAddProduct.Size = new System.Drawing.Size(79, 21);
-            this.buttonAddProduct.TabIndex = 29;
-            this.buttonAddProduct.Text = "Toevoegen";
-            this.buttonAddProduct.UseVisualStyleBackColor = true;
-            this.buttonAddProduct.Click += new System.EventHandler(this.buttonAddProduct_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(88, 25);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(71, 21);
-            this.button4.TabIndex = 30;
-            this.button4.Text = "Verwijderen";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -155,63 +140,101 @@
             this.textBox2.Size = new System.Drawing.Size(128, 20);
             this.textBox2.TabIndex = 32;
             // 
-            // buttonSaveReservation
-            // 
-            this.buttonSaveReservation.Location = new System.Drawing.Point(108, 359);
-            this.buttonSaveReservation.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSaveReservation.Name = "buttonSaveReservation";
-            this.buttonSaveReservation.Size = new System.Drawing.Size(59, 21);
-            this.buttonSaveReservation.TabIndex = 33;
-            this.buttonSaveReservation.Text = "Opslaan";
-            this.buttonSaveReservation.UseVisualStyleBackColor = true;
-            this.buttonSaveReservation.Click += new System.EventHandler(this.buttonSaveReservation_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(172, 359);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(69, 21);
-            this.buttonCancel.TabIndex = 34;
-            this.buttonCancel.Text = "Annuleren";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.buttonAddProduct);
-            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Location = new System.Drawing.Point(108, 74);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(165, 271);
+            this.groupBox1.Size = new System.Drawing.Size(345, 271);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producten";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.buttonDelete);
+            this.panel1.Controls.Add(this.buttonAdd);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(2, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(341, 29);
+            this.panel1.TabIndex = 37;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(82, 3);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.TabIndex = 39;
+            this.buttonDelete.Text = "Verwijderen";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Location = new System.Drawing.Point(3, 3);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 23);
+            this.buttonAdd.TabIndex = 40;
+            this.buttonAdd.Text = "Toevoegen";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.buttonCancel);
+            this.panelBottom.Controls.Add(this.buttonSaveReservation);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 350);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(460, 36);
+            this.panelBottom.TabIndex = 36;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(187, 3);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 39;
+            this.buttonCancel.Text = "Annuleren";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // buttonSaveReservation
+            // 
+            this.buttonSaveReservation.Location = new System.Drawing.Point(108, 3);
+            this.buttonSaveReservation.Name = "buttonSaveReservation";
+            this.buttonSaveReservation.Size = new System.Drawing.Size(75, 23);
+            this.buttonSaveReservation.TabIndex = 40;
+            this.buttonSaveReservation.Text = "Opslaan";
+            this.buttonSaveReservation.UseVisualStyleBackColor = true;
             // 
             // ViewReservationDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSaveReservation);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonAddEvent);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAddVisitor);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservationDetail";
-            this.Size = new System.Drawing.Size(280, 386);
+            this.Size = new System.Drawing.Size(460, 386);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panelBottom.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,20 +242,22 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAddVisitor;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonAddEvent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button buttonAddProduct;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button buttonSaveReservation;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonSaveReservation;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonAdd;
 
     }
 }

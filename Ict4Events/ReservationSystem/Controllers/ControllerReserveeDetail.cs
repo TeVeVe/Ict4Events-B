@@ -32,10 +32,7 @@ namespace ReservationSystem.Controllers
                 View.TextBoxStreet.Text = reservee.Street;
                 View.TextBoxCity.Text = reservee.City;
                 View.TextBoxPostalCode.Text = reservee.PostalCode;
-
-                // TODO: add property.
-                //View.TextBoxPhone.Text = reservee.Phone;
-
+                View.TextBoxHouseNumber.Text = reservee.HouseNumber;
                 View.TextBoxEmail.Text = reservee.EmailAddress;
             }
             else

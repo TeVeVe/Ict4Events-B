@@ -18,6 +18,12 @@ namespace MediaSharingApplication.Controllers
         public ControllerRegisterAccount()
         {
             View.RegisterClick += ViewOnRegisterClick;
+            View.CancelClick += ViewOnCancelClick;
+        }
+
+        private void ViewOnCancelClick(object sender, EventArgs eventArgs)
+        {
+            MainForm.Open<ControllerLogin>();
         }
 
         private void ViewOnRegisterClick(object sender, EventArgs eventArgs)
@@ -39,9 +45,11 @@ namespace MediaSharingApplication.Controllers
             }
 
             // Check if both username and password are filled in.
-            if (!string.IsNullOrWhiteSpace(View.Username) && !string.IsNullOrWhiteSpace(View.Password))
+            if (string.IsNullOrWhiteSpace(View.Username) && string.IsNullOrWhiteSpace(View.Password))
             {
-                // TODO: Show message.
+                MessageBox.Show("Voer een gebruikersnaam en wachtwoord in", "Lege velden", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
             }
 
             // Insert a new account in the group "Gebruikers".

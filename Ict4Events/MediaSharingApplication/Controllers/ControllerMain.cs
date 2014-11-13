@@ -49,6 +49,8 @@ namespace MediaSharingApplication.Controllers
                 file.ReportCount = 0;
                 file.CategoryId = (int) View.CategoryTreeView.SelectedNode.Tag;
                 file.Description = "File";
+
+                // TODO: Use user session.
 #if DEBUG
                 file.UserAccountId = 1;
 #else

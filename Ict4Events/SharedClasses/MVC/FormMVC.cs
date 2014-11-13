@@ -104,7 +104,10 @@ namespace SharedClasses.MVC
 
                 // Refresh user code in controller.
                 if (_activeController != null)
+                {
+                    _activeController.View.Focus();
                     _activeController.Activate();
+                }
             }
         }
 

@@ -13,15 +13,20 @@ namespace ReservationSystem.Controllers
     {
         public ControllerReservationDetail()
         {
-            View.ButtonAddProductClick += ViewOnButtonAddProductClick;
+            View.ButtonAddEvent += ViewOnButtonAddEvent;
             View.ButtonSaveReservationClick += ViewOnButtonSaveReservationClick;
             View.ButtonCancelClick += ViewOnButtonCancelClick;
             View.ButtonAddVisitorClick += ViewOnButtonAddVisitorClick;
         }
 
+        private void ViewOnButtonAddEvent(object sender, EventArgs eventArgs)
+        {
+            //
+        }
+
         private void ViewOnButtonAddVisitorClick(object sender, EventArgs e)
         {
-            MainForm.PopupController<ControllerAddVisitor>();
+            MainForm.PopupController<ControllerVisitorDetail>();
         }
 
         private void ViewOnButtonAddProductClick(object sender, EventArgs eventArgs)
@@ -36,7 +41,7 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveMenuItemText = "Reserveringen";
+            MainForm.Open<ControllerReservation>();
         }
     }
 }

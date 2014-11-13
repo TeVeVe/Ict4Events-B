@@ -73,9 +73,7 @@ namespace SharedClasses.Data
             get
             {
                 if (File.Exists("connection.txt"))
-                {
                     return File.ReadAllText("connection.txt");
-                }
 
                 if (!string.IsNullOrWhiteSpace(SID))
                 {
@@ -116,9 +114,17 @@ namespace SharedClasses.Data
             db.Host = host;
             db.Port = 1521;
             db.Service = service;
-            db.QueryTimeout = int.Parse((string) Settings.Default["DB_QueryTimeout"]);
+            db.QueryTimeout = int.Parse((string)Settings.Default["DB_QueryTimeout"]);
 
-            db.Open();
+            try
+            {
+                db.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Er kon geen verbinding worden gemaakt met de database.", "Database verbinding fout",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             return db;
         }
@@ -140,9 +146,17 @@ namespace SharedClasses.Data
             db.Host = host;
             db.Port = 1521;
             db.SID = sid;
-            db.QueryTimeout = int.Parse((string) Settings.Default["DB_QueryTimeout"]);
+            db.QueryTimeout = int.Parse((string)Settings.Default["DB_QueryTimeout"]);
 
-            db.Open();
+            try
+            {
+                db.Open();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Er kon geen verbinding worden gemaakt met de database.", "Database verbinding fout",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             return db;
         }
@@ -152,7 +166,8 @@ namespace SharedClasses.Data
         protected virtual void OnConnectionStateChanged(DatabaseConnectionChangedEventArgs e)
         {
             EventHandler<DatabaseConnectionChangedEventArgs> handler = ConnectionStateChanged;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         /// <summary>
@@ -161,8 +176,8 @@ namespace SharedClasses.Data
         /// <returns></returns>
         public static Database FromSettings()
         {
-            return ConnectToService((string) Settings.Default["DB_UserID"], (string) Settings.Default["DB_Password"],
-                (string) Settings.Default["DB_Server"], (string) Settings.Default["DB_Service"]);
+            return ConnectToService((string)Settings.Default["DB_UserID"], (string)Settings.Default["DB_Password"],
+                (string)Settings.Default["DB_Server"], (string)Settings.Default["DB_Service"]);
         }
 
         /// <summary>
@@ -170,7 +185,8 @@ namespace SharedClasses.Data
         /// </summary>
         protected void Open()
         {
-            if (Connection != null && Connection.State == ConnectionState.Open) return;
+            if (Connection != null && Connection.State == ConnectionState.Open)
+                return;
 
             Connection = new OracleConnection(ConnectionString);
             Task openTask = null;
@@ -233,8 +249,8 @@ namespace SharedClasses.Data
             if (string.IsNullOrWhiteSpace(procedureName))
                 throw new ArgumentException("ProcedureName must not be empty.", "procedureName");
 
-            using (OracleDataAdapter da = new OracleDataAdapter())
-            using (OracleCommand cmd = new OracleCommand())
+            using (var da = new OracleDataAdapter())
+            using (var cmd = new OracleCommand())
             {
                 cmd.Connection = Connection;
                 cmd.CommandText = procedureName;
@@ -245,9 +261,7 @@ namespace SharedClasses.Data
 
                 // Add stored procedure parameters.
                 foreach (var parm in parms)
-                {
                     cmd.Parameters.Add(parm.Key, parm.Value.GetOrableDbType()).Value = parm.Value;
-                }
 
                 da.SelectCommand = cmd;
                 var table = new DataTable();

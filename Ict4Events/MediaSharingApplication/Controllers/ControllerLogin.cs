@@ -18,11 +18,11 @@ namespace MediaSharingApplication.Controllers
 
         public ControllerLogin()
         {
-            //_rfidDetector = new RadioFrequency();
-            //View.Authenticate += ViewOnAuthenticate;
+            _rfidDetector = new RadioFrequency();
+            View.Authenticate += ViewOnAuthenticate;
 
-            //// Fill in the RFID tag automatically on scan.
-            //_rfidDetector.Tag += (sender, args) => View.RFID = args.Value;
+            // Fill in the RFID tag automatically on scan.
+            _rfidDetector.Tag += (sender, args) => View.RFID = args.Value;
         }
 
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
@@ -56,8 +56,7 @@ namespace MediaSharingApplication.Controllers
             else if (e.AuthMethod == AuthenticateEventArgs.AuthenticationMethod.RFIDNumber)
             {
                 // Check if the RFID number already has an account.
-                var rfidAccount =
-                    UserAccount.Select("VISITORCODE = " + wristband.VisitorCode.ToSqlFormat()).FirstOrDefault();
+                var rfidAccount = UserAccount.Select("VISITORCODE = " + wristband.VisitorCode.ToSqlFormat()).FirstOrDefault();
                 if (rfidAccount != null)
                 {
                     MessageBox.Show("Er is al een account aangemaakt voor het pasnummer.", "Account bestaat al",

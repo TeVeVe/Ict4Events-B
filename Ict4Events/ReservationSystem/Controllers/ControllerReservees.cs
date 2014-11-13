@@ -26,6 +26,7 @@ namespace ReservationSystem.Controllers
             if (View.DataGridViewReservees.SelectedCells.Count == 0)
                 return;
 
+            // TODO: Instead of removing all references we should update the reservee with a active boolean in the database. Then check further.
             var reservee = (Reservee)View.DataGridViewReservees.SelectedCells[0].OwningRow.DataBoundItem;
             var reserveeId = reservee.ReserveeId;
             DataModel.Database.ExecuteNonQuery("DELETE FROM Rental r WHERE r.VISITORCODE IN (SELECT VISITORCODE FROM Wristband w JOIN reservation re ON w.RESERVATIONID = re.RESERVATIONID WHERE re.RESERVATIONID =  " + reserveeId.ToSqlFormat()+")");

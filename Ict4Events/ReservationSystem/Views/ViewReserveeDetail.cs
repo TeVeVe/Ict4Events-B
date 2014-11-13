@@ -25,14 +25,14 @@ namespace ReservationSystem.Views
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            OnButtonCancelClick();
-        }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             OnButtonSaveClick();
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            OnButtonCancelClick();
         }
     }
 }

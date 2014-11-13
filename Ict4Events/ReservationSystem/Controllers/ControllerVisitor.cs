@@ -56,13 +56,14 @@ namespace ReservationSystem.Controllers
             }
             else
             {
+                // Refresh data.
                 View.DataGridViewVisitors.DataSource = Wristband.Select().ToList();
             }
         }
 
         private void ViewOnButtonAddVisitorClick(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveController = new ControllerReserveeDetail();
+            MainForm.Open<ControllerVisitorDetail>();
         }
     }
 }

@@ -12,7 +12,15 @@ namespace ReservationSystem.Views
 
         public event EventHandler ButtonSaveReservationClick;
         public event EventHandler ButtonCancelClick;
-        public event EventHandler ButtonAddProductClick;
+        public event EventHandler ButtonAddEvent;
+
+        protected virtual void OnButtonAddEvent()
+        {
+            EventHandler handler = ButtonAddEvent;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
         public event EventHandler ButtonAddVisitorClick;
 
         protected virtual void OnButtonAddVisitorClick()
@@ -20,12 +28,6 @@ namespace ReservationSystem.Views
             EventHandler handler = ButtonAddVisitorClick;
             if (handler != null)
                 handler(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnButtonAddProductClick()
-        {
-            EventHandler handler = ButtonAddProductClick;
-            if (handler != null) handler(this, EventArgs.Empty);
         }
 
         protected virtual void OnButtonSaveReservationClick()
@@ -40,24 +42,24 @@ namespace ReservationSystem.Views
             if (handler != null) handler(this, EventArgs.Empty);
         }
 
-        private void buttonAddProduct_Click(object sender, EventArgs e)
-        {
-            OnButtonAddProductClick();
-        }
-
         private void buttonSaveReservation_Click(object sender, System.EventArgs e)
         {
             OnButtonSaveReservationClick();
         }
 
+        private void buttonAddVisitor_Click(object sender, EventArgs e)
+        {
+            OnButtonAddVisitorClick();
+        }
+
+        private void buttonAddEvent_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             OnButtonCancelClick();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OnButtonAddVisitorClick();
         }
     }
 }
