@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ReservationSystem.Views
 {
-    public partial class ViewAddGroupNames : UserControl
+    public partial class ViewAddVisitorsToReservation : UserControl
     {
-        public ViewAddGroupNames()
+        public ViewAddVisitorsToReservation()
         {
             InitializeComponent();
         }

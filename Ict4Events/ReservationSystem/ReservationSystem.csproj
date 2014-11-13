@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ControllerAddGroupNames.cs" />
+    <Compile Include="Controllers\ControllerAddVisitorsToReservation.cs" />
     <Compile Include="Controllers\ControllerVisitorDetail.cs" />
     <Compile Include="Controllers\ControllerEvents.cs" />
     <Compile Include="Controllers\ControllerProducts.cs" />
@@ -71,11 +71,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ViewAddGroupNames.cs">
+    <Compile Include="Views\ViewAddVisitorsToReservation.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ViewAddGroupNames.Designer.cs">
-      <DependentUpon>ViewAddGroupNames.cs</DependentUpon>
+    <Compile Include="Views\ViewAddVisitorsToReservation.Designer.cs">
+      <DependentUpon>ViewAddVisitorsToReservation.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewVisitorDetail.cs">
       <SubType>UserControl</SubType>
@@ -138,8 +138,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\ViewAddGroupNames.resx">
-      <DependentUpon>ViewAddGroupNames.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewAddVisitorsToReservation.resx">
+      <DependentUpon>ViewAddVisitorsToReservation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewEvents.resx">
       <DependentUpon>ViewEvents.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace ReservationSystem.Views
 {
-    partial class ViewAddGroupNames
+    partial class ViewAddVisitorsToReservation
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,16 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // ViewAddGroupNames
+            // ViewAddVisitorsToReservation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ViewAddGroupNames";
+            this.Name = "ViewAddVisitorsToReservation";
             this.Size = new System.Drawing.Size(475, 220);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
     }
 }

@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonAddEvent = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.NumericUpDownVisitorAmount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -44,7 +44,7 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSaveReservation = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -82,7 +82,6 @@
             this.buttonAddEvent.TabIndex = 25;
             this.buttonAddEvent.Text = "...";
             this.buttonAddEvent.UseVisualStyleBackColor = true;
-            this.buttonAddEvent.Click += new System.EventHandler(this.buttonAddEvent_Click);
             // 
             // label2
             // 
@@ -95,13 +94,13 @@
             this.label2.Text = "Evenement:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // numericUpDown1
+            // NumericUpDownVisitorAmount
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(108, 51);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(43, 20);
-            this.numericUpDown1.TabIndex = 26;
+            this.NumericUpDownVisitorAmount.Location = new System.Drawing.Point(108, 51);
+            this.NumericUpDownVisitorAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.NumericUpDownVisitorAmount.Name = "NumericUpDownVisitorAmount";
+            this.NumericUpDownVisitorAmount.Size = new System.Drawing.Size(43, 20);
+            this.NumericUpDownVisitorAmount.TabIndex = 26;
             // 
             // label3
             // 
@@ -212,7 +211,7 @@
             this.buttonSaveReservation.TabIndex = 40;
             this.buttonSaveReservation.Text = "Opslaan";
             this.buttonSaveReservation.UseVisualStyleBackColor = true;
-            this.buttonSaveReservation.Click += new System.EventHandler(this.buttonSaveReservation_Click_1);
+            this.buttonSaveReservation.Click += new System.EventHandler(this.buttonSaveReservation_Click);
             // 
             // ViewReservationDetail
             // 
@@ -223,7 +222,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.NumericUpDownVisitorAmount);
             this.Controls.Add(this.buttonAddEvent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonAddVisitor);
@@ -231,7 +230,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservationDetail";
             this.Size = new System.Drawing.Size(460, 386);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -247,7 +246,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonAddEvent;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
@@ -259,6 +257,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;
+        public System.Windows.Forms.NumericUpDown NumericUpDownVisitorAmount;
 
     }
 }
