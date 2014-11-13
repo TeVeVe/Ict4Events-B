@@ -106,6 +106,12 @@
     <Compile Include="Controls\WinForms\VisitorInfoPanel.Designer.cs">
       <DependentUpon>VisitorInfoPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WinForms\PanelTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForms\PanelTile.Designer.cs">
+      <DependentUpon>PanelTile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\DataModel.cs" />
     <Compile Include="Data\Attributes\DbIgnoreAttribute.cs" />
     <Compile Include="Data\Attributes\FieldNameAttribute.cs" />
@@ -131,9 +137,6 @@
     </Compile>
     <Compile Include="MVC\FormMVC.Designer.cs">
       <DependentUpon>FormMVC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\WinForms\PanelTile.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\Database.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
