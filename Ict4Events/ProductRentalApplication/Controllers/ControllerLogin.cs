@@ -26,7 +26,7 @@ namespace ProductRentalApplication.Controllers
         private void ViewOnAuthenticate(object sender, AuthenticateEventArgs e)
         {
             UserAccount account = null;
-            Wristband wristband = null;
+            Visitor wristband = null;
 
             // Authenticate user.
             switch (e.AuthMethod)
@@ -36,7 +36,7 @@ namespace ProductRentalApplication.Controllers
                     e.Authorized = account != null;
                     break;
                 case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
-                    wristband = Wristband.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
+                    wristband = Visitor.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
                     e.Authorized = wristband != null;
                     break;
             }

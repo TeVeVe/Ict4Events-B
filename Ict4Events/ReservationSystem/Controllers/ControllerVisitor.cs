@@ -19,7 +19,7 @@ namespace ReservationSystem.Controllers
 
         public override void Activate()
         {
-            View.DataGridViewVisitors.DataSource = Wristband.Select().ToList();
+            View.DataGridViewVisitors.DataSource = Visitor.Select().ToList();
         }
 
         private void ViewOnCellModifyVisitorClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -32,7 +32,7 @@ namespace ReservationSystem.Controllers
             if (View.CheckBoxIsOnSite.Checked)
             {
                 // All visitors on site
-                IEnumerable<Wristband> wristbands = Wristband.Select("IsOnSite = 'Y'");
+                IEnumerable<Visitor> wristbands = Visitor.Select("IsOnSite = 'Y'");
 
                 // Storing the amount of visitors on site
                 int NumberOfVisitorsOnSite = wristbands.Count();
@@ -46,18 +46,18 @@ namespace ReservationSystem.Controllers
                     {
                         MessageBox.Show("Er zijn " + NumberOfVisitorsOnSite + " gasten aanwezig.");
                     }
-                    View.DataGridViewVisitors.DataSource = Wristband.Select("IsOnSite = 'Y'").ToList();
+                    View.DataGridViewVisitors.DataSource = Visitor.Select("IsOnSite = 'Y'").ToList();
                 }
                 else
                 {
-                    View.DataGridViewVisitors.DataSource = Wristband.Select("IsOnSite = 'Y'").ToList();
+                    View.DataGridViewVisitors.DataSource = Visitor.Select("IsOnSite = 'Y'").ToList();
                     MessageBox.Show("Er zijn momenteel geen gasten aanwezig.");
                 }
             }
             else
             {
                 // Refresh data.
-                View.DataGridViewVisitors.DataSource = Wristband.Select().ToList();
+                View.DataGridViewVisitors.DataSource = Visitor.Select().ToList();
             }
         }
 

@@ -20,7 +20,7 @@ namespace AccessControlSystem.Controllers
             // Retrieve payment status of scanned wristband.
             rfid.Tag += (sender, args) =>
             {
-                IEnumerable<Wristband> wristbands = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
+                IEnumerable<Visitor> wristbands = Visitor.Select("VISITORCODE = " + args.Value.ToSqlFormat());
 
                 // If wristband doesn't occur in database.
                 if (!wristbands.Any())
@@ -38,7 +38,7 @@ namespace AccessControlSystem.Controllers
                     {
                         // if payment status is OK
                         FormMain.Form.Open<ControllerLocationDetails>();
-                        Wristband wristband = wristbands.First();
+                        Visitor wristband = wristbands.First();
 
                         if (!wristband.IsOnSite)
                         {
