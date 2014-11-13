@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using AccessControlSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
@@ -25,7 +26,7 @@ namespace AccessControlSystem.Controllers
                 if (!wristbands.Any())
                 {
                     // Show unknown wristband message.
-                    MainForm.Open<ControllerUnknownWristband>();
+                    FormMain.Form.Open<ControllerUnknownWristband>();
                 }
                 else
                 {
@@ -36,7 +37,7 @@ namespace AccessControlSystem.Controllers
                     if (reservation.First().PaymentStatus)
                     {
                         // if payment status is OK
-                        MainForm.Open<ControllerLocationDetails>();
+                        FormMain.Form.Open<ControllerLocationDetails>();
                         Wristband wristband = wristbands.First();
 
                         if (!wristband.IsOnSite)
@@ -54,7 +55,7 @@ namespace AccessControlSystem.Controllers
                     }
                     // Access denied due to negative payment status.
                     else
-                        MainForm.Open<ControllerAccessDenied>();
+                        FormMain.Form.Open<ControllerAccessDenied>();
                 }
             };
         }

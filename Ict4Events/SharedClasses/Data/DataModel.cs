@@ -327,6 +327,7 @@ namespace SharedClasses.Data
             var builder = new StringBuilder();
             builder.Append("UPDATE ");
             builder.Append(GetTableName<T>());
+            builder.Append(" SET ");
 
             // Build SET.
             for (int i = 0; i < fields.Count(); i++)

@@ -32,9 +32,8 @@
             this.backButton = new System.Windows.Forms.Button();
             this.filePicture = new System.Windows.Forms.PictureBox();
             this.downloadButton = new System.Windows.Forms.Button();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.DescriptionLabel = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.TextBoxTitel = new System.Windows.Forms.TextBox();
+            this.TextBoxOmschrijving = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,9 +54,12 @@
             this.backButton.TabIndex = 2;
             this.backButton.Text = "Terug";
             this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // filePicture
             // 
+            this.filePicture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.filePicture.Location = new System.Drawing.Point(62, 36);
             this.filePicture.Name = "filePicture";
             this.filePicture.Size = new System.Drawing.Size(200, 150);
@@ -73,41 +75,34 @@
             this.downloadButton.TabIndex = 4;
             this.downloadButton.Text = "Download";
             this.downloadButton.UseVisualStyleBackColor = true;
+            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
-            // nameLabel
+            // TextBoxTitel
             // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(59, 13);
-            this.nameLabel.MaximumSize = new System.Drawing.Size(150, 0);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(35, 13);
-            this.nameLabel.TabIndex = 5;
-            this.nameLabel.Text = "label2";
+            this.TextBoxTitel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxTitel.Location = new System.Drawing.Point(62, 10);
+            this.TextBoxTitel.Name = "TextBoxTitel";
+            this.TextBoxTitel.Size = new System.Drawing.Size(200, 20);
+            this.TextBoxTitel.TabIndex = 8;
             // 
-            // DescriptionLabel
+            // TextBoxOmschrijving
             // 
-            this.DescriptionLabel.AutoSize = true;
-            this.DescriptionLabel.Location = new System.Drawing.Point(59, 189);
-            this.DescriptionLabel.MaximumSize = new System.Drawing.Size(150, 0);
-            this.DescriptionLabel.Name = "DescriptionLabel";
-            this.DescriptionLabel.Size = new System.Drawing.Size(64, 13);
-            this.DescriptionLabel.TabIndex = 6;
-            this.DescriptionLabel.Text = "Beschrijving";
-            // 
-            // panel1
-            // 
-            this.panel1.Location = new System.Drawing.Point(62, 205);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(281, 206);
-            this.panel1.TabIndex = 7;
+            this.TextBoxOmschrijving.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxOmschrijving.Location = new System.Drawing.Point(62, 192);
+            this.TextBoxOmschrijving.Multiline = true;
+            this.TextBoxOmschrijving.Name = "TextBoxOmschrijving";
+            this.TextBoxOmschrijving.Size = new System.Drawing.Size(281, 219);
+            this.TextBoxOmschrijving.TabIndex = 9;
             // 
             // ViewFileDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.DescriptionLabel);
-            this.Controls.Add(this.nameLabel);
+            this.Controls.Add(this.TextBoxOmschrijving);
+            this.Controls.Add(this.TextBoxTitel);
             this.Controls.Add(this.downloadButton);
             this.Controls.Add(this.filePicture);
             this.Controls.Add(this.backButton);
@@ -125,9 +120,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button downloadButton;
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.PictureBox filePicture;
-        public System.Windows.Forms.Label nameLabel;
-        public System.Windows.Forms.Label DescriptionLabel;
+        public System.Windows.Forms.TextBox TextBoxTitel;
+        public System.Windows.Forms.TextBox TextBoxOmschrijving;
     }
 }

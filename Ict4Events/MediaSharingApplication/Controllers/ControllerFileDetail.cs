@@ -12,12 +12,28 @@ namespace MediaSharingApplication.Controllers
 {
     class ControllerFileDetail:ControllerMVC<ViewFileDetail>
     {
+        public ControllerFileDetail()
+        {
+            View.BackButtonClick += ViewOnBackButtonClick;
+            View.DownloadButtonClick += ViewOnDownloadButtonClick;
+        }
+
+        private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)
+        {
+            // TODO: Download the file from FTP.
+        }
+
+        private void ViewOnBackButtonClick(object sender, EventArgs eventArgs)
+        {
+            MainForm.Open<ControllerMain>();
+        }
+
         public override void Activate()
         {
             File file = Values.SafeGetValue<File>("File");
 
-            View.nameLabel.Text = file.Name.ToString();
-            View.DescriptionLabel.Text = file.Description.ToString();
+            View.TextBoxTitel.Text = file.Name;
+            View.TextBoxOmschrijving.Text = file.Description;
         }
     }
 }
