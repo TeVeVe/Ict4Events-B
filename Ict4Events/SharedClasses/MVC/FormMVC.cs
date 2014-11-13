@@ -224,11 +224,6 @@ namespace SharedClasses.MVC
             return Open(typeof(T), values);
         }
 
-        public IController OpenNoActive<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
-        {
-            return OpenNoActive(typeof (T), values);
-        }
-
         internal IController Open(Type type, params KeyValuePair<string, object>[] values)
         {
             // Controller must be of the right type.
@@ -262,36 +257,6 @@ namespace SharedClasses.MVC
             return controller;
         }
 
-        internal IController OpenNoActive(Type type, params KeyValuePair<string, object>[] values)
-        {
-            // Controller must be of the right type.
-            if (!typeof(IController).IsAssignableFrom(type))
-            {
-                throw new TypeLoadException(string.Format("Type '{0}' cannot be casted to '{1}'.", type.FullName,
-                    typeof(IController).FullName));
-            }
-
-            // Create controller if it doesn't exist.
-            if (!_controllerCache.ContainsKey(type))
-                _controllerCache.Add(type, (IController)Activator.CreateInstance(type));
-
-            IController controller = _controllerCache[type];
-
-            // Add or update the values of the controller.
-            if (values != null)
-            {
-                foreach (var keyValuePair in values)
-                {
-                    if (controller.Values.ContainsKey(keyValuePair.Key))
-                        controller.Values[keyValuePair.Key] = keyValuePair.Value;
-                    else
-                        controller.Values.Add(keyValuePair.Key, keyValuePair.Value);
-                }
-            }
-
-            return controller;
-        }
-
         /// <summary>
         ///     Marks a controller as the fallback controller.
         /// </summary>
@@ -313,7 +278,7 @@ namespace SharedClasses.MVC
             var host = new FormMVC();
 
             // Mark controller as popup.
-            var controller = host.OpenNoActive<T>(values);
+            var controller = host.Open<T>(values);
             controller.IsPopup = true;
             controller.Activate();
 
