@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SharedClasses.Detectors.Events;
 using P = Phidgets;
 using TagEventArgs = Phidgets.Events.TagEventArgs;
@@ -178,7 +179,10 @@ namespace SharedClasses.Detectors
         protected virtual void OnTag(Events.TagEventArgs e)
         {
             EventHandler<Events.TagEventArgs> handler = Tag;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+            {
+                Task.Factory.StartNew(() => handler(this, e));
+            }
         }
 
         /// <summary>

@@ -12,7 +12,6 @@ namespace SharedClasses.Data.Models
         public bool IsOnSite { get; set; }
         public string FirstName { get; set; }
         public string Insertion { get; set; }
-        
         public string LastName { get; set; }
     }
 }
