@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
 using SharedClasses.Extensions;
 using SharedClasses.Properties;
@@ -95,15 +96,23 @@ namespace SharedClasses.FTP
             }
         }
 
-        public static bool DownloadFile(string path)
+        public static bool DownloadFile(string fileName)
         {
-            var request = (FtpWebRequest) WebRequest.Create(path);
+            var request = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(Settings.Default.FTP_UserID, Settings.Default.FTP_Password);
 
-            string fileName = path.Split('/').Last();
-
-            var response = (FtpWebResponse) request.GetResponse();
+            FtpWebResponse response = null;
+            try
+            {
+                response = (FtpWebResponse)request.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show("Kon het bestand niet ophalen van de server. Mogelijk bestaat het bestand niet.",
+                    "Bestand bestaat niet", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
 
             Stream responseStream = response.GetResponseStream();
 
@@ -112,7 +121,7 @@ namespace SharedClasses.FTP
                 DialogResult result = fbd.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    File.WriteAllBytes(String.Format("{0}\\{1}", fbd.SelectedPath, fileName), responseStream.ReadAllBytes());
+                    File.WriteAllBytes(String.Format("{0}\\{1}", fbd.SelectedPath, Path.GetFileName(fileName)), responseStream.ReadAllBytes());
                     Debug.WriteLine("Download Complete, status {0}", response.StatusDescription);
                     response.Close();
                     return true;
@@ -121,6 +130,22 @@ namespace SharedClasses.FTP
 
             response.Close();
             return false;
+        }
+
+        public static IEnumerable<string> GetDirectoryNames(TreeNode node)
+        {
+            List<String> categoryList = new List<String>();
+            TreeNode parent = node.Parent;
+
+            categoryList.Add(node.Text);
+            while (parent != null)
+            {
+                categoryList.Add(parent.Text);
+                parent = parent.Parent;
+            }
+
+            categoryList.Reverse();
+            return categoryList;
         }
     }
 }

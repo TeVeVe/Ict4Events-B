@@ -33,8 +33,7 @@ namespace SharedClasses.Controls.WinForms
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            string filePath = String.Format("ftp://{0}/Media/Bestanden/bookmarks.html", Properties.Settings.Default.FTP_Server);
-            FileTransfer.DownloadFile(filePath);
+            
         }
     }
 }

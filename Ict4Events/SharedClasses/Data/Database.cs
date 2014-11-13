@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Oracle.DataAccess.Client;
 using SharedClasses.Events;
 using SharedClasses.Extensions;
@@ -172,7 +173,17 @@ namespace SharedClasses.Data
             if (Connection != null && Connection.State == ConnectionState.Open) return;
 
             Connection = new OracleConnection(ConnectionString);
-            Task openTask = Task.Factory.StartNew(() => Connection.Open(), TaskCreationOptions.LongRunning);
+            Task openTask = null;
+            try
+            {
+                openTask = Task.Factory.StartNew(() => Connection.Open(), TaskCreationOptions.LongRunning);
+            }
+
+            catch (TypeInitializationException ex)
+            {
+                MessageBox.Show(String.Format("Geen connectie met de database \r\nDetails:{0}", ex.Message));
+            }
+
             openTask.Wait(QueryTimeout);
 
             if (!openTask.IsCompleted)

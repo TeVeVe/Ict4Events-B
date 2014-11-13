@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MediaSharingApplication.Views;
+using SharedClasses.Controls.WinForms;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
+using SharedClasses.FTP;
 using SharedClasses.MVC;
 
 namespace MediaSharingApplication.Controllers
@@ -20,7 +23,25 @@ namespace MediaSharingApplication.Controllers
 
         private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)
         {
-            // TODO: Download the file from FTP.
+            PanelTile pt = Values.SafeGetValue<PanelTile>("fileName");
+            IEnumerable<string> directoryList = null;
+
+            if (Values.SafeGetValue<TreeNode>("TreeNode") != null && pt != null && pt.Tag != null)
+            {
+                string fileName = ((File) pt.Tag).Name;
+                string filePath = null;
+                directoryList = FileTransfer.GetDirectoryNames(Values.SafeGetValue<TreeNode>("TreeNode"));
+
+                foreach (var d in directoryList)
+                {
+                    filePath += d + "/";
+                }
+
+                filePath += fileName;
+
+                FileTransfer.DownloadFile(filePath);
+            }
+
         }
 
         private void ViewOnBackButtonClick(object sender, EventArgs eventArgs)

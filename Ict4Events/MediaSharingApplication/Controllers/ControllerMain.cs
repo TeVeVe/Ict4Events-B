@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
@@ -25,7 +23,7 @@ namespace MediaSharingApplication.Controllers
             View.CategoryFiles.AddFileButton.Click += AddFileButton_Click;
         }
 
-        void AddFileButton_Click(object sender, EventArgs e)
+        private void AddFileButton_Click(object sender, EventArgs e)
         {
             if (View.CategoryTreeView.SelectedNode == null)
             {
@@ -33,7 +31,7 @@ namespace MediaSharingApplication.Controllers
                 return;
             }
             string filePath = "";
-            
+
 
             var ofd = new OpenFileDialog();
             DialogResult result = ofd.ShowDialog();
@@ -41,42 +39,42 @@ namespace MediaSharingApplication.Controllers
             {
                 filePath = ofd.FileName;
 
-                var directoryNames = GetDirectoryNames(View.CategoryTreeView.SelectedNode);
+                IEnumerable<string> directoryNames = FileTransfer.GetDirectoryNames(View.CategoryTreeView.SelectedNode);
                 FileTransfer.UploadFile(filePath, directoryNames);
 
                 // Insert file into database.
-                File file = new File();
+                var file = new File();
                 file.Name = Path.GetFileName(filePath);
                 file.PostTime = DateTime.Now;
                 file.ReportCount = 0;
-                file.CategoryId = (int)View.CategoryTreeView.SelectedNode.Tag;
+                file.CategoryId = (int) View.CategoryTreeView.SelectedNode.Tag;
                 file.Description = "File";
 #if DEBUG
                 file.UserAccountId = 1;
 #else
-                file.UserAccountId = MainForm.UserSession;
+    //file.UserAccountId = MainForm.UserSession;
 #endif
                 file.Insert();
             }
         }
 
-        private IEnumerable<string> GetDirectoryNames(TreeNode node)
-        {
-            List<String> categoryList = new List<String>();
-            TreeNode parent = node.Parent;
+        //private IEnumerable<string> GetDirectoryNames(TreeNode node)
+        //{
+        //    List<String> categoryList = new List<String>();
+        //    TreeNode parent = node.Parent;
 
-            categoryList.Add(node.Text);
-            while (parent != null)
-            {
-                categoryList.Add(parent.Text);
-                parent = parent.Parent;
-            }
+        //    categoryList.Add(node.Text);
+        //    while (parent != null)
+        //    {
+        //        categoryList.Add(parent.Text);
+        //        parent = parent.Parent;
+        //    }
 
-            categoryList.Reverse();
-            return categoryList;
-        }
+        //    categoryList.Reverse();
+        //    return categoryList;
+        //}
 
-        void CategoryTreeView_NodeClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void CategoryTreeView_NodeClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             FillFileFlowPanel(e.Node.Text);
         }
@@ -87,6 +85,7 @@ namespace MediaSharingApplication.Controllers
 
             IEnumerable<File> files =
                 File.Select("CATEGORYID = (SELECT CATEGORYID FROM CATEGORY WHERE NAME = " + catName.ToSqlFormat() + ")");
+
 
             foreach (File file in files)
             {
@@ -99,7 +98,9 @@ namespace MediaSharingApplication.Controllers
 
         private void pt_Click(object sender, EventArgs e)
         {
-            MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTile)sender).Tag));
+            MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTile) sender).Tag),
+                new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),
+                new KeyValuePair<string, object>("fileName", sender));
         }
 
         private void CreateNodes()
@@ -129,13 +130,13 @@ namespace MediaSharingApplication.Controllers
             foreach (DataRow dr in rows)
             {
                 prevLevel = level;
-                level = (int)dr["LEVEL"];
+                level = (int) dr["LEVEL"];
 
                 if (level == 1)
                 {
                     root = new TreeNode();
-                    root.Text = (string)dr["NAME"];
-                    root.ToolTipText = (string)dr["DESCRIPTION"];
+                    root.Text = (string) dr["NAME"];
+                    root.ToolTipText = (string) dr["DESCRIPTION"];
                     root.Tag = (int) dr["CATEGORYID"];
 
                     treeView.Nodes.Add(root);
@@ -146,9 +147,9 @@ namespace MediaSharingApplication.Controllers
                     parent = prevNode;
 
                     node = new TreeNode();
-                    node.Text = (string)dr["NAME"];
-                    node.ToolTipText = (string)dr["DESCRIPTION"];
-                    node.Tag = (int)dr["CATEGORYID"];
+                    node.Text = (string) dr["NAME"];
+                    node.ToolTipText = (string) dr["DESCRIPTION"];
+                    node.Tag = (int) dr["CATEGORYID"];
 
                     parent.Nodes.Add(node);
                     prevNode = node;
@@ -156,9 +157,9 @@ namespace MediaSharingApplication.Controllers
                 else
                 {
                     node = new TreeNode();
-                    node.Text = (string)dr["NAME"];
-                    node.ToolTipText = (string)dr["DESCRIPTION"];
-                    node.Tag = (int)dr["CATEGORYID"];
+                    node.Text = (string) dr["NAME"];
+                    node.ToolTipText = (string) dr["DESCRIPTION"];
+                    node.Tag = (int) dr["CATEGORYID"];
 
                     prevNode.Parent.Nodes.Add(node);
                 }

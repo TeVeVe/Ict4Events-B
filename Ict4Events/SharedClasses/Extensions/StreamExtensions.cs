@@ -11,16 +11,53 @@ namespace SharedClasses.Extensions
     {
         public static byte[] ReadAllBytes(this Stream inputStream)
         {
-            byte[] buffer = new byte[16*1024];
-            using (MemoryStream ms = new MemoryStream())
+            long originalPosition = 0;
+
+            if (inputStream.CanSeek)
             {
-                int read;
-                while ((read = inputStream.Read(buffer, 0, buffer.Length)) > 0)
+                originalPosition = inputStream.Position;
+                inputStream.Position = 0;
+            }
+
+            try
+            {
+                byte[] readBuffer = new byte[4096];
+
+                int totalBytesRead = 0;
+                int bytesRead;
+
+                while ((bytesRead = inputStream.Read(readBuffer, totalBytesRead, readBuffer.Length - totalBytesRead)) > 0)
                 {
-                    ms.Write(buffer, 0, read);
+                    totalBytesRead += bytesRead;
+
+                    if (totalBytesRead == readBuffer.Length)
+                    {
+                        int nextByte = inputStream.ReadByte();
+                        if (nextByte != -1)
+                        {
+                            byte[] temp = new byte[readBuffer.Length * 2];
+                            Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
+                            Buffer.SetByte(temp, totalBytesRead, (byte)nextByte);
+                            readBuffer = temp;
+                            totalBytesRead++;
+                        }
+                    }
                 }
 
-                return ms.ToArray();
+                byte[] buffer = readBuffer;
+                if (readBuffer.Length != totalBytesRead)
+                {
+                    buffer = new byte[totalBytesRead];
+                    Buffer.BlockCopy(readBuffer, 0, buffer, 0, totalBytesRead);
+                }
+                return buffer;
+            }
+            finally
+            {
+                if (inputStream.CanSeek)
+                {
+                    inputStream.Position = originalPosition;
+                }
             }
         }
     }

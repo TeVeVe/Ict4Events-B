@@ -31,7 +31,6 @@
             this.AddFileButton = new System.Windows.Forms.Button();
             this.FileFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.DownloadButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,23 +53,12 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.DownloadButton);
             this.panel1.Controls.Add(this.AddFileButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(253, 29);
             this.panel1.TabIndex = 0;
-            // 
-            // DownloadButton
-            // 
-            this.DownloadButton.Location = new System.Drawing.Point(84, 3);
-            this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(75, 23);
-            this.DownloadButton.TabIndex = 1;
-            this.DownloadButton.Text = "Download";
-            this.DownloadButton.UseVisualStyleBackColor = true;
-            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
             // CategoryFiles
             // 
@@ -88,7 +76,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button DownloadButton;
         public System.Windows.Forms.FlowLayoutPanel FileFlowLayout;
         public System.Windows.Forms.Button AddFileButton;
     }
