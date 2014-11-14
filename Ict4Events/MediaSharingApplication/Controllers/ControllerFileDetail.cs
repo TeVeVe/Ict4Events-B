@@ -23,7 +23,7 @@ namespace MediaSharingApplication.Controllers
 
         private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)
         {
-            PanelTileOld pt = Values.SafeGetValue<PanelTileOld>("fileName");
+            PanelTile pt = Values.SafeGetValue<PanelTile>("fileName");
             IEnumerable<string> directoryList = null;
 
             if (Values.SafeGetValue<TreeNode>("TreeNode") != null && pt != null && pt.Tag != null)

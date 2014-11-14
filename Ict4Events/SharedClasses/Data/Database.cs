@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Oracle.DataAccess.Client;
@@ -124,6 +125,7 @@ namespace SharedClasses.Data
             {
                 MessageBox.Show("Er kon geen verbinding worden gemaakt met de database.", "Database verbinding fout",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(-1);
             }
 
             return db;
@@ -156,6 +158,7 @@ namespace SharedClasses.Data
             {
                 MessageBox.Show("Er kon geen verbinding worden gemaakt met de database.", "Database verbinding fout",
                     MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(-1);
             }
 
             return db;
@@ -203,7 +206,9 @@ namespace SharedClasses.Data
             openTask.Wait(QueryTimeout);
 
             if (!openTask.IsCompleted)
+            {
                 throw new TimeoutException("Could not find and connect database.");
+            }
         }
 
         /// <summary>

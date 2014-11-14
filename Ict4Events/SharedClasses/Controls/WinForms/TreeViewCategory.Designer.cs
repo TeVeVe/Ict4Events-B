@@ -149,13 +149,13 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTop;
-        private System.Windows.Forms.Button buttonAddCategory;
         private System.Windows.Forms.TextBox textBoxSearchFilter;
         private System.Windows.Forms.Label labelSearch;
-        private System.Windows.Forms.Button buttonAddSubcategory;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTreeView;
         private System.Windows.Forms.ToolStripMenuItem expandAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
         public System.Windows.Forms.TreeView treeViewCategories;
+        public System.Windows.Forms.Button buttonAddCategory;
+        public System.Windows.Forms.Button buttonAddSubcategory;
     }
 }
