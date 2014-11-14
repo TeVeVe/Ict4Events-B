@@ -13,6 +13,7 @@
 !*.*settings*
 !Phidget21.NET.dll
 !Oracle.DataAccess.dll
+!*.png
 
 # But not these..
 Temporary*.cs
