@@ -118,6 +118,12 @@
     <Compile Include="Controls\WinForms\PanelTile.Designer.cs">
       <DependentUpon>PanelTile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WinForms\PanelTile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForms\PanelTile.Designer.cs">
+      <DependentUpon>PanelTile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\DataModel.cs" />
     <Compile Include="Data\Attributes\DbIgnoreAttribute.cs" />
     <Compile Include="Data\Attributes\FieldNameAttribute.cs" />
@@ -143,6 +149,9 @@
     </Compile>
     <Compile Include="MVC\FormMVC.Designer.cs">
       <DependentUpon>FormMVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WinForms\PanelTileOld.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\Database.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
@@ -241,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\VisitorInfoPanel.resx">
       <DependentUpon>VisitorInfoPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WinForms\PanelTileOld.resx">
+      <DependentUpon>PanelTileOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MVC\FormMVC.resx">
       <DependentUpon>FormMVC.cs</DependentUpon>

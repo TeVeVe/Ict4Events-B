@@ -119,7 +119,6 @@ namespace MediaSharingApplication.Controllers
         {
             MainForm.Open<ControllerFileDetail>(
                 new KeyValuePair<string, object>("File", (File)((PictureBox)sender).Parent.Tag),
-            MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTile) sender).Tag),
                 new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),
                 new KeyValuePair<string, object>("fileName", (PanelTile)((PictureBox)sender).Parent));
         }
