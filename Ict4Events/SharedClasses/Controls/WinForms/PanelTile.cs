@@ -12,7 +12,7 @@ namespace SharedClasses.Controls.WinForms
 {
     public partial class PanelTile : UserControl
     {
-        public PanelTile(string primaryText, string secondaryText, string image = null)
+        public PanelTile(string primaryText, string secondaryText)
         {
             InitializeComponent();
 
