@@ -7,11 +7,13 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using MediaSharingApplication.Properties;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data;
+using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.FTP;
 using SharedClasses.MVC;
@@ -29,6 +31,13 @@ namespace MediaSharingApplication.Controllers
 
             View.CategoryTreeView.NodeClick += CategoryTreeView_NodeClick;
             View.CategoryFiles.AddFileButton.Click += AddFileButton_Click;
+            View.CategoryTreeView.buttonAddCategory.Click += buttonAddCategory_Click;
+            
+        }
+
+        void buttonAddCategory_Click(object sender, EventArgs e)
+        {
+            MainForm.PopupController<ControllerAddCategory>();
         }
 
         private void AddFileButton_Click(object sender, EventArgs e)
@@ -95,22 +104,24 @@ namespace MediaSharingApplication.Controllers
             IEnumerable<File> files =
                 File.Select("CATEGORYID = (SELECT CATEGORYID FROM CATEGORY WHERE NAME = " + catName.ToSqlFormat() + ")");
 
-            
             foreach (File file in files)
             {
                 var pt = new PanelTile(file.Name, file.Description);
                 pt.Tag = file;
                 pt.pictureBox1.ImageLocation = setFileImage(file.Name);
-                pt.Click += pt_Click;
+                pt.pictureBox1.Click += pt_Click;
+
                 View.CategoryFiles.FileFlowLayout.Controls.Add(pt);
             }
         }
 
-        private void pt_Click(object sender, EventArgs e)
+        void pt_Click(object sender, EventArgs e)
         {
+            MainForm.Open<ControllerFileDetail>(
+                new KeyValuePair<string, object>("File", (File)((PictureBox)sender).Parent.Tag),
             MainForm.Open<ControllerFileDetail>(new KeyValuePair<string, object>("File", ((PanelTile) sender).Tag),
                 new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),
-                new KeyValuePair<string, object>("fileName", sender));
+                new KeyValuePair<string, object>("fileName", (PanelTile)((PictureBox)sender).Parent));
         }
 
         private string setFileImage(string fileName)
