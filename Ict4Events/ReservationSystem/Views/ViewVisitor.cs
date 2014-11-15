@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace ReservationSystem.Views
 {
-    public partial class ViewVisitors : UserControl
+    public partial class ViewVisitor : UserControl
     {
-        public ViewVisitors()
+        public ViewVisitor()
         {
             InitializeComponent();
         }

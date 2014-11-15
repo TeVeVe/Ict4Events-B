@@ -20,6 +20,17 @@ namespace SharedClasses.Controls.WinForms
             InitializeComponent();
         }
 
+        public int InputWidth
+        {
+            get { return textBoxInput.Width; }
+            set
+            {
+                if (value < 0)
+                    return;
+                textBoxInput.Width = value;
+            }
+        }
+
         [DefaultValue(ClearButtonActionType.ClearText)]
         public ClearButtonActionType ButtonActionType { get; set; }
 

@@ -31,8 +31,7 @@ namespace AccessControlSystem.Controllers
                 else
                 {
                     // Visitor does exist in database.
-                    IEnumerable<Reservation> reservation =
-                        Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
+                    IEnumerable<Reservation> reservation = Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
 
                     if (reservation.First().PaymentStatus)
                     {

@@ -38,7 +38,7 @@
             // textBoxInput
             // 
             this.textBoxInput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxInput.Location = new System.Drawing.Point(69, 1);
+            this.textBoxInput.Location = new System.Drawing.Point(70, 1);
             this.textBoxInput.Name = "textBoxInput";
             this.textBoxInput.Size = new System.Drawing.Size(142, 20);
             this.textBoxInput.TabIndex = 1;
@@ -63,7 +63,7 @@
             this.tableLayoutPanelLabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelLabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelLabel.Controls.Add(this.labelName, 0, 0);
-            this.tableLayoutPanelLabel.Location = new System.Drawing.Point(4, 2);
+            this.tableLayoutPanelLabel.Location = new System.Drawing.Point(1, 1);
             this.tableLayoutPanelLabel.Name = "tableLayoutPanelLabel";
             this.tableLayoutPanelLabel.RowCount = 1;
             this.tableLayoutPanelLabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -92,7 +92,7 @@
             this.Controls.Add(this.textBoxInput);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "NamedClearableTextBox";
-            this.Size = new System.Drawing.Size(244, 25);
+            this.Size = new System.Drawing.Size(241, 26);
             this.tableLayoutPanelLabel.ResumeLayout(false);
             this.tableLayoutPanelLabel.PerformLayout();
             this.ResumeLayout(false);
