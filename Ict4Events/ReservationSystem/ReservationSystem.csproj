@@ -113,11 +113,11 @@
     <Compile Include="Views\ViewReservees.Designer.cs">
       <DependentUpon>ViewReservees.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewVisitors.cs">
+    <Compile Include="Views\ViewVisitor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ViewVisitors.Designer.cs">
-      <DependentUpon>ViewVisitors.cs</DependentUpon>
+    <Compile Include="Views\ViewVisitor.Designer.cs">
+      <DependentUpon>ViewVisitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewReserveeDetail.cs">
       <SubType>UserControl</SubType>
@@ -156,8 +156,8 @@
     <EmbeddedResource Include="Views\ViewReservees.resx">
       <DependentUpon>ViewReservees.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ViewVisitors.resx">
-      <DependentUpon>ViewVisitors.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ViewVisitor.resx">
+      <DependentUpon>ViewVisitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewReserveeDetail.resx">
       <DependentUpon>ViewReserveeDetail.cs</DependentUpon>

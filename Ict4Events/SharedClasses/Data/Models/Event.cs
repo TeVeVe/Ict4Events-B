@@ -4,7 +4,7 @@ using SharedClasses.Data.Attributes;
 namespace SharedClasses.Data.Models
 {
     [Table("EVENT")]
-    public class Event
+    public class Event : DataModel<Event>
     {
         [Key]
         [FieldName("EVENTID")]
@@ -15,12 +15,8 @@ namespace SharedClasses.Data.Models
         public string PostalCode { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Location Location { get; set; }
+        public string City { get; set; }
+        public int LocationId { get; set; }
         public int MaxGuests { get; set; }
-
-        public int GetVisitorsInside()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
