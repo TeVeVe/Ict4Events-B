@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +32,9 @@ namespace MediaSharingApplication.Controllers
 
         void buttonSave_Click(object sender, EventArgs e)
         {
-            if (View.textBoxName.Text != null && View.textBoxDescription != null)
+            if (!String.IsNullOrWhiteSpace(View.textBoxName.Text) && !String.IsNullOrWhiteSpace(View.textBoxDescription.Text))
             {
+                Debug.WriteLine("{0} - {1}", View.textBoxName.Text, View.textBoxDescription.Text);
                 Category cat = new Category();
                 cat.Name = View.textBoxName.Text;
                 cat.Description = View.textBoxDescription.Text;
@@ -44,6 +46,12 @@ namespace MediaSharingApplication.Controllers
                 }
 
                 cat.Insert();
+                this.Close();
+            }
+
+            else
+            {
+                MessageBox.Show("Vul Alstublieft alle velden in.");
             }
         }
     }

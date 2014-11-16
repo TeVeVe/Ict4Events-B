@@ -34,12 +34,15 @@ namespace MediaSharingApplication.Controllers
 
         public override void Activate()
         {
+            Debug.WriteLine("ControllerMain: Activated");
             CreateNodes();
         }
 
         void buttonAddCategory_Click(object sender, EventArgs e)
         {
             MainForm.PopupController<ControllerAddCategory>();
+            
+            CreateNodes();
         }
 
         private void AddFileButton_Click(object sender, EventArgs e)
