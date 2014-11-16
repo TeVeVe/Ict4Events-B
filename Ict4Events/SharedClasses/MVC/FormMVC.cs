@@ -280,7 +280,6 @@ namespace SharedClasses.MVC
             // Mark controller as popup.
             var controller = host.Open<T>(values);
             controller.IsPopup = true;
-            controller.Activate();
 
             // Show and block code.
             host.ShowDialog();

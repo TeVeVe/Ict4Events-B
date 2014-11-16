@@ -118,12 +118,6 @@
     <Compile Include="Controls\WinForms\PanelTile.Designer.cs">
       <DependentUpon>PanelTile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WinForms\PanelTile.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\WinForms\PanelTile.Designer.cs">
-      <DependentUpon>PanelTile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\DataModel.cs" />
     <Compile Include="Data\Attributes\DbIgnoreAttribute.cs" />
     <Compile Include="Data\Attributes\FieldNameAttribute.cs" />
