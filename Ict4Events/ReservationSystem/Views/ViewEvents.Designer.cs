@@ -74,7 +74,7 @@
             this.DateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.DateTimePickerStartDate.Name = "DateTimePickerStartDate";
             this.DateTimePickerStartDate.Size = new System.Drawing.Size(184, 20);
-            this.DateTimePickerStartDate.TabIndex = 9;
+            this.DateTimePickerStartDate.TabIndex = 5;
             this.DateTimePickerStartDate.Value = new System.DateTime(2014, 11, 8, 0, 0, 0, 0);
             // 
             // DateTimePickerEndDate
@@ -83,7 +83,7 @@
             this.DateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.DateTimePickerEndDate.Name = "DateTimePickerEndDate";
             this.DateTimePickerEndDate.Size = new System.Drawing.Size(184, 20);
-            this.DateTimePickerEndDate.TabIndex = 11;
+            this.DateTimePickerEndDate.TabIndex = 6;
             // 
             // label3
             // 
@@ -102,7 +102,7 @@
             this.buttonDeleteEvent.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDeleteEvent.Name = "buttonDeleteEvent";
             this.buttonDeleteEvent.Size = new System.Drawing.Size(75, 23);
-            this.buttonDeleteEvent.TabIndex = 17;
+            this.buttonDeleteEvent.TabIndex = 8;
             this.buttonDeleteEvent.Text = "Verwijderen";
             this.buttonDeleteEvent.UseVisualStyleBackColor = true;
             this.buttonDeleteEvent.Click += new System.EventHandler(this.buttonDeleteEvent_Click);
@@ -113,7 +113,7 @@
             this.buttonAddEvent.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAddEvent.Name = "buttonAddEvent";
             this.buttonAddEvent.Size = new System.Drawing.Size(74, 23);
-            this.buttonAddEvent.TabIndex = 18;
+            this.buttonAddEvent.TabIndex = 7;
             this.buttonAddEvent.Text = "Toevoegen";
             this.buttonAddEvent.UseVisualStyleBackColor = true;
             this.buttonAddEvent.Click += new System.EventHandler(this.buttonAddEvent_Click);
@@ -144,7 +144,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(501, 190);
-            this.panel1.TabIndex = 19;
+            this.panel1.TabIndex = 0;
             // 
             // button4
             // 
@@ -152,6 +152,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(28, 20);
             this.button4.TabIndex = 30;
+            this.button4.TabStop = false;
             this.button4.Text = "X";
             this.button4.UseVisualStyleBackColor = true;
             // 
@@ -161,6 +162,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(28, 20);
             this.button3.TabIndex = 30;
+            this.button3.TabStop = false;
             this.button3.Text = "X";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -169,7 +171,7 @@
             this.TextBoxPostalCode.Location = new System.Drawing.Point(102, 107);
             this.TextBoxPostalCode.Name = "TextBoxPostalCode";
             this.TextBoxPostalCode.Size = new System.Drawing.Size(184, 20);
-            this.TextBoxPostalCode.TabIndex = 29;
+            this.TextBoxPostalCode.TabIndex = 4;
             // 
             // label6
             // 
@@ -185,7 +187,7 @@
             this.TextBoxCity.Location = new System.Drawing.Point(102, 81);
             this.TextBoxCity.Name = "TextBoxCity";
             this.TextBoxCity.Size = new System.Drawing.Size(184, 20);
-            this.TextBoxCity.TabIndex = 29;
+            this.TextBoxCity.TabIndex = 3;
             // 
             // label5
             // 
@@ -202,6 +204,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(28, 20);
             this.button2.TabIndex = 27;
+            this.button2.TabStop = false;
             this.button2.Text = "X";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -210,7 +213,7 @@
             this.TextBoxHouseNumber.Location = new System.Drawing.Point(102, 55);
             this.TextBoxHouseNumber.Name = "TextBoxHouseNumber";
             this.TextBoxHouseNumber.Size = new System.Drawing.Size(184, 20);
-            this.TextBoxHouseNumber.TabIndex = 26;
+            this.TextBoxHouseNumber.TabIndex = 2;
             // 
             // label4
             // 
@@ -227,6 +230,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(28, 20);
             this.button1.TabIndex = 24;
+            this.button1.TabStop = false;
             this.button1.Text = "X";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -235,7 +239,7 @@
             this.TextBoxStreet.Location = new System.Drawing.Point(102, 29);
             this.TextBoxStreet.Name = "TextBoxStreet";
             this.TextBoxStreet.Size = new System.Drawing.Size(184, 20);
-            this.TextBoxStreet.TabIndex = 23;
+            this.TextBoxStreet.TabIndex = 1;
             // 
             // label1
             // 
@@ -252,6 +256,7 @@
             this.buttonDelName.Name = "buttonDelName";
             this.buttonDelName.Size = new System.Drawing.Size(28, 20);
             this.buttonDelName.TabIndex = 21;
+            this.buttonDelName.TabStop = false;
             this.buttonDelName.Text = "X";
             this.buttonDelName.UseVisualStyleBackColor = true;
             this.buttonDelName.Click += new System.EventHandler(this.buttonDelName_Click);
@@ -261,7 +266,7 @@
             this.TextBoxEventName.Location = new System.Drawing.Point(102, 3);
             this.TextBoxEventName.Name = "TextBoxEventName";
             this.TextBoxEventName.Size = new System.Drawing.Size(184, 20);
-            this.TextBoxEventName.TabIndex = 20;
+            this.TextBoxEventName.TabIndex = 0;
             // 
             // labelName
             // 
@@ -281,7 +286,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(501, 30);
-            this.panel2.TabIndex = 20;
+            this.panel2.TabIndex = 1;
             // 
             // DataGridEvents
             // 

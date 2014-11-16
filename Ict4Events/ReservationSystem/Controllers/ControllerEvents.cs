@@ -18,6 +18,17 @@ namespace ReservationSystem.Controllers
             View.ButtonSave += ViewOnButtonSave;
         }
 
+        private void ClearInputFields()
+        {
+            View.TextBoxEventName.Clear();
+            View.TextBoxStreet.Clear();
+            View.TextBoxHouseNumber.Clear();
+            View.TextBoxCity.Clear();
+            View.TextBoxPostalCode.Clear();
+            View.DateTimePickerStartDate.Value = DateTime.Now;
+            View.DateTimePickerStartDate.Value = DateTime.Now.AddDays(7);
+        }
+
         private void ViewOnButtonSave(object sender, EventArgs eventArgs)
         {
             if (string.IsNullOrWhiteSpace(View.TextBoxEventName.Text))
@@ -32,9 +43,12 @@ namespace ReservationSystem.Controllers
             e.HouseNumber = View.TextBoxHouseNumber.Text;
             e.City = View.TextBoxCity.Text;
             e.PostalCode = View.TextBoxPostalCode.Text;
-            e.StartDate = View.DateTimePickerStartDate.Value;
-            e.EndDate = View.DateTimePickerEndDate.Value;
+            e.StartDate = View.DateTimePickerStartDate.Value.Date;
+            e.EndDate = View.DateTimePickerEndDate.Value.Date;
+            e.LocationId = 1;
+
             e.Insert();
+            ClearInputFields();
 
             MainForm.ResetController();
         }
@@ -44,7 +58,11 @@ namespace ReservationSystem.Controllers
             if (View.DataGridEvents.SelectedCells.Count <= 0)
                 return;
             var dataEvent = (Event)View.DataGridEvents.SelectedCells[0].OwningRow.DataBoundItem;
-            
+
+            MessageBox.Show(
+                string.Format("Als u het evenement '{0}' verwijderd. Worden alle reserveringen ook verwijderd. Wilt u doorgaan?", dataEvent.Name),
+                "Eventment verwijderen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             // Disable the event.
             dataEvent.Delete();
 
