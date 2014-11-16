@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
@@ -9,20 +10,15 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("COMMENTID")]
         public int Id { get; set; }
+        [DisplayName("Bericht")]
         public string Content { get; set; }
+        [DisplayName("Geplaatst op")]
         public DateTime PostTime { get; set; }
-        [ForeignKey("PARENTID", "COMMENTID")]
+        [DbIgnore]
         public Comment ParentComment { get; set; }
-        [ForeignKey("USERACCOUNTID")]
+        [DbIgnore]
         public UserAccount UserAccount { get; set; }
-        [ForeignKey("FILEID")]
+        [DbIgnore]
         public File FileId { get; set; }
-
-        public Comment(string content, UserAccount account)
-        {
-            Content = content;
-
-            throw new NotImplementedException();
-        }
     }
 }

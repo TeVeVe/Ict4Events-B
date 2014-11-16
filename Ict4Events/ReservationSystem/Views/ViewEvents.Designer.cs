@@ -51,7 +51,7 @@
             this.TextBoxEventName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DataGridEvents = new System.Windows.Forms.DataGridView();
+            this.DataGridEvents = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridEvents)).BeginInit();
@@ -285,11 +285,12 @@
             // 
             // DataGridEvents
             // 
+            this.DataGridEvents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DataGridEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridEvents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridEvents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.DataGridEvents.Location = new System.Drawing.Point(0, 220);
-            this.DataGridEvents.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridEvents.Name = "DataGridEvents";
-            this.DataGridEvents.RowTemplate.Height = 24;
             this.DataGridEvents.Size = new System.Drawing.Size(501, 179);
             this.DataGridEvents.TabIndex = 21;
             // 
@@ -319,7 +320,6 @@
         private System.Windows.Forms.Button buttonAddEvent;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.DataGridView DataGridEvents;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button buttonDelName;
         public System.Windows.Forms.TextBox TextBoxEventName;
@@ -337,6 +337,7 @@
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.DateTimePicker DateTimePickerStartDate;
         public System.Windows.Forms.DateTimePicker DateTimePickerEndDate;
+        public SharedClasses.Controls.WinForms.ExtendedDataGridView DataGridEvents;
 
     }
 }

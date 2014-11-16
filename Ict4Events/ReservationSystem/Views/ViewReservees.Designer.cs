@@ -1,4 +1,6 @@
-﻿namespace ReservationSystem.Views
+﻿using SharedClasses.Controls.WinForms;
+
+namespace ReservationSystem.Views
 {
     partial class ViewReservees
     {
@@ -31,7 +33,7 @@
             this.buttonAddRow = new System.Windows.Forms.Button();
             this.buttonDeleteRow = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.DataGridViewReservees = new System.Windows.Forms.DataGridView();
+            this.DataGridViewReservees = new ExtendedDataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewReservees)).BeginInit();
             this.SuspendLayout();

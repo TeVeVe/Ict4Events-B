@@ -1,4 +1,6 @@
-﻿namespace ReservationSystem.Views
+﻿using SharedClasses.Controls.WinForms;
+
+namespace ReservationSystem.Views
 {
     partial class ViewReservation
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewVisitors = new System.Windows.Forms.DataGridView();
+            this.dataGridViewVisitors = new ExtendedDataGridView();
             this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonAddReservation = new System.Windows.Forms.Button();

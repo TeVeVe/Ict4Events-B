@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
@@ -8,17 +9,17 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("RENTALID")]
         public int Id { get; set; }
-        [ForeignKey("VISITORCODE")]
-        public Visitor VisitorCode { get; set; }
-        public TimeSpan RentalLength { get; set; }
-        public bool IsPaid { get; set; }
-        public DateTime StartTime { get; set; }
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; }
 
-        public void GetFine()
-        {
-            throw new NotImplementedException();
-        }
+        public string VisitorCode { get; set; }
+
+        public TimeSpan RentalLength { get; set; }
+
+        [DisplayName("Is betaald")]
+        public bool IsPaid { get; set; }
+
+        [DisplayName("Ingangsdatum")]
+        public DateTime StartTime { get; set; }
+
+        public int ProductId { get; set; }
     }
 }
