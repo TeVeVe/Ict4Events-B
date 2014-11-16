@@ -25,14 +25,16 @@ namespace MediaSharingApplication.Controllers
     {
         ResourceManager rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
 
-        public override void Activate()
+        public ControllerMain()
         {
-            CreateNodes();
-
             View.CategoryTreeView.NodeClick += CategoryTreeView_NodeClick;
             View.CategoryFiles.AddFileButton.Click += AddFileButton_Click;
             View.CategoryTreeView.buttonAddCategory.Click += buttonAddCategory_Click;
-            
+        }
+
+        public override void Activate()
+        {
+            CreateNodes();
         }
 
         void buttonAddCategory_Click(object sender, EventArgs e)
