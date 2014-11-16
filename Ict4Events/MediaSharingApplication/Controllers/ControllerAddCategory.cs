@@ -38,7 +38,7 @@ namespace MediaSharingApplication.Controllers
                 Category cat = new Category();
                 cat.Name = View.textBoxName.Text;
                 cat.Description = View.textBoxDescription.Text;
-
+                cat.ParentCategory = Values.SafeGetValue<int>("Parent");
                 TreeNode parent = Values.SafeGetValue<TreeNode>("parent");
                 if (parent != null)
                 {

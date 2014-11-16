@@ -30,19 +30,32 @@ namespace MediaSharingApplication.Controllers
             View.CategoryTreeView.NodeClick += CategoryTreeView_NodeClick;
             View.CategoryFiles.AddFileButton.Click += AddFileButton_Click;
             View.CategoryTreeView.buttonAddCategory.Click += buttonAddCategory_Click;
+            View.CategoryTreeView.buttonAddSubcategory.Click += buttonAddSubcategory_Click;
         }
 
         public override void Activate()
         {
-            Debug.WriteLine("ControllerMain: Activated");
             CreateNodes();
         }
 
         void buttonAddCategory_Click(object sender, EventArgs e)
         {
             MainForm.PopupController<ControllerAddCategory>();
-            
             CreateNodes();
+        }
+        void buttonAddSubcategory_Click(object sender, EventArgs e)
+        {
+            if (View.CategoryTreeView.SelectedNode != null)
+            {
+                MainForm.PopupController<ControllerAddCategory>(new KeyValuePair<string, object>("Parent", View.CategoryTreeView.SelectedNode.Tag));
+                CreateNodes();
+            }
+
+            else
+            {
+                MessageBox.Show("Selecteer alstublieft een categorie als u een subcategorie toe wilt voegen.");
+            }
+            
         }
 
         private void AddFileButton_Click(object sender, EventArgs e)
@@ -53,6 +66,7 @@ namespace MediaSharingApplication.Controllers
                 return;
             }
             string filePath = "";
+            TreeNode selectedNode = View.CategoryTreeView.SelectedNode;
 
 
             var ofd = new OpenFileDialog();
@@ -61,7 +75,7 @@ namespace MediaSharingApplication.Controllers
             {
                 filePath = ofd.FileName;
 
-                IEnumerable<string> directoryNames = FileTransfer.GetDirectoryNames(View.CategoryTreeView.SelectedNode);
+                IEnumerable<string> directoryNames = FileTransfer.GetDirectoryNames(selectedNode);
                 FileTransfer.UploadFile(filePath, directoryNames);
 
                 // Insert file into database.
@@ -69,7 +83,7 @@ namespace MediaSharingApplication.Controllers
                 file.Name = Path.GetFileName(filePath);
                 file.PostTime = DateTime.Now;
                 file.ReportCount = 0;
-                file.CategoryId = (int) View.CategoryTreeView.SelectedNode.Tag;
+                file.CategoryId = (int) selectedNode.Tag;
                 file.Description = "File";
 
                 // TODO: Use user session.
@@ -79,6 +93,7 @@ namespace MediaSharingApplication.Controllers
     //file.UserAccountId = MainForm.UserSession;
 #endif
                 file.Insert();
+                FillFileFlowPanel(View.CategoryTreeView.SelectedNode.Name);
             }
         }
 
