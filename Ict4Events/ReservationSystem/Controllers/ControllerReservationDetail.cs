@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using ReservationSystem.Views;
-using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    class ControllerReservationDetail : ControllerMVC<ViewReservationDetail>
+    internal class ControllerReservationDetail : ControllerMVC<ViewReservationDetail>
     {
         public ControllerReservationDetail()
         {
@@ -21,7 +17,6 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnButtonAddEvent(object sender, EventArgs eventArgs)
         {
-            //
         }
 
         private void ViewOnButtonAddProductClick(object sender, EventArgs eventArgs)
@@ -31,11 +26,20 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnButtonSaveReservationClick(object sender, EventArgs eventArgs)
         {
-            Random r = new Random();
-            var randomRFIDs =
-                Enumerable.Repeat("", (int)View.NumericUpDownVisitorAmount.Value).Select(s => Enumerable.Repeat("", 8).Select(s2 => r.Next(16).ToString("X")).Aggregate((s1, s2) => s1 + s2)).ToList();
+            // Generate random RFIDs.
+            var r = new Random();
+            List<string> randomRFIDs =
+                Enumerable.Repeat("", (int)View.NumericUpDownVisitorAmount.Value)
+                    .Select(
+                        s =>
+                            Enumerable.Repeat("", 8)
+                                .Select(s2 => r.Next(16).ToString("X"))
+                                .Aggregate((s1, s2) => s1 + s2))
+                    .ToList();
 
-            MainForm.PopupController<ControllerAddVisitorsToReservation>(new KeyValuePair<string, object>("Visitors", randomRFIDs));
+            // Popup window which shows input fields based on the amount of RFIDs required.
+            MainForm.PopupController<ControllerAddVisitorsToReservation>(new KeyValuePair<string, object>("Visitors",
+                randomRFIDs));
         }
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)

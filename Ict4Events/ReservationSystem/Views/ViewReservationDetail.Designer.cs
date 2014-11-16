@@ -1,4 +1,6 @@
-﻿namespace ReservationSystem.Views
+﻿using SharedClasses.Controls.WinForms;
+
+namespace ReservationSystem.Views
 {
     partial class ViewReservationDetail
     {
@@ -34,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.NumericUpDownVisitorAmount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -65,12 +67,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(50, 5);
+            this.label1.Location = new System.Drawing.Point(25, 5);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 21;
-            this.label1.Text = "Bezoeker:";
+            this.label1.Text = "Reserveerder*:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // buttonAddEvent
@@ -86,21 +88,31 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 29);
+            this.label2.Location = new System.Drawing.Point(35, 29);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 24;
-            this.label2.Text = "Evenement:";
+            this.label2.Text = "Evenement*:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // NumericUpDownVisitorAmount
             // 
             this.NumericUpDownVisitorAmount.Location = new System.Drawing.Point(108, 51);
             this.NumericUpDownVisitorAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.NumericUpDownVisitorAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.NumericUpDownVisitorAmount.Name = "NumericUpDownVisitorAmount";
             this.NumericUpDownVisitorAmount.Size = new System.Drawing.Size(43, 20);
             this.NumericUpDownVisitorAmount.TabIndex = 26;
+            this.NumericUpDownVisitorAmount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label3
             // 
@@ -114,13 +126,15 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.Location = new System.Drawing.Point(2, 15);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(341, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(341, 272);
             this.dataGridView1.TabIndex = 28;
             // 
             // textBox1
@@ -150,7 +164,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(345, 271);
+            this.groupBox1.Size = new System.Drawing.Size(345, 289);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producten";
@@ -188,9 +202,9 @@
             this.panelBottom.Controls.Add(this.buttonCancel);
             this.panelBottom.Controls.Add(this.buttonSaveReservation);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 350);
+            this.panelBottom.Location = new System.Drawing.Point(0, 368);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(460, 36);
+            this.panelBottom.Size = new System.Drawing.Size(460, 31);
             this.panelBottom.TabIndex = 36;
             // 
             // buttonCancel
@@ -229,7 +243,7 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservationDetail";
-            this.Size = new System.Drawing.Size(460, 386);
+            this.Size = new System.Drawing.Size(460, 399);
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -247,7 +261,6 @@
         private System.Windows.Forms.Button buttonAddEvent;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -258,6 +271,7 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonAdd;
         public System.Windows.Forms.NumericUpDown NumericUpDownVisitorAmount;
+        private ExtendedDataGridView dataGridView1;
 
     }
 }

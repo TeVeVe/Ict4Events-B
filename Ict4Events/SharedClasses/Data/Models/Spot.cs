@@ -1,4 +1,5 @@
-﻿using SharedClasses.Data.Attributes;
+﻿using System.ComponentModel;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
@@ -6,16 +7,14 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("SPOTID")]
-        public int Id { get; set; } 
-        public string Number { get; set; }
-        public SpotType Type { get; set; }
-        [ForeignKey("LOCATIONID")]
-        public Location Location { get; set; }
+        public int Id { get; set; }
 
-        public Spot(string number, SpotType type)
-        {
-            Number = number;
-            Type = type;
-        }
+        [DisplayName("Indentificatienummer")]
+        public string Number { get; set; }
+
+        [DbIgnore]
+        public SpotType Type { get; set; }
+
+        public int LocationId { get; set; }
     }
 }

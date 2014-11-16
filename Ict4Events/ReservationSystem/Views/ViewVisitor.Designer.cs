@@ -1,4 +1,6 @@
-﻿namespace ReservationSystem.Views
+﻿using SharedClasses.Controls.WinForms;
+
+namespace ReservationSystem.Views
 {
     partial class ViewVisitor
     {
@@ -33,7 +35,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.buttonAddVisitor = new System.Windows.Forms.Button();
-            this.DataGridViewVisitors = new System.Windows.Forms.DataGridView();
+            this.DataGridViewVisitors = new ExtendedDataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();

@@ -2,13 +2,16 @@
 
 namespace SharedClasses.Data.Models
 {
-    class Vote
+    internal class Vote
     {
         [Key]
         [FieldName("VOTEID")]
         public int Id { get; set; }
-        [ForeignKey("FILEID")]
-        public File File { get; set; }  
+
+        public int FileId { get; set; }
+
+        public int UserAccountId { get; set; }
+
         [DbIgnore]
         public VoteType Type { get; set; }
     }
