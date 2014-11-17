@@ -61,19 +61,20 @@ namespace MediaSharingApplication.Views
             // 
             // CategoryFiles
             // 
+            this.CategoryFiles.AutoScroll = true;
             this.CategoryFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CategoryFiles.Location = new System.Drawing.Point(257, 0);
             this.CategoryFiles.Name = "CategoryFiles";
             this.CategoryFiles.Size = new System.Drawing.Size(309, 425);
-            this.CategoryFiles.TabIndex = 2;
+            this.CategoryFiles.TabIndex = 3;
             // 
             // ViewMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.CategoryFiles);
-            this.Controls.Add(this.FeedPanel);
             this.Controls.Add(this.CategoryTreeView);
+            this.Controls.Add(this.FeedPanel);
             this.Name = "ViewMain";
             this.Size = new System.Drawing.Size(871, 425);
             this.ResumeLayout(false);

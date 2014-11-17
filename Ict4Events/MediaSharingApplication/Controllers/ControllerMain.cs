@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
-using MediaSharingApplication.Properties;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data;
-using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.FTP;
 using SharedClasses.MVC;
@@ -23,39 +19,81 @@ namespace MediaSharingApplication.Controllers
 {
     public class ControllerMain : ControllerMVC<ViewMain>
     {
-        ResourceManager _rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
+        private ResourceManager _rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
 
         public ControllerMain()
         {
             View.CategoryTreeView.NodeClick += CategoryTreeView_NodeClick;
             View.CategoryFiles.AddFileButton.Click += AddFileButton_Click;
-            View.CategoryTreeView.buttonAddCategory.Click += buttonAddCategory_Click;
-            View.CategoryTreeView.buttonAddSubcategory.Click += buttonAddSubcategory_Click;
+
+            // Fill contextmenu of category treeview.
+            View.CategoryTreeView.TreeViewContextMenu.Opening += (sender, args) =>
+            {
+                if (View.CategoryTreeView.SelectedNode == null)
+                {
+                    if (View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeDelete"] != null)
+                        View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeDelete"].Visible = false;
+
+                    if (View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeEdit"] != null)
+                        View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeEdit"].Visible = false;
+
+                    if (View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeAdd"] != null)
+                        View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeAdd"].Visible = false;
+                }
+                else
+                {
+                    if (View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeDelete"] != null)
+                        View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeDelete"].Visible = false;
+
+                    if (View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeEdit"] != null)
+                        View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeEdit"].Visible = false;
+
+                    if (View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeAdd"] != null)
+                        View.CategoryTreeView.TreeViewContextMenu.Items["ContextMenuNodeAdd"].Visible = true;
+                }
+            };
+
+            var addToolStripButton = new ToolStripMenuItem("Toevoegen") {Name = "ContextMenuNodeAddSub"};
+            var addSubCategoryToolStripButton = new ToolStripMenuItem("Subcategorie")
+            {
+                Width = TextRenderer.MeasureText("Subcategorie", addToolStripButton.Font).Width
+            };
+            var addCategoryToolStripButton = new ToolStripMenuItem("Categorie");
+            var editToolStripButton = new ToolStripMenuItem("Wijzigen") { Name = "ContextMenuNodeEdit" };
+            var deleteToolStripButton = new ToolStripMenuItem("Verwijderen") {Name = "ContextMenuNodeDelete"};
+            
+
+            addCategoryToolStripButton.Click += (sender, args) =>
+            {
+                MainForm.PopupController<ControllerAddCategory>();
+                CreateNodes();
+            };
+
+            addSubCategoryToolStripButton.Click += (sender, args) =>
+            {
+                if (View.CategoryTreeView.SelectedNode != null)
+                {
+                    MainForm.PopupController<ControllerAddCategory>(new KeyValuePair<string, object>("Parent",
+                        View.CategoryTreeView.SelectedNode.Tag));
+                    CreateNodes();
+                }
+
+                else
+                {
+                    MessageBox.Show("Selecteer alstublieft een categorie als u een subcategorie toe wilt voegen.");
+                }
+            };
+
+            View.CategoryTreeView.TreeViewContextMenu.Items.Add(addToolStripButton);
+            addToolStripButton.DropDownItems.Add(addCategoryToolStripButton);
+            addToolStripButton.DropDownItems.Add(addSubCategoryToolStripButton);
+            View.CategoryTreeView.TreeViewContextMenu.Items.Add(editToolStripButton);
+            View.CategoryTreeView.TreeViewContextMenu.Items.Add(deleteToolStripButton);
         }
 
         public override void Activate()
         {
             CreateNodes();
-        }
-
-        void buttonAddCategory_Click(object sender, EventArgs e)
-        {
-            MainForm.PopupController<ControllerAddCategory>();
-            CreateNodes();
-        }
-        void buttonAddSubcategory_Click(object sender, EventArgs e)
-        {
-            if (View.CategoryTreeView.SelectedNode != null)
-            {
-                MainForm.PopupController<ControllerAddCategory>(new KeyValuePair<string, object>("Parent", View.CategoryTreeView.SelectedNode.Tag));
-                CreateNodes();
-            }
-
-            else
-            {
-                MessageBox.Show("Selecteer alstublieft een categorie als u een subcategorie toe wilt voegen."); 
-            }
-            
         }
 
         private void AddFileButton_Click(object sender, EventArgs e)
@@ -90,57 +128,24 @@ namespace MediaSharingApplication.Controllers
 #if DEBUG
                 file.UserAccountId = 1;
 #else
-    //file.UserAccountId = MainForm.UserSession;
+                file.UserAccountId = MainForm.UserSession;
 #endif
                 file.Insert();
-                FillFileFlowPanel(View.CategoryTreeView.SelectedNode.Name);
+                FillFileFlowPanel((int) selectedNode.Tag);
             }
         }
-
-        //private IEnumerable<string> GetDirectoryNames(TreeNode node)
-        //{
-        //    List<String> categoryList = new List<String>();
-        //    TreeNode parent = node.Parent;
-
-        //    categoryList.Add(node.Text);
-        //    while (parent != null)
-        //    {
-        //        categoryList.Add(parent.Text);
-        //        parent = parent.Parent;
-        //    }
-
-        //    categoryList.Reverse();
-        //    return categoryList;
-        //}
 
         private void CategoryTreeView_NodeClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            FillFileFlowPanel(e.Node.Text);
+            FillFileFlowPanel((int) e.Node.Tag);
         }
 
-        private void FillFileFlowPanel(string catName)
-        {
-            View.CategoryFiles.FileFlowLayout.Controls.Clear();
-            IEnumerable<File> files =
-                File.Select("CATEGORYID = (SELECT CATEGORYID FROM CATEGORY WHERE NAME = " + catName.ToSqlFormat() + ")");
-
-            foreach (File file in files)
-            {
-                var pt = new PanelTile(file.Name, file.Description);
-                pt.Tag = file;
-                pt.pictureBox1.ImageLocation = setFileImage(file.Name);
-                pt.pictureBox1.Click += pt_Click;
-
-                View.CategoryFiles.FileFlowLayout.Controls.Add(pt);
-            }
-        }
-
-        void pt_Click(object sender, EventArgs e)
+        private void pt_Click(object sender, EventArgs e)
         {
             MainForm.Open<ControllerFileDetail>(
-                new KeyValuePair<string, object>("File", (File)((PictureBox)sender).Parent.Tag),
+                new KeyValuePair<string, object>("File", ((PictureBox) sender).Parent.Tag),
                 new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),
-                new KeyValuePair<string, object>("fileName", (PanelTile)((PictureBox)sender).Parent));
+                new KeyValuePair<string, object>("fileName", ((PictureBox) sender).Parent));
         }
 
         private string setFileImage(string fileName)
@@ -148,25 +153,22 @@ namespace MediaSharingApplication.Controllers
             string ext = Path.GetExtension(fileName);
             Debug.WriteLine(ext);
 
-            if (new[] { ".png", ".jpg", ".gif"}.Contains(ext))
+            if (new[] {".png", ".jpg", ".gif"}.Contains(ext))
             {
                 return "Icons\\camera.png";
             }
 
-            else if (new[] { ".avi", ".mkv", ".wmv"}.Contains(ext))
+            if (new[] {".avi", ".mkv", ".wmv"}.Contains(ext))
             {
                 return "Icons\\music.png";
             }
 
-            else if (new[] { ".mp3", ".aac", ".ac3"}.Contains(ext))
+            if (new[] {".mp3", ".aac", ".ac3"}.Contains(ext))
             {
                 return "Icons\\wmp.png";
             }
 
-            else
-            {
-                return "Icons\\writing.png";
-            }
+            return "Icons\\writing.png";
         }
 
         private void CreateNodes()
@@ -229,6 +231,23 @@ namespace MediaSharingApplication.Controllers
 
                     prevNode.Parent.Nodes.Add(node);
                 }
+            }
+        }
+
+        private void FillFileFlowPanel(int id)
+        {
+            View.CategoryFiles.FileFlowLayout.Controls.Clear();
+            IEnumerable<File> files =
+                File.Select("CATEGORYID = " + id.ToSqlFormat());
+
+            foreach (File file in files)
+            {
+                var pt = new PanelTile(file.Name, file.Description);
+                pt.Tag = file;
+                pt.pictureBox1.ImageLocation = setFileImage(file.Name);
+                pt.pictureBox1.Click += pt_Click;
+
+                View.CategoryFiles.FileFlowLayout.Controls.Add(pt);
             }
         }
     }

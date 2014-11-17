@@ -38,8 +38,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.fileComment1 = new SharedClasses.Controls.WinForms.FileCommentInput();
-            this.commentSection1 = new SharedClasses.Controls.WinForms.CommentSection();
+            this.FileComment = new SharedClasses.Controls.WinForms.FileCommentInput();
+            this.CommentSection = new SharedClasses.Controls.WinForms.CommentSection();
             ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -139,8 +139,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.fileComment1);
-            this.panel2.Controls.Add(this.commentSection1);
+            this.panel2.Controls.Add(this.FileComment);
+            this.panel2.Controls.Add(this.CommentSection);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(400, 0);
@@ -148,20 +148,20 @@
             this.panel2.Size = new System.Drawing.Size(400, 480);
             this.panel2.TabIndex = 9;
             // 
-            // fileComment1
+            // FileComment
             // 
-            this.fileComment1.Location = new System.Drawing.Point(3, 318);
-            this.fileComment1.Name = "fileComment1";
-            this.fileComment1.Size = new System.Drawing.Size(391, 159);
-            this.fileComment1.TabIndex = 12;
+            this.FileComment.Location = new System.Drawing.Point(3, 318);
+            this.FileComment.Name = "FileComment";
+            this.FileComment.Size = new System.Drawing.Size(391, 159);
+            this.FileComment.TabIndex = 12;
             // 
-            // commentSection1
+            // CommentSection
             // 
-            this.commentSection1.BackColor = System.Drawing.Color.White;
-            this.commentSection1.Location = new System.Drawing.Point(6, 24);
-            this.commentSection1.Name = "commentSection1";
-            this.commentSection1.Size = new System.Drawing.Size(388, 288);
-            this.commentSection1.TabIndex = 10;
+            this.CommentSection.BackColor = System.Drawing.Color.White;
+            this.CommentSection.Location = new System.Drawing.Point(6, 24);
+            this.CommentSection.Name = "CommentSection";
+            this.CommentSection.Size = new System.Drawing.Size(388, 288);
+            this.CommentSection.TabIndex = 10;
             // 
             // ViewFileDetail
             // 
@@ -194,7 +194,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
-        public SharedClasses.Controls.WinForms.FileCommentInput fileComment1;
-        public SharedClasses.Controls.WinForms.CommentSection commentSection1;
+        public SharedClasses.Controls.WinForms.FileCommentInput FileComment;
+        public SharedClasses.Controls.WinForms.CommentSection CommentSection;
     }
 }

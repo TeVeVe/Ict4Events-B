@@ -9,7 +9,7 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("CATEGORYID")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [DisplayName("Naam")]
         public string Name { get; set; }
         [FieldName("PARENTCATID")]
