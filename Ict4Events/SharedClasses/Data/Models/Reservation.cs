@@ -21,10 +21,11 @@ namespace SharedClasses.Data.Models
         [Browsable(false)]
         public IEnumerable<Visitor> Wristbands { get; set; }
 
-        [DbIgnore]
-        [ForeignKey("ReserveeId")]
         [Browsable(false)]
-        public Reservee Reservee { get; set; }
+        public int ReserveeId { get; set; }
+
+        [Browsable(false)]
+        public int EventId { get; set; }
 
         [DbIgnore]
         [Browsable(false)]

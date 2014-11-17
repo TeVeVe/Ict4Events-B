@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
@@ -26,9 +27,14 @@ namespace ReservationSystem.Controllers
             if (reservee != null)
             {
                 // Fill fields with UserAccount properties.
-                View.TextBoxName.Text = reservee.FirstName;
-                View.TextBoxInsertion.Text = reservee.Insertion;
-                View.TextBoxLastName.Text = reservee.LastName;
+                var visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
+                if (visitor != null)
+                {
+                    View.TextBoxName.Text = visitor.FirstName;
+                    View.TextBoxInsertion.Text = visitor.Insertion;
+                    View.TextBoxLastName.Text = visitor.LastName;
+                }
+                
                 View.TextBoxStreet.Text = reservee.Street;
                 View.TextBoxCity.Text = reservee.City;
                 View.TextBoxPostalCode.Text = reservee.PostalCode;
@@ -54,9 +60,16 @@ namespace ReservationSystem.Controllers
             if (reservee == null) reservee = new Reservee();
 
             // Set fields.
-            reservee.FirstName = View.TextBoxName.Text;
-            reservee.Insertion = View.TextBoxInsertion.Text;
-            reservee.LastName = View.TextBoxLastName.Text;
+            Visitor visitor = null;
+            if (insertNew)
+                visitor = new Visitor();
+            else
+                visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
+
+            visitor.FirstName = View.TextBoxName.Text;
+            visitor.Insertion = View.TextBoxInsertion.Text;
+            visitor.LastName = View.TextBoxLastName.Text;
+
             reservee.Street = View.TextBoxStreet.Text;
             reservee.City = View.TextBoxCity.Text;
             reservee.PostalCode = View.TextBoxPostalCode.Text;
@@ -67,9 +80,15 @@ namespace ReservationSystem.Controllers
             reservee.EmailAddress = View.TextBoxEmail.Text;
 
             if (insertNew)
+            {
+                visitor.Insert();
                 reservee.Insert();
+            }
             else
+            {
+                visitor.Update();
                 reservee.Update();
+            }
 
             MainForm.Open<ControllerReservees>();
             //SendReservationConfirmationEmail(emailTo);
@@ -88,15 +107,16 @@ namespace ReservationSystem.Controllers
             string password = "Administrator01";
 
             string subject = string.Format("Ict4Events: Uw reservering is succesvol verwerkt!");
+            var visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
             string body =
                 string.Format(
                     "Geachte {0}, <br><br>bij deze is uw reservering succesvol verwerkt in ons systeem! <br>Uw bestelde polsbandjes zullen zo snel mogelijk naar u verstuurd worden. <br>" +
                     "Op de dag van het evenement kunt u dit polsbandje gebruiken om toegang te krijgen tot het evenemententerein. <br>" +
                     "U kunt het te betalen bedrag overmaken naar het volgende rekeningnummer: <b>123456</b>.<br><br>" +
                     "Veel plezier op het event!",
-                    reservee.FirstName +
-                    (!string.IsNullOrWhiteSpace(reservee.Insertion) ? " " + reservee.Insertion + " " : "") +
-                    reservee.LastName);
+                    visitor.FirstName +
+                    (!string.IsNullOrWhiteSpace(visitor.Insertion) ? " " + visitor.Insertion + " " : "") +
+                    visitor.LastName);
 
             using (var mail = new MailMessage())
             {

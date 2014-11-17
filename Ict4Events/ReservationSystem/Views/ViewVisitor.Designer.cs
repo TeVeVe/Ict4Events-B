@@ -108,7 +108,6 @@ namespace ReservationSystem.Views
             this.DataGridViewVisitors.RowTemplate.Height = 24;
             this.DataGridViewVisitors.Size = new System.Drawing.Size(378, 238);
             this.DataGridViewVisitors.TabIndex = 17;
-            this.DataGridViewVisitors.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewVisitors_CellContentClick);
             this.DataGridViewVisitors.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewVisitors_CellMouseDoubleClick);
             // 
             // label1

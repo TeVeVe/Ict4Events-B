@@ -50,9 +50,5 @@ namespace ReservationSystem.Views
         {
             OnCellModifyVisitorClick(e);
         }
-
-        private void DataGridViewVisitors_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
     }
 }

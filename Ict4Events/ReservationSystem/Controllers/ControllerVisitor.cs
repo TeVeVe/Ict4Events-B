@@ -24,7 +24,7 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnCellModifyVisitorClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            MainForm.Open<ControllerReserveeDetail>(new KeyValuePair<string, object>("USERACCOUNT", View.DataGridViewVisitors.Rows[e.RowIndex].DataBoundItem));
+            MainForm.Open<ControllerVisitorDetail>(new KeyValuePair<string, object>("VISITOR", View.DataGridViewVisitors.Rows[e.RowIndex].DataBoundItem));
         }
 
         private void ViewOnCheckboxIsOnSiteCheckChanged(object sender, EventArgs eventArgs)

@@ -1,31 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    class ControllerReservation : ControllerMVC<ViewReservation>
+    internal class ControllerReservation : ControllerMVC<ViewReservation>
     {
-        public override void Activate()
-        {
-            View.dataGridViewVisitors.DataSource = Reservation.Select().ToList();
-        }
-
         public ControllerReservation()
         {
-            View.ButtonAddReservationClick += ViewOnButtonAddReservationClick;
-            View.dataGridViewVisitors.DataSource = Reservee.Select().ToList();
-            View.onDoubleClick += ViewOnButtonAddReservationClick;
+            View.ButtonAddReservationClick += ViewButtonAddReservationClick;
+            View.GridDoubleClick += ViewOnGridDoubleClick;
         }
 
-        private void ViewOnButtonAddReservationClick(object sender, EventArgs eventArgs)
+        private void ViewOnGridDoubleClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
         {
-            MainForm.ActiveController = new ControllerReservationDetail();
+            Reservation reservation = null;
+            if (View.DataGridViewVisitors.SelectedCells.Count > 0)
+                reservation = (Reservation)View.DataGridViewVisitors.SelectedCells[0].OwningRow.DataBoundItem;
+
+            MainForm.Open<ControllerReservationDetail>(new KeyValuePair<string, object>("Reservation", reservation));
+        }
+
+        public override void Activate()
+        {
+            View.DataGridViewVisitors.DataSource = Reservation.Select().ToList();
+        }
+
+        private void ViewButtonAddReservationClick(object sender, EventArgs eventArgs)
+        {
+            MainForm.Open<ControllerReservationDetail>(new KeyValuePair<string, object>("Reservation", null));
         }
     }
 }

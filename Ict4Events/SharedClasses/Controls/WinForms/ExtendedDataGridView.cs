@@ -16,7 +16,10 @@ namespace SharedClasses.Controls.WinForms
         {
             InitializeComponent();
             AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             EditMode = DataGridViewEditMode.EditProgrammatically;
+            AllowUserToResizeColumns = true;
+            AllowUserToResizeRows = false;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
