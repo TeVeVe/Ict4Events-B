@@ -84,7 +84,7 @@ namespace SharedClasses.MVC
                     return;
                 _activeController = value;
 
-
+                bool controllerAlreadyReset = false;
                 if (_activeController != null)
                 {
                     // Select active controller in menu.
@@ -92,6 +92,7 @@ namespace SharedClasses.MVC
 
                     // Init the controller on the screen (first "reset").
                     ResetController();
+                    controllerAlreadyReset = true;
                 }
                 else
                 {
@@ -108,7 +109,8 @@ namespace SharedClasses.MVC
                     if (c != null)
                     {
                         _activeController.View.Focus();
-                        _activeController.Activate();
+                        if (!controllerAlreadyReset)
+                            _activeController.Activate();
                     }
                 });
             }
@@ -270,12 +272,14 @@ namespace SharedClasses.MVC
         ///     Creates a new window for the controller and displays it.
         /// </summary>
         /// <typeparam name="T">A type of controller for displaying.</typeparam>
+        /// <param name="allowUserResize">If true, users can resize the <see cref="Form"/>.</param>
         /// <param name="values">A controller to display.</param>
         /// <returns></returns>
-        public T PopupController<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
+        public T PopupControllerOptions<T>(bool allowUserResize, params KeyValuePair<string, object>[] values) where T : IController, new()
         {
             // Activate a new temporary host.
             var host = new FormMVC();
+            host.AllowUserResize = allowUserResize;
 
             // Mark controller as popup.
             var controller = host.Open<T>(values);
@@ -285,6 +289,12 @@ namespace SharedClasses.MVC
             host.ShowDialog();
 
             return (T)controller;
+        }
+
+
+        public T PopupController<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
+        {
+            return PopupControllerOptions<T>(false, values);
         }
 
         /// <summary>

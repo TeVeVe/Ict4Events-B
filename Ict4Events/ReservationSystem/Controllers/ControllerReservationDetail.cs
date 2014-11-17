@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using ReservationSystem.Views;
+using SharedClasses.Data.Models;
+using SharedClasses.Extensions;
 using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
     internal class ControllerReservationDetail : ControllerMVC<ViewReservationDetail>
     {
+        public Reservation Reservation { get; set; }
+
         public ControllerReservationDetail()
         {
             View.ButtonAddEvent += ViewOnButtonAddEvent;
@@ -15,13 +19,50 @@ namespace ReservationSystem.Controllers
             View.ButtonCancelClick += ViewOnButtonCancelClick;
         }
 
-        private void ViewOnButtonAddEvent(object sender, EventArgs eventArgs)
+        public override void Activate()
         {
+            Reservation = Values.SafeGetValue<Reservation>("Reservation");
+
+            if (Reservation == null)
+            {
+                View.TextBoxReservee.ReadOnly = false;
+                View.TextBoxEvent.ReadOnly = false;
+                View.NumericUpDownVisitorAmount.ReadOnly = false;
+                
+                View.TextBoxReservee.Clear();
+                View.TextBoxEvent.Clear();
+            }
+            else
+            {
+                View.TextBoxReservee.ReadOnly = true;
+                View.TextBoxEvent.ReadOnly = true;
+                View.NumericUpDownVisitorAmount.ReadOnly = true;
+
+                // Fill TextBoxReservee.
+                var reservee = Reservee.Select("RESERVEEID = " + Reservation.ReserveeId.ToSqlFormat()).FirstOrDefault();
+                if (reservee != null)
+                {
+                    View.TextBoxReservee.Text = reservee.FullName;
+                }
+
+                // Fill TextBoxEvent.
+                var dbEvent = Event.Select("EVENTID = " + Reservation.EventId.ToSqlFormat()).FirstOrDefault();
+                if (dbEvent != null)
+                {
+                    View.TextBoxEvent.Text = dbEvent.Name;
+                }
+
+                // Fill NumericUpDownValue.
+                View.NumericUpDownVisitorAmount.Value = Reservation.AmountOfPeople;
+
+                // Fill products.
+                var rentals = Rental.Select("VISITORCODE = " + reservee.ToSqlFormat());
+            }
         }
 
-        private void ViewOnButtonAddProductClick(object sender, EventArgs eventArgs)
+        private void ViewOnButtonAddEvent(object sender, EventArgs eventArgs)
         {
-            MainForm.ActiveMenuItemText = "Producten";
+
         }
 
         private void ViewOnButtonSaveReservationClick(object sender, EventArgs eventArgs)
@@ -38,8 +79,8 @@ namespace ReservationSystem.Controllers
                     .ToList();
 
             // Popup window which shows input fields based on the amount of RFIDs required.
-            MainForm.PopupController<ControllerAddVisitorsToReservation>(new KeyValuePair<string, object>("Visitors",
-                randomRFIDs));
+            MainForm.PopupControllerOptions<ControllerAddVisitorsToReservation>(true, new KeyValuePair<string, object>("Visitors",
+                randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation));
         }
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)

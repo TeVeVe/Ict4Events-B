@@ -30,25 +30,25 @@ namespace ReservationSystem.Views
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewVisitors = new ExtendedDataGridView();
+            this.DataGridViewVisitors = new ExtendedDataGridView();
             this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonAddReservation = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVisitors)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewVisitors)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridViewVisitors
+            // DataGridViewVisitors
             // 
-            this.dataGridViewVisitors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewVisitors.Location = new System.Drawing.Point(0, 31);
-            this.dataGridViewVisitors.Location = new System.Drawing.Point(0, 134);
-            this.dataGridViewVisitors.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewVisitors.Name = "dataGridViewVisitors";
-            this.dataGridViewVisitors.RowTemplate.Height = 24;
-            this.dataGridViewVisitors.Size = new System.Drawing.Size(497, 446);
-            this.dataGridViewVisitors.TabIndex = 20;
-            this.dataGridViewVisitors.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVisitors_CellDoubleClick);
+            this.DataGridViewVisitors.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewVisitors.Location = new System.Drawing.Point(0, 31);
+            this.DataGridViewVisitors.Location = new System.Drawing.Point(0, 134);
+            this.DataGridViewVisitors.Margin = new System.Windows.Forms.Padding(2);
+            this.DataGridViewVisitors.Name = "DataGridViewVisitors";
+            this.DataGridViewVisitors.RowTemplate.Height = 24;
+            this.DataGridViewVisitors.Size = new System.Drawing.Size(497, 446);
+            this.DataGridViewVisitors.TabIndex = 20;
+            this.DataGridViewVisitors.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVisitors_CellDoubleClick);
             
             // 
             // button7
@@ -89,12 +89,12 @@ namespace ReservationSystem.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridViewVisitors);
+            this.Controls.Add(this.DataGridViewVisitors);
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservation";
             this.Size = new System.Drawing.Size(497, 477);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVisitors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewVisitors)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -105,6 +105,6 @@ namespace ReservationSystem.Views
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonAddReservation;
-        public System.Windows.Forms.DataGridView dataGridViewVisitors;
+        public System.Windows.Forms.DataGridView DataGridViewVisitors;
     }
 }

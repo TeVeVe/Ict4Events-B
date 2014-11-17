@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
-using ReservationSystem.Controllers;
 
 namespace ReservationSystem.Views
 {
     public partial class ViewReservation : UserControl
     {
-        public event EventHandler<DataGridViewCellEventArgs> onDoubleClick;
-
-        protected virtual void OnOnDoubleClick(DataGridViewCellEventArgs e)
-        {
-            EventHandler<DataGridViewCellEventArgs> handler = onDoubleClick;
-            if (handler != null)
-                handler(this, e);
-        }
-
         public ViewReservation()
         {
             InitializeComponent();
+        }
+
+        public event EventHandler<DataGridViewCellEventArgs> GridDoubleClick;
+
+        protected virtual void OnGridDoubleClick(DataGridViewCellEventArgs e)
+        {
+            EventHandler<DataGridViewCellEventArgs> handler = GridDoubleClick;
+            if (handler != null)
+                handler(this, e);
         }
 
         public event EventHandler ButtonAddReservationClick;
@@ -25,17 +24,18 @@ namespace ReservationSystem.Views
         protected virtual void OnButtonAddReservationClick()
         {
             EventHandler handler = ButtonAddReservationClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
-        private void buttonAddReservation_Click(object sender, System.EventArgs e)
+        private void buttonAddReservation_Click(object sender, EventArgs e)
         {
             OnButtonAddReservationClick();
         }
 
         private void dataGridViewVisitors_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OnOnDoubleClick(e);
+            OnGridDoubleClick(e);
         }
     }
 }

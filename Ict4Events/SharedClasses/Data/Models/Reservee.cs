@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using SharedClasses.Data.Attributes;
+using SharedClasses.Extensions;
 
 namespace SharedClasses.Data.Models
 {
@@ -11,15 +13,6 @@ namespace SharedClasses.Data.Models
         public int ReserveeId { get; set; }
         [DisplayName("Email")]
         public string EmailAddress { get; set; }
-        [DisplayName("Voornaam")]
-        [Browsable(false)]
-        public string FirstName { get; set; }
-        [DisplayName("Tussenvoegsel")]
-        [Browsable(false)]
-        public string Insertion { get; set; }
-        [DisplayName("Achternaam")]
-        [Browsable(false)]
-        public string LastName { get; set; }
 
         [DisplayName("Huisnummer")]
         [Browsable(false)]
@@ -34,13 +27,17 @@ namespace SharedClasses.Data.Models
         [Browsable(false)]
         public string Street { get; set; }
 
+        [Browsable(false)]
+        public string VisitorCode { get; set; }
+
         [DisplayName("Volledige naam")]
         [DbIgnore]
         public string FullName
         {
             get
             {
-                return FirstName + (!string.IsNullOrEmpty(Insertion) ? ' ' + Insertion + ' ' : " ") + LastName;
+                var visitor = Visitor.Select("VISITORCODE = " + VisitorCode.ToSqlFormat()).FirstOrDefault();
+                return visitor.FirstName + (!string.IsNullOrEmpty(visitor.Insertion) ? ' ' + visitor.Insertion + ' ' : " ") + visitor.LastName;
             }
         }
 

@@ -42,6 +42,12 @@ namespace SharedClasses.Controls.WinForms
             set { TextBoxPhoneNumber.Text = value; }
         }
 
+        public string Title
+        {
+            get { return groupBox.Text; }
+            set { groupBox.Text = value; }
+        }
+
         public VisitorInfoPanel()
         {
             InitializeComponent();
