@@ -15,7 +15,7 @@ namespace AccessControlSystem.Controllers
             Task.Factory.StartNew(() =>
             {
                 Task.Delay(5000).Wait();
-                MainForm.Open<ControllerScanRFID>();
+                FormMain.Form.Open<ControllerScanRFID>();
             });
         }
     }

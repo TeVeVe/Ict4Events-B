@@ -17,43 +17,44 @@ namespace AccessControlSystem.Controllers
         {
             rfid = new RadioFrequency();
 
-            // Retrieve payment status of scanned wristband.
+            // Retrieve payment status of scanned Visitor.
             rfid.Tag += (sender, args) =>
             {
-                IEnumerable<Wristband> wristbands = Wristband.Select("VISITORCODE = " + args.Value.ToSqlFormat());
+                IEnumerable<Visitor> wristbands = Visitor.Select("VISITORCODE = " + args.Value.ToSqlFormat());
 
-                // If wristband doesn't occur in database.
+                // If Visitor doesn't occur in database.
                 if (!wristbands.Any())
                 {
-                    // Show unknown wristband message.
+                    // Show unknown Visitor message.
                     FormMain.Form.Open<ControllerUnknownWristband>();
                 }
                 else
                 {
-                    // wristband does exist in database.
+                    // Visitor does exist in database.
                     IEnumerable<Reservation> reservation =
                         Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
 
                     if (reservation.First().PaymentStatus)
                     {
                         // if payment status is OK
-                        FormMain.Form.Open<ControllerLocationDetails>();
-                        Wristband wristband = wristbands.First();
+                        Visitor visitor = wristbands.First();
 
-                        if (!wristband.IsOnSite)
+                        if (!visitor.IsOnSite)
                         {
                             // User is not yet on site but checkin is successful: access granted, update database to set guest as present (on site).
-                            wristband.IsOnSite = true;
-                            wristband.Update();
+                            visitor.IsOnSite = true;
+                            visitor.Update();
+                            FormMain.Form.Open<ControllerLocationDetails>();
                         }
                         else
                         {
                             // User was already on site but checked out: update database to set guest as away (not on site).
-                            wristband.IsOnSite = !wristband.IsOnSite;
-                            wristband.Update();
+                            visitor.IsOnSite = false;
+                            visitor.Update();
+                            FormMain.Form.Open<ControllerVisitorExit>();
                         }
                     }
-                    // Access denied due to negative payment status.
+                        // Access denied due to negative payment status.
                     else
                         FormMain.Form.Open<ControllerAccessDenied>();
                 }

@@ -13,7 +13,7 @@ namespace SharedClasses.Data.Models
         public bool PaymentStatus { get; set; }
         public int AmountOfPeople { get; set; }
         [DbIgnore]
-        public IEnumerable<Wristband> Wristbands { get; set; }
+        public IEnumerable<Visitor> Wristbands { get; set; }
         [DbIgnore]
         [ForeignKey("ReserveeId")]
         public Reservee Reservee { get; set; }

@@ -103,11 +103,14 @@ namespace SharedClasses.MVC
                 }
 
                 // Refresh user code in controller.
-                if (_activeController != null)
+                _activeController.View.InvokeSafe((c) =>
                 {
-                    _activeController.View.Focus();
-                    _activeController.Activate();
-                }
+                    if (c != null)
+                    {
+                        _activeController.View.Focus();
+                        _activeController.Activate();
+                    }
+                });
             }
         }
 
@@ -267,17 +270,17 @@ namespace SharedClasses.MVC
         ///     Creates a new window for the controller and displays it.
         /// </summary>
         /// <typeparam name="T">A type of controller for displaying.</typeparam>
-        /// <param name="controller">A controller to display.</param>
+        /// <param name="values">A controller to display.</param>
         /// <returns></returns>
-        public T PopupController<T>() where T : IController, new()
+        public T PopupController<T>(params KeyValuePair<string, object>[] values) where T : IController, new()
         {
             // Activate a new temporary host.
             var host = new FormMVC();
 
             // Mark controller as popup.
-            var controller = Open<T>();
+            var controller = host.Open<T>(values);
             controller.IsPopup = true;
-            host.ActiveController = controller;
+            controller.Activate();
 
             // Show and block code.
             host.ShowDialog();
