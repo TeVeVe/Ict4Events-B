@@ -22,6 +22,11 @@ namespace SharedClasses.Controls.WinForms
             _currentNodeMatches = new List<TreeNode>();
         }
 
+        public ContextMenuStrip TreeViewContextMenu
+        {
+            get { return treeViewCategories.ContextMenuStrip; }
+        }
+
         /// <summary>
         ///     Returns the collection which is used by the TreeView.
         /// </summary>
@@ -42,7 +47,8 @@ namespace SharedClasses.Controls.WinForms
             set
             {
                 // Checking early for possible errors.
-                if (treeViewCategories.Nodes.Count <= 0) return;
+                if (treeViewCategories.Nodes.Count <= 0)
+                    return;
 
                 TextBox textBox = textBoxSearchFilter;
 
@@ -78,13 +84,15 @@ namespace SharedClasses.Controls.WinForms
         protected virtual void OnNodeClick(TreeNodeMouseClickEventArgs e)
         {
             EventHandler<TreeNodeMouseClickEventArgs> handler = NodeClick;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         protected virtual void OnCategoryClick()
         {
             EventHandler handler = CategoryClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -95,7 +103,8 @@ namespace SharedClasses.Controls.WinForms
         protected virtual void OnSubcategoryClick()
         {
             EventHandler handler = SubcategoryClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         private void textBoxSearchFilter_TextChanged(object sender, EventArgs e)
@@ -128,7 +137,8 @@ namespace SharedClasses.Controls.WinForms
 
         private void treeViewCategories_KeyDown(object sender, KeyEventArgs e)
         {
-            if (treeViewCategories.Nodes.Count <= 0) return;
+            if (treeViewCategories.Nodes.Count <= 0)
+                return;
 
             int keyValue = e.KeyValue;
 
@@ -137,10 +147,10 @@ namespace SharedClasses.Controls.WinForms
 
             // Determine if the key should be uppercase or lowercase.
             char key;
-            if (!e.Shift && keyValue >= (int)Keys.A && keyValue <= (int)Keys.Z)
-                key = (char)(keyValue + 32);
+            if (!e.Shift && keyValue >= (int) Keys.A && keyValue <= (int) Keys.Z)
+                key = (char) (keyValue + 32);
             else
-                key = (char)keyValue;
+                key = (char) keyValue;
 
 
             // Match for only valid characters in textbox.

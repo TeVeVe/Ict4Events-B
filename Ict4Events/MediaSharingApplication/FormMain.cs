@@ -10,7 +10,12 @@ namespace MediaSharingApplication
         {
             InitializeComponent();
 
+#if DEBUG
+            UserSession = 1;
             MarkAsMain<ControllerMain>();
+#else
+            MarkAsMain<ControllerLogin>();
+#endif
         }
 
         public int UserSession { get; set; }

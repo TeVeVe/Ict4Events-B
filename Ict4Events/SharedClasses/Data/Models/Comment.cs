@@ -5,7 +5,7 @@ using SharedClasses.Data.Attributes;
 namespace SharedClasses.Data.Models
 {
     [Table("COMMENT")]
-    public class Comment
+    public class Comment : DataModel<Comment>
     {
         [Key]
         [FieldName("COMMENTID")]
