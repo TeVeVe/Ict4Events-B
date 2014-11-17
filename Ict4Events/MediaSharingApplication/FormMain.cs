@@ -13,6 +13,6 @@ namespace MediaSharingApplication
             MarkAsMain<ControllerMain>();
         }
 
-        public UserAccount UserSession { get; set; }
+        public int UserSession { get; set; }
     }
 }

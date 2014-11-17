@@ -12,7 +12,6 @@ namespace SharedClasses.Data.Models
         public int Id { get; set; }
         [DisplayName("Naam")]
         public string Name { get; set; }
-
         [FieldName("PARENTCATID")]
         public int? ParentCategory { get; set; }
         [DisplayName("Omschrijving")]

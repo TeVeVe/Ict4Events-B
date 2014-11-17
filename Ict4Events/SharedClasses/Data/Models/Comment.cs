@@ -14,11 +14,9 @@ namespace SharedClasses.Data.Models
         public string Content { get; set; }
         [DisplayName("Geplaatst op")]
         public DateTime PostTime { get; set; }
-        [DbIgnore]
-        public Comment ParentComment { get; set; }
-        [DbIgnore]
-        public UserAccount UserAccount { get; set; }
-        [DbIgnore]
-        public File FileId { get; set; }
+        [FieldName("ParentId")]
+        public int? ParentComment { get; set; }
+        public int UserAccountId { get; set; }
+        public int FileId { get; set; }
     }
 }
