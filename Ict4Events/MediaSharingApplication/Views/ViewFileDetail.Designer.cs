@@ -36,10 +36,10 @@
             this.TextBoxOmschrijving = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.fileComment1 = new SharedClasses.Controls.WinForms.FileCommentInput();
             this.commentSection1 = new SharedClasses.Controls.WinForms.CommentSection();
-            this.fileComment1 = new SharedClasses.Controls.WinForms.FileComment();
             ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,6 +128,15 @@
             this.panel1.Size = new System.Drawing.Size(400, 480);
             this.panel1.TabIndex = 12;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(339, 454);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(58, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Opslaan";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.fileComment1);
@@ -139,14 +148,12 @@
             this.panel2.Size = new System.Drawing.Size(400, 480);
             this.panel2.TabIndex = 9;
             // 
-            // button1
+            // fileComment1
             // 
-            this.button1.Location = new System.Drawing.Point(339, 454);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Opslaan";
-            this.button1.UseVisualStyleBackColor = true;
+            this.fileComment1.Location = new System.Drawing.Point(3, 318);
+            this.fileComment1.Name = "fileComment1";
+            this.fileComment1.Size = new System.Drawing.Size(391, 159);
+            this.fileComment1.TabIndex = 12;
             // 
             // commentSection1
             // 
@@ -155,13 +162,6 @@
             this.commentSection1.Name = "commentSection1";
             this.commentSection1.Size = new System.Drawing.Size(388, 288);
             this.commentSection1.TabIndex = 10;
-            // 
-            // fileComment1
-            // 
-            this.fileComment1.Location = new System.Drawing.Point(3, 318);
-            this.fileComment1.Name = "fileComment1";
-            this.fileComment1.Size = new System.Drawing.Size(391, 159);
-            this.fileComment1.TabIndex = 12;
             // 
             // ViewFileDetail
             // 
@@ -190,11 +190,11 @@
         public System.Windows.Forms.PictureBox filePicture;
         public System.Windows.Forms.TextBox TextBoxTitel;
         public System.Windows.Forms.TextBox TextBoxOmschrijving;
-        private SharedClasses.Controls.WinForms.CommentSection commentSection1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
-        private SharedClasses.Controls.WinForms.FileComment fileComment1;
+        public SharedClasses.Controls.WinForms.FileCommentInput fileComment1;
+        public SharedClasses.Controls.WinForms.CommentSection commentSection1;
     }
 }

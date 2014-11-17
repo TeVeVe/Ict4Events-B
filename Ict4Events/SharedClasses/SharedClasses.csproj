@@ -64,11 +64,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\WinForms\FileComment.cs">
+    <Compile Include="Controls\WinForms\FileCommentInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\WinForms\FileComment.Designer.cs">
-      <DependentUpon>FileComment.cs</DependentUpon>
+    <Compile Include="Controls\WinForms\FileCommentInput.Designer.cs">
+      <DependentUpon>FileCommentInput.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\WinForms\ViewInputBox.cs">
       <SubType>UserControl</SubType>
@@ -82,11 +82,11 @@
     <Compile Include="Controls\WinForms\CategoryFiles.Designer.cs">
       <DependentUpon>CategoryFiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WinForms\Comment.cs">
+    <Compile Include="Controls\WinForms\FileComment.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\WinForms\Comment.Designer.cs">
-      <DependentUpon>Comment.cs</DependentUpon>
+    <Compile Include="Controls\WinForms\FileComment.Designer.cs">
+      <DependentUpon>FileComment.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\WinForms\CommentSection.cs">
       <SubType>UserControl</SubType>
@@ -233,14 +233,14 @@
     <EmbeddedResource Include="Controls\WinForms\CategoryFiles.resx">
       <DependentUpon>CategoryFiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\WinForms\Comment.resx">
-      <DependentUpon>Comment.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\WinForms\FileComment.resx">
+      <DependentUpon>FileComment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\CommentSection.resx">
       <DependentUpon>CommentSection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\WinForms\FileComment.resx">
-      <DependentUpon>FileComment.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\WinForms\FileCommentInput.resx">
+      <DependentUpon>FileCommentInput.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\WinForms\NamedClearableTextBox.resx">
       <DependentUpon>NamedClearableTextBox.cs</DependentUpon>

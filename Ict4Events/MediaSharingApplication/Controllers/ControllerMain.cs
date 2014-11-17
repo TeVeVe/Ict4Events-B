@@ -23,7 +23,7 @@ namespace MediaSharingApplication.Controllers
 {
     public class ControllerMain : ControllerMVC<ViewMain>
     {
-        ResourceManager rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
+        ResourceManager _rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
 
         public ControllerMain()
         {

@@ -19,6 +19,12 @@ namespace MediaSharingApplication.Controllers
         {
             View.BackButtonClick += ViewOnBackButtonClick;
             View.DownloadButtonClick += ViewOnDownloadButtonClick;
+            View.fileComment1.SendCommentButton.Click += SendCommentButton_Click;
+        }
+
+        void SendCommentButton_Click(object sender, EventArgs e)
+        {
+            Comment c = new Comment();
         }
 
         private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)

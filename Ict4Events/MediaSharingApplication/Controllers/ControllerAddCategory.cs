@@ -20,11 +20,6 @@ namespace MediaSharingApplication.Controllers
             View.buttonCancel.Click += buttonCancel_Click;
         }
 
-        public override void Activate()
-        {
-            
-        }
-
         void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -34,17 +29,20 @@ namespace MediaSharingApplication.Controllers
         {
             if (!String.IsNullOrWhiteSpace(View.textBoxName.Text) && !String.IsNullOrWhiteSpace(View.textBoxDescription.Text))
             {
+                int? parentCategory = Values.SafeGetValue<int>("Parent");
+
                 Debug.WriteLine("{0} - {1}", View.textBoxName.Text, View.textBoxDescription.Text);
                 Category cat = new Category();
                 cat.Name = View.textBoxName.Text;
                 cat.Description = View.textBoxDescription.Text;
-                cat.ParentCategory = Values.SafeGetValue<int>("Parent");
-                TreeNode parent = Values.SafeGetValue<TreeNode>("parent");
-                if (parent != null)
+                if (parentCategory != 0)
                 {
-                    cat.ParentCategory = ((Category) parent.Tag).ParentCategory;
+                    cat.ParentCategory = parentCategory;
                 }
-
+                else
+                {
+                    cat.ParentCategory = null;
+                }
                 cat.Insert();
                 this.Close();
             }

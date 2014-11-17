@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SharedClasses.Controls.WinForms
 {
-    public partial class Comment : UserControl
+    public partial class FileCommentInput : UserControl
     {
-        public Comment()
+        public FileCommentInput()
         {
             InitializeComponent();
         }

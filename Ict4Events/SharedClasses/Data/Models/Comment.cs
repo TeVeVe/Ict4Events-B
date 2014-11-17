@@ -17,12 +17,5 @@ namespace SharedClasses.Data.Models
         public UserAccount UserAccount { get; set; }
         [ForeignKey("FILEID")]
         public File FileId { get; set; }
-
-        public Comment(string content, UserAccount account)
-        {
-            Content = content;
-
-            throw new NotImplementedException();
-        }
     }
 }
