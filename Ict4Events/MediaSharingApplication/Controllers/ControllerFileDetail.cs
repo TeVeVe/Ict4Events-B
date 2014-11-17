@@ -24,7 +24,10 @@ namespace MediaSharingApplication.Controllers
 
         void SendCommentButton_Click(object sender, EventArgs e)
         {
-            Comment c = new Comment();
+            Comment comment = new Comment();
+            int account = ((FormMain) MainForm).UserSession;
+
+            comment.UserAccountId = account;
         }
 
         private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)

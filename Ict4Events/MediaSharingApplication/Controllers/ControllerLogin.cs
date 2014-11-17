@@ -68,7 +68,7 @@ namespace MediaSharingApplication.Controllers
             }
             else
             {
-                ((FormMain)MainForm).UserSession = account;
+                ((FormMain)MainForm).UserSession = account.Id;
                 MainForm.Open<ControllerMain>();
             }
         }
