@@ -94,6 +94,12 @@
     <Compile Include="Controls\WinForms\CommentSection.Designer.cs">
       <DependentUpon>CommentSection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\WinForms\ExtendedDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WinForms\ExtendedDataGridView.Designer.cs">
+      <DependentUpon>ExtendedDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WinForms\InteractiveMap.cs">
       <SubType>Component</SubType>
     </Compile>

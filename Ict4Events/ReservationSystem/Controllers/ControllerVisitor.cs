@@ -8,7 +8,7 @@ using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    internal class ControllerVisitor : ControllerMVC<ViewVisitors>
+    internal class ControllerVisitor : ControllerMVC<ViewVisitor>
     {
         public ControllerVisitor()
         {

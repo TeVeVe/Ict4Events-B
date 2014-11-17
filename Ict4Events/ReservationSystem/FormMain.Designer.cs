@@ -32,14 +32,14 @@
             // 
             // panelContent
             // 
-            this.panelContent.Size = new System.Drawing.Size(653, 392);
+            this.panelContent.Size = new System.Drawing.Size(810, 481);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(653, 416);
+            this.ClientSize = new System.Drawing.Size(810, 505);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
             this.Text = "Reserveringssysteem";
