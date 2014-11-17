@@ -53,7 +53,7 @@ namespace MediaSharingApplication.Controllers
 
             else
             {
-                MessageBox.Show("Selecteer alstublieft een categorie als u een subcategorie toe wilt voegen.");
+                MessageBox.Show("Selecteer alstublieft een categorie als u een subcategorie toe wilt voegen."); 
             }
             
         }
