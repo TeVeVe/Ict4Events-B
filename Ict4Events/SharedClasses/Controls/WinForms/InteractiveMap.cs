@@ -290,7 +290,7 @@ namespace SharedClasses.Controls.WinForms
                 });
             }
 
-            public new void AddRange(IEnumerable<Spot> spots)
+            public void AddRange(IEnumerable<Spot> spots)
             {
                 foreach (var spot in spots)
                 {

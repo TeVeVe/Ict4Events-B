@@ -38,6 +38,7 @@ namespace ReservationSystem.Views
             this.TextBoxReservee = new System.Windows.Forms.TextBox();
             this.TextBoxEvent = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DataGridViewProducts = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ButtonDeleteProduct = new System.Windows.Forms.Button();
             this.ButtonAddProduct = new System.Windows.Forms.Button();
@@ -46,12 +47,12 @@ namespace ReservationSystem.Views
             this.buttonSaveReservation = new System.Windows.Forms.Button();
             this.ButtonAddEvent = new System.Windows.Forms.Button();
             this.NumericUpDownVisitorAmount = new System.Windows.Forms.NumericUpDown();
-            this.DataGridViewProducts = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
+            this.InteractiveMap = new SharedClasses.Controls.WinForms.InteractiveMap();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewProducts)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonAddReservee
@@ -130,6 +131,21 @@ namespace ReservationSystem.Views
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Producten";
+            // 
+            // DataGridViewProducts
+            // 
+            this.DataGridViewProducts.AllowUserToResizeRows = false;
+            this.DataGridViewProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewProducts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridViewProducts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DataGridViewProducts.Location = new System.Drawing.Point(2, 44);
+            this.DataGridViewProducts.Margin = new System.Windows.Forms.Padding(2);
+            this.DataGridViewProducts.Name = "DataGridViewProducts";
+            this.DataGridViewProducts.RowTemplate.Height = 24;
+            this.DataGridViewProducts.ShowCellToolTips = false;
+            this.DataGridViewProducts.Size = new System.Drawing.Size(299, 243);
+            this.DataGridViewProducts.TabIndex = 38;
             // 
             // panel1
             // 
@@ -217,25 +233,21 @@ namespace ReservationSystem.Views
             0,
             0});
             // 
-            // DataGridViewProducts
+            // InteractiveMap
             // 
-            this.DataGridViewProducts.AllowUserToResizeRows = false;
-            this.DataGridViewProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.DataGridViewProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridViewProducts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridViewProducts.Location = new System.Drawing.Point(2, 44);
-            this.DataGridViewProducts.Margin = new System.Windows.Forms.Padding(2);
-            this.DataGridViewProducts.Name = "DataGridViewProducts";
-            this.DataGridViewProducts.RowTemplate.Height = 24;
-            this.DataGridViewProducts.ShowCellToolTips = false;
-            this.DataGridViewProducts.Size = new System.Drawing.Size(299, 243);
-            this.DataGridViewProducts.TabIndex = 38;
+            this.InteractiveMap.DrawImageRealSize = false;
+            this.InteractiveMap.ImageMap = null;
+            this.InteractiveMap.Location = new System.Drawing.Point(416, 74);
+            this.InteractiveMap.Name = "InteractiveMap";
+            this.InteractiveMap.Size = new System.Drawing.Size(244, 288);
+            this.InteractiveMap.TabIndex = 38;
+            this.InteractiveMap.Text = "interactiveMap1";
             // 
             // ViewReservationDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.InteractiveMap);
             this.Controls.Add(this.NumericUpDownVisitorAmount);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.groupBox1);
@@ -250,10 +262,10 @@ namespace ReservationSystem.Views
             this.Name = "ViewReservationDetail";
             this.Size = new System.Drawing.Size(663, 399);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewProducts)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,6 +289,7 @@ namespace ReservationSystem.Views
         public System.Windows.Forms.Button ButtonAddProduct;
         public System.Windows.Forms.Button ButtonDeleteProduct;
         public NumericUpDown NumericUpDownVisitorAmount;
+        public InteractiveMap InteractiveMap;
 
     }
 }

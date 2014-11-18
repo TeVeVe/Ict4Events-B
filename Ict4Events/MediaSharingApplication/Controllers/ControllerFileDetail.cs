@@ -102,7 +102,7 @@ namespace MediaSharingApplication.Controllers
         {
             File file = Values.SafeGetValue<File>("File");
 
-            if (file.Id != null)
+            if (file.Id != 0)
             {
                 View.CommentSection.FlowLayoutPanel.Controls.Clear();
                 IEnumerable<Comment> comments = Comment.Select("FILEID =" + file.Id);
