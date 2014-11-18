@@ -38,8 +38,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.FileComment = new SharedClasses.Controls.WinForms.FileCommentInput();
+            this.ButtonPlus = new System.Windows.Forms.Button();
+            this.ButtonMinus = new System.Windows.Forms.Button();
+            this.LabelScore = new System.Windows.Forms.Label();
             this.CommentSection = new SharedClasses.Controls.WinForms.CommentSection();
+            this.FileComment = new SharedClasses.Controls.WinForms.FileCommentInput();
             ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -116,6 +119,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ButtonPlus);
+            this.panel1.Controls.Add(this.ButtonMinus);
+            this.panel1.Controls.Add(this.LabelScore);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.downloadButton);
             this.panel1.Controls.Add(this.TextBoxTitel);
@@ -148,14 +154,32 @@
             this.panel2.Size = new System.Drawing.Size(400, 480);
             this.panel2.TabIndex = 9;
             // 
-            // FileComment
+            // ButtonPlus
             // 
-            this.FileComment.AutoSize = true;
-            this.FileComment.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FileComment.Location = new System.Drawing.Point(0, 375);
-            this.FileComment.Name = "FileComment";
-            this.FileComment.Size = new System.Drawing.Size(400, 105);
-            this.FileComment.TabIndex = 12;
+            this.ButtonPlus.Location = new System.Drawing.Point(215, 454);
+            this.ButtonPlus.Name = "ButtonPlus";
+            this.ButtonPlus.Size = new System.Drawing.Size(35, 23);
+            this.ButtonPlus.TabIndex = 13;
+            this.ButtonPlus.Text = "+";
+            this.ButtonPlus.UseVisualStyleBackColor = true;
+            // 
+            // ButtonMinus
+            // 
+            this.ButtonMinus.Location = new System.Drawing.Point(133, 454);
+            this.ButtonMinus.Name = "ButtonMinus";
+            this.ButtonMinus.Size = new System.Drawing.Size(35, 23);
+            this.ButtonMinus.TabIndex = 14;
+            this.ButtonMinus.Text = "-";
+            this.ButtonMinus.UseVisualStyleBackColor = true;
+            // 
+            // LabelScore
+            // 
+            this.LabelScore.Location = new System.Drawing.Point(174, 454);
+            this.LabelScore.Name = "LabelScore";
+            this.LabelScore.Size = new System.Drawing.Size(35, 21);
+            this.LabelScore.TabIndex = 15;
+            this.LabelScore.Text = "-9999";
+            this.LabelScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CommentSection
             // 
@@ -167,6 +191,15 @@
             this.CommentSection.Name = "CommentSection";
             this.CommentSection.Size = new System.Drawing.Size(400, 375);
             this.CommentSection.TabIndex = 10;
+            // 
+            // FileComment
+            // 
+            this.FileComment.AutoSize = true;
+            this.FileComment.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FileComment.Location = new System.Drawing.Point(0, 375);
+            this.FileComment.Name = "FileComment";
+            this.FileComment.Size = new System.Drawing.Size(400, 105);
+            this.FileComment.TabIndex = 12;
             // 
             // ViewFileDetail
             // 
@@ -201,5 +234,8 @@
         private System.Windows.Forms.Button button1;
         public SharedClasses.Controls.WinForms.FileCommentInput FileComment;
         public SharedClasses.Controls.WinForms.CommentSection CommentSection;
+        public System.Windows.Forms.Button ButtonPlus;
+        public System.Windows.Forms.Button ButtonMinus;
+        public System.Windows.Forms.Label LabelScore;
     }
 }

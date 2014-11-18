@@ -2,17 +2,15 @@
 
 namespace SharedClasses.Data.Models
 {
-    internal class Vote
+    [Table("VOTE")]
+    public class Vote : DataModel<Vote>
     {
         [Key]
         [FieldName("VOTEID")]
         public int Id { get; set; }
-
         public int FileId { get; set; }
-
         public int UserAccountId { get; set; }
-
-        [DbIgnore]
-        public VoteType Type { get; set; }
+        [FieldName("VOTETYPE")]
+        public bool Type { get; set; }
     }
 }
