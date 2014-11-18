@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Windows.Controls;
+using System.Windows.Forms;
 using SharedClasses.Data;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
@@ -11,6 +14,45 @@ namespace SharedClasses.Controller
 {
     public class LookupController<T> : ControllerMVC<ViewLookup> where T : DataModel, new()
     {
+        public DialogResult DialogResult { get; set; }
+
+        public LookupController()
+        {
+            View.SaveClick += ViewOnSaveClick;
+            View.CancelClick += ViewOnCancelClick;
+            View.CellDoubleClick += ViewOnCellDoubleClick;
+        }
+
+        private void ViewOnCellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ViewOnSaveClick(sender, e);
+        }
+
+        private void ViewOnCancelClick(object sender, EventArgs eventArgs)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void ViewOnSaveClick(object sender, EventArgs eventArgs)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        public IEnumerable<T> SelectedRows
+        {
+            get
+            {
+                return
+                    View.DataGridView.SelectedCells.Cast<DataGridViewCell>()
+                        .Select(c => c.OwningRow)
+                        .Distinct()
+                        .Select(r => r.DataBoundItem)
+                        .Cast<T>();
+            }
+        }
+
         public override void Activate()
         {
             var data = Values.SafeGetValue<IEnumerable<T>>("Data");
@@ -19,10 +61,15 @@ namespace SharedClasses.Controller
             if (data == null)
                 data = DataModel<T>.Select();
 
+            // ToList to execute the LINQ statement.
             View.DataGridView.DataSource = data.ToList();
 
             // Set the description.
-            View.Description = Values.SafeGetValue<string>("Description");
+            var description = Values.SafeGetValue<string>("Description");
+            if (!string.IsNullOrWhiteSpace(description))
+                View.Description = description;
+            else
+                View.Description = "Selecteer een rij om verder te gaan.";
         }
     }
 }

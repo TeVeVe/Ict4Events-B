@@ -1,40 +1,60 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SharedClasses.Views
 {
     public partial class ViewLookup : UserControl
     {
+        public ViewLookup()
+        {
+            InitializeComponent();
+        }
+
         public string Description
         {
             get { return labelDescription.Text; }
             set { labelDescription.Text = value; }
         }
 
-        public ViewLookup()
+        public event EventHandler SaveClick;
+        public event EventHandler CancelClick;
+
+        protected virtual void OnCancelClick()
         {
-            InitializeComponent();
+            EventHandler handler = CancelClick;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
-        public event DataGridViewCellEventHandler CellClick;
+        public event DataGridViewCellEventHandler CellDoubleClick;
 
-        protected virtual void OnCellClick(DataGridViewCellEventArgs e)
+        protected virtual void OnCellDoubleClick(DataGridViewCellEventArgs e)
         {
-            DataGridViewCellEventHandler handler = CellClick;
+            DataGridViewCellEventHandler handler = CellDoubleClick;
             if (handler != null)
                 handler(this, e);
         }
 
-        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void OnSaveClick()
         {
-            OnCellClick(e);
+            EventHandler handler = SaveClick;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            OnSaveClick();
+        }
+
+        private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OnCellDoubleClick(e);
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            OnCancelClick();
         }
     }
 }

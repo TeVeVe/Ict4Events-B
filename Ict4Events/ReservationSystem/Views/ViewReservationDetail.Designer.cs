@@ -45,6 +45,7 @@ namespace ReservationSystem.Views
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSaveReservation = new System.Windows.Forms.Button();
             this.DataGridViewProducts = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
+            this.ButtonAddEvent = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -118,6 +119,7 @@ namespace ReservationSystem.Views
             this.TextBoxReservee.Location = new System.Drawing.Point(108, 2);
             this.TextBoxReservee.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxReservee.Name = "TextBoxReservee";
+            this.TextBoxReservee.ReadOnly = true;
             this.TextBoxReservee.Size = new System.Drawing.Size(203, 20);
             this.TextBoxReservee.TabIndex = 31;
             // 
@@ -126,6 +128,7 @@ namespace ReservationSystem.Views
             this.TextBoxEvent.Location = new System.Drawing.Point(108, 27);
             this.TextBoxEvent.Margin = new System.Windows.Forms.Padding(2);
             this.TextBoxEvent.Name = "TextBoxEvent";
+            this.TextBoxEvent.ReadOnly = true;
             this.TextBoxEvent.Size = new System.Drawing.Size(203, 20);
             this.TextBoxEvent.TabIndex = 32;
             // 
@@ -217,6 +220,17 @@ namespace ReservationSystem.Views
             this.DataGridViewProducts.Size = new System.Drawing.Size(341, 243);
             this.DataGridViewProducts.TabIndex = 38;
             // 
+            // ButtonAddEvent
+            // 
+            this.ButtonAddEvent.Location = new System.Drawing.Point(315, 26);
+            this.ButtonAddEvent.Margin = new System.Windows.Forms.Padding(2);
+            this.ButtonAddEvent.Name = "ButtonAddEvent";
+            this.ButtonAddEvent.Size = new System.Drawing.Size(22, 21);
+            this.ButtonAddEvent.TabIndex = 22;
+            this.ButtonAddEvent.Text = "...";
+            this.ButtonAddEvent.UseVisualStyleBackColor = true;
+            this.ButtonAddEvent.Click += new System.EventHandler(this.ButtonAddEvent_Click);
+            // 
             // ViewReservationDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +242,7 @@ namespace ReservationSystem.Views
             this.Controls.Add(this.label3);
             this.Controls.Add(this.NumericUpDownVisitorAmount);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.ButtonAddEvent);
             this.Controls.Add(this.ButtonAddReservee);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -260,6 +275,7 @@ namespace ReservationSystem.Views
         public System.Windows.Forms.TextBox TextBoxReservee;
         public System.Windows.Forms.TextBox TextBoxEvent;
         public ExtendedDataGridView DataGridViewProducts;
+        public System.Windows.Forms.Button ButtonAddEvent;
 
     }
 }

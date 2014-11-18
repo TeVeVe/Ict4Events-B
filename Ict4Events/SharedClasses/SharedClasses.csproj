@@ -137,6 +137,7 @@
     <Compile Include="Data\Attributes\ForeignKeyAttribute.cs" />
     <Compile Include="Data\Attributes\KeyAttribute.cs" />
     <Compile Include="Data\Attributes\TableAttribute.cs" />
+    <Compile Include="Data\Models\ReservationSpot.cs" />
     <Compile Include="Data\Models\SpotType.cs" />
     <Compile Include="Data\Models\Types\DbImage.cs" />
     <Compile Include="Events\AuthenticateEventArgs.cs" />
