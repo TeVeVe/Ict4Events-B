@@ -49,7 +49,7 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SYSTEM")]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
         public string DB_UserID {
             get {
                 return ((string)(this["DB_UserID"]));
@@ -61,7 +61,7 @@ namespace SharedClasses.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("admin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("administrator")]
         public string DB_Password {
             get {
                 return ((string)(this["DB_Password"]));

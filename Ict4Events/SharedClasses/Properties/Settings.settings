@@ -9,10 +9,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DB_UserID" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SYSTEM</Value>
+      <Value Profile="(Default)">admin</Value>
     </Setting>
     <Setting Name="DB_Password" Type="System.String" Scope="User">
-      <Value Profile="(Default)">admin</Value>
+      <Value Profile="(Default)">administrator</Value>
     </Setting>
     <Setting Name="DB_Port" Type="System.String" Scope="User">
       <Value Profile="(Default)">1521</Value>
