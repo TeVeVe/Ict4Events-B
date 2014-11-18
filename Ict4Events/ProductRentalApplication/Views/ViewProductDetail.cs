@@ -41,17 +41,19 @@ namespace ProductRentalApplication.Views
 
         public event EventHandler BrowseProductsClick;
         public event EventHandler ButtonOKClick;
+
+        protected virtual void OnButtonOkClick()
+        {
+            EventHandler handler = ButtonOKClick;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
+
         public event EventHandler ButtonCancelClick;
 
         protected virtual void OnButtonCancelClick()
         {
             EventHandler handler = ButtonCancelClick;
-            if (handler != null) handler(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnButtonOkClick()
-        {
-            EventHandler handler = ButtonOKClick;
             if (handler != null) handler(this, EventArgs.Empty);
         }
 

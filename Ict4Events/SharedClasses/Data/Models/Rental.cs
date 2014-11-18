@@ -4,6 +4,7 @@ using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
+    [Table("RENTAL")]
     public class Rental : DataModel<Rental>
     {
         [Key]
@@ -11,7 +12,8 @@ namespace SharedClasses.Data.Models
         public int Id { get; set; }
 
         public string VisitorCode { get; set; }
-
+        [DbIgnore]
+        [Browsable(false)]
         public TimeSpan RentalLength { get; set; }
 
         [DisplayName("Is betaald")]
