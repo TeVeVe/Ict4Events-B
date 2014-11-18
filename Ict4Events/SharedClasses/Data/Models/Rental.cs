@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using SharedClasses.Data.Attributes;
+using SharedClasses.Extensions;
 
 namespace SharedClasses.Data.Models
 {
@@ -10,7 +12,8 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("RENTALID")]
         public int Id { get; set; }
-
+        [DbIgnore]
+        [Browsable(false)]
         public string VisitorCode { get; set; }
         [DbIgnore]
         [Browsable(false)]
@@ -22,6 +25,18 @@ namespace SharedClasses.Data.Models
         [System.ComponentModel.DisplayName("Ingangsdatum")]
         public DateTime StartTime { get; set; }
 
+
         public int ProductId { get; set; }
+
+        [DisplayName("Productnaam")]
+        [DbIgnore]
+        public string Productname
+        {
+            get
+            {
+                var product = Product.Select("PRODUCTID = " + ProductId.ToSqlFormat()).FirstOrDefault();
+                return product.Name;
+            }
+        }
     }
 }
