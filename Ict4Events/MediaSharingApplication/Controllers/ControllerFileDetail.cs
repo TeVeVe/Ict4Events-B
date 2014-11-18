@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Markup;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data.Models;
@@ -17,12 +13,17 @@ using SharedClasses.MVC;
 
 namespace MediaSharingApplication.Controllers
 {
-    class ControllerFileDetail:ControllerMVC<ViewFileDetail>
+    internal class ControllerFileDetail : ControllerMVC<ViewFileDetail>
     {
+        private File _file = null;
+        private UserAccount _userAccount;
+
         public ControllerFileDetail()
         {
             View.BackButtonClick += ViewOnBackButtonClick;
             View.DownloadButtonClick += ViewOnDownloadButtonClick;
+            View.ButtonPlus.Click += ButtonPlus_Click;
+            View.ButtonMinus.Click += ButtonMinus_Click;
             View.FileComment.SendCommentButton.Click += SendCommentButton_Click;
             View.FileComment.CommentTextBox.TextChanged += (sender, args) =>
             {
@@ -44,30 +45,88 @@ namespace MediaSharingApplication.Controllers
 
         public override void Activate()
         {
-            File file = Values.SafeGetValue<File>("File");
+            _userAccount = ((FormMain)MainForm).UserSession;
+            _file = Values.SafeGetValue<File>("File");
 
-            View.TextBoxTitel.Text = file.Name;
-            View.TextBoxOmschrijving.Text = file.Description;
+            View.TextBoxTitel.Text = _file.Name;
+            View.TextBoxOmschrijving.Text = _file.Description;
+
             FillCommentSection();
-
+            CalculateScore();
         }
 
-        void SendCommentButton_Click(object sender, EventArgs e)
+        void ButtonMinus_Click(object sender, EventArgs e)
         {
-            if (View.FileComment.CommentTextBox.Text.Length >= 140)
+            Vote currentVote =
+                Vote.Select(String.Format("UserAccountId = {0} AND FILEID = {1} ", _userAccount.Id, _file.Id)).FirstOrDefault();
+
+            if (currentVote != null)
             {
-                MessageBox.Show("Vul alstublieft niet meer dan 140 karakters in.");
+                if (currentVote.Type)
+                {
+                    currentVote.Type = false;
+                    currentVote.Update();
+                    View.LabelScore.ForeColor = Color.Red;
+                    CalculateScore();
+                }
             }
 
             else
             {
-                Comment comment = new Comment();
-                int accountId = ((FormMain)MainForm).UserSession;
+                var vote = new Vote();
+                vote.FileId = _file.Id;
+                vote.UserAccountId = _userAccount.Id;
+                vote.Type = false;
+
+                vote.Insert();
+
+                View.LabelScore.ForeColor = Color.Red;
+                CalculateScore();
+            }
+        }
+
+        private void ButtonPlus_Click(object sender, EventArgs e)
+        {
+            Vote currentVote =
+                Vote.Select(String.Format("UserAccountId = {0} AND FILEID = {1} ", _userAccount.Id, _file.Id)).FirstOrDefault();
+
+            if (currentVote != null)
+            {
+                if (!currentVote.Type)
+                {
+                    currentVote.Type = true;
+                    currentVote.Update();
+                    CalculateScore();
+                }
+            }
+
+            else
+            {
+                var vote = new Vote();
+                vote.FileId = _file.Id;
+                vote.UserAccountId = _userAccount.Id;
+                vote.Type = true;
+
+                vote.Insert();
+                CalculateScore();
+            }
+        }
+
+        private void SendCommentButton_Click(object sender, EventArgs e)
+        {
+            if (View.FileComment.CommentTextBox.Text.Length >= 140)
+            {
+                MessageBox.Show("Vul alstublieft niet meer dan 140 tekens in.");
+            }
+
+            else
+            {
+                var comment = new Comment();
 
                 comment.Content = View.FileComment.CommentTextBox.Text;
                 comment.ParentComment = null;
                 comment.FileId = (Values.SafeGetValue<File>("File")).Id;
-                comment.UserAccountId = accountId;
+                comment.UserAccountId = _userAccount.Id;
                 comment.PostTime = DateTime.Now;
 
                 comment.Insert();
@@ -77,7 +136,7 @@ namespace MediaSharingApplication.Controllers
 
         private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)
         {
-            PanelTile pt = Values.SafeGetValue<PanelTile>("fileName");
+            var pt = Values.SafeGetValue<PanelTile>("fileName");
             IEnumerable<string> directoryList = null;
 
             if (Values.SafeGetValue<TreeNode>("TreeNode") != null && pt != null && pt.Tag != null)
@@ -86,7 +145,7 @@ namespace MediaSharingApplication.Controllers
                 string filePath = null;
                 directoryList = FileTransfer.GetDirectoryNames(Values.SafeGetValue<TreeNode>("TreeNode"));
 
-                foreach (var d in directoryList)
+                foreach (string d in directoryList)
                 {
                     filePath += d + "/";
                 }
@@ -95,28 +154,53 @@ namespace MediaSharingApplication.Controllers
 
                 FileTransfer.DownloadFile(filePath);
             }
-
         }
 
         private void FillCommentSection()
         {
-            File file = Values.SafeGetValue<File>("File");
 
-            if (file.Id != null)
+            if (_file.Id != null)
             {
                 View.CommentSection.FlowLayoutPanel.Controls.Clear();
-                IEnumerable<Comment> comments = Comment.Select("FILEID =" + file.Id);
+                IEnumerable<Comment> comments = Comment.Select("FILEID =" + _file.Id);
 
-                foreach (var comment in comments)
+                foreach (Comment comment in comments)
                 {
                     Debug.WriteLine(comment.Content);
-                    FileComment fc = new FileComment();
-                    fc.LabelNaam.Text = UserAccount.Select("UserAccountID = " + comment.UserAccountId).FirstOrDefault().Username;
+                    var fc = new FileComment();
+                    fc.LabelNaam.Text =
+                        UserAccount.Select("UserAccountID = " + comment.UserAccountId).FirstOrDefault().Username;
                     fc.LabelContent.Text = comment.Content;
 
                     View.CommentSection.Add(fc);
                 }
             }
+        }
+
+        private void CalculateScore()
+        {
+            Vote vote = Vote.Select(String.Format("USERACCOUNTID = {0} AND FILEID = {1}", _userAccount.Id.ToSqlFormat(), _file.Id)).FirstOrDefault();
+            int positiveVotes = Vote.Count(String.Format("FILEID = {0} AND VOTETYPE = 'Y'", _file.Id.ToSqlFormat()));
+            int negativeVotes = Vote.Count(String.Format("FILEID = {0} AND VOTETYPE = 'N'", _file.Id.ToSqlFormat()));
+
+            Debug.WriteLine("{0} - {1}", positiveVotes, negativeVotes);
+
+            if (vote != null)
+            {
+                bool currentVote = vote.Type;
+                if (currentVote)
+                {
+                    View.LabelScore.ForeColor = Color.Green;
+                }
+
+                else
+                {
+                    View.LabelScore.ForeColor = Color.Red;
+                }
+            }
+            
+
+            View.LabelScore.Text = (positiveVotes - negativeVotes).ToString();
         }
 
         private void ViewOnBackButtonClick(object sender, EventArgs eventArgs)

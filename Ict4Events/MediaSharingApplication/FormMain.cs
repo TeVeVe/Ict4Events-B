@@ -1,5 +1,7 @@
-﻿using MediaSharingApplication.Controllers;
+﻿using System.Linq;
+using MediaSharingApplication.Controllers;
 using SharedClasses.Data.Models;
+using SharedClasses.Extensions;
 using SharedClasses.MVC;
 
 namespace MediaSharingApplication
@@ -11,13 +13,13 @@ namespace MediaSharingApplication
             InitializeComponent();
 
 #if DEBUG
-            UserSession = 1;
+            UserSession = UserAccount.Select("USERACCOUNTID = 1").FirstOrDefault();
             MarkAsMain<ControllerMain>();
 #else
             MarkAsMain<ControllerLogin>();
 #endif
         }
 
-        public int UserSession { get; set; }
+        public UserAccount UserSession { get; set; }
     }
 }
