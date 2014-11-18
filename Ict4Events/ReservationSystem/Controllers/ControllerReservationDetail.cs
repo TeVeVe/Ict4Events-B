@@ -29,14 +29,25 @@ namespace ReservationSystem.Controllers
 
             if (Reservation == null)
             {
-                View.NumericUpDownVisitorAmount.ReadOnly = false;
+                View.NumericUpDownVisitorAmount.Increment = 1;
+                View.NumericUpDownVisitorAmount.Value = View.NumericUpDownVisitorAmount.Minimum;
+                View.ButtonAddEvent.Enabled = true;
+                View.ButtonAddReservee.Enabled = true;
+                View.ButtonAddProduct.Enabled = true;
+                View.ButtonDeleteProduct.Enabled = true;
+
 
                 View.TextBoxReservee.Clear();
                 View.TextBoxEvent.Clear();
             }
             else
             {
-                View.NumericUpDownVisitorAmount.ReadOnly = true;
+                // Reset everything.
+                View.NumericUpDownVisitorAmount.Increment = 0;
+                View.ButtonAddEvent.Enabled = false;
+                View.ButtonAddReservee.Enabled = false;
+                View.ButtonAddProduct.Enabled = false;
+                View.ButtonDeleteProduct.Enabled = false;
 
                 // Fill TextBoxReservee.
                 Reservee reservee =
@@ -53,7 +64,8 @@ namespace ReservationSystem.Controllers
                 View.NumericUpDownVisitorAmount.Value = Reservation.AmountOfPeople;
 
                 // Fill products.
-                IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + reservee.ToSqlFormat());
+                IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat());
+                View.DataGridViewProducts.DataSource = rentals.ToList();
             }
         }
 
@@ -64,9 +76,13 @@ namespace ReservationSystem.Controllers
                 MainForm.PopupController<LookupController<Reservee>>(new KeyValuePair<string, object>("Description",
                     "Selecteer een reserverder om een reservering aan toe te voegen."));
 
+            // Store selected reservee in TextBox.
             var dbReservee = lookup.SelectedRows.FirstOrDefault();
             if (dbReservee != null && lookup.DialogResult == DialogResult.OK)
+            {
+                View.TextBoxReservee.Tag = dbReservee;
                 View.TextBoxReservee.Text = dbReservee.FullName;
+            }
         }
 
         private void ViewOnAddEventClick(object sender, EventArgs eventArgs)
@@ -76,11 +92,20 @@ namespace ReservationSystem.Controllers
 
             var dbEvent = lookup.SelectedRows.FirstOrDefault();
             if (dbEvent != null && lookup.DialogResult == DialogResult.OK)
+            {
+                View.TextBoxEvent.Tag = dbEvent;
                 View.TextBoxEvent.Text = dbEvent.Name;
+            }
         }
 
-        private void ViewOnSaveReservationClick(object sender, EventArgs eventArgs)
+        private void ViewOnSaveReservationClick(object sender, EventArgs e)
         {
+            Reservation = new Reservation();
+            Reservation.EventId = ((Event)View.TextBoxEvent.Tag).Id;
+            Reservation.ReserveeId = ((Reservee)View.TextBoxReservee.Tag).Id;
+            Reservation.AmountOfPeople = (int)View.NumericUpDownVisitorAmount.Value;
+            Reservation.Insert();
+
             // Generate random RFIDs.
             var r = new Random();
             List<string> randomRFIDs =
