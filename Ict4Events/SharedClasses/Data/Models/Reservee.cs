@@ -9,8 +9,9 @@ namespace SharedClasses.Data.Models
     public class Reservee : DataModel<Reservee>
     {
         [Key]
+        [FieldName("ReserveeId")]
         [DisplayName("Id")]
-        public int ReserveeId { get; set; }
+        public int Id { get; set; }
         [DisplayName("Email")]
         public string EmailAddress { get; set; }
 
