@@ -22,5 +22,19 @@ namespace SharedClasses.Views
         {
             InitializeComponent();
         }
+
+        public event DataGridViewCellEventHandler CellClick;
+
+        protected virtual void OnCellClick(DataGridViewCellEventArgs e)
+        {
+            DataGridViewCellEventHandler handler = CellClick;
+            if (handler != null)
+                handler(this, e);
+        }
+
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OnCellClick(e);
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ReservationSystem.Views;
+using SharedClasses.Controller;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
@@ -10,14 +11,16 @@ namespace ReservationSystem.Controllers
 {
     internal class ControllerReservationDetail : ControllerMVC<ViewReservationDetail>
     {
-        public Reservation Reservation { get; set; }
-
         public ControllerReservationDetail()
         {
-            View.ButtonAddEvent += ViewOnButtonAddEvent;
-            View.ButtonSaveReservationClick += ViewOnButtonSaveReservationClick;
-            View.ButtonCancelClick += ViewOnButtonCancelClick;
+            View.AddEventClick += ViewOnAddEventClick;
+            View.AddVisitorClick += ViewOnAddReserveeClick;
+
+            View.SaveReservationClick += ViewOnSaveReservationClick;
+            View.CancelClick += ViewOnCancelClick;
         }
+
+        public Reservation Reservation { get; set; }
 
         public override void Activate()
         {
@@ -28,7 +31,7 @@ namespace ReservationSystem.Controllers
                 View.TextBoxReservee.ReadOnly = false;
                 View.TextBoxEvent.ReadOnly = false;
                 View.NumericUpDownVisitorAmount.ReadOnly = false;
-                
+
                 View.TextBoxReservee.Clear();
                 View.TextBoxEvent.Clear();
             }
@@ -39,33 +42,39 @@ namespace ReservationSystem.Controllers
                 View.NumericUpDownVisitorAmount.ReadOnly = true;
 
                 // Fill TextBoxReservee.
-                var reservee = Reservee.Select("RESERVEEID = " + Reservation.ReserveeId.ToSqlFormat()).FirstOrDefault();
+                Reservee reservee =
+                    Reservee.Select("RESERVEEID = " + Reservation.ReserveeId.ToSqlFormat()).FirstOrDefault();
                 if (reservee != null)
-                {
                     View.TextBoxReservee.Text = reservee.FullName;
-                }
 
                 // Fill TextBoxEvent.
-                var dbEvent = Event.Select("EVENTID = " + Reservation.EventId.ToSqlFormat()).FirstOrDefault();
+                Event dbEvent = Event.Select("EVENTID = " + Reservation.EventId.ToSqlFormat()).FirstOrDefault();
                 if (dbEvent != null)
-                {
                     View.TextBoxEvent.Text = dbEvent.Name;
-                }
 
                 // Fill NumericUpDownValue.
                 View.NumericUpDownVisitorAmount.Value = Reservation.AmountOfPeople;
 
                 // Fill products.
-                var rentals = Rental.Select("VISITORCODE = " + reservee.ToSqlFormat());
+                IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + reservee.ToSqlFormat());
             }
         }
 
-        private void ViewOnButtonAddEvent(object sender, EventArgs eventArgs)
+        private void ViewOnAddReserveeClick(object sender, EventArgs e)
         {
-
+            // Open lookup to select a reservee.
+            var lookup =
+                MainForm.PopupController<LookupController<Reservee>>(new KeyValuePair<string, object>("Description",
+                    "Selecteer een reserverder om een reservering toe te voegen."));
         }
 
-        private void ViewOnButtonSaveReservationClick(object sender, EventArgs eventArgs)
+        private void ViewOnAddEventClick(object sender, EventArgs eventArgs)
+        {
+            // Open lookup to select an event.
+            var lookup = MainForm.PopupController<LookupController<Event>>();
+        }
+
+        private void ViewOnSaveReservationClick(object sender, EventArgs eventArgs)
         {
             // Generate random RFIDs.
             var r = new Random();
@@ -79,11 +88,12 @@ namespace ReservationSystem.Controllers
                     .ToList();
 
             // Popup window which shows input fields based on the amount of RFIDs required.
-            MainForm.PopupControllerOptions<ControllerAddVisitorsToReservation>(true, new KeyValuePair<string, object>("Visitors",
-                randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation));
+            MainForm.PopupControllerOptions<ControllerAddVisitorsToReservation>(true,
+                new KeyValuePair<string, object>("Visitors",
+                    randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation));
         }
 
-        private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
+        private void ViewOnCancelClick(object sender, EventArgs eventArgs)
         {
             MainForm.Open<ControllerReservation>();
         }

@@ -10,51 +10,53 @@ namespace ReservationSystem.Views
             InitializeComponent();
         }
 
-        public event EventHandler ButtonSaveReservationClick;
-        public event EventHandler ButtonCancelClick;
-        public event EventHandler ButtonAddEvent;
+        public event EventHandler SaveReservationClick;
+        public event EventHandler CancelClick;
+        public event EventHandler AddEventClick;
 
-        protected virtual void OnButtonAddEvent()
+        protected virtual void OnAddEventClick()
         {
-            EventHandler handler = ButtonAddEvent;
+            EventHandler handler = AddEventClick;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
 
-        public event EventHandler ButtonAddVisitorClick;
+        public event EventHandler AddVisitorClick;
 
-        protected virtual void OnButtonAddVisitorClick()
+        protected virtual void OnAddVisitorClick()
         {
-            EventHandler handler = ButtonAddVisitorClick;
+            EventHandler handler = AddVisitorClick;
             if (handler != null)
                 handler(this, EventArgs.Empty);
         }
 
-        protected virtual void OnButtonSaveReservationClick()
+        protected virtual void OnSaveReservationClick()
         {
-            EventHandler handler = ButtonSaveReservationClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            EventHandler handler = SaveReservationClick;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
-        protected virtual void OnButtonCancelClick()
+        protected virtual void OnCancelClick()
         {
-            EventHandler handler = ButtonCancelClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            EventHandler handler = CancelClick;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
-        private void buttonSaveReservation_Click(object sender, System.EventArgs e)
+        private void buttonSaveReservation_Click(object sender, EventArgs e)
         {
-            OnButtonSaveReservationClick();
+            OnSaveReservationClick();
         }
 
         private void buttonAddVisitor_Click(object sender, EventArgs e)
         {
-            OnButtonAddVisitorClick();
+            OnAddVisitorClick();
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            OnButtonCancelClick();
+            OnCancelClick();
         }
     }
 }
