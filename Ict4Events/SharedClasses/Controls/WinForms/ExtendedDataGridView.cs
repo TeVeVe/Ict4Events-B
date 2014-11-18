@@ -20,6 +20,7 @@ namespace SharedClasses.Controls.WinForms
             EditMode = DataGridViewEditMode.EditProgrammatically;
             AllowUserToResizeColumns = true;
             AllowUserToResizeRows = false;
+            ShowCellToolTips = false;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

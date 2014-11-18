@@ -31,12 +31,11 @@ namespace ReservationSystem.Views
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.CheckBoxIsOnSite = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
-            this.buttonAddVisitor = new System.Windows.Forms.Button();
-            this.DataGridViewVisitors = new ExtendedDataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.DataGridViewVisitors = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewVisitors)).BeginInit();
@@ -53,6 +52,15 @@ namespace ReservationSystem.Views
             this.panel1.Size = new System.Drawing.Size(378, 56);
             this.panel1.TabIndex = 15;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(233, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Klik hier om alleen de aanwezige gasten te zien:";
+            // 
             // CheckBoxIsOnSite
             // 
             this.CheckBoxIsOnSite.AutoSize = true;
@@ -68,18 +76,17 @@ namespace ReservationSystem.Views
             // panel2
             // 
             this.panel2.Controls.Add(this.button7);
-            this.panel2.Controls.Add(this.buttonAddVisitor);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 36);
+            this.panel2.Size = new System.Drawing.Size(378, 32);
             this.panel2.TabIndex = 16;
             // 
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(86, 4);
+            this.button7.Location = new System.Drawing.Point(7, 5);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
@@ -87,39 +94,21 @@ namespace ReservationSystem.Views
             this.button7.Text = "Verwijderen";
             this.button7.UseVisualStyleBackColor = true;
             // 
-            // buttonAddVisitor
-            // 
-            this.buttonAddVisitor.Enabled = false;
-            this.buttonAddVisitor.Location = new System.Drawing.Point(7, 4);
-            this.buttonAddVisitor.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonAddVisitor.Name = "buttonAddVisitor";
-            this.buttonAddVisitor.Size = new System.Drawing.Size(75, 23);
-            this.buttonAddVisitor.TabIndex = 15;
-            this.buttonAddVisitor.Text = "Toevoegen";
-            this.buttonAddVisitor.UseVisualStyleBackColor = true;
-            this.buttonAddVisitor.Click += new System.EventHandler(this.buttonAddVisitor_Click);
-            // 
             // DataGridViewVisitors
             // 
+            this.DataGridViewVisitors.AllowUserToResizeRows = false;
             this.DataGridViewVisitors.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DataGridViewVisitors.Location = new System.Drawing.Point(0, 92);
+            this.DataGridViewVisitors.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DataGridViewVisitors.Location = new System.Drawing.Point(0, 88);
             this.DataGridViewVisitors.Margin = new System.Windows.Forms.Padding(2);
             this.DataGridViewVisitors.Name = "DataGridViewVisitors";
             this.DataGridViewVisitors.RowTemplate.Height = 24;
-            this.DataGridViewVisitors.Size = new System.Drawing.Size(378, 238);
+            this.DataGridViewVisitors.ShowCellToolTips = false;
+            this.DataGridViewVisitors.Size = new System.Drawing.Size(378, 242);
             this.DataGridViewVisitors.TabIndex = 17;
             this.DataGridViewVisitors.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridViewVisitors_CellMouseDoubleClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 13);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "Klik hier om alleen de aanwezige gasten te zien:";
-            // 
-            // ViewVisitors
+            // ViewVisitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,7 +117,7 @@ namespace ReservationSystem.Views
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "ViewVisitors";
+            this.Name = "ViewVisitor";
             this.Size = new System.Drawing.Size(378, 330);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -143,10 +132,9 @@ namespace ReservationSystem.Views
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button buttonAddVisitor;
-        public System.Windows.Forms.DataGridView DataGridViewVisitors;
         public System.Windows.Forms.CheckBox CheckBoxIsOnSite;
         private System.Windows.Forms.Label label1;
+        public ExtendedDataGridView DataGridViewVisitors;
 
 
     }

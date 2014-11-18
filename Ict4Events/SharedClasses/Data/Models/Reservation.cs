@@ -19,7 +19,7 @@ namespace SharedClasses.Data.Models
 
         [DbIgnore]
         [Browsable(false)]
-        public IEnumerable<Visitor> Wristbands { get; set; }
+        public IEnumerable<Visitor> Visitors { get; set; }
 
         [Browsable(false)]
         public int ReserveeId { get; set; }
