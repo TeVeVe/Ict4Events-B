@@ -14,7 +14,7 @@ namespace ProductRentalApplication
         {
             InitializeComponent();
 
-            ActiveController = new ControllerLogin();
+            Open<ControllerLogin>();
         }
     }
 }
