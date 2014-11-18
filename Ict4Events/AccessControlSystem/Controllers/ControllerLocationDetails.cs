@@ -27,6 +27,7 @@ namespace AccessControlSystem.Controllers
                 FormMain.Form.Open<ControllerScanRFID>();
             });
             var map = View.InteractiveMap;
+            map.ImageMap = Image.FromFile("location1.png");
             map.MouseClick += (sender, e) =>
             {
                 MessageBox.Show(string.Format("X: {0}, Y: {1}", e.X, e.Y));
