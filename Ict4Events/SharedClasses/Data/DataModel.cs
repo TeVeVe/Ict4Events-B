@@ -310,7 +310,38 @@ namespace SharedClasses.Data
                     }
                 }
             }
-        } 
+        }
+
+        public static int Count(string whereStatement = null, QueryOptions options = 0)
+        {
+            if (Database == null)
+                throw new DataException("Database of database was not set.");
+            IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
+
+            // Build select.
+            var builder = new StringBuilder();
+            builder.Append("SELECT COUNT(*) FROM ");
+            builder.Append(GetTableName<T>());
+
+            if (!string.IsNullOrWhiteSpace(whereStatement))
+            {
+                builder.Append(" WHERE ");
+                builder.Append(whereStatement);
+            }
+
+            // Store record data in objects.
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+            {
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        return reader.GetInt32(0);
+                    }
+                }
+            }
+            return 0;
+        }
 
         /// <summary>
         ///     Updates a record in the database by using the primary key.
