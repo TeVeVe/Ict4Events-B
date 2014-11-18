@@ -28,22 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.FlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // FlowLayoutPanel
             // 
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(370, 150);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.FlowLayoutPanel.AutoScroll = true;
+            this.FlowLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.FlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.FlowLayoutPanel.Name = "FlowLayoutPanel";
+            this.FlowLayoutPanel.Size = new System.Drawing.Size(370, 150);
+            this.FlowLayoutPanel.TabIndex = 1;
             // 
             // CommentSection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.FlowLayoutPanel);
             this.Name = "CommentSection";
             this.Size = new System.Drawing.Size(370, 150);
             this.ResumeLayout(false);
@@ -52,7 +54,8 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        public System.Windows.Forms.FlowLayoutPanel FlowLayoutPanel;
+
 
     }
 }

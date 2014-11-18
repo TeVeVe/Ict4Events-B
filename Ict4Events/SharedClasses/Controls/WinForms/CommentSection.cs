@@ -16,5 +16,10 @@ namespace SharedClasses.Controls.WinForms
         {
             InitializeComponent();
         }
+
+        public void Add(FileComment fileComment)
+        {
+            FlowLayoutPanel.Controls.Add(fileComment);
+        }
     }
 }

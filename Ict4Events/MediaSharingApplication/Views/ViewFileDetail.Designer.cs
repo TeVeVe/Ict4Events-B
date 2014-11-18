@@ -139,8 +139,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.FileComment);
             this.panel2.Controls.Add(this.CommentSection);
+            this.panel2.Controls.Add(this.FileComment);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(400, 0);
@@ -150,17 +150,22 @@
             // 
             // FileComment
             // 
-            this.FileComment.Location = new System.Drawing.Point(3, 318);
+            this.FileComment.AutoSize = true;
+            this.FileComment.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FileComment.Location = new System.Drawing.Point(0, 375);
             this.FileComment.Name = "FileComment";
-            this.FileComment.Size = new System.Drawing.Size(391, 159);
+            this.FileComment.Size = new System.Drawing.Size(400, 105);
             this.FileComment.TabIndex = 12;
             // 
             // CommentSection
             // 
+            this.CommentSection.AutoSize = true;
             this.CommentSection.BackColor = System.Drawing.Color.White;
-            this.CommentSection.Location = new System.Drawing.Point(6, 24);
+            this.CommentSection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CommentSection.Location = new System.Drawing.Point(0, 0);
+            this.CommentSection.Margin = new System.Windows.Forms.Padding(10);
             this.CommentSection.Name = "CommentSection";
-            this.CommentSection.Size = new System.Drawing.Size(388, 288);
+            this.CommentSection.Size = new System.Drawing.Size(400, 375);
             this.CommentSection.TabIndex = 10;
             // 
             // ViewFileDetail

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +24,22 @@ namespace MediaSharingApplication.Controllers
             View.BackButtonClick += ViewOnBackButtonClick;
             View.DownloadButtonClick += ViewOnDownloadButtonClick;
             View.FileComment.SendCommentButton.Click += SendCommentButton_Click;
+            View.FileComment.CommentTextBox.TextChanged += (sender, args) =>
+            {
+                int textLength = View.FileComment.CommentTextBox.Text.Length;
+                View.FileComment.LabelTextLength.Text = String.Format("{0}/140 tekens", textLength);
+                if (textLength <= 140)
+                {
+                    View.FileComment.LabelTextLength.ForeColor = Color.Black;
+                    View.FileComment.SendCommentButton.Enabled = true;
+                }
+
+                else
+                {
+                    View.FileComment.LabelTextLength.ForeColor = Color.Red;
+                    View.FileComment.SendCommentButton.Enabled = false;
+                }
+            };
         }
 
         public override void Activate()
@@ -36,16 +54,25 @@ namespace MediaSharingApplication.Controllers
 
         void SendCommentButton_Click(object sender, EventArgs e)
         {
-            Comment comment = new Comment();
-            int accountId = ((FormMain) MainForm).UserSession;
+            if (View.FileComment.CommentTextBox.Text.Length >= 140)
+            {
+                MessageBox.Show("Vul alstublieft niet meer dan 140 karakters in.");
+            }
 
-            comment.Content = View.FileComment.CommentTextBox.Text;
-            comment.ParentComment = null;
-            comment.FileId = (Values.SafeGetValue<File>("File")).Id;
-            comment.UserAccountId = accountId;
-            comment.PostTime = DateTime.Now;
+            else
+            {
+                Comment comment = new Comment();
+                int accountId = ((FormMain)MainForm).UserSession;
 
-            comment.Insert();
+                comment.Content = View.FileComment.CommentTextBox.Text;
+                comment.ParentComment = null;
+                comment.FileId = (Values.SafeGetValue<File>("File")).Id;
+                comment.UserAccountId = accountId;
+                comment.PostTime = DateTime.Now;
+
+                comment.Insert();
+                FillCommentSection();
+            }
         }
 
         private void ViewOnDownloadButtonClick(object sender, EventArgs eventArgs)
@@ -73,17 +100,22 @@ namespace MediaSharingApplication.Controllers
 
         private void FillCommentSection()
         {
-            File f = Values.SafeGetValue<File>("File");
-            Debug.WriteLine(f.Id);
-            IEnumerable<Comment> comments = Comment.Select("FileId =" + (Values.SafeGetValue<File>("File")).Id);
+            File file = Values.SafeGetValue<File>("File");
 
-            foreach (var comment in comments)
+            if (file.Id != null)
             {
-                FileComment fc = new FileComment();
-                fc.LabelNaam.Text = UserAccount.Select("UserAccountID = " + comment.UserAccountId).FirstOrDefault().Username;
-                fc.LabelContent.Text = comment.Content;
+                View.CommentSection.FlowLayoutPanel.Controls.Clear();
+                IEnumerable<Comment> comments = Comment.Select("FILEID =" + file.Id);
 
-                View.CommentSection.Controls.Add(fc);
+                foreach (var comment in comments)
+                {
+                    Debug.WriteLine(comment.Content);
+                    FileComment fc = new FileComment();
+                    fc.LabelNaam.Text = UserAccount.Select("UserAccountID = " + comment.UserAccountId).FirstOrDefault().Username;
+                    fc.LabelContent.Text = comment.Content;
+
+                    View.CommentSection.Add(fc);
+                }
             }
         }
 

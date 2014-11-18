@@ -30,12 +30,13 @@
         {
             this.LabelNaam = new System.Windows.Forms.Label();
             this.LabelContent = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // LabelNaam
             // 
             this.LabelNaam.AutoSize = true;
+            this.LabelNaam.BackColor = System.Drawing.SystemColors.ControlDark;
             this.LabelNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelNaam.Location = new System.Drawing.Point(3, 3);
             this.LabelNaam.Name = "LabelNaam";
@@ -45,31 +46,33 @@
             // 
             // LabelContent
             // 
-            this.LabelContent.AutoSize = true;
+            this.LabelContent.BackColor = System.Drawing.SystemColors.ControlDark;
             this.LabelContent.Location = new System.Drawing.Point(3, 16);
             this.LabelContent.Name = "LabelContent";
-            this.LabelContent.Size = new System.Drawing.Size(44, 13);
+            this.LabelContent.Size = new System.Drawing.Size(358, 41);
             this.LabelContent.TabIndex = 2;
             this.LabelContent.Text = "Content";
             // 
-            // label3
+            // panel1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(243, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Beantwoorden";
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(364, 57);
+            this.panel1.TabIndex = 4;
             // 
             // FileComment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.LabelContent);
             this.Controls.Add(this.LabelNaam);
+            this.Controls.Add(this.panel1);
             this.Name = "FileComment";
-            this.Size = new System.Drawing.Size(322, 98);
+            this.Size = new System.Drawing.Size(364, 59);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -77,8 +80,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label LabelNaam;
         public System.Windows.Forms.Label LabelContent;
+        private System.Windows.Forms.Panel panel1;
     }
 }
