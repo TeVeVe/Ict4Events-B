@@ -142,6 +142,8 @@ namespace MediaSharingApplication.Controllers
 
         private void pt_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine(((PictureBox) sender).Parent.Tag);
+            
             MainForm.Open<ControllerFileDetail>(
                 new KeyValuePair<string, object>("File", ((PictureBox) sender).Parent.Tag),
                 new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),

@@ -205,6 +205,8 @@ namespace SharedClasses.Data
                         {
                             if (Nullable.GetUnderlyingType(prop.PropertyType) == null)
                                 value = value.GetType().GetDefaultValue();
+                            else
+                                value = null;
                         }
 
                         // Set the propertie's value.
