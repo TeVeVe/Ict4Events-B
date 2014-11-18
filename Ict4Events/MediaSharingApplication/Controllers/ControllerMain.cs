@@ -98,41 +98,17 @@ namespace MediaSharingApplication.Controllers
 
         private void AddFileButton_Click(object sender, EventArgs e)
         {
+            TreeNode selectedNode = View.CategoryTreeView.SelectedNode;
+
             if (View.CategoryTreeView.SelectedNode == null)
             {
                 MessageBox.Show("Selecteer een categorie om een bestand toe te kunnen voegen.");
                 return;
             }
-            string filePath = "";
-            TreeNode selectedNode = View.CategoryTreeView.SelectedNode;
 
+            MainForm.PopupController<ControllerAddFile>(new KeyValuePair<string, object>("selectedNode", selectedNode));
 
-            var ofd = new OpenFileDialog();
-            DialogResult result = ofd.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                filePath = ofd.FileName;
-
-                IEnumerable<string> directoryNames = FileTransfer.GetDirectoryNames(selectedNode);
-                FileTransfer.UploadFile(filePath, directoryNames);
-
-                // Insert file into database.
-                var file = new File();
-                file.Name = Path.GetFileName(filePath);
-                file.PostTime = DateTime.Now;
-                file.ReportCount = 0;
-                file.CategoryId = (int) selectedNode.Tag;
-                file.Description = "File";
-
-                // TODO: Use user session.
-#if DEBUG
-                file.UserAccountId = 1;
-#else
-                file.UserAccountId = MainForm.UserSession;
-#endif
-                file.Insert();
-                FillFileFlowPanel((int) selectedNode.Tag);
-            }
+            FillFileFlowPanel((int)selectedNode.Tag);
         }
 
         private void CategoryTreeView_NodeClick(object sender, TreeNodeMouseClickEventArgs e)

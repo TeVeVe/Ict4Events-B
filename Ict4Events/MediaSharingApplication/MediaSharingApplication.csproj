@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ControllerAddCategory.cs" />
+    <Compile Include="Controllers\ControllerAddFile.cs" />
     <Compile Include="Controllers\ControllerFileDetail.cs" />
     <Compile Include="Controllers\ControllerLogin.cs" />
     <Compile Include="Controllers\ControllerMain.cs" />
@@ -67,6 +68,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ViewAddFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ViewAddFile.Designer.cs">
+      <DependentUpon>ViewAddFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ViewFileDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +99,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\ViewAddFile.resx">
+      <DependentUpon>ViewAddFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ViewFileDetail.resx">
       <DependentUpon>ViewFileDetail.cs</DependentUpon>
     </EmbeddedResource>
