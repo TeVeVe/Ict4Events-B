@@ -61,6 +61,7 @@
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Anulleren";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonSave
             // 
@@ -72,6 +73,7 @@
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "OK";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // panelTop
             // 
@@ -111,7 +113,7 @@
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.Size = new System.Drawing.Size(537, 301);
             this.DataGridView.TabIndex = 3;
-            this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellClick);
+            this.DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellDoubleClick);
             // 
             // ViewLookup
             // 

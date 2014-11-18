@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Controller;
 using SharedClasses.Data.Models;
@@ -28,8 +29,6 @@ namespace ReservationSystem.Controllers
 
             if (Reservation == null)
             {
-                View.TextBoxReservee.ReadOnly = false;
-                View.TextBoxEvent.ReadOnly = false;
                 View.NumericUpDownVisitorAmount.ReadOnly = false;
 
                 View.TextBoxReservee.Clear();
@@ -37,8 +36,6 @@ namespace ReservationSystem.Controllers
             }
             else
             {
-                View.TextBoxReservee.ReadOnly = true;
-                View.TextBoxEvent.ReadOnly = true;
                 View.NumericUpDownVisitorAmount.ReadOnly = true;
 
                 // Fill TextBoxReservee.
@@ -65,13 +62,21 @@ namespace ReservationSystem.Controllers
             // Open lookup to select a reservee.
             var lookup =
                 MainForm.PopupController<LookupController<Reservee>>(new KeyValuePair<string, object>("Description",
-                    "Selecteer een reserverder om een reservering toe te voegen."));
+                    "Selecteer een reserverder om een reservering aan toe te voegen."));
+
+            var dbReservee = lookup.SelectedRows.FirstOrDefault();
+            if (dbReservee != null && lookup.DialogResult == DialogResult.OK)
+                View.TextBoxReservee.Text = dbReservee.FullName;
         }
 
         private void ViewOnAddEventClick(object sender, EventArgs eventArgs)
         {
             // Open lookup to select an event.
-            var lookup = MainForm.PopupController<LookupController<Event>>();
+            var lookup = MainForm.PopupController<LookupController<Event>>(new KeyValuePair<string, object>("Description", "Selecteer een evenement om een reservering aan toe te voegen."));
+
+            var dbEvent = lookup.SelectedRows.FirstOrDefault();
+            if (dbEvent != null && lookup.DialogResult == DialogResult.OK)
+                View.TextBoxEvent.Text = dbEvent.Name;
         }
 
         private void ViewOnSaveReservationClick(object sender, EventArgs eventArgs)

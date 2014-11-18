@@ -58,5 +58,10 @@ namespace ReservationSystem.Views
         {
             OnCancelClick();
         }
+
+        private void ButtonAddEvent_Click(object sender, EventArgs e)
+        {
+            OnAddEventClick();
+        }
     }
 }
