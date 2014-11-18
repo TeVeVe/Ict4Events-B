@@ -9,12 +9,13 @@ namespace ProductRentalApplication.Controllers
     {
         public ControllerProductDetail()
         {
+            View.ButtonCancelClick += ViewOnButtonCancelClick;
+            View.BrowseProductsClick += ViewOnBrowseProductsClick;
         }
 
-        public ControllerProductDetail(Product product = null)
+        private void ViewOnBrowseProductsClick(object sender, EventArgs eventArgs)
         {
-            View.Product = product;
-            View.ButtonCancelClick += ViewOnButtonCancelClick;
+            
         }
 
         private void ViewOnButtonCancelClick(object sender, EventArgs eventArgs)
