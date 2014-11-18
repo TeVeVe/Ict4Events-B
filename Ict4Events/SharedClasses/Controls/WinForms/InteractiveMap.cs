@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using SharedClasses.Extensions;
 
 namespace SharedClasses.Controls.WinForms
 {
@@ -19,7 +20,7 @@ namespace SharedClasses.Controls.WinForms
 
         public InteractiveMap()
         {
-            Spots = new SpotCollection();
+            Spots = new SpotCollection(this);
             Spots.SpotHover += (sender, args) => OnSpotHover(args);
 
             InitializeComponent();
@@ -139,10 +140,11 @@ namespace SharedClasses.Controls.WinForms
         /// </summary>
         public class Spot
         {
-            private const float START_SIZE = 10;
+            private const float START_SIZE = 15;
             private const float MIN_SIZE = 10;
             private bool _isHover;
             private SizeF _size;
+
 
             public Spot(PointF position)
             {
@@ -156,6 +158,7 @@ namespace SharedClasses.Controls.WinForms
                 : this(position)
             {
                 Tag = tag;
+                BorderWidth = 5;
             }
 
             public Spot(float x, float y) : this(new PointF(x, y))
@@ -165,6 +168,8 @@ namespace SharedClasses.Controls.WinForms
             public Color Color { get; set; }
             public PointF Position { get; set; }
             public object Tag { get; set; }
+
+            public int BorderWidth { get; set; }
 
             public SizeF Size
             {
@@ -224,7 +229,7 @@ namespace SharedClasses.Controls.WinForms
                 else if (Checked.Value)
                 {
                     // Draw border.
-                    g.DrawRectangle(new Pen(Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
+                    g.DrawRectangle(new Pen(Color, BorderWidth), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
 
                     // Draw check.
                     var linePen = new Pen(Color, 1 * scale);
@@ -239,7 +244,7 @@ namespace SharedClasses.Controls.WinForms
                 }
                 else
                     // Draw border only.
-                    g.DrawRectangle(new Pen(Color), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
+                    g.DrawRectangle(new Pen(Color, BorderWidth), drawRect.X, drawRect.Y, drawRect.Width, drawRect.Height);
             }
         }
 
@@ -255,8 +260,11 @@ namespace SharedClasses.Controls.WinForms
 
         public class SpotCollection : Collection<Spot>
         {
-            public SpotCollection()
+            public InteractiveMap Map { get; set; }
+
+            public SpotCollection(InteractiveMap map)
             {
+                Map = map;
             }
 
             public SpotCollection(IList<Spot> list) : base(list)
@@ -275,6 +283,26 @@ namespace SharedClasses.Controls.WinForms
             {
                 spot.Hovered += (sender, args) => OnSpotHover(args);
                 base.Add(spot);
+                Map.InvokeSafe(c =>
+                {
+                    Map.Invalidate();
+                    Map.Update();
+                });
+            }
+
+            public new void AddRange(IEnumerable<Spot> spots)
+            {
+                foreach (var spot in spots)
+                {
+                    spot.Hovered += (sender, args) => OnSpotHover(args);
+                    base.Add(spot);
+                }
+
+                Map.InvokeSafe(c =>
+                {
+                    Map.Invalidate();
+                    Map.Update();
+                });
             }
         }
 
