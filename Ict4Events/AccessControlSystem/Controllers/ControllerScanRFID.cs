@@ -43,7 +43,7 @@ namespace AccessControlSystem.Controllers
                             // User is not yet on site but checkin is successful: access granted, update database to set guest as present (on site).
                             visitor.IsOnSite = true;
                             visitor.Update();
-                            FormMain.Form.Open<ControllerLocationDetails>();
+                            FormMain.Form.Open<ControllerLocationDetails>(new KeyValuePair<string, object>("visitor", wristbands.First()));
                         }
                         else
                         {
