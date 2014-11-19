@@ -125,6 +125,21 @@ namespace ReservationSystem.Controllers
             Reservation.AmountOfPeople = (int)View.NumericUpDownVisitorAmount.Value;
             Reservation.Insert();
 
+            // Clear all reservations first.
+            foreach (var spot in Reservation.Spots)
+            {
+                spot.Delete();
+            }
+
+            // Insert all spots into database.
+            foreach (var spot in View.InteractiveMap.Spots)
+            {
+                Spot dbSpot = new Spot();
+                dbSpot.LocX = spot.RelativePosition.X;
+                dbSpot.LocY = spot.RelativePosition.Y;
+                dbSpot.LocationId = Reservation.Event.LocationId;
+            }
+
             // Generate random RFIDs.
             var r = new Random();
             List<string> randomRFIDs =

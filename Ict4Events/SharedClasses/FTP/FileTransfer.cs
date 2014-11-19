@@ -112,7 +112,7 @@ namespace SharedClasses.FTP
             {
                 response = (FtpWebResponse) request.GetResponse();
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 MessageBox.Show("Kon het bestand niet ophalen van de server. Mogelijk bestaat het bestand niet.",
                     "Bestand bestaat niet", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -156,7 +156,7 @@ namespace SharedClasses.FTP
             {
                 response = (FtpWebResponse) request.GetResponse();
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 MessageBox.Show("Kon het bestand niet ophalen van de server. Mogelijk bestaat het bestand niet.",
                     "Bestand bestaat niet", MessageBoxButton.OK, MessageBoxImage.Error);

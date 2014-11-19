@@ -249,6 +249,14 @@ namespace SharedClasses.Controls.WinForms
             public PointF Position { get; set; }
             public object Tag { get; set; }
 
+            public PointF RelativePosition
+            {
+                get
+                {
+                    return new PointF(Position.X / Map.MapBounds.Width, Position.Y / Map.MapBounds.Height);
+                }
+            }
+
             public int BorderWidth { get; set; }
 
             public SizeF Size
