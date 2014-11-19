@@ -7,6 +7,7 @@ using ReservationSystem.Views;
 using SharedClasses.Controller;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data.Models;
+using SharedClasses.Events;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
 using IOFile = System.IO.File;
@@ -22,13 +23,12 @@ namespace ReservationSystem.Controllers
 
             View.SaveReservationClick += ViewOnSaveReservationClick;
             View.CancelClick += ViewOnCancelClick;
+            View.InteractiveMap.SpotClick += InteractiveMapOnSpotClick;
+        }
 
-            View.InteractiveMap.MouseClick += (sender, args) =>
-            {
-                var point = new PointF(args.X / (float)View.InteractiveMap.MapBounds.Width,
-                    args.Y / (float)View.InteractiveMap.MapBounds.Height);
-                Clipboard.SetText(point.X.ToString() + ", " + point.Y.ToString());
-            };
+        private void InteractiveMapOnSpotClick(object sender, InteractiveMap.SpotClickEventArgs e)
+        {
+            e.Spot.Checked = !e.Spot.Checked;
         }
 
         public Reservation Reservation { get; set; }

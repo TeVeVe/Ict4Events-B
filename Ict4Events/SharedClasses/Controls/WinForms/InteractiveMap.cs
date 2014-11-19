@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
+using SharedClasses.Events;
 using SharedClasses.Extensions;
 
 namespace SharedClasses.Controls.WinForms
@@ -30,6 +31,15 @@ namespace SharedClasses.Controls.WinForms
 
             MouseMove += OnMouseMove;
             MouseDown += OnMouseDown;
+        }
+
+        public event EventHandler<InteractiveMouseDownEventArgs> InteractiveMouseDown;
+
+        protected virtual void OnInteractiveMouseDown(InteractiveMouseDownEventArgs e)
+        {
+            EventHandler<InteractiveMouseDownEventArgs> handler = InteractiveMouseDown;
+            if (handler != null)
+                handler(this, e);
         }
 
         public bool KeepAspectRatio { get; set; }
@@ -131,6 +141,8 @@ namespace SharedClasses.Controls.WinForms
 
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
+            OnInteractiveMouseDown(new InteractiveMouseDownEventArgs(e, (float)e.X / MapBounds.Width, (float)e.Y / MapBounds.Height));
+
             // Only with the left mouse button.
             if (e.Button != MouseButtons.Left)
                 return;
@@ -213,7 +225,7 @@ namespace SharedClasses.Controls.WinForms
                 Position = position;
                 Color = Color.Black;
                 Size = new SizeF(START_SIZE, START_SIZE);
-                Checked = true;
+                Checked = false;
             }
 
             public Spot(PointF position, object tag)

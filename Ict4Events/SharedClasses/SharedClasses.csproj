@@ -142,6 +142,7 @@
     <Compile Include="Data\Models\Types\DbImage.cs" />
     <Compile Include="Events\AuthenticateEventArgs.cs" />
     <Compile Include="Events\DatabaseConnectionChangedEventArgs.cs" />
+    <Compile Include="Events\InteractiveMouseDownEventArgs.cs" />
     <Compile Include="Events\ViewClosingEventArgs.cs" />
     <Compile Include="Exceptions\NoActiveControllerException.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
