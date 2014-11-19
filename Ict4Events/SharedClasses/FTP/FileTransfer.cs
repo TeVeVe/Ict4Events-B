@@ -57,7 +57,6 @@ namespace SharedClasses.FTP
         }
 
         /* Creating the directory on the FTP server */
-
         private static bool CreateFolder(string categoriesPath)
         {
             try
