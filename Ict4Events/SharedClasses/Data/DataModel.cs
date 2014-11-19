@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -170,7 +171,6 @@ namespace SharedClasses.Data
                     {
                         PropertyInfo prop = typeof(T).GetProperty(fields.ElementAt(i).Key);
                         object value = reader[fields.ElementAt(i).Value];
-
 
                         if (value is string)
                         {

@@ -19,7 +19,7 @@ namespace SharedClasses.Data.Models
 
         public int LocationId { get; set; }
 
-        public int LocX { get; set; }
-        public int LocY { get; set; }
+        public double LocX { get; set; }
+        public double LocY { get; set; }
     }
 }

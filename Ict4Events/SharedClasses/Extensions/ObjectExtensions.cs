@@ -92,5 +92,18 @@ namespace SharedClasses.Extensions
                 return (int)s.Length;
             }
         }
+
+        public static T ChangeType<T>(this object value, out bool success) where T : class 
+        {
+            success = false;
+            var val = value as T;
+            if (val != default(T))
+            {
+                success = true;
+                return val;
+            }
+            
+            return default(T);
+        }
     }
 }
