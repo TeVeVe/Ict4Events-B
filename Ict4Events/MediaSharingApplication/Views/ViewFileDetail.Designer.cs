@@ -36,13 +36,14 @@
             this.TextBoxOmschrijving = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.ButtonPlus = new System.Windows.Forms.Button();
             this.ButtonMinus = new System.Windows.Forms.Button();
             this.LabelScore = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.CommentSection = new SharedClasses.Controls.WinForms.CommentSection();
             this.FileComment = new SharedClasses.Controls.WinForms.FileCommentInput();
+            this.LabelDescription = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.filePicture)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -71,6 +72,7 @@
             // 
             this.filePicture.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.filePicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.filePicture.Location = new System.Drawing.Point(3, 31);
             this.filePicture.Name = "filePicture";
             this.filePicture.Size = new System.Drawing.Size(394, 296);
@@ -119,6 +121,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.LabelDescription);
             this.panel1.Controls.Add(this.ButtonPlus);
             this.panel1.Controls.Add(this.ButtonMinus);
             this.panel1.Controls.Add(this.LabelScore);
@@ -133,26 +136,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 480);
             this.panel1.TabIndex = 12;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(339, 454);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Opslaan";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.CommentSection);
-            this.panel2.Controls.Add(this.FileComment);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(400, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 480);
-            this.panel2.TabIndex = 9;
             // 
             // ButtonPlus
             // 
@@ -181,6 +164,26 @@
             this.LabelScore.Text = "-9999";
             this.LabelScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(339, 454);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(58, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Opslaan";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.CommentSection);
+            this.panel2.Controls.Add(this.FileComment);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(400, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(400, 480);
+            this.panel2.TabIndex = 9;
+            // 
             // CommentSection
             // 
             this.CommentSection.AutoSize = true;
@@ -200,6 +203,15 @@
             this.FileComment.Name = "FileComment";
             this.FileComment.Size = new System.Drawing.Size(400, 105);
             this.FileComment.TabIndex = 12;
+            // 
+            // LabelDescription
+            // 
+            this.LabelDescription.AutoSize = true;
+            this.LabelDescription.Location = new System.Drawing.Point(3, 330);
+            this.LabelDescription.Name = "LabelDescription";
+            this.LabelDescription.Size = new System.Drawing.Size(64, 13);
+            this.LabelDescription.TabIndex = 16;
+            this.LabelDescription.Text = "Beschrijving";
             // 
             // ViewFileDetail
             // 
@@ -237,5 +249,6 @@
         public System.Windows.Forms.Button ButtonPlus;
         public System.Windows.Forms.Button ButtonMinus;
         public System.Windows.Forms.Label LabelScore;
+        public System.Windows.Forms.Label LabelDescription;
     }
 }

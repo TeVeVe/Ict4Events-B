@@ -21,10 +21,11 @@ namespace MediaSharingApplication.Controllers
             View.ButtonUploadFile.Click += (sender, args) =>
             {
                 var ofd = new OpenFileDialog();
+                ofd.Filter = "Media bestanden | *.png; *.jpg; *.gif; *.mp4; *.wmv; *.mp3; *.wav; *.aac";
                 DialogResult result = ofd.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    _filePath = ofd.FileName;
+                    _filePath = ofd.FileName.ToLower();
                     View.TextBoxFilePath.Text = _filePath;
                 }
             };

@@ -10,6 +10,8 @@ namespace SharedClasses.Controls.WinForms
 {
     public partial class TreeViewCategory : UserControl
     {
+        public TreeNode LastSelectedNode { get; set; }
+
         private readonly List<TreeNode> _currentNodeMatches;
 
         private int _lastNodeIndex;
@@ -20,6 +22,11 @@ namespace SharedClasses.Controls.WinForms
         {
             InitializeComponent();
             _currentNodeMatches = new List<TreeNode>();
+
+            treeViewCategories.NodeMouseClick += (sender, args) =>
+            {
+                LastSelectedNode = args.Node;
+            };
         }
 
         public ContextMenuStrip TreeViewContextMenu

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
@@ -19,12 +17,18 @@ namespace SharedClasses.FTP
         private static readonly NetworkCredential credentials = new NetworkCredential(Settings.Default.FTP_UserID,
             Settings.Default.FTP_Password);
 
+        /// <summary>
+        ///     This method is used to upload files to our FTP server
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="categories"></param>
+        /// <returns></returns>
         public static bool UploadFile(string filePath, IEnumerable<string> categories)
         {
             string categoriesPath = "";
             string fileName = Path.GetFileName(filePath);
 
-            /* Creating a path from the categories */
+            //Creating a path from the categories
             foreach (string c in categories)
             {
                 categoriesPath += c + '/';
@@ -32,7 +36,10 @@ namespace SharedClasses.FTP
 
             if (CreateFolder(categoriesPath))
             {
-                var uploadRequest = (FtpWebRequest) WebRequest.Create(String.Format("ftp://{0}/{1}{2}", Settings.Default.FTP_Server, categoriesPath, fileName));
+                var uploadRequest =
+                    (FtpWebRequest)
+                        WebRequest.Create(String.Format("ftp://{0}/{1}{2}", Settings.Default.FTP_Server, categoriesPath,
+                            fileName));
                 uploadRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 uploadRequest.Credentials = credentials;
 
@@ -56,13 +63,18 @@ namespace SharedClasses.FTP
             return false;
         }
 
-        /* Creating the directory on the FTP server */
-
+        /// <summary>
+        ///     Creating the directory on the FTP server
+        /// </summary>
+        /// <param name="categoriesPath"></param>
+        /// <returns></returns>
         private static bool CreateFolder(string categoriesPath)
         {
             try
             {
-                var directoryRequest = (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, categoriesPath));
+                var directoryRequest =
+                    (FtpWebRequest)
+                        WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, categoriesPath));
                 directoryRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
                 directoryRequest.Credentials = credentials;
 
@@ -109,7 +121,7 @@ namespace SharedClasses.FTP
 
             Stream responseStream = response.GetResponseStream();
 
-            var openFileTask = TaskExt.StartSTATask(() =>
+            Task<bool> openFileTask = TaskExt.StartSTATask(() =>
             {
                 using (var fbd = new FolderBrowserDialog())
                 {
@@ -129,6 +141,36 @@ namespace SharedClasses.FTP
 
             response.Close();
             return openFileTask.Result;
+        }
+
+        public static string DownloadFileTemp(string fileName, out bool success)
+        {
+            success = false;
+            var request =
+                (FtpWebRequest) WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+            request.Credentials = new NetworkCredential(Settings.Default.FTP_UserID, Settings.Default.FTP_Password);
+
+            FtpWebResponse response = null;
+            try
+            {
+                response = (FtpWebResponse) request.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show("Kon het bestand niet ophalen van de server. Mogelijk bestaat het bestand niet.",
+                    "Bestand bestaat niet", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+
+            string tempPath = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + Path.GetExtension(fileName));
+            Stream responseStream = response.GetResponseStream();
+
+            File.WriteAllBytes(tempPath, responseStream.ReadAllBytes());
+            Debug.WriteLine("Download Complete, status {0}", response.StatusDescription);
+            response.Close();
+            success = true;
+            return tempPath;
         }
 
         public static IEnumerable<string> GetDirectoryNames(TreeNode node)

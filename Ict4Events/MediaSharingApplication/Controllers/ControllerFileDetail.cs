@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using MediaSharingApplication.Views;
@@ -10,6 +11,7 @@ using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.FTP;
 using SharedClasses.MVC;
+using File = SharedClasses.Data.Models.File;
 
 namespace MediaSharingApplication.Controllers
 {
@@ -47,12 +49,44 @@ namespace MediaSharingApplication.Controllers
         {
             _userAccount = ((FormMain)MainForm).UserSession;
             _file = Values.SafeGetValue<File>("File");
+            string ext = Path.GetExtension(_file.Name);
 
             View.TextBoxTitel.Text = _file.Name;
             View.TextBoxOmschrijving.Text = _file.Description;
+            View.LabelDescription.Text = _file.Description;
 
+            if (new[] { ".png", ".jpg", ".gif" }.Contains(ext))
+            {
+                DownloadPhoto(); 
+            }
+             
             FillCommentSection();
             CalculateScore();
+        }
+
+        private void DownloadPhoto()
+        {
+            var pt = Values.SafeGetValue<PanelTile>("fileName");
+            IEnumerable<string> directoryList = null;
+
+            string fileName = ((File)pt.Tag).Name;
+            string filePath = null;
+            directoryList = FileTransfer.GetDirectoryNames(Values.SafeGetValue<TreeNode>("TreeNode"));
+
+            foreach (string d in directoryList)
+            {
+                filePath += d + "/";
+            }
+
+            filePath += fileName;
+
+            bool success;
+            string path = FileTransfer.DownloadFileTemp(filePath, out success);
+            if (success)
+            {
+                View.filePicture.SizeMode = PictureBoxSizeMode.Zoom;
+                View.filePicture.ImageLocation = path;
+            }
         }
 
         void ButtonMinus_Click(object sender, EventArgs e)
