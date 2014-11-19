@@ -47,9 +47,19 @@
             0,
             0,
             0});
+            this.numericUpDownAmount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDownAmount.Name = "numericUpDownAmount";
             this.numericUpDownAmount.Size = new System.Drawing.Size(44, 20);
             this.numericUpDownAmount.TabIndex = 35;
+            this.numericUpDownAmount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // buttonCancel
             // 
@@ -139,13 +149,13 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown numericUpDownAmount;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonBrowseProducts;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxProductName;
+        public System.Windows.Forms.Button buttonOK;
+        public System.Windows.Forms.NumericUpDown numericUpDownAmount;
 
 
     }

@@ -90,7 +90,7 @@ namespace ReservationSystem.Controllers
         {
             // Open lookup to select a reservee.
             var lookup =
-                MainForm.PopupController<LookupController<Reservee>>(new KeyValuePair<string, object>("Description",
+                MainForm.PopupController<ControllerLookup<Reservee>>(new KeyValuePair<string, object>("Description",
                     "Selecteer een reserverder om een reservering aan toe te voegen."));
 
             // Store selected reservee in TextBox.

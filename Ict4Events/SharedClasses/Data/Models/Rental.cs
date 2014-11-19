@@ -12,25 +12,15 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("RENTALID")]
         public int Id { get; set; }
-        [DbIgnore]
         [Browsable(false)]
         public string VisitorCode { get; set; }
         [DbIgnore]
         [Browsable(false)]
         public TimeSpan RentalLength { get; set; }
 
-        [System.ComponentModel.DisplayName("Is betaald")]
-        public bool IsPaid { get; set; }
-
-        [System.ComponentModel.DisplayName("Ingangsdatum")]
-        public DateTime StartTime { get; set; }
-
-
-        public int ProductId { get; set; }
-
         [DisplayName("Productnaam")]
         [DbIgnore]
-        public string Productname
+        public string ProductName
         {
             get
             {
@@ -38,5 +28,17 @@ namespace SharedClasses.Data.Models
                 return product.Name;
             }
         }
+
+        [DisplayName("Aantal")]
+        public int Amount { get; set; }
+
+        [DisplayName("Is betaald")]
+        public bool IsPaid { get; set; }
+
+        [DisplayName("Ingangsdatum")]
+        public DateTime StartTime { get; set; }
+
+        [Browsable(false)]
+        public int ProductId { get; set; }
     }
 }
