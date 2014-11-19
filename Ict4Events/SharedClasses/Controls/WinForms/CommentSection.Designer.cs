@@ -34,7 +34,7 @@
             // FlowLayoutPanel
             // 
             this.FlowLayoutPanel.AutoScroll = true;
-            this.FlowLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.FlowLayoutPanel.BackColor = System.Drawing.Color.White;
             this.FlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.FlowLayoutPanel.Name = "FlowLayoutPanel";
@@ -45,9 +45,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.FlowLayoutPanel);
             this.Name = "CommentSection";
             this.Size = new System.Drawing.Size(370, 150);
+            this.SizeChanged += new System.EventHandler(this.CommentSection_SizeChanged);
             this.ResumeLayout(false);
 
         }
