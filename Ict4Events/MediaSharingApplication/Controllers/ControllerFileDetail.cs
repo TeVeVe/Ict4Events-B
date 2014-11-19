@@ -159,7 +159,7 @@ namespace MediaSharingApplication.Controllers
         private void FillCommentSection()
         {
 
-            if (_file.Id != null)
+            if (_file.Id != 0)
             {
                 View.CommentSection.FlowLayoutPanel.Controls.Clear();
                 IEnumerable<Comment> comments = Comment.Select("FILEID =" + _file.Id);

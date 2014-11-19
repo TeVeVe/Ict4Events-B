@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Controller;
+using SharedClasses.Controls.WinForms;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
+using IOFile = System.IO.File;
 
 namespace ReservationSystem.Controllers
 {
@@ -95,6 +98,8 @@ namespace ReservationSystem.Controllers
             {
                 View.TextBoxEvent.Tag = dbEvent;
                 View.TextBoxEvent.Text = dbEvent.Name;
+
+                UpdateMap(Reservation);
             }
         }
 
@@ -126,6 +131,19 @@ namespace ReservationSystem.Controllers
         private void ViewOnCancelClick(object sender, EventArgs eventArgs)
         {
             MainForm.Open<ControllerReservation>();
+        }
+
+        private void UpdateMap(Reservation reservation)
+        {
+            // Update map image.
+            string fileName = string.Format("location{0}.png", reservation.Event.LocationId);
+            if (!IOFile.Exists(fileName))
+                return;
+            
+            View.InteractiveMap.ImageMap = Image.FromFile(fileName);
+
+            // Load reservation spots.
+            View.InteractiveMap.Spots.AddRange(reservation.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY)));
         }
     }
 }
