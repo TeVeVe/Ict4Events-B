@@ -32,6 +32,8 @@ namespace SharedClasses.Controls.WinForms
             MouseDown += OnMouseDown;
         }
 
+        public bool KeepAspectRatio { get; set; }
+
 
         /// <summary>
         ///     Image that will be used as a background to draw spots on.
@@ -63,6 +65,8 @@ namespace SharedClasses.Controls.WinForms
         ///     Bounds of the map. Same as image if <see cref="DrawImageRealSize" /> is True.
         ///     Else it's the Width and Height of this control.
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false)]
         public Rectangle MapBounds
         {
             get
@@ -75,8 +79,20 @@ namespace SharedClasses.Controls.WinForms
                 }
                 else
                 {
-                    destRect.Width = Width;
-                    destRect.Height = Height;
+                    if (KeepAspectRatio && ImageMap != null)
+                    {
+                        double ratioX = Width / (double)ImageMap.Width;
+                        double ratioY = Height / (double)ImageMap.Height;
+                        double ratio = ratioX < ratioY ? ratioX : ratioY;
+
+                        destRect.Width = (int)(ImageMap.Width * ratio);
+                        destRect.Height = (int)(ImageMap.Height * ratio);
+                    }
+                    else
+                    {
+                        destRect.Width = Width;
+                        destRect.Height = Height;
+                    }
                 }
 
                 return destRect;
@@ -92,13 +108,15 @@ namespace SharedClasses.Controls.WinForms
         protected virtual void OnSpotClick(SpotClickEventArgs e)
         {
             EventHandler<SpotClickEventArgs> handler = SpotClick;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         protected virtual void OnSpotHover(SpotHoverEventArgs e)
         {
             EventHandler<SpotHoverEventArgs> handler = SpotHover;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -114,7 +132,8 @@ namespace SharedClasses.Controls.WinForms
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
             // Only with the left mouse button.
-            if (e.Button != MouseButtons.Left) return;
+            if (e.Button != MouseButtons.Left)
+                return;
 
             // Check if a spot is currently being hovered. If so, it's now clicked as well.
             foreach (Spot spot in Spots.Where(spot => spot.IsHover))
@@ -135,6 +154,50 @@ namespace SharedClasses.Controls.WinForms
                 spot.Draw(pe.Graphics);
         }
 
+        protected internal Spot Add(Spot spot)
+        {
+            spot.Map = this;
+            Spots.Add(spot);
+            return spot;
+        }
+
+        public Spot Add(float x, float y)
+        {
+            var spot = new Spot(x, y);
+            spot.Map = this;
+            Spots.Add(spot);
+            return spot;
+        }
+
+        public Spot Add(double x, double y)
+        {
+            var spot = new Spot(x, y);
+            spot.Map = this;
+            Spots.Add(spot);
+            return spot;
+        }
+
+        public void AddRange(IEnumerable<Spot> spots)
+        {
+            foreach (Spot spot in spots)
+            {
+                spot.Hovered += (sender, args) => OnSpotHover(args);
+                Add(spot);
+            }
+
+            this.InvokeSafe(c =>
+            {
+                Invalidate();
+                Update();
+            });
+        }
+
+        public void Clear()
+        {
+            Spots.Clear();
+            ImageMap = null;
+        }
+
         /// <summary>
         ///     A location on the interactive map.
         /// </summary>
@@ -145,8 +208,7 @@ namespace SharedClasses.Controls.WinForms
             private bool _isHover;
             private SizeF _size;
 
-
-            public Spot(PointF position)
+            protected internal Spot(PointF position)
             {
                 Position = position;
                 Color = Color.Black;
@@ -164,6 +226,12 @@ namespace SharedClasses.Controls.WinForms
             public Spot(float x, float y) : this(new PointF(x, y))
             {
             }
+
+            public Spot(double locX, double locY) : this(new PointF((float)locX, (float)locY))
+            {
+            }
+
+            public InteractiveMap Map { get; set; }
 
             public Color Color { get; set; }
             public PointF Position { get; set; }
@@ -192,7 +260,8 @@ namespace SharedClasses.Controls.WinForms
                 get { return _isHover; }
                 set
                 {
-                    if (_isHover == value) return;
+                    if (_isHover == value)
+                        return;
                     _isHover = value;
                     OnHovered(new SpotHoverEventArgs(this));
                 }
@@ -202,7 +271,8 @@ namespace SharedClasses.Controls.WinForms
             {
                 get
                 {
-                    return new RectangleF(Position.X - (Size.Width / 2), Position.Y - (Size.Height / 2), Size.Width,
+                    return new RectangleF((Position.X * Map.MapBounds.Width) - (Size.Width / 2),
+                        (Position.Y * Map.MapBounds.Height) - (Size.Height / 2), Size.Width,
                         Size.Height);
                 }
             }
@@ -212,7 +282,8 @@ namespace SharedClasses.Controls.WinForms
             protected virtual void OnHovered(SpotHoverEventArgs e)
             {
                 EventHandler<SpotHoverEventArgs> handler = Hovered;
-                if (handler != null) handler(this, e);
+                if (handler != null)
+                    handler(this, e);
             }
 
             public void Draw(Graphics g)
@@ -260,8 +331,6 @@ namespace SharedClasses.Controls.WinForms
 
         public class SpotCollection : Collection<Spot>
         {
-            public InteractiveMap Map { get; set; }
-
             public SpotCollection(InteractiveMap map)
             {
                 Map = map;
@@ -271,12 +340,15 @@ namespace SharedClasses.Controls.WinForms
             {
             }
 
+            public InteractiveMap Map { get; set; }
+
             public event EventHandler<SpotHoverEventArgs> SpotHover;
 
             protected virtual void OnSpotHover(SpotHoverEventArgs e)
             {
                 EventHandler<SpotHoverEventArgs> handler = SpotHover;
-                if (handler != null) handler(this, e);
+                if (handler != null)
+                    handler(this, e);
             }
 
             public new void Add(Spot spot)
@@ -292,7 +364,7 @@ namespace SharedClasses.Controls.WinForms
 
             public void AddRange(IEnumerable<Spot> spots)
             {
-                foreach (var spot in spots)
+                foreach (Spot spot in spots)
                 {
                     spot.Hovered += (sender, args) => OnSpotHover(args);
                     base.Add(spot);

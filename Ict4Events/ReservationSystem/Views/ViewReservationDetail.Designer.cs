@@ -37,21 +37,24 @@ namespace ReservationSystem.Views
             this.label3 = new System.Windows.Forms.Label();
             this.TextBoxReservee = new System.Windows.Forms.TextBox();
             this.TextBoxEvent = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ButtonDeleteProduct = new System.Windows.Forms.Button();
-            this.ButtonAddProduct = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSaveReservation = new System.Windows.Forms.Button();
             this.ButtonAddEvent = new System.Windows.Forms.Button();
             this.NumericUpDownVisitorAmount = new System.Windows.Forms.NumericUpDown();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.ButtonDeleteProduct = new System.Windows.Forms.Button();
+            this.ButtonAddProduct = new System.Windows.Forms.Button();
             this.InteractiveMap = new SharedClasses.Controls.WinForms.InteractiveMap();
             this.DataGridViewProducts = new SharedClasses.Controls.WinForms.ExtendedDataGridView();
-            this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewProducts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,50 +119,6 @@ namespace ReservationSystem.Views
             this.TextBoxEvent.Size = new System.Drawing.Size(203, 20);
             this.TextBoxEvent.TabIndex = 32;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.DataGridViewProducts);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(108, 74);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(303, 289);
-            this.groupBox1.TabIndex = 35;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Producten";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.ButtonDeleteProduct);
-            this.panel1.Controls.Add(this.ButtonAddProduct);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(2, 15);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 29);
-            this.panel1.TabIndex = 37;
-            // 
-            // ButtonDeleteProduct
-            // 
-            this.ButtonDeleteProduct.Location = new System.Drawing.Point(82, 3);
-            this.ButtonDeleteProduct.Name = "ButtonDeleteProduct";
-            this.ButtonDeleteProduct.Size = new System.Drawing.Size(75, 23);
-            this.ButtonDeleteProduct.TabIndex = 39;
-            this.ButtonDeleteProduct.Text = "Verwijderen";
-            this.ButtonDeleteProduct.UseVisualStyleBackColor = true;
-            // 
-            // ButtonAddProduct
-            // 
-            this.ButtonAddProduct.Location = new System.Drawing.Point(3, 3);
-            this.ButtonAddProduct.Name = "ButtonAddProduct";
-            this.ButtonAddProduct.Size = new System.Drawing.Size(75, 23);
-            this.ButtonAddProduct.TabIndex = 40;
-            this.ButtonAddProduct.Text = "Toevoegen";
-            this.ButtonAddProduct.UseVisualStyleBackColor = true;
-            // 
             // panelBottom
             // 
             this.panelBottom.Controls.Add(this.buttonCancel);
@@ -167,7 +126,7 @@ namespace ReservationSystem.Views
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBottom.Location = new System.Drawing.Point(0, 368);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(663, 31);
+            this.panelBottom.Size = new System.Drawing.Size(754, 31);
             this.panelBottom.TabIndex = 36;
             // 
             // buttonCancel
@@ -218,15 +177,80 @@ namespace ReservationSystem.Views
             0,
             0});
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.InteractiveMap);
+            this.panel1.Controls.Add(this.splitter1);
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Location = new System.Drawing.Point(108, 77);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(643, 288);
+            this.panel1.TabIndex = 38;
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitter1.Location = new System.Drawing.Point(303, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(8, 288);
+            this.splitter1.TabIndex = 45;
+            this.splitter1.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.DataGridViewProducts);
+            this.groupBox1.Controls.Add(this.panel2);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(303, 288);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Producten";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.ButtonDeleteProduct);
+            this.panel2.Controls.Add(this.ButtonAddProduct);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(2, 15);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(299, 29);
+            this.panel2.TabIndex = 37;
+            // 
+            // ButtonDeleteProduct
+            // 
+            this.ButtonDeleteProduct.Location = new System.Drawing.Point(82, 3);
+            this.ButtonDeleteProduct.Name = "ButtonDeleteProduct";
+            this.ButtonDeleteProduct.Size = new System.Drawing.Size(75, 23);
+            this.ButtonDeleteProduct.TabIndex = 39;
+            this.ButtonDeleteProduct.Text = "Verwijderen";
+            this.ButtonDeleteProduct.UseVisualStyleBackColor = true;
+            // 
+            // ButtonAddProduct
+            // 
+            this.ButtonAddProduct.Location = new System.Drawing.Point(3, 3);
+            this.ButtonAddProduct.Name = "ButtonAddProduct";
+            this.ButtonAddProduct.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAddProduct.TabIndex = 40;
+            this.ButtonAddProduct.Text = "Toevoegen";
+            this.ButtonAddProduct.UseVisualStyleBackColor = true;
+            // 
             // InteractiveMap
             // 
-            this.InteractiveMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.InteractiveMap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InteractiveMap.DrawImageRealSize = false;
             this.InteractiveMap.ImageMap = null;
-            this.InteractiveMap.Location = new System.Drawing.Point(416, 74);
+            this.InteractiveMap.KeepAspectRatio = true;
+            this.InteractiveMap.Location = new System.Drawing.Point(311, 0);
             this.InteractiveMap.Name = "InteractiveMap";
-            this.InteractiveMap.Size = new System.Drawing.Size(244, 288);
-            this.InteractiveMap.TabIndex = 38;
+            this.InteractiveMap.Size = new System.Drawing.Size(332, 288);
+            this.InteractiveMap.TabIndex = 47;
             this.InteractiveMap.Text = "interactiveMap1";
             // 
             // DataGridViewProducts
@@ -241,17 +265,16 @@ namespace ReservationSystem.Views
             this.DataGridViewProducts.Name = "DataGridViewProducts";
             this.DataGridViewProducts.RowTemplate.Height = 24;
             this.DataGridViewProducts.ShowCellToolTips = false;
-            this.DataGridViewProducts.Size = new System.Drawing.Size(299, 243);
+            this.DataGridViewProducts.Size = new System.Drawing.Size(299, 242);
             this.DataGridViewProducts.TabIndex = 38;
             // 
             // ViewReservationDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.InteractiveMap);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.NumericUpDownVisitorAmount);
             this.Controls.Add(this.panelBottom);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.TextBoxEvent);
             this.Controls.Add(this.TextBoxReservee);
             this.Controls.Add(this.label3);
@@ -261,11 +284,12 @@ namespace ReservationSystem.Views
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ViewReservationDetail";
-            this.Size = new System.Drawing.Size(663, 399);
-            this.groupBox1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(754, 399);
             this.panelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDownVisitorAmount)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -277,19 +301,21 @@ namespace ReservationSystem.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSaveReservation;
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Button ButtonAddReservee;
         public System.Windows.Forms.TextBox TextBoxReservee;
         public System.Windows.Forms.TextBox TextBoxEvent;
-        public ExtendedDataGridView DataGridViewProducts;
         public System.Windows.Forms.Button ButtonAddEvent;
-        public System.Windows.Forms.Button ButtonAddProduct;
-        public System.Windows.Forms.Button ButtonDeleteProduct;
         public NumericUpDown NumericUpDownVisitorAmount;
+        private Panel panel1;
+        private GroupBox groupBox1;
+        public ExtendedDataGridView DataGridViewProducts;
+        private Panel panel2;
+        public Button ButtonDeleteProduct;
+        public Button ButtonAddProduct;
+        private Splitter splitter1;
         public InteractiveMap InteractiveMap;
 
     }

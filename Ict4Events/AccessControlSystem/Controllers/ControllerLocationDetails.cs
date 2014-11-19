@@ -40,7 +40,7 @@ namespace AccessControlSystem.Controllers
             var x = reservation.FirstOrDefault().Spot.LocX;
             var y = reservation.FirstOrDefault().Spot.LocY;
 
-            map.Spots.Add(new InteractiveMap.Spot(x,y) { Color = Color.Red, Checked = false});
+            map.Add(x, y);
         }
     }
 }

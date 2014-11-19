@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using SharedClasses.Data.Attributes;
+using SharedClasses.Extensions;
 
 namespace SharedClasses.Data.Models
 {
@@ -42,5 +45,12 @@ namespace SharedClasses.Data.Models
 
         [DisplayName("Max aantal personen")]
         public int MaxGuests { get; set; }
+
+        [DbIgnore]
+        [Browsable(false)]
+        public IEnumerable<Spot> Spots
+        {
+            get { return Spot.Select("LOCATIONID = " + LocationId.ToSqlFormat()); }
+        }
     }
 }

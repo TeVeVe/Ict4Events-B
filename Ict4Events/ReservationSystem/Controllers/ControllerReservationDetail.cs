@@ -22,6 +22,13 @@ namespace ReservationSystem.Controllers
 
             View.SaveReservationClick += ViewOnSaveReservationClick;
             View.CancelClick += ViewOnCancelClick;
+
+            View.InteractiveMap.MouseClick += (sender, args) =>
+            {
+                var point = new PointF(args.X / (float)View.InteractiveMap.MapBounds.Width,
+                    args.Y / (float)View.InteractiveMap.MapBounds.Height);
+                Clipboard.SetText(point.X.ToString() + ", " + point.Y.ToString());
+            };
         }
 
         public Reservation Reservation { get; set; }
@@ -38,7 +45,7 @@ namespace ReservationSystem.Controllers
                 View.ButtonAddReservee.Enabled = true;
                 View.ButtonAddProduct.Enabled = true;
                 View.ButtonDeleteProduct.Enabled = true;
-
+                View.InteractiveMap.Clear();
 
                 View.TextBoxReservee.Clear();
                 View.TextBoxEvent.Clear();
@@ -51,6 +58,7 @@ namespace ReservationSystem.Controllers
                 View.ButtonAddReservee.Enabled = false;
                 View.ButtonAddProduct.Enabled = false;
                 View.ButtonDeleteProduct.Enabled = false;
+                View.InteractiveMap.Clear();
 
                 // Fill TextBoxReservee.
                 Reservee reservee =
@@ -66,6 +74,10 @@ namespace ReservationSystem.Controllers
                 // Fill NumericUpDownValue.
                 View.NumericUpDownVisitorAmount.Value = Reservation.AmountOfPeople;
 
+                // Fill interactive map.
+                if (dbEvent != null)
+                    UpdateMap(dbEvent.Id);
+
                 // Fill products.
                 IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat());
                 View.DataGridViewProducts.DataSource = rentals.ToList();
@@ -80,7 +92,7 @@ namespace ReservationSystem.Controllers
                     "Selecteer een reserverder om een reservering aan toe te voegen."));
 
             // Store selected reservee in TextBox.
-            var dbReservee = lookup.SelectedRows.FirstOrDefault();
+            Reservee dbReservee = lookup.SelectedRows.FirstOrDefault();
             if (dbReservee != null && lookup.DialogResult == DialogResult.OK)
             {
                 View.TextBoxReservee.Tag = dbReservee;
@@ -91,15 +103,17 @@ namespace ReservationSystem.Controllers
         private void ViewOnAddEventClick(object sender, EventArgs eventArgs)
         {
             // Open lookup to select an event.
-            var lookup = MainForm.PopupController<LookupController<Event>>(new KeyValuePair<string, object>("Description", "Selecteer een evenement om een reservering aan toe te voegen."));
+            var lookup =
+                MainForm.PopupController<LookupController<Event>>(new KeyValuePair<string, object>("Description",
+                    "Selecteer een evenement om een reservering aan toe te voegen."));
 
-            var dbEvent = lookup.SelectedRows.FirstOrDefault();
+            Event dbEvent = lookup.SelectedRows.FirstOrDefault();
             if (dbEvent != null && lookup.DialogResult == DialogResult.OK)
             {
                 View.TextBoxEvent.Tag = dbEvent;
                 View.TextBoxEvent.Text = dbEvent.Name;
 
-                UpdateMap(Reservation);
+                UpdateMap(dbEvent.Id);
             }
         }
 
@@ -133,17 +147,21 @@ namespace ReservationSystem.Controllers
             MainForm.Open<ControllerReservation>();
         }
 
-        private void UpdateMap(Reservation reservation)
+        private void UpdateMap(int eventId)
         {
+            Event dbEvent = Event.Select("EVENTID = " + eventId.ToSqlFormat()).FirstOrDefault();
+            if (dbEvent == null)
+                return;
+
             // Update map image.
-            string fileName = string.Format("location{0}.png", reservation.Event.LocationId);
+            string fileName = string.Format("location{0}.png", dbEvent.LocationId);
             if (!IOFile.Exists(fileName))
                 return;
-            
+
             View.InteractiveMap.ImageMap = Image.FromFile(fileName);
 
             // Load reservation spots.
-            View.InteractiveMap.Spots.AddRange(reservation.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY)));
+            View.InteractiveMap.AddRange(dbEvent.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY)));
         }
     }
 }
