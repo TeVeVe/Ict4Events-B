@@ -122,7 +122,7 @@ namespace MediaSharingApplication.Controllers
             
             MainForm.Open<ControllerFileDetail>(
                 new KeyValuePair<string, object>("File", ((PictureBox) sender).Parent.Tag),
-                new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.SelectedNode),
+                new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.LastSelectedNode),
                 new KeyValuePair<string, object>("fileName", ((PictureBox) sender).Parent));
         }
 
