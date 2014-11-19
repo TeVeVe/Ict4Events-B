@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaSharingApplication.Views;
 using SharedClasses.Extensions;
@@ -13,9 +10,10 @@ using File = SharedClasses.Data.Models.File;
 
 namespace MediaSharingApplication.Controllers
 {
-    class ControllerAddFile : ControllerMVC<ViewAddFile>
+    internal class ControllerAddFile : ControllerMVC<ViewAddFile>
     {
-        string _filePath = null;
+        private string _filePath;
+
         public ControllerAddFile()
         {
             View.ButtonUploadFile.Click += (sender, args) =>
@@ -30,32 +28,39 @@ namespace MediaSharingApplication.Controllers
                 }
             };
 
-            View.ButtonCancel.Click += (sender, args) =>
-            {
-                this.Close();
-            };
+            View.ButtonCancel.Click += (sender, args) => { Close(); };
 
             View.ButtonSave.Click += (sender, args) =>
             {
-                TreeNode selectedNode = Values.SafeGetValue<TreeNode>("selectedNode");
-                IEnumerable<string> directoryNames = FileTransfer.GetDirectoryNames(selectedNode);
-                FileTransfer.UploadFile(_filePath, directoryNames);
+                if (!String.IsNullOrEmpty(View.TextBoxDescription.Text) &&
+                    !String.IsNullOrEmpty(View.TextBoxFilePath.Text))
+                {
+                    var selectedNode = Values.SafeGetValue<TreeNode>("selectedNode");
+                    IEnumerable<string> directoryNames = FileTransfer.GetDirectoryNames(selectedNode);
+                    FileTransfer.UploadFile(_filePath, directoryNames);
 
-                // Insert file into database.
-                var file = new File();
-                file.Name = Path.GetFileName(_filePath);
-                file.PostTime = DateTime.Now;
-                file.ReportCount = 0;
-                file.CategoryId = (int)selectedNode.Tag;
-                file.Description = View.TextBoxDescription.Text;
+                    // Insert file into database.
+                    var file = new File();
+                    file.Name = Path.GetFileName(_filePath);
+                    file.PostTime = DateTime.Now;
+                    file.ReportCount = 0;
+                    file.CategoryId = (int) selectedNode.Tag;
+                    file.Description = View.TextBoxDescription.Text;
 
-                // TODO: Use user session.
+                    // TODO: Use user session.
 #if DEBUG
-                file.UserAccountId = 1;
+                    file.UserAccountId = 1;
 #else
-                file.UserAccountId = MainForm.UserSession;
+                    file.UserAccountId = MainForm.UserSession;
 #endif
-                file.Insert();
+                    file.Insert();
+                    Close();
+                }
+
+                else
+                {
+                    MessageBox.Show("Vul alstublieft beide velden in.");
+                }
             };
         }
     }

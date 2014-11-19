@@ -1,22 +1,18 @@
 ﻿using SharedClasses.Data.Attributes;
 using System;
+using SharedClasses.MVC;
 
 namespace SharedClasses.Data.Models
 {
     [Table("FEEDPOST")]
-    class FeedPost
+    public class FeedPost : DataModel<FeedPost>
     {
         [Key]
         [FieldName("FEEDPOSTID")]
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime PostTime { get; set; }
-        [ForeignKey("USERACCOUNTID")]
-        public UserAccount UserAccount { get; set; }
-
-        public FeedPost(UserAccount account, string content)
-        {
-            throw new NotImplementedException();
-        }   
+        [FieldName("USERACCOUNTID")]
+        public int UserAccount { get; set; }
     }
 }
