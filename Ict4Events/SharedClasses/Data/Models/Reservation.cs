@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using SharedClasses.Data.Attributes;
+using SharedClasses.Extensions;
 
 namespace SharedClasses.Data.Models
 {
@@ -29,6 +31,26 @@ namespace SharedClasses.Data.Models
 
         [DbIgnore]
         [Browsable(false)]
-        public IEnumerable<Spot> Spots { get; set; }
+        public Event Event
+        {
+            get { return Models.Event.Select("EVENTID = " + EventId.ToSqlFormat()).FirstOrDefault(); }
+        }
+
+        [DbIgnore]
+        [Browsable(false)]
+        public IEnumerable<Spot> Spots
+        {
+            get
+            {
+                return Spot.Select("LOCATIONID = " + Event.LocationId);
+            }
+        }
+
+        [DbIgnore]
+        [Browsable(false)]
+        public IEnumerable<ReservationSpot> ReservationSpots
+        {
+            get { return ReservationSpot.Select("RESERVATIONID = " + Id.ToSqlFormat()); }
+        }
     }
 }
