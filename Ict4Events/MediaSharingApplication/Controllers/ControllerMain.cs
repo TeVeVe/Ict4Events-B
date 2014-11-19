@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data;
+using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.FTP;
 using SharedClasses.MVC;
@@ -20,6 +21,7 @@ namespace MediaSharingApplication.Controllers
     public class ControllerMain : ControllerMVC<ViewMain>
     {
         private ResourceManager _rm = new ResourceManager("Icons", Assembly.GetExecutingAssembly());
+        private UserAccount _userAccount;
 
         public ControllerMain()
         {
@@ -89,11 +91,50 @@ namespace MediaSharingApplication.Controllers
             addToolStripButton.DropDownItems.Add(addSubCategoryToolStripButton);
             View.CategoryTreeView.TreeViewContextMenu.Items.Add(editToolStripButton);
             View.CategoryTreeView.TreeViewContextMenu.Items.Add(deleteToolStripButton);
+            View.CommentInput.SendCommentButton.Click += (sender, args) =>
+            {
+                if (View.CommentInput.CommentTextBox.Text.Length > 140)
+                {
+                    MessageBox.Show("Vul alstublieft niet meer dan 140 tekens in.");
+                }
+
+                else
+                {
+                    var comment = new SharedClasses.Data.Models.Comment();
+                    var feedPost = new FeedPost();
+
+                    feedPost.UserAccount = _userAccount.Id;
+                    feedPost.Content = View.CommentInput.CommentTextBox.Text;
+                    feedPost.PostTime = DateTime.Now;
+
+                    feedPost.Insert();
+                }
+            };
         }
 
         public override void Activate()
         {
             CreateNodes();
+            _userAccount = ((FormMain)MainForm).UserSession;
+            FillFeedPost();
+        }
+
+        private void FillFeedPost()
+        {
+            IEnumerable<FeedPost> feedPosts = FeedPost.Select();
+            View.CommentSection.FlowLayoutPanel.Controls.Clear();
+
+            foreach (var feedPost in feedPosts)
+            {
+                var cc = new CommentControl();
+                cc.LabelNaam.Text =
+                    UserAccount.Select("UserAccountID = " + feedPost.UserAccount).FirstOrDefault().Username;
+                cc.LabelContent.Text = feedPost.Content;
+
+                Debug.WriteLine(feedPost.Content);
+
+                View.CommentSection.Add(cc);
+            }
         }
 
         private void AddFileButton_Click(object sender, EventArgs e)

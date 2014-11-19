@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using MediaSharingApplication.Views;
 using SharedClasses.Controls.WinForms;
@@ -20,33 +22,24 @@ namespace MediaSharingApplication.Controllers
         private File _file = null;
         private UserAccount _userAccount;
 
+        public CancellationTokenSource DownloadFileTokenSource { get; set; }
+
         public ControllerFileDetail()
         {
             View.BackButtonClick += ViewOnBackButtonClick;
             View.DownloadButtonClick += ViewOnDownloadButtonClick;
             View.ButtonPlus.Click += ButtonPlus_Click;
             View.ButtonMinus.Click += ButtonMinus_Click;
-            View.FileComment.SendCommentButton.Click += SendCommentButton_Click;
-            View.FileComment.CommentTextBox.TextChanged += (sender, args) =>
-            {
-                int textLength = View.FileComment.CommentTextBox.Text.Length;
-                View.FileComment.LabelTextLength.Text = String.Format("{0}/140 tekens", textLength);
-                if (textLength <= 140)
-                {
-                    View.FileComment.LabelTextLength.ForeColor = Color.Black;
-                    View.FileComment.SendCommentButton.Enabled = true;
-                }
-
-                else
-                {
-                    View.FileComment.LabelTextLength.ForeColor = Color.Red;
-                    View.FileComment.SendCommentButton.Enabled = false;
-                }
-            };
+            View.Comment.SendCommentButton.Click += SendCommentButton_Click;
         }
 
         public override void Activate()
         {
+            // Reset.
+            View.FilePicture.ImageLocation = "Icons\\spinner.gif";
+            View.FilePicture.SizeMode = PictureBoxSizeMode.CenterImage;
+            View.FilePicture.Visible = false;
+
             _userAccount = ((FormMain)MainForm).UserSession;
             _file = Values.SafeGetValue<File>("File");
             string ext = Path.GetExtension(_file.Name);
@@ -57,6 +50,7 @@ namespace MediaSharingApplication.Controllers
 
             if (new[] { ".png", ".jpg", ".gif" }.Contains(ext))
             {
+                View.FilePicture.Visible = true;
                 DownloadPhoto(); 
             }
              
@@ -80,13 +74,30 @@ namespace MediaSharingApplication.Controllers
 
             filePath += fileName;
 
-            bool success;
-            string path = FileTransfer.DownloadFileTemp(filePath, out success);
-            if (success)
+            DownloadFileTokenSource = new CancellationTokenSource();
+            Task.Factory.StartNew(() =>
             {
-                View.filePicture.SizeMode = PictureBoxSizeMode.Zoom;
-                View.filePicture.ImageLocation = path;
-            }
+                bool success = false;
+                string path = null;
+                var downloadTask =
+                    Task.Factory.StartNew(() => path = FileTransfer.DownloadFileTemp(filePath, out success));
+
+                while (!downloadTask.IsCompleted && !DownloadFileTokenSource.IsCancellationRequested)
+                {
+                    Task.Delay(100).Wait();
+                    if (DownloadFileTokenSource.IsCancellationRequested)
+                        return;
+                }
+
+                if (success)
+                {
+                    View.FilePicture.InvokeSafe(c =>
+                    {
+                        View.FilePicture.SizeMode = PictureBoxSizeMode.Zoom;
+                        View.FilePicture.ImageLocation = path;
+                    });
+                }
+            }, DownloadFileTokenSource.Token);
         }
 
         void ButtonMinus_Click(object sender, EventArgs e)
@@ -148,16 +159,16 @@ namespace MediaSharingApplication.Controllers
 
         private void SendCommentButton_Click(object sender, EventArgs e)
         {
-            if (View.FileComment.CommentTextBox.Text.Length >= 140)
+            if (View.Comment.CommentTextBox.Text.Length >= 140)
             {
                 MessageBox.Show("Vul alstublieft niet meer dan 140 tekens in.");
             }
 
             else
             {
-                var comment = new Comment();
+                var comment = new SharedClasses.Data.Models.Comment();
 
-                comment.Content = View.FileComment.CommentTextBox.Text;
+                comment.Content = View.Comment.CommentTextBox.Text;
                 comment.ParentComment = null;
                 comment.FileId = (Values.SafeGetValue<File>("File")).Id;
                 comment.UserAccountId = _userAccount.Id;
@@ -201,12 +212,12 @@ namespace MediaSharingApplication.Controllers
                 foreach (Comment comment in comments)
                 {
                     Debug.WriteLine(comment.Content);
-                    var fc = new FileComment();
-                    fc.LabelNaam.Text =
+                    var cc = new CommentControl();
+                    cc.LabelNaam.Text =
                         UserAccount.Select("UserAccountID = " + comment.UserAccountId).FirstOrDefault().Username;
-                    fc.LabelContent.Text = comment.Content;
+                    cc.LabelContent.Text = comment.Content;
 
-                    View.CommentSection.Add(fc);
+                    View.CommentSection.Add(cc);
                 }
             }
         }
@@ -239,6 +250,11 @@ namespace MediaSharingApplication.Controllers
 
         private void ViewOnBackButtonClick(object sender, EventArgs eventArgs)
         {
+            if (DownloadFileTokenSource != null)
+            {
+                DownloadFileTokenSource.Cancel();
+            }
+            
             MainForm.Open<ControllerMain>();
         }
     }

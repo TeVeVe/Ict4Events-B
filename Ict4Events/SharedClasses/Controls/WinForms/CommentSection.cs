@@ -17,9 +17,15 @@ namespace SharedClasses.Controls.WinForms
             InitializeComponent();
         }
 
-        public void Add(FileComment fileComment)
+        public void Add(CommentControl commentControl)
         {
-            FlowLayoutPanel.Controls.Add(fileComment);
+            commentControl.Width = FlowLayoutPanel.Width - 25;
+            FlowLayoutPanel.Controls.Add(commentControl);
+        }
+
+        private void CommentSection_SizeChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
