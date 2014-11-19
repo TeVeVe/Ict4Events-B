@@ -12,11 +12,11 @@ using SharedClasses.Views;
 
 namespace SharedClasses.Controller
 {
-    public class LookupController<T> : ControllerMVC<ViewLookup> where T : DataModel, new()
+    public class ControllerLookup<T> : ControllerMVC<ViewLookup> where T : DataModel, new()
     {
         public DialogResult DialogResult { get; set; }
 
-        public LookupController()
+        public ControllerLookup()
         {
             View.SaveClick += ViewOnSaveClick;
             View.CancelClick += ViewOnCancelClick;

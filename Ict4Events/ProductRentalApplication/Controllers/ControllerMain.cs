@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ProductRentalApplication.Views;
 using SharedClasses.Data.Models;
@@ -22,7 +23,8 @@ namespace ProductRentalApplication.Controllers
 
         private void ViewOnAddProductClick(object sender, EventArgs eventArgs)
         {
-            MainForm.PopupController<ControllerProductDetail>();
+            MainForm.PopupController<ControllerProductDetail>(new KeyValuePair<string, object>("UserAccount", ((FormMain)MainForm).UserSession));
+            MainForm.ResetController();
         }
     }
 }

@@ -64,7 +64,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\LookupController.cs" />
+    <Compile Include="Controller\ControllerLookup.cs" />
     <Compile Include="Controls\WinForms\FileCommentInput.cs">
       <SubType>UserControl</SubType>
     </Compile>
