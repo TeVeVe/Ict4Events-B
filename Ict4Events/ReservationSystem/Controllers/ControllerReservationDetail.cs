@@ -51,6 +51,7 @@ namespace ReservationSystem.Controllers
 
                 View.TextBoxReservee.Clear();
                 View.TextBoxEvent.Clear();
+                View.DataGridViewProducts.DataSource = null;
             }
             else
             {
