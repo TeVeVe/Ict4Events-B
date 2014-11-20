@@ -34,7 +34,8 @@ namespace ProductRentalApplication.Controllers
 
             MessageBox.Show("Je hebt "+ View.numericUpDownAmount.Value +" " + View.Product.Name +"(s) gehuurd!");
 
-            IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + Account.VisitorCode.ToSqlFormat());
+            //IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + Account.VisitorCode.ToSqlFormat());
+            IEnumerable<Rental> rentals = Rental.Select();
 
             Rental r = rentals.FirstOrDefault();
             r.ProductId = View.Product.Id;
