@@ -13,10 +13,33 @@ namespace SharedClasses.Data.Models
         [DisplayName("Id")]
         public int Id { get; set; }
 
+        [DisplayName("Volledige naam")]
+        [DbIgnore]
+        public string FullName
+        {
+            get
+            {
+                Visitor visitor = Visitor.Select("VISITORCODE = " + VisitorCode.ToSqlFormat()).FirstOrDefault();
+                if (visitor == null)
+                    return null;
+                return visitor.FirstName +
+                       (!string.IsNullOrEmpty(visitor.Insertion) ? ' ' + visitor.Insertion + ' ' : " ") +
+                       visitor.LastName;
+            }
+        }
+
+        [DisplayName("Huisadres")]
+        [DbIgnore]
+        public string HomeAddress
+        {
+            get { return Street + (!string.IsNullOrEmpty(HouseNumber) ? ' ' + HouseNumber : ""); }
+        }
+
         [DisplayName("Email")]
         public string EmailAddress { get; set; }
 
         [DisplayName("Huisnummer")]
+        [FieldName("HOUSENUMBER")]
         [Browsable(false)]
         public string HouseNumber { get; set; }
 
@@ -33,28 +56,18 @@ namespace SharedClasses.Data.Models
         [Browsable(false)]
         public string VisitorCode { get; set; }
 
-        [FieldName("PHONENR")]
-        [DisplayName("Telefoon")]
-        public string Phone { get; set; }
-
-        [DisplayName("Volledige naam")]
         [DbIgnore]
-        public string FullName
+        [DisplayName("Telefoon")]
+        [FieldName("PHONENR")]
+        public string Phone
         {
             get
             {
                 Visitor visitor = Visitor.Select("VISITORCODE = " + VisitorCode.ToSqlFormat()).FirstOrDefault();
-                return visitor.FirstName +
-                       (!string.IsNullOrEmpty(visitor.Insertion) ? ' ' + visitor.Insertion + ' ' : " ") +
-                       visitor.LastName;
+                if (visitor != null)
+                    return visitor.Phone;
+                return null;
             }
-        }
-
-        [DisplayName("Huisadres")]
-        [DbIgnore]
-        public string HomeAddress
-        {
-            get { return Street + (!string.IsNullOrEmpty(HouseNumber) ? ' ' + HouseNumber : ""); }
         }
     }
 }

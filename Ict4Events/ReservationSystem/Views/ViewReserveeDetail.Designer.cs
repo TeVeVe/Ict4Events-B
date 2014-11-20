@@ -33,7 +33,6 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.TextBoxMail = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
-            this.TextBoxPhone = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxPostalCode = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxCity = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxHouseNumber = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
@@ -41,6 +40,7 @@
             this.TextBoxLastName = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxInsertion = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxName = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
+            this.TextBoxPhone = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.groupBox1.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.SuspendLayout();
@@ -111,18 +111,6 @@
             this.TextBoxMail.Name = "TextBoxMail";
             this.TextBoxMail.Size = new System.Drawing.Size(279, 25);
             this.TextBoxMail.TabIndex = 8;
-            // 
-            // TextBoxPhone
-            // 
-            this.TextBoxPhone.AutoSize = true;
-            this.TextBoxPhone.ClearButtonAction = null;
-            this.TextBoxPhone.InputWidth = 142;
-            this.TextBoxPhone.LabelText = "Telefoon:";
-            this.TextBoxPhone.Location = new System.Drawing.Point(0, 193);
-            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
-            this.TextBoxPhone.Name = "TextBoxPhone";
-            this.TextBoxPhone.Size = new System.Drawing.Size(279, 25);
-            this.TextBoxPhone.TabIndex = 7;
             // 
             // TextBoxPostalCode
             // 
@@ -207,6 +195,18 @@
             this.TextBoxName.Name = "TextBoxName";
             this.TextBoxName.Size = new System.Drawing.Size(279, 25);
             this.TextBoxName.TabIndex = 0;
+            // 
+            // TextBoxPhone
+            // 
+            this.TextBoxPhone.AutoSize = true;
+            this.TextBoxPhone.ClearButtonAction = null;
+            this.TextBoxPhone.InputWidth = 142;
+            this.TextBoxPhone.LabelText = "Telefoon:";
+            this.TextBoxPhone.Location = new System.Drawing.Point(0, 193);
+            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
+            this.TextBoxPhone.Name = "TextBoxPhone";
+            this.TextBoxPhone.Size = new System.Drawing.Size(279, 25);
+            this.TextBoxPhone.TabIndex = 7;
             // 
             // ViewReserveeDetail
             // 
