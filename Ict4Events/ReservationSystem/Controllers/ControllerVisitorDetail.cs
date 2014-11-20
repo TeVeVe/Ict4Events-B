@@ -27,6 +27,7 @@ namespace ReservationSystem.Controllers
         {
             var rental = (Rental)View.extendedDataGridView1.SelectedCells[0].OwningRow.DataBoundItem;
             rental.Delete();
+            MainForm.ResetController();
         }
     }
 }
