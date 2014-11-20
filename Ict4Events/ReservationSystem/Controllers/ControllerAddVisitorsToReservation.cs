@@ -14,6 +14,7 @@ namespace ReservationSystem.Controllers
 {
     class ControllerAddVisitorsToReservation : ControllerMVC<ViewAddVisitorsToReservation>
     {
+        public DialogResult DialogResult { get; set; }
         public List<VisitorInfoPanel> Panels { get; set; }
         public Reservation Reservation { get; set; }
 
@@ -23,10 +24,13 @@ namespace ReservationSystem.Controllers
 
             View.ButtonSave += ViewOnButtonSave;
             View.ButtonCancel += ViewOnButtonCancel;
+
+            DialogResult = DialogResult.None;
         }
 
         private void ViewOnButtonCancel(object sender, EventArgs eventArgs)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -37,6 +41,7 @@ namespace ReservationSystem.Controllers
             {
                 Visitor v = new Visitor();
 
+                v.VisitorCode = (string)panel.Tag;
                 v.FirstName = panel.FirstName;
                 v.Insertion = panel.Insertion;
                 v.LastName = panel.LastName;
@@ -47,6 +52,7 @@ namespace ReservationSystem.Controllers
                 v.Insert();
             }
 
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -70,6 +76,15 @@ namespace ReservationSystem.Controllers
                     View.FlowLayoutPanel.Controls.Add(panel);
                     Panels.Add(panel);
                 }
+            }
+
+            if (reservee != null)
+            {
+                var panel = Panels.First();
+                panel.FirstName = reservee.FirstName;
+                panel.Insertion = reservee.Insertion;
+                panel.LastName = reservee.LastName;
+                panel.PhoneNumber = reservee.Phone;
             }
         }
     }

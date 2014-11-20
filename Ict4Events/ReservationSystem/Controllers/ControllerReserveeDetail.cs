@@ -24,15 +24,9 @@ namespace ReservationSystem.Controllers
             if (reservee != null)
             {
                 // Fill fields with UserAccount properties.
-                Visitor visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
-                if (visitor != null)
-                {
-                    View.TextBoxName.Text = visitor.FirstName;
-                    View.TextBoxInsertion.Text = visitor.Insertion;
-                    View.TextBoxLastName.Text = visitor.LastName;
-                    View.TextBoxPhone.Text = visitor.Phone;
-                }
-
+                View.TextBoxName.Text = reservee.FirstName;
+                View.TextBoxInsertion.Text = reservee.Insertion;
+                View.TextBoxLastName.Text = reservee.LastName;
                 View.TextBoxStreet.Text = reservee.Street;
                 View.TextBoxCity.Text = reservee.City;
                 View.TextBoxPostalCode.Text = reservee.PostalCode;
@@ -57,6 +51,9 @@ namespace ReservationSystem.Controllers
                 reservee = new Reservee();
 
             // Set fields
+            reservee.FirstName = View.TextBoxName.Text;
+            reservee.Insertion = View.TextBoxInsertion.Text;
+            reservee.LastName = View.TextBoxLastName.Text;
             reservee.HouseNumber = View.TextBoxHouseNumber.Text;
             reservee.Street = View.TextBoxStreet.Text;
             reservee.City = View.TextBoxCity.Text;

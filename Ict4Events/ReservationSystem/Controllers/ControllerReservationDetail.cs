@@ -104,7 +104,7 @@ namespace ReservationSystem.Controllers
             string password = "Administrator01";
 
             string subject = string.Format("Ict4Events: Uw reservering is succesvol verwerkt!");
-            var visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
+            Visitor visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
             var visitors = Visitor.Select("RESERVATIONID = " + visitor.ReservationId);
 
             string defaultBody = string.Format(
@@ -227,11 +227,18 @@ namespace ReservationSystem.Controllers
                     .ToList();
 
             // Popup window which shows input fields based on the amount of RFIDs required.
-            MainForm.PopupControllerOptions<ControllerAddVisitorsToReservation>(true,
+            var rfidPopup = MainForm.PopupControllerOptions<ControllerAddVisitorsToReservation>(true,
                 new KeyValuePair<string, object>("Visitors",
-                    randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation));
-
-            SendReservationConfirmationEmail(((Reservee)View.TextBoxReservee.Tag));
+                    randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation), new KeyValuePair<string, object>("Reservee", View.TextBoxReservee.Tag));
+            if (rfidPopup.DialogResult == DialogResult.OK)
+            {
+                // Send the mail.
+                SendReservationConfirmationEmail(((Reservee)View.TextBoxReservee.Tag));
+            }
+            else
+            {
+                Reservation.Delete();
+            }
         }
 
         private void ViewOnCancelClick(object sender, EventArgs eventArgs)

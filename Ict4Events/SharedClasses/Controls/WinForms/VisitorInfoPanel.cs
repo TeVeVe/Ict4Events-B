@@ -38,7 +38,7 @@ namespace SharedClasses.Controls.WinForms
 
         public string PhoneNumber
         {
-            get { return TextBoxPhoneNumber.ToString();  }
+            get { return TextBoxPhoneNumber.Text;  }
             set { TextBoxPhoneNumber.Text = value; }
         }
 
