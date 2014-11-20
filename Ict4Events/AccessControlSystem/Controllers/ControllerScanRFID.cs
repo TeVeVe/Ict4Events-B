@@ -32,10 +32,11 @@ namespace AccessControlSystem.Controllers
                 {
                     // Visitor does exist in database.
                     IEnumerable<Reservation> reservation = Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
+                    IEnumerable<Rental> rental = Rental.Select("VISITORCODE = " + wristbands.First().VisitorCode.ToSqlFormat());
 
+                    // if payment status is OK 
                     if (reservation.First().PaymentStatus)
                     {
-                        // if payment status is OK
                         Visitor visitor = wristbands.First();
 
                         if (!visitor.IsOnSite)
@@ -48,9 +49,16 @@ namespace AccessControlSystem.Controllers
                         else
                         {
                             // User was already on site but checked out: update database to set guest as away (not on site).
-                            visitor.IsOnSite = false;
-                            visitor.Update();
-                            FormMain.Form.Open<ControllerVisitorExit>();
+                            if (rental.Any())
+                            {
+                                MessageBox.Show("U heeft nog producten gehuurd! Lever deze eerst in!");
+                            }
+                            else
+                            {
+                                visitor.IsOnSite = false;
+                                visitor.Update();
+                                FormMain.Form.Open<ControllerVisitorExit>();
+                            }
                         }
                     }
                         // Access denied due to negative payment status.
