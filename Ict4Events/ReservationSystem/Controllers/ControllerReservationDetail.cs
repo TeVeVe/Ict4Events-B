@@ -7,7 +7,6 @@ using ReservationSystem.Views;
 using SharedClasses.Controller;
 using SharedClasses.Controls.WinForms;
 using SharedClasses.Data.Models;
-using SharedClasses.Events;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
 using IOFile = System.IO.File;
@@ -26,14 +25,14 @@ namespace ReservationSystem.Controllers
             View.InteractiveMap.SpotClick += InteractiveMapOnSpotClick;
         }
 
+        public bool IsNewRecord { get; set; }
+
+        public Reservation Reservation { get; set; }
+
         private void InteractiveMapOnSpotClick(object sender, InteractiveMap.SpotClickEventArgs e)
         {
             e.Spot.Checked = !e.Spot.Checked;
-
-            MessageBox.Show(((SpotType)e.Spot.Tag).ToString());
         }
-
-        public Reservation Reservation { get; set; }
 
         public override void Activate()
         {
@@ -41,6 +40,7 @@ namespace ReservationSystem.Controllers
 
             if (Reservation == null)
             {
+                IsNewRecord = true;
                 View.NumericUpDownVisitorAmount.Increment = 1;
                 View.NumericUpDownVisitorAmount.Value = View.NumericUpDownVisitorAmount.Minimum;
                 View.ButtonAddEvent.Enabled = true;
@@ -54,6 +54,8 @@ namespace ReservationSystem.Controllers
             }
             else
             {
+                IsNewRecord = false;
+
                 // Reset everything.
                 View.NumericUpDownVisitorAmount.Increment = 0;
                 View.ButtonAddEvent.Enabled = false;
@@ -121,25 +123,33 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnSaveReservationClick(object sender, EventArgs e)
         {
-            Reservation = new Reservation();
+            if (IsNewRecord)
+                Reservation = new Reservation();
+
             Reservation.EventId = ((Event)View.TextBoxEvent.Tag).Id;
             Reservation.ReserveeId = ((Reservee)View.TextBoxReservee.Tag).Id;
             Reservation.AmountOfPeople = (int)View.NumericUpDownVisitorAmount.Value;
-            Reservation.Insert();
+
+            if (IsNewRecord)
+            {
+                Reservation.Insert();
+                Reservation =
+                    Reservation.Select("RESERVATIONID = (SELECT MAX(RESERVATIONID) FROM RESERVATION)").First();
+            }
+            else
+                Reservation.Update();
 
             // Clear all reservations first.
-            foreach (var spot in Reservation.Spots)
-            {
+            foreach (ReservationSpot spot in Reservation.ReservationSpots)
                 spot.Delete();
-            }
 
             // Insert all spots into database.
-            foreach (var spot in View.InteractiveMap.Spots)
+            foreach (InteractiveMap.Spot spot in View.InteractiveMap.Spots)
             {
-                Spot dbSpot = new Spot();
-                dbSpot.LocX = spot.RelativePosition.X;
-                dbSpot.LocY = spot.RelativePosition.Y;
-                dbSpot.LocationId = Reservation.Event.LocationId;
+                var dbSpot = new ReservationSpot();
+                dbSpot.SpotId = (int)spot.Tag;
+                dbSpot.ReservationId = Reservation.Id;
+                dbSpot.Insert();
             }
 
             // Generate random RFIDs.
@@ -178,7 +188,10 @@ namespace ReservationSystem.Controllers
             View.InteractiveMap.ImageMap = Image.FromFile(fileName);
 
             // Load reservation spots.
-            View.InteractiveMap.AddRange(dbEvent.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY) { Tag = s.Type }));
+            View.InteractiveMap.AddRange(dbEvent.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY)
+            {
+                Tag = s.Id
+            }));
         }
     }
 }

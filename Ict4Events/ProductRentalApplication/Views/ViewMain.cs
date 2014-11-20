@@ -29,5 +29,10 @@ namespace ProductRentalApplication.Views
         {
             OnAddProductClick();
         }
+
+        private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

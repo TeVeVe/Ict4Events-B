@@ -13,7 +13,18 @@ namespace ReservationSystem.Controllers
         public ControllerReservation()
         {
             View.ButtonAddReservationClick += ViewButtonAddReservationClick;
+            View.ButtonDeleteReservationClick += ViewOnButtonDeleteReservationClick;
+            
             View.GridDoubleClick += ViewOnGridDoubleClick;
+        }
+
+        private void ViewOnButtonDeleteReservationClick(object sender, EventArgs eventArgs)
+        {
+            if (View.DataGridViewVisitors.SelectedCells.Count <= 0)
+                return;
+            var reservation = (Reservation)View.DataGridViewVisitors.SelectedCells[0].OwningRow.DataBoundItem;
+            reservation.Delete();
+            MainForm.ResetController();
         }
 
         private void ViewOnGridDoubleClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)

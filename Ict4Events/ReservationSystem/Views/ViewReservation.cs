@@ -20,6 +20,14 @@ namespace ReservationSystem.Views
         }
 
         public event EventHandler ButtonAddReservationClick;
+        public event EventHandler ButtonDeleteReservationClick;
+
+        protected virtual void OnButtonDeleteReservationClick()
+        {
+            EventHandler handler = ButtonDeleteReservationClick;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
 
         protected virtual void OnButtonAddReservationClick()
         {
@@ -36,6 +44,11 @@ namespace ReservationSystem.Views
         private void dataGridViewVisitors_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             OnGridDoubleClick(e);
+        }
+
+        private void buttonDeleteREservation_Click(object sender, EventArgs e)
+        {
+            OnButtonDeleteReservationClick();
         }
     }
 }

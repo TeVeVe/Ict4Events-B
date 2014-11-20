@@ -63,8 +63,10 @@
             this.DataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.DataGridView.Location = new System.Drawing.Point(0, 33);
             this.DataGridView.Name = "DataGridView";
+            this.DataGridView.ShowCellToolTips = false;
             this.DataGridView.Size = new System.Drawing.Size(723, 381);
             this.DataGridView.TabIndex = 8;
+            this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
             // ViewMain
             // 

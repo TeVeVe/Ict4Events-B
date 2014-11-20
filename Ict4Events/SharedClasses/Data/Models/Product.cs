@@ -17,6 +17,7 @@ namespace SharedClasses.Data.Models
         public string Description { get; set; }
         [System.ComponentModel.DisplayName("Foto")]
         public DbImage Image { get; set; }
+
         [System.ComponentModel.DisplayName("Prijs")]
         public decimal Price { get; set; }
         [System.ComponentModel.DisplayName("Inactief")]
