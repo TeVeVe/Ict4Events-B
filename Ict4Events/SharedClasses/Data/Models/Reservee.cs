@@ -10,39 +10,47 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("ReserveeId")]
-        [System.ComponentModel.DisplayName("Id")]
+        [DisplayName("Id")]
         public int Id { get; set; }
-        [System.ComponentModel.DisplayName("Email")]
+
+        [DisplayName("Email")]
         public string EmailAddress { get; set; }
 
-        [System.ComponentModel.DisplayName("Huisnummer")]
+        [DisplayName("Huisnummer")]
         [Browsable(false)]
         public string HouseNumber { get; set; }
 
-        [System.ComponentModel.DisplayName("Plaats")]
+        [DisplayName("Plaats")]
         public string City { get; set; }
 
-        [System.ComponentModel.DisplayName("Postcode")]
+        [DisplayName("Postcode")]
         public string PostalCode { get; set; }
-        [System.ComponentModel.DisplayName("Straat")]
+
+        [DisplayName("Straat")]
         [Browsable(false)]
         public string Street { get; set; }
 
         [Browsable(false)]
         public string VisitorCode { get; set; }
 
-        [System.ComponentModel.DisplayName("Volledige naam")]
+        [FieldName("PHONENR")]
+        [DisplayName("Telefoon")]
+        public string Phone { get; set; }
+
+        [DisplayName("Volledige naam")]
         [DbIgnore]
         public string FullName
         {
             get
             {
-                var visitor = Visitor.Select("VISITORCODE = " + VisitorCode.ToSqlFormat()).FirstOrDefault();
-                return visitor.FirstName + (!string.IsNullOrEmpty(visitor.Insertion) ? ' ' + visitor.Insertion + ' ' : " ") + visitor.LastName;
+                Visitor visitor = Visitor.Select("VISITORCODE = " + VisitorCode.ToSqlFormat()).FirstOrDefault();
+                return visitor.FirstName +
+                       (!string.IsNullOrEmpty(visitor.Insertion) ? ' ' + visitor.Insertion + ' ' : " ") +
+                       visitor.LastName;
             }
         }
 
-        [System.ComponentModel.DisplayName("Huisadres")]
+        [DisplayName("Huisadres")]
         [DbIgnore]
         public string HomeAddress
         {
