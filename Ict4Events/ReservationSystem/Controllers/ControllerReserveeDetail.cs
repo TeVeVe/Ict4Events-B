@@ -39,7 +39,8 @@ namespace ReservationSystem.Controllers
                 View.TextBoxCity.Text = reservee.City;
                 View.TextBoxPostalCode.Text = reservee.PostalCode;
                 View.TextBoxHouseNumber.Text = reservee.HouseNumber;
-                View.TextBoxEmail.Text = reservee.EmailAddress;
+                View.TextBoxMail.Text = reservee.Phone;
+                View.TextBoxPhone.Text = reservee.EmailAddress;
             }
             else
             {
@@ -69,15 +70,11 @@ namespace ReservationSystem.Controllers
             visitor.FirstName = View.TextBoxName.Text;
             visitor.Insertion = View.TextBoxInsertion.Text;
             visitor.LastName = View.TextBoxLastName.Text;
-
             reservee.Street = View.TextBoxStreet.Text;
             reservee.City = View.TextBoxCity.Text;
             reservee.PostalCode = View.TextBoxPostalCode.Text;
-
-            // TODO: add property.
-            //reservee.Phone = View.TextBoxPhone.Text;
-
-            reservee.EmailAddress = View.TextBoxEmail.Text;
+            reservee.Phone = View.TextBoxPhone.Text;
+            reservee.EmailAddress = View.TextBoxMail.Text;
 
             if (insertNew)
             {

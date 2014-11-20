@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TextBoxEmail = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
-            this.TextBoxPhone = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxPostalCode = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxCity = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxHouseNumber = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
@@ -41,13 +39,15 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.TextBoxPhone = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
+            this.TextBoxMail = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.groupBox1.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TextBoxEmail);
+            this.groupBox1.Controls.Add(this.TextBoxMail);
             this.groupBox1.Controls.Add(this.TextBoxPhone);
             this.groupBox1.Controls.Add(this.TextBoxPostalCode);
             this.groupBox1.Controls.Add(this.TextBoxCity);
@@ -66,32 +66,11 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Persoonlijke gegevens";
             // 
-            // TextBoxEmail
-            // 
-            this.TextBoxEmail.AutoSize = true;
-            this.TextBoxEmail.ClearButtonAction = null;
-            this.TextBoxEmail.LabelText = "E-mailadres:";
-            this.TextBoxEmail.Location = new System.Drawing.Point(0, 219);
-            this.TextBoxEmail.Margin = new System.Windows.Forms.Padding(0);
-            this.TextBoxEmail.Name = "TextBoxEmail";
-            this.TextBoxEmail.Size = new System.Drawing.Size(279, 25);
-            this.TextBoxEmail.TabIndex = 8;
-            // 
-            // TextBoxPhone
-            // 
-            this.TextBoxPhone.AutoSize = true;
-            this.TextBoxPhone.ClearButtonAction = null;
-            this.TextBoxPhone.LabelText = "Telefoon:";
-            this.TextBoxPhone.Location = new System.Drawing.Point(0, 194);
-            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
-            this.TextBoxPhone.Name = "TextBoxPhone";
-            this.TextBoxPhone.Size = new System.Drawing.Size(279, 25);
-            this.TextBoxPhone.TabIndex = 7;
-            // 
             // TextBoxPostalCode
             // 
             this.TextBoxPostalCode.AutoSize = true;
             this.TextBoxPostalCode.ClearButtonAction = null;
+            this.TextBoxPostalCode.InputWidth = 142;
             this.TextBoxPostalCode.LabelText = "Postcode:";
             this.TextBoxPostalCode.Location = new System.Drawing.Point(0, 168);
             this.TextBoxPostalCode.Margin = new System.Windows.Forms.Padding(0);
@@ -103,6 +82,7 @@
             // 
             this.TextBoxCity.AutoSize = true;
             this.TextBoxCity.ClearButtonAction = null;
+            this.TextBoxCity.InputWidth = 142;
             this.TextBoxCity.LabelText = "Woonplaats:";
             this.TextBoxCity.Location = new System.Drawing.Point(0, 143);
             this.TextBoxCity.Margin = new System.Windows.Forms.Padding(0);
@@ -114,6 +94,7 @@
             // 
             this.TextBoxHouseNumber.AutoSize = true;
             this.TextBoxHouseNumber.ClearButtonAction = null;
+            this.TextBoxHouseNumber.InputWidth = 142;
             this.TextBoxHouseNumber.LabelText = "Huisnummer:";
             this.TextBoxHouseNumber.Location = new System.Drawing.Point(14, 118);
             this.TextBoxHouseNumber.Margin = new System.Windows.Forms.Padding(0);
@@ -125,6 +106,7 @@
             // 
             this.TextBoxStreet.AutoSize = true;
             this.TextBoxStreet.ClearButtonAction = null;
+            this.TextBoxStreet.InputWidth = 142;
             this.TextBoxStreet.LabelText = "Straat:";
             this.TextBoxStreet.Location = new System.Drawing.Point(57, 93);
             this.TextBoxStreet.Margin = new System.Windows.Forms.Padding(0);
@@ -136,6 +118,7 @@
             // 
             this.TextBoxLastName.AutoSize = true;
             this.TextBoxLastName.ClearButtonAction = null;
+            this.TextBoxLastName.InputWidth = 142;
             this.TextBoxLastName.LabelText = "Achternaam:";
             this.TextBoxLastName.Location = new System.Drawing.Point(0, 68);
             this.TextBoxLastName.Margin = new System.Windows.Forms.Padding(0);
@@ -147,6 +130,7 @@
             // 
             this.TextBoxInsertion.AutoSize = true;
             this.TextBoxInsertion.ClearButtonAction = null;
+            this.TextBoxInsertion.InputWidth = 142;
             this.TextBoxInsertion.LabelText = "Tussenvoegsel:";
             this.TextBoxInsertion.Location = new System.Drawing.Point(0, 43);
             this.TextBoxInsertion.Margin = new System.Windows.Forms.Padding(0);
@@ -158,6 +142,7 @@
             // 
             this.TextBoxName.AutoSize = true;
             this.TextBoxName.ClearButtonAction = null;
+            this.TextBoxName.InputWidth = 142;
             this.TextBoxName.LabelText = "Naam:";
             this.TextBoxName.Location = new System.Drawing.Point(0, 18);
             this.TextBoxName.Margin = new System.Windows.Forms.Padding(0);
@@ -199,6 +184,30 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // TextBoxPhone
+            // 
+            this.TextBoxPhone.AutoSize = true;
+            this.TextBoxPhone.ClearButtonAction = null;
+            this.TextBoxPhone.InputWidth = 142;
+            this.TextBoxPhone.LabelText = "Telefoon:";
+            this.TextBoxPhone.Location = new System.Drawing.Point(0, 193);
+            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
+            this.TextBoxPhone.Name = "TextBoxPhone";
+            this.TextBoxPhone.Size = new System.Drawing.Size(279, 25);
+            this.TextBoxPhone.TabIndex = 6;
+            // 
+            // TextBoxMail
+            // 
+            this.TextBoxMail.AutoSize = true;
+            this.TextBoxMail.ClearButtonAction = null;
+            this.TextBoxMail.InputWidth = 142;
+            this.TextBoxMail.LabelText = "Email:";
+            this.TextBoxMail.Location = new System.Drawing.Point(0, 218);
+            this.TextBoxMail.Margin = new System.Windows.Forms.Padding(0);
+            this.TextBoxMail.Name = "TextBoxMail";
+            this.TextBoxMail.Size = new System.Drawing.Size(279, 25);
+            this.TextBoxMail.TabIndex = 6;
+            // 
             // ViewReserveeDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,8 +229,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxName;
-        public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxEmail;
-        public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxPhone;
         public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxPostalCode;
         public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxCity;
         public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxStreet;
@@ -231,5 +238,7 @@
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
+        public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxMail;
+        public SharedClasses.Controls.WinForms.NamedClearableTextBox TextBoxPhone;
     }
 }
