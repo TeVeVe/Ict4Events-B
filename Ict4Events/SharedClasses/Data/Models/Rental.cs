@@ -17,6 +17,19 @@ namespace SharedClasses.Data.Models
         [DbIgnore]
         [Browsable(false)]
         public TimeSpan RentalLength { get; set; }
+        [DisplayName("Productnaam")]
+        [DbIgnore]
+        public string ProductName
+        {
+            get
+            {
+                var product = Product.Select("PRODUCTID = " + ProductId.ToSqlFormat()).FirstOrDefault();
+                return product.Name;
+            }
+        }
+
+        [DisplayName("Aantal")]
+        public int Amount { get; set; }
 
         [DisplayName("Productnaam")]
         [DbIgnore]
