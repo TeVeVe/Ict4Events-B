@@ -105,7 +105,7 @@ namespace ReservationSystem.Controllers
 
             string subject = string.Format("Ict4Events: Uw reservering is succesvol verwerkt!");
             Visitor visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
-            var visitors = Visitor.Select("RESERVATIONID = " + visitor.ReservationId);
+            var visitors = Visitor.Select("RESERVATIONID = " + Reservation.Id);
 
             string defaultBody = string.Format(
                 "Geachte {0}, <br><br>bij deze is uw reservering succesvol verwerkt in ons systeem! <br>Uw bestelde polsbandjes zullen zo snel mogelijk naar u verstuurd worden. <br>" +
@@ -118,7 +118,7 @@ namespace ReservationSystem.Controllers
 
             foreach (Visitor v in visitors)
             {
-                defaultBody += v.FullName + "  -  " + v.VisitorCode.ToString() + "<br>";
+                defaultBody += v.FullName + "  -  " + v.VisitorCode + "<br>";
             }
 
             defaultBody += "<br>Veel plezier op het event!";
