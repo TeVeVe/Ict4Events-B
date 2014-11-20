@@ -46,11 +46,14 @@ namespace ReservationSystem.Controllers
 
                 v.Insert();
             }
+
+            Close();
         }
 
         public override void Activate()
         {
             Reservation = Values.SafeGetValue<Reservation>("Reservation");
+            var reservee = Values.SafeGetValue<Reservee>("Reservee");
             var rfids = Values.SafeGetValue<IEnumerable<string>>("Visitors");
             if (rfids != null)
             {
