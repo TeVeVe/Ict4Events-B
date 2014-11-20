@@ -36,11 +36,13 @@ namespace ReservationSystem.Controllers
             foreach (var panel in Panels)
             {
                 Visitor v = new Visitor();
+
                 v.FirstName = panel.FirstName;
                 v.Insertion = panel.Insertion;
                 v.LastName = panel.LastName;
                 v.ReservationId = Reservation.Id;
                 v.VisitorCode = (string)panel.Tag;
+                v.Phone = panel.PhoneNumber;
 
                 v.Insert();
             }
