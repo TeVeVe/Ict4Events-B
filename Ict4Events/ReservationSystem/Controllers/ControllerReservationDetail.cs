@@ -106,7 +106,7 @@ namespace ReservationSystem.Controllers
         {
             // Open lookup to select an event.
             var lookup =
-                MainForm.PopupController<LookupController<Event>>(new KeyValuePair<string, object>("Description",
+                MainForm.PopupController<ControllerLookup<Event>>(new KeyValuePair<string, object>("Description",
                     "Selecteer een evenement om een reservering aan toe te voegen."));
 
             Event dbEvent = lookup.SelectedRows.FirstOrDefault();
