@@ -180,7 +180,7 @@
             // 
             this.FilePicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.FilePicture.Dock = System.Windows.Forms.DockStyle.Top;
-            this.FilePicture.Image = global::MediaSharingApplication.Properties.Resources.spinner;
+            //this.FilePicture.Image = global::MediaSharingApplication.Properties.Resources.spinner;
             this.FilePicture.Location = new System.Drawing.Point(0, 29);
             this.FilePicture.Name = "FilePicture";
             this.FilePicture.Size = new System.Drawing.Size(400, 296);
