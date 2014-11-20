@@ -77,6 +77,8 @@ namespace SharedClasses.Data
         public static string GetPrimaryKey<T>() where T : DataModel
         {
             PropertyInfo prop = GetKeyProperty<T>();
+            if (prop == null)
+                return null;
 
             var fieldNameAttr = prop.GetCustomAttribute<FieldNameAttribute>(true);
             if (fieldNameAttr != null)
@@ -207,6 +209,18 @@ namespace SharedClasses.Data
                                 value = value.GetType().GetDefaultValue();
                             else
                                 value = null;
+                        }
+
+                        if (prop.PropertyType.IsEnum)
+                        {
+                            if (value is string)
+                            {
+                                value = Enum.Parse(prop.PropertyType, (string)value);
+                            }
+                            else if (value.GetType().IsNumericType())
+                            {
+                                value = Enum.ToObject(prop.PropertyType, value);
+                            }
                         }
 
                         // Set the propertie's value.

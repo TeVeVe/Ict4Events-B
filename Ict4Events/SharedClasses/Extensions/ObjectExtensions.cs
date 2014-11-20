@@ -65,8 +65,8 @@ namespace SharedClasses.Extensions
             if (type == typeof(bool))
                 return '\'' + ((bool)obj ? "Y" : "N") + '\'';
             if (type == typeof (DateTime))
-                return string.Format("TO_DATE('{0}', 'yyyy-MM-dd hh:mi:ss')", ((DateTime)obj).ToString("yyyy-MM-dd hh:mm:ss")); 
-            return '\'' + (string)obj + '\'';
+                return string.Format("TO_DATE('{0}', 'yyyy-MM-dd hh:mi:ss')", ((DateTime)obj).ToString("yyyy-MM-dd hh:mm:ss"));
+            return '\'' + (obj as string != null ? (string)obj : obj.ToString()) + '\'';
         }
 
         public static OracleDbType GetOrableDbType(this object obj)

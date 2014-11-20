@@ -14,7 +14,8 @@ namespace ReservationSystem.Controllers
 {
     class ControllerAddVisitorsToReservation : ControllerMVC<ViewAddVisitorsToReservation>
     {
-        public List<VisitorInfoPanel> Panels { get; set; } 
+        public List<VisitorInfoPanel> Panels { get; set; }
+        public Reservation Reservation { get; set; }
 
         public ControllerAddVisitorsToReservation()
         {
@@ -38,7 +39,7 @@ namespace ReservationSystem.Controllers
                 v.FirstName = panel.FirstName;
                 v.Insertion = panel.Insertion;
                 v.LastName = panel.LastName;
-                v.ReservationId = 1;
+                v.ReservationId = Reservation.Id;
                 v.VisitorCode = (string)panel.Tag;
 
                 v.Insert();
@@ -47,6 +48,7 @@ namespace ReservationSystem.Controllers
 
         public override void Activate()
         {
+            Reservation = Values.SafeGetValue<Reservation>("Reservation");
             var rfids = Values.SafeGetValue<IEnumerable<string>>("Visitors");
             if (rfids != null)
             {
