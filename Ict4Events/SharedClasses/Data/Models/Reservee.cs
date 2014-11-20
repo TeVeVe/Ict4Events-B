@@ -17,16 +17,19 @@ namespace SharedClasses.Data.Models
         [DbIgnore]
         public string FullName
         {
-            get
-            {
-                Visitor visitor = Visitor.Select("VISITORCODE = " + VisitorCode.ToSqlFormat()).FirstOrDefault();
-                if (visitor == null)
-                    return null;
-                return visitor.FirstName +
-                       (!string.IsNullOrEmpty(visitor.Insertion) ? ' ' + visitor.Insertion + ' ' : " ") +
-                       visitor.LastName;
-            }
+            get { return FirstName + (!string.IsNullOrEmpty(Insertion) ? ' ' + Insertion + ' ' : " ") + LastName; }
         }
+
+        [DisplayName("Voornaam")]
+        [FieldName("FIRSTNAME")]
+        public string FirstName { get; set; }
+        [DisplayName("Tussenvoegsel")]
+        [FieldName("INSERTION")]
+        public string Insertion { get; set; }
+
+        [DisplayName("Achternaam")]
+        [FieldName("LASTNAME")]
+        public string LastName { get; set; }
 
         [DisplayName("Huisadres")]
         [DbIgnore]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -214,13 +213,9 @@ namespace SharedClasses.Data
                         if (prop.PropertyType.IsEnum)
                         {
                             if (value is string)
-                            {
                                 value = Enum.Parse(prop.PropertyType, (string)value);
-                            }
                             else if (value.GetType().IsNumericType())
-                            {
                                 value = Enum.ToObject(prop.PropertyType, value);
-                            }
                         }
 
                         // Set the propertie's value.
@@ -347,14 +342,10 @@ namespace SharedClasses.Data
 
             // Store record data in objects.
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+            using (OracleDataReader reader = cmd.ExecuteReader())
             {
-                using (OracleDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        return reader.GetInt32(0);
-                    }
-                }
+                while (reader.Read())
+                    return reader.GetInt32(0);
             }
             return 0;
         }
@@ -433,7 +424,17 @@ namespace SharedClasses.Data
                     builder.Append(',');
             }
 
-            builder.Append(") VALUES(NULL, ");
+            builder.Append(") VALUES(");
+
+            // Set Primary key null when nothing is specified.
+            PropertyInfo keyProp = GetKeyProperty<T>();
+            object keyValue = keyProp.GetValue(this);
+            if (keyValue == null || (keyProp.PropertyType.IsNumericType() && (int)keyValue == 0))
+                builder.Append("NULL");
+            else
+                builder.Append(GetKeyProperty<T>().GetValue(this).ToSqlFormat());
+
+            builder.Append(", ");
 
             // Build VALUES.
             for (int i = 0; i < fields.Count(); i++)
@@ -473,7 +474,6 @@ namespace SharedClasses.Data
             builder.Append("DELETE FROM ");
             builder.Append(GetTableName<T>());
 
-            
 
             builder.Append(" WHERE ");
             builder.Append(GetPrimaryKey<T>());
