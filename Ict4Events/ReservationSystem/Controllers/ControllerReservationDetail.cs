@@ -131,7 +131,11 @@ namespace ReservationSystem.Controllers
             Reservation.AmountOfPeople = (int)View.NumericUpDownVisitorAmount.Value;
 
             if (IsNewRecord)
+            {
                 Reservation.Insert();
+                Reservation =
+                    Reservation.Select("RESERVATIONID = (SELECT MAX(RESERVATIONID) FROM RESERVATION)").First();
+            }
             else
                 Reservation.Update();
 
