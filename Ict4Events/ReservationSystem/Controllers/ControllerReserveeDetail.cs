@@ -39,8 +39,8 @@ namespace ReservationSystem.Controllers
                 View.TextBoxCity.Text = reservee.City;
                 View.TextBoxPostalCode.Text = reservee.PostalCode;
                 View.TextBoxHouseNumber.Text = reservee.HouseNumber;
-                View.TextBoxMail.Text = reservee.Phone;
-                View.TextBoxPhone.Text = reservee.EmailAddress;
+                View.TextBoxPhone.Text = reservee.Phone;
+                View.TextBoxMail.Text = reservee.EmailAddress;
             }
             else
             {
