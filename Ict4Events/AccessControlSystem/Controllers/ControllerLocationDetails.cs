@@ -37,10 +37,17 @@ namespace AccessControlSystem.Controllers
 
 
             var reservation = ReservationSpot.Select("RESERVATIONID = " + reservationID.ToSqlFormat());
-            var x = reservation.FirstOrDefault().Spot.LocX;
-            var y = reservation.FirstOrDefault().Spot.LocY;
 
-            map.Add(x, y);
+            if (reservation.FirstOrDefault() == null || reservation.FirstOrDefault() == null)
+            {
+                MessageBox.Show("Uw reservering is niet in orde! Neem contact op met een medewerker.");
+            }
+            else
+            {
+                var x = reservation.FirstOrDefault().Spot.LocX;
+                var y = reservation.FirstOrDefault().Spot.LocY;
+                map.Add(x, y);
+            }
         }
     }
 }

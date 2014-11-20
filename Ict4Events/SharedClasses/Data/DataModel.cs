@@ -437,7 +437,7 @@ namespace SharedClasses.Data
             builder.Append(")");
 
             // Store record data in objects.
-            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
+            using (var cmd = new OracleCommand(builder.ToString(), Database.Connection)) 
                 return cmd.ExecuteNonQuery();
         }
 
