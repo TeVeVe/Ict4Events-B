@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Data.Models;
+using SharedClasses.Extensions;
 using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
@@ -19,7 +20,14 @@ namespace ReservationSystem.Controllers
 
         public override void Activate()
         {
-            IEnumerable<Rental> rentals = Rental.Select();//Rental.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat());
+            var visitor = Values.SafeGetValue<Visitor>("Visitor");
+            if (visitor == null)
+            {
+                return;
+            }
+            var visitorcode = visitor.VisitorCode;
+            
+            IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + visitorcode);
             View.extendedDataGridView1.DataSource = rentals.ToList();
         }
 
