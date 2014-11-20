@@ -11,16 +11,16 @@ namespace SharedClasses.Data.Models
         [FieldName("PRODUCTID")]
         [System.ComponentModel.DisplayName("Id")]
         public int Id { get; set; }
+        [System.ComponentModel.DisplayName("Naam")]
+        public string Name { get; set; }
         [System.ComponentModel.DisplayName("Beschrijving")]
         public string Description { get; set; }
         [System.ComponentModel.DisplayName("Foto")]
         public DbImage Image { get; set; }
-        [System.ComponentModel.DisplayName("Inactief")]
-        public bool Inactive { get; set; }
-        [System.ComponentModel.DisplayName("Naam")]
-        public string Name { get; set; }
         [System.ComponentModel.DisplayName("Prijs")]
         public decimal Price { get; set; }
+        [System.ComponentModel.DisplayName("Inactief")]
+        public bool Inactive { get; set; }
 
         public override string ToString()
         {
