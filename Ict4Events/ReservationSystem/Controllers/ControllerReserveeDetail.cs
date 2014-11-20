@@ -88,7 +88,7 @@ namespace ReservationSystem.Controllers
             }
 
             MainForm.Open<ControllerReservees>();
-            //SendReservationConfirmationEmail(emailTo);
+            SendReservationConfirmationEmail(View.TextBoxEmail.Text);
         }
 
         public void SendReservationConfirmationEmail(string email)
