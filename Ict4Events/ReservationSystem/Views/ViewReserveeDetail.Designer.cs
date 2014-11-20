@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.TextBoxMail = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
+            this.TextBoxPhone = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxPostalCode = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxCity = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxHouseNumber = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
@@ -36,11 +41,6 @@
             this.TextBoxLastName = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxInsertion = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.TextBoxName = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
-            this.panelBottom = new System.Windows.Forms.Panel();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.TextBoxPhone = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
-            this.TextBoxMail = new SharedClasses.Controls.WinForms.NamedClearableTextBox();
             this.groupBox1.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +65,64 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Persoonlijke gegevens";
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.Controls.Add(this.buttonCancel);
+            this.panelBottom.Controls.Add(this.buttonSave);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 250);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(504, 36);
+            this.panelBottom.TabIndex = 1;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonCancel.Location = new System.Drawing.Point(204, 2);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 24);
+            this.buttonCancel.TabIndex = 32;
+            this.buttonCancel.Text = "Annuleren";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSave.Location = new System.Drawing.Point(124, 2);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 24);
+            this.buttonSave.TabIndex = 31;
+            this.buttonSave.Text = "Opslaan";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // TextBoxMail
+            // 
+            this.TextBoxMail.AutoSize = true;
+            this.TextBoxMail.ClearButtonAction = null;
+            this.TextBoxMail.InputWidth = 142;
+            this.TextBoxMail.LabelText = "Email:";
+            this.TextBoxMail.Location = new System.Drawing.Point(0, 218);
+            this.TextBoxMail.Margin = new System.Windows.Forms.Padding(0);
+            this.TextBoxMail.Name = "TextBoxMail";
+            this.TextBoxMail.Size = new System.Drawing.Size(279, 25);
+            this.TextBoxMail.TabIndex = 8;
+            // 
+            // TextBoxPhone
+            // 
+            this.TextBoxPhone.AutoSize = true;
+            this.TextBoxPhone.ClearButtonAction = null;
+            this.TextBoxPhone.InputWidth = 142;
+            this.TextBoxPhone.LabelText = "Telefoon:";
+            this.TextBoxPhone.Location = new System.Drawing.Point(0, 193);
+            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
+            this.TextBoxPhone.Name = "TextBoxPhone";
+            this.TextBoxPhone.Size = new System.Drawing.Size(279, 25);
+            this.TextBoxPhone.TabIndex = 7;
             // 
             // TextBoxPostalCode
             // 
@@ -149,64 +207,6 @@
             this.TextBoxName.Name = "TextBoxName";
             this.TextBoxName.Size = new System.Drawing.Size(279, 25);
             this.TextBoxName.TabIndex = 0;
-            // 
-            // panelBottom
-            // 
-            this.panelBottom.Controls.Add(this.buttonCancel);
-            this.panelBottom.Controls.Add(this.buttonSave);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 250);
-            this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(504, 36);
-            this.panelBottom.TabIndex = 1;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCancel.Location = new System.Drawing.Point(204, 2);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 24);
-            this.buttonCancel.TabIndex = 32;
-            this.buttonCancel.Text = "Annuleren";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonSave.Location = new System.Drawing.Point(124, 2);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 24);
-            this.buttonSave.TabIndex = 31;
-            this.buttonSave.Text = "Opslaan";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // TextBoxPhone
-            // 
-            this.TextBoxPhone.AutoSize = true;
-            this.TextBoxPhone.ClearButtonAction = null;
-            this.TextBoxPhone.InputWidth = 142;
-            this.TextBoxPhone.LabelText = "Telefoon:";
-            this.TextBoxPhone.Location = new System.Drawing.Point(0, 193);
-            this.TextBoxPhone.Margin = new System.Windows.Forms.Padding(0);
-            this.TextBoxPhone.Name = "TextBoxPhone";
-            this.TextBoxPhone.Size = new System.Drawing.Size(279, 25);
-            this.TextBoxPhone.TabIndex = 6;
-            // 
-            // TextBoxMail
-            // 
-            this.TextBoxMail.AutoSize = true;
-            this.TextBoxMail.ClearButtonAction = null;
-            this.TextBoxMail.InputWidth = 142;
-            this.TextBoxMail.LabelText = "Email:";
-            this.TextBoxMail.Location = new System.Drawing.Point(0, 218);
-            this.TextBoxMail.Margin = new System.Windows.Forms.Padding(0);
-            this.TextBoxMail.Name = "TextBoxMail";
-            this.TextBoxMail.Size = new System.Drawing.Size(279, 25);
-            this.TextBoxMail.TabIndex = 6;
             // 
             // ViewReserveeDetail
             // 
