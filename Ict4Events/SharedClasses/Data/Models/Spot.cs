@@ -9,7 +9,7 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("SPOTID")]
         public int Id { get; set; }
-
+        [DbIgnore]
         [FieldName("SPOTNUMBER")]
         [DisplayName("Indentificatienummer")]
         public int Number { get; set; }
