@@ -36,16 +36,16 @@ namespace ReservationSystem.Controllers
                     ch.Value = true;
                     break;
             }
-            var hasPaid = (Reservation)View.DataGridViewVisitors.SelectedCells[0].OwningRow.DataBoundItem;
+            var changePaymentStatus = (Reservation)View.DataGridViewVisitors.SelectedCells[0].OwningRow.DataBoundItem;
             if (ch.Value.ToString() == "False")
             {
-                hasPaid.PaymentStatus = false;
-                hasPaid.Update();
+                changePaymentStatus.PaymentStatus = false;
+                changePaymentStatus.Update();
             }
             else
             {
-                hasPaid.PaymentStatus = true;
-                hasPaid.Update();
+                changePaymentStatus.PaymentStatus = true;
+                changePaymentStatus.Update();
             }
         }
 
