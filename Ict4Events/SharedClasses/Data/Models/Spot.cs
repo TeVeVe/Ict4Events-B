@@ -10,11 +10,7 @@ namespace SharedClasses.Data.Models
         [FieldName("SPOTID")]
         public int Id { get; set; }
 
-        [FieldName("SPOTNUMBER")]
-        [System.ComponentModel.DisplayName("Indentificatienummer")]
-        public int Number { get; set; }
-
-        [DbIgnore]
+        [FieldName("SPOTATTRIBUTE")]
         public SpotType Type { get; set; }
 
         public int LocationId { get; set; }
