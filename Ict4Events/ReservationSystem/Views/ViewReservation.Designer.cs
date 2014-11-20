@@ -50,6 +50,7 @@ namespace ReservationSystem.Views
             this.DataGridViewVisitors.ShowCellToolTips = false;
             this.DataGridViewVisitors.Size = new System.Drawing.Size(497, 446);
             this.DataGridViewVisitors.TabIndex = 20;
+            this.DataGridViewVisitors.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewVisitors_CellContentClick);
             this.DataGridViewVisitors.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewVisitors_CellDoubleClick);
             // 
             // buttonDeleteREservation

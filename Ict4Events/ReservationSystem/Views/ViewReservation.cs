@@ -11,6 +11,14 @@ namespace ReservationSystem.Views
         }
 
         public event EventHandler<DataGridViewCellEventArgs> GridDoubleClick;
+        public event EventHandler Check_Clicked;
+
+        protected virtual void OnCheckClicked()
+        {
+            EventHandler handler = Check_Clicked;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
 
         protected virtual void OnGridDoubleClick(DataGridViewCellEventArgs e)
         {
@@ -21,6 +29,14 @@ namespace ReservationSystem.Views
 
         public event EventHandler ButtonAddReservationClick;
         public event EventHandler ButtonDeleteReservationClick;
+        public event EventHandler CheckboxChecked;
+
+        protected virtual void OnCheckboxChecked()
+        {
+            EventHandler handler = CheckboxChecked;
+            if (handler != null)
+                handler(this, EventArgs.Empty);
+        }
 
         protected virtual void OnButtonDeleteReservationClick()
         {
@@ -49,6 +65,11 @@ namespace ReservationSystem.Views
         private void buttonDeleteREservation_Click(object sender, EventArgs e)
         {
             OnButtonDeleteReservationClick();
+        }
+
+        private void DataGridViewVisitors_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OnCheckboxChecked();
         }
     }
 }
