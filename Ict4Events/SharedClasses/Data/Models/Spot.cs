@@ -11,7 +11,7 @@ namespace SharedClasses.Data.Models
         public int Id { get; set; }
 
         [FieldName("SPOTNUMBER")]
-        [DisplayName("Indentificatienummer")]
+        [System.ComponentModel.DisplayName("Indentificatienummer")]
         public int Number { get; set; }
 
         [DbIgnore]

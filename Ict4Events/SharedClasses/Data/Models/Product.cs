@@ -9,17 +9,17 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("PRODUCTID")]
-        [DisplayName("Id")]
+        [System.ComponentModel.DisplayName("Id")]
         public int Id { get; set; }
-        [DisplayName("Beschrijving")]
+        [System.ComponentModel.DisplayName("Beschrijving")]
         public string Description { get; set; }
-        [DisplayName("Foto")]
+        [System.ComponentModel.DisplayName("Foto")]
         public DbImage Image { get; set; }
-        [DisplayName("Inactief")]
+        [System.ComponentModel.DisplayName("Inactief")]
         public bool Inactive { get; set; }
-        [DisplayName("Naam")]
+        [System.ComponentModel.DisplayName("Naam")]
         public string Name { get; set; }
-        [DisplayName("Prijs")]
+        [System.ComponentModel.DisplayName("Prijs")]
         public decimal Price { get; set; }
 
         public override string ToString()

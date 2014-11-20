@@ -10,9 +10,9 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("COMMENTID")]
         public int Id { get; set; }
-        [DisplayName("Bericht")]
+        [System.ComponentModel.DisplayName("Bericht")]
         public string Content { get; set; }
-        [DisplayName("Geplaatst op")]
+        [System.ComponentModel.DisplayName("Geplaatst op")]
         public DateTime PostTime { get; set; }
         [FieldName("ParentId")]
         public int? ParentComment { get; set; }

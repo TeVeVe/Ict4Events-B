@@ -10,28 +10,28 @@ namespace SharedClasses.Data.Models
     {
         [Key]
         [FieldName("ReserveeId")]
-        [DisplayName("Id")]
+        [System.ComponentModel.DisplayName("Id")]
         public int Id { get; set; }
-        [DisplayName("Email")]
+        [System.ComponentModel.DisplayName("Email")]
         public string EmailAddress { get; set; }
 
-        [DisplayName("Huisnummer")]
+        [System.ComponentModel.DisplayName("Huisnummer")]
         [Browsable(false)]
         public string HouseNumber { get; set; }
 
-        [DisplayName("Plaats")]
+        [System.ComponentModel.DisplayName("Plaats")]
         public string City { get; set; }
 
-        [DisplayName("Postcode")]
+        [System.ComponentModel.DisplayName("Postcode")]
         public string PostalCode { get; set; }
-        [DisplayName("Straat")]
+        [System.ComponentModel.DisplayName("Straat")]
         [Browsable(false)]
         public string Street { get; set; }
 
         [Browsable(false)]
         public string VisitorCode { get; set; }
 
-        [DisplayName("Volledige naam")]
+        [System.ComponentModel.DisplayName("Volledige naam")]
         [DbIgnore]
         public string FullName
         {
@@ -42,7 +42,7 @@ namespace SharedClasses.Data.Models
             }
         }
 
-        [DisplayName("Huisadres")]
+        [System.ComponentModel.DisplayName("Huisadres")]
         [DbIgnore]
         public string HomeAddress
         {

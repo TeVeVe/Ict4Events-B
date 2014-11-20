@@ -7,7 +7,7 @@ namespace SharedClasses.Data.Models
     public class Visitor : DataModel<Visitor>
     {
         [Key]
-        [DisplayName("Id")]
+        [System.ComponentModel.DisplayName("Id")]
         public string VisitorCode { get; set; }
 
         [Browsable(false)]
@@ -16,25 +16,25 @@ namespace SharedClasses.Data.Models
         /// <summary>
         ///     Gets the full name by combining the <see cref="FirstName" />, <see cref="Insertion" /> and <see cref="LastName" />.
         /// </summary>
-        [DisplayName("Volledige naam")]
+        [System.ComponentModel.DisplayName("Volledige naam")]
         [DbIgnore]
         public string FullName
         {
             get { return FirstName + (!string.IsNullOrEmpty(Insertion) ? ' ' + Insertion + ' ' : " ") + LastName; }
         }
 
-        [DisplayName("Is aanwezig")]
+        [System.ComponentModel.DisplayName("Is aanwezig")]
         public bool IsOnSite { get; set; }
 
-        [DisplayName("Voornaam")]
+        [System.ComponentModel.DisplayName("Voornaam")]
         [Browsable(false)]
         public string FirstName { get; set; }
 
-        [DisplayName("Tussenvoegsel")]
+        [System.ComponentModel.DisplayName("Tussenvoegsel")]
         [Browsable(false)]
         public string Insertion { get; set; }
 
-        [DisplayName("Achternaam")]
+        [System.ComponentModel.DisplayName("Achternaam")]
         [Browsable(false)]
         public string LastName { get; set; }
     }

@@ -10,17 +10,17 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("FILEID")]
         public int Id { get; set; }
-        [DisplayName("Naam")]
+        [System.ComponentModel.DisplayName("Naam")]
         public string Name { get; set; }
-        [DisplayName("Omschrijving")]
+        [System.ComponentModel.DisplayName("Omschrijving")]
         public string Description { get; set; }
-        [DisplayName("Geplaatst op")]
+        [System.ComponentModel.DisplayName("Geplaatst op")]
         public DateTime PostTime { get; set; }
-        [DisplayName("Aantal keren gemarkeerd")]
+        [System.ComponentModel.DisplayName("Aantal keren gemarkeerd")]
         public int ReportCount { get; set; }
-        [DisplayName("Account")]
+        [System.ComponentModel.DisplayName("Account")]
         public int UserAccountId { get; set; }
-        [DisplayName("Categorie")]
+        [System.ComponentModel.DisplayName("Categorie")]
         public int CategoryId { get; set; }
     }
 }
