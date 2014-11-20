@@ -373,7 +373,8 @@ namespace SharedClasses.Data
                 PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
-                builder.Append(prop.GetValue(this).ToSqlFormat());
+                string value = EscapeCharacters(prop.GetValue(this)).ToSqlFormat();
+                builder.Append(value);
 
                 if (i < fields.Count() - 1)
                     builder.Append(',');
@@ -428,7 +429,8 @@ namespace SharedClasses.Data
                 PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
-                builder.Append(prop.GetValue(this).ToSqlFormat());
+                string value = EscapeCharacters(prop.GetValue(this)).ToSqlFormat();
+                builder.Append(value);
 
                 if (i < fields.Count() - 1)
                     builder.Append(',');
@@ -470,5 +472,15 @@ namespace SharedClasses.Data
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
                 return cmd.ExecuteNonQuery();
         }
+        private Object EscapeCharacters(object inputObject)
+        {
+            if (inputObject is string)
+            {
+                inputObject = ((string)inputObject).Replace("'", "''");
+            }
+
+            return inputObject;
+        }
+        
     }
 }

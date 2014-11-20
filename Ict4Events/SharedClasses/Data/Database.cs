@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -201,6 +202,12 @@ namespace SharedClasses.Data
             catch (TypeInitializationException ex)
             {
                 MessageBox.Show(String.Format("Geen connectie met de database \r\nDetails:{0}", ex.Message));
+            }
+
+            catch (OracleException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Environment.Exit(-1);
             }
 
             openTask.Wait(QueryTimeout);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using MediaSharingApplication.Views;
+using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.FTP;
 using SharedClasses.MVC;
@@ -13,6 +14,7 @@ namespace MediaSharingApplication.Controllers
     internal class ControllerAddFile : ControllerMVC<ViewAddFile>
     {
         private string _filePath;
+        private UserAccount _userAccount;
 
         public ControllerAddFile()
         {
@@ -51,7 +53,7 @@ namespace MediaSharingApplication.Controllers
 #if DEBUG
                     file.UserAccountId = 1;
 #else
-                    file.UserAccountId = MainForm.UserSession;
+                    file.UserAccountId = _userAccount.Id;
 #endif
                     file.Insert();
                     Close();
@@ -62,6 +64,11 @@ namespace MediaSharingApplication.Controllers
                     MessageBox.Show("Vul alstublieft beide velden in.");
                 }
             };
+        }
+
+        public override void Activate()
+        {
+            _userAccount = Values.SafeGetValue<UserAccount>("UserSession");
         }
     }
 }

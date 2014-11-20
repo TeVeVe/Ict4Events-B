@@ -13,8 +13,8 @@ namespace MediaSharingApplication
             InitializeComponent();
 
 #if DEBUG
-            UserSession = UserAccount.Select("USERACCOUNTID = 1").FirstOrDefault();
-            MarkAsMain<ControllerMain>();
+            //UserSession = UserAccount.Select("USERACCOUNTID = 1").FirstOrDefault();
+            MarkAsMain<ControllerLogin>();
 #else
             MarkAsMain<ControllerLogin>();
 #endif

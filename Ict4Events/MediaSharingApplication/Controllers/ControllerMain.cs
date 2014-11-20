@@ -100,7 +100,7 @@ namespace MediaSharingApplication.Controllers
 
                 else
                 {
-                    var comment = new SharedClasses.Data.Models.Comment();
+                    var comment = new Comment();
                     var feedPost = new FeedPost();
 
                     feedPost.UserAccount = _userAccount.Id;
@@ -108,6 +108,8 @@ namespace MediaSharingApplication.Controllers
                     feedPost.PostTime = DateTime.Now;
 
                     feedPost.Insert();
+                    View.CommentInput.CommentTextBox.Text = "";
+                    FillFeedPost();
                 }
             };
         }
@@ -147,7 +149,7 @@ namespace MediaSharingApplication.Controllers
                 return;
             }
 
-            MainForm.PopupController<ControllerAddFile>(new KeyValuePair<string, object>("selectedNode", selectedNode));
+            MainForm.PopupController<ControllerAddFile>(new KeyValuePair<string, object>("selectedNode", selectedNode), new KeyValuePair<string, object>("UserSession", _userAccount));
 
             FillFileFlowPanel((int)selectedNode.Tag);
         }
