@@ -14,36 +14,36 @@ namespace SharedClasses.Data.Models
         [FieldName("EVENTID")]
         public int Id { get; set; }
 
-        [DisplayName("Naam")]
+        [System.ComponentModel.DisplayName("Naam")]
         public string Name { get; set; }
 
-        [DisplayName("Huisadres")]
+        [System.ComponentModel.DisplayName("Huisadres")]
         [DbIgnore]
         public string HomeAddress
         {
             get { return Street + (!string.IsNullOrEmpty(HouseNumber) ? ' ' + HouseNumber : ""); }
         }
 
-        [DisplayName("Straat")]
+        [System.ComponentModel.DisplayName("Straat")]
         [Browsable(false)]
         public string Street { get; set; }
-        [DisplayName("Huisnummer")]
+        [System.ComponentModel.DisplayName("Huisnummer")]
         [Browsable(false)]
         public string HouseNumber { get; set; }
-        [DisplayName("Postcode")]
+        [System.ComponentModel.DisplayName("Postcode")]
         public string PostalCode { get; set; }
-        [DisplayName("Begindatum")]
+        [System.ComponentModel.DisplayName("Begindatum")]
         public DateTime StartDate { get; set; }
-        [DisplayName("Einddatum")]
+        [System.ComponentModel.DisplayName("Einddatum")]
         public DateTime EndDate { get; set; }
 
-        [DisplayName("Plaats")]
+        [System.ComponentModel.DisplayName("Plaats")]
         public string City { get; set; }
 
         [Browsable(false)]
         public int LocationId { get; set; }
 
-        [DisplayName("Max aantal personen")]
+        [System.ComponentModel.DisplayName("Max aantal personen")]
         public int MaxGuests { get; set; }
 
         [DbIgnore]

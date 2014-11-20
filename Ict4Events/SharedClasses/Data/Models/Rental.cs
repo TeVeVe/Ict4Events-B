@@ -16,10 +16,10 @@ namespace SharedClasses.Data.Models
         [Browsable(false)]
         public TimeSpan RentalLength { get; set; }
 
-        [DisplayName("Is betaald")]
+        [System.ComponentModel.DisplayName("Is betaald")]
         public bool IsPaid { get; set; }
 
-        [DisplayName("Ingangsdatum")]
+        [System.ComponentModel.DisplayName("Ingangsdatum")]
         public DateTime StartTime { get; set; }
 
         public int ProductId { get; set; }

@@ -29,6 +29,8 @@ namespace ReservationSystem.Controllers
         private void InteractiveMapOnSpotClick(object sender, InteractiveMap.SpotClickEventArgs e)
         {
             e.Spot.Checked = !e.Spot.Checked;
+
+            MessageBox.Show(((SpotType)e.Spot.Tag).ToString());
         }
 
         public Reservation Reservation { get; set; }
@@ -176,7 +178,7 @@ namespace ReservationSystem.Controllers
             View.InteractiveMap.ImageMap = Image.FromFile(fileName);
 
             // Load reservation spots.
-            View.InteractiveMap.AddRange(dbEvent.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY)));
+            View.InteractiveMap.AddRange(dbEvent.Spots.Select(s => new InteractiveMap.Spot(s.LocX, s.LocY) { Tag = s.Type }));
         }
     }
 }
