@@ -31,10 +31,10 @@ namespace SharedClasses.Data.Models
         [DisplayName("Aantal")]
         public int Amount { get; set; }
 
-        [DisplayName("Is betaald")]
+        [System.ComponentModel.DisplayName("Is betaald")]
         public bool IsPaid { get; set; }
 
-        [DisplayName("Ingangsdatum")]
+        [System.ComponentModel.DisplayName("Ingangsdatum")]
         public DateTime StartTime { get; set; }
 
         [Browsable(false)]
