@@ -125,7 +125,9 @@ namespace SharedClasses.Extensions
                 return string.Format("TO_DATE('{0}', 'yyyy-MM-dd hh:mi:ss')",
                     ((DateTime)obj).ToString("yyyy-MM-dd hh:mm:ss"));
             }
-            return '\'' + (obj as string != null ? (string)obj : obj.ToString()) + '\'';
+
+            // It is or is convertible to a string. Escaping the ' character and return.
+            return '\'' + (obj as string != null ? (string)obj : obj.ToString()).Replace("'", "''") +'\'';
         }
 
         public static OracleDbType GetOrableDbType(this object obj)

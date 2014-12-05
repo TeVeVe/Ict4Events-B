@@ -139,8 +139,6 @@ namespace SharedClasses.Data
         public static IEnumerable<T> Select(string whereStatement = null, QueryOptions options = 0,
             string ignoreFields = null)
         {
-            if (Database == null)
-                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
 
             // Build select.
@@ -237,8 +235,6 @@ namespace SharedClasses.Data
         public static IEnumerable<T> Select(string whereStatement, QueryOptions options = 0,
             params KeyValuePair<string, string>[] parms)
         {
-            if (Database == null)
-                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
 
             // Build select.
@@ -325,10 +321,6 @@ namespace SharedClasses.Data
 
         public static int Count(string whereStatement = null, QueryOptions options = 0)
         {
-            if (Database == null)
-                throw new DataException("Database of database was not set.");
-            IEnumerable<KeyValuePair<string, string>> fields = GetFieldNames<T>();
-
             // Build select.
             var builder = new StringBuilder();
             builder.Append("SELECT COUNT(*) FROM ");
@@ -344,6 +336,7 @@ namespace SharedClasses.Data
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
             using (OracleDataReader reader = cmd.ExecuteReader())
             {
+                // Read value from SELECT COUNT statement.
                 while (reader.Read())
                     return reader.GetInt32(0);
             }
@@ -356,8 +349,6 @@ namespace SharedClasses.Data
         /// <returns>A value bigger than zero if succeeded.</returns>
         public int Update()
         {
-            if (Database == null)
-                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields =
                 GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
@@ -378,7 +369,7 @@ namespace SharedClasses.Data
                 PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
-                string value = EscapeCharacters(prop.GetValue(this)).ToSqlFormat();
+                string value = prop.GetValue(this).ToSqlFormat();
                 builder.Append(value);
 
                 if (i < fields.Count() - 1)
@@ -400,8 +391,6 @@ namespace SharedClasses.Data
         /// <returns>Records affected.</returns>
         public int Insert()
         {
-            if (Database == null)
-                throw new DataException("Database of database was not set.");
             IEnumerable<KeyValuePair<string, string>> fields =
                 GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
 
@@ -444,7 +433,7 @@ namespace SharedClasses.Data
                 PropertyInfo prop = typeof(T).GetProperty(setField.Key, BindingFlags.Public | BindingFlags.Instance);
 
                 // Save field to database.
-                string value = EscapeCharacters(prop.GetValue(this)).ToSqlFormat();
+                string value = prop.GetValue(this).ToSqlFormat();
                 builder.Append(value);
 
                 if (i < fields.Count() - 1)
@@ -464,11 +453,6 @@ namespace SharedClasses.Data
         /// <returns>Records affected.</returns>
         public int Delete()
         {
-            if (Database == null)
-                throw new DataException("Database of database was not set.");
-            IEnumerable<KeyValuePair<string, string>> fields =
-                GetFieldNames<T>().Where(p => p.Value != GetPrimaryKey<T>());
-
             // Build UPDATE.
             PropertyInfo key = GetKeyProperty<T>();
 
@@ -485,14 +469,6 @@ namespace SharedClasses.Data
             // Store record data in objects.
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
                 return cmd.ExecuteNonQuery();
-        }
-
-        private Object EscapeCharacters(object inputObject)
-        {
-            if (inputObject is string)
-                inputObject = ((string)inputObject).Replace("'", "''");
-
-            return inputObject;
         }
     }
 }

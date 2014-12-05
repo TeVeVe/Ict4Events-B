@@ -142,7 +142,6 @@
     <Compile Include="Data\Models\SpotType.cs" />
     <Compile Include="Data\Models\SpotTypeExtensions.cs" />
     <Compile Include="Data\Models\Types\DbImage.cs" />
-    <Compile Include="Data\obj.cs" />
     <Compile Include="Events\AuthenticateEventArgs.cs" />
     <Compile Include="Events\DatabaseConnectionChangedEventArgs.cs" />
     <Compile Include="Events\InteractiveMouseDownEventArgs.cs" />
