@@ -3,8 +3,7 @@
 namespace SharedClasses.Data.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class DbIgnoreAttribute : System.Attribute
+    public class DbIgnoreAttribute : Attribute
     {
-         
     }
 }

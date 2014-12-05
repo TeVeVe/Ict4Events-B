@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SharedClasses.Data.Attributes;
+﻿using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
@@ -14,8 +12,10 @@ namespace SharedClasses.Data.Models
         public string VisitorCode { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+
         [FieldName("GroupId")]
         public int GroupId { get; set; }
+
         [DbIgnore]
         public Visitor Visitor { get; set; }
     }

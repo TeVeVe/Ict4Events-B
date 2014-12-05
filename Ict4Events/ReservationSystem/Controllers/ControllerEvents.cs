@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Data.Models;
@@ -10,7 +7,7 @@ using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    class ControllerEvent : ControllerMVC<ViewEvents>
+    internal class ControllerEvent : ControllerMVC<ViewEvents>
     {
         public ControllerEvent()
         {
@@ -33,11 +30,12 @@ namespace ReservationSystem.Controllers
         {
             if (string.IsNullOrWhiteSpace(View.TextBoxEventName.Text))
             {
-                MessageBox.Show("De naam van een event mag niet leeg zijn.", "Invoergegevens zijn onjuist", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("De naam van een event mag niet leeg zijn.", "Invoergegevens zijn onjuist",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            Event e = new Event();
+            var e = new Event();
             e.Name = View.TextBoxEventName.Text;
             e.Street = View.TextBoxStreet.Text;
             e.HouseNumber = View.TextBoxHouseNumber.Text;
@@ -60,7 +58,9 @@ namespace ReservationSystem.Controllers
             var dataEvent = (Event)View.DataGridEvents.SelectedCells[0].OwningRow.DataBoundItem;
 
             MessageBox.Show(
-                string.Format("Als u het evenement '{0}' verwijderd. Worden alle reserveringen ook verwijderd. Wilt u doorgaan?", dataEvent.Name),
+                string.Format(
+                    "Als u het evenement '{0}' verwijderd. Worden alle reserveringen ook verwijderd. Wilt u doorgaan?",
+                    dataEvent.Name),
                 "Eventment verwijderen", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             // Disable the event.

@@ -1,28 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProductRentalApplication.Views
 {
     public partial class ViewMain : UserControl
     {
+        public ViewMain()
+        {
+            InitializeComponent();
+        }
+
         public event EventHandler AddProductClick;
 
         protected virtual void OnAddProductClick()
         {
             EventHandler handler = AddProductClick;
-            if (handler != null) handler(this, EventArgs.Empty);
-        }
-
-        public ViewMain()
-        {
-            InitializeComponent();
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         private void buttonAddProduct_Click(object sender, EventArgs e)
@@ -32,7 +26,6 @@ namespace ProductRentalApplication.Views
 
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
     }
 }

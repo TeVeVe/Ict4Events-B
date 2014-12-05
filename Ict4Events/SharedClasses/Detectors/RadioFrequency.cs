@@ -41,31 +41,7 @@ namespace SharedClasses.Detectors
                 InitRadioFrequency();
             }
             else
-            {
                 BaseRFID.Attach += (sender, args) => InitRadioFrequency();
-            }
-        }
-
-        private void InitRadioFrequency()
-        {
-            BaseRFID.Antenna = true;
-
-            // Re-route events to use ours instead.
-            BaseRFID.Tag += (sender, args) =>
-            {
-                Cache.Add(args.Tag);
-                OnTag(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
-            };
-            BaseRFID.TagLost +=
-                (sender, args) => OnTagLost(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
-            BaseRFID.Attach +=
-                (sender, args) =>
-                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Connected, args.Device.Type,
-                        args.Device.Name));
-            BaseRFID.Detach +=
-                (sender, args) =>
-                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Disconnected, args.Device.Type,
-                        args.Device.Name));
         }
 
         protected List<string> Cache { get; set; }
@@ -98,7 +74,8 @@ namespace SharedClasses.Detectors
         {
             get
             {
-                if (TagsDetected.Count() <= 1) return null;
+                if (TagsDetected.Count() <= 1)
+                    return null;
                 return BaseRFID.LastTag;
             }
         }
@@ -126,7 +103,8 @@ namespace SharedClasses.Detectors
         {
             set
             {
-                if (value == _ledOnDetecting) return;
+                if (value == _ledOnDetecting)
+                    return;
                 _ledOnDetecting = value;
                 if (_ledOnDetecting)
                 {
@@ -148,6 +126,28 @@ namespace SharedClasses.Detectors
         public void Dispose()
         {
             Close();
+        }
+
+        private void InitRadioFrequency()
+        {
+            BaseRFID.Antenna = true;
+
+            // Re-route events to use ours instead.
+            BaseRFID.Tag += (sender, args) =>
+            {
+                Cache.Add(args.Tag);
+                OnTag(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
+            };
+            BaseRFID.TagLost +=
+                (sender, args) => OnTagLost(new Events.TagEventArgs(args.Tag, LastTag, TagsDetected));
+            BaseRFID.Attach +=
+                (sender, args) =>
+                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Connected, args.Device.Type,
+                        args.Device.Name));
+            BaseRFID.Detach +=
+                (sender, args) =>
+                    OnAttached(new DeviceAttachedStateEventArgs(AttachState.Disconnected, args.Device.Type,
+                        args.Device.Name));
         }
 
         private void LEDOnDetectingTagLost(object sender, TagEventArgs tagEventArgs)
@@ -173,16 +173,15 @@ namespace SharedClasses.Detectors
         protected virtual void OnAttached(DeviceAttachedStateEventArgs e)
         {
             EventHandler<DeviceAttachedStateEventArgs> handler = Attached;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         protected virtual void OnTag(Events.TagEventArgs e)
         {
             EventHandler<Events.TagEventArgs> handler = Tag;
             if (handler != null)
-            {
                 Task.Factory.StartNew(() => handler(this, e));
-            }
         }
 
         /// <summary>
@@ -193,7 +192,8 @@ namespace SharedClasses.Detectors
         protected virtual void OnTagLost(Events.TagEventArgs e)
         {
             EventHandler<Events.TagEventArgs> handler = TagLost;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         /// <summary>

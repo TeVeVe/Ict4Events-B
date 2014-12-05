@@ -486,15 +486,13 @@ namespace SharedClasses.Data
             using (var cmd = new OracleCommand(builder.ToString(), Database.Connection))
                 return cmd.ExecuteNonQuery();
         }
+
         private Object EscapeCharacters(object inputObject)
         {
             if (inputObject is string)
-            {
                 inputObject = ((string)inputObject).Replace("'", "''");
-            }
 
             return inputObject;
         }
-        
     }
 }

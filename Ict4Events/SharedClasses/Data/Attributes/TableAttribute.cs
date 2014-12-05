@@ -3,7 +3,7 @@
 namespace SharedClasses.Data.Attributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class TableAttribute : System.Attribute
+    public class TableAttribute : Attribute
     {
         public TableAttribute(string name)
         {

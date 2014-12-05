@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
@@ -11,7 +8,7 @@ using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    class ControllerVisitorDetail : ControllerMVC<ViewVisitorDetail>
+    internal class ControllerVisitorDetail : ControllerMVC<ViewVisitorDetail>
     {
         public ControllerVisitorDetail()
         {
@@ -22,11 +19,9 @@ namespace ReservationSystem.Controllers
         {
             var visitor = Values.SafeGetValue<Visitor>("Visitor");
             if (visitor == null)
-            {
                 return;
-            }
-            var visitorcode = visitor.VisitorCode;
-            
+            string visitorcode = visitor.VisitorCode;
+
             IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + visitorcode);
             View.extendedDataGridView1.DataSource = rentals.ToList();
         }

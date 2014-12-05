@@ -10,8 +10,6 @@ namespace SharedClasses.Controls.WinForms
 {
     public partial class TreeViewCategory : UserControl
     {
-        public TreeNode LastSelectedNode { get; set; }
-
         private readonly List<TreeNode> _currentNodeMatches;
 
         private int _lastNodeIndex;
@@ -23,11 +21,10 @@ namespace SharedClasses.Controls.WinForms
             InitializeComponent();
             _currentNodeMatches = new List<TreeNode>();
 
-            treeViewCategories.NodeMouseClick += (sender, args) =>
-            {
-                LastSelectedNode = args.Node;
-            };
+            treeViewCategories.NodeMouseClick += (sender, args) => { LastSelectedNode = args.Node; };
         }
+
+        public TreeNode LastSelectedNode { get; set; }
 
         public ContextMenuStrip TreeViewContextMenu
         {
@@ -154,10 +151,10 @@ namespace SharedClasses.Controls.WinForms
 
             // Determine if the key should be uppercase or lowercase.
             char key;
-            if (!e.Shift && keyValue >= (int) Keys.A && keyValue <= (int) Keys.Z)
-                key = (char) (keyValue + 32);
+            if (!e.Shift && keyValue >= (int)Keys.A && keyValue <= (int)Keys.Z)
+                key = (char)(keyValue + 32);
             else
-                key = (char) keyValue;
+                key = (char)keyValue;
 
 
             // Match for only valid characters in textbox.

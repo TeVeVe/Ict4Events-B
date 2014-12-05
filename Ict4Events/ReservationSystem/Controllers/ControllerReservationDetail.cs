@@ -105,27 +105,24 @@ namespace ReservationSystem.Controllers
 
             string subject = string.Format("Ict4Events: Uw reservering is succesvol verwerkt!");
             Visitor visitor = Visitor.Select("VISITORCODE = " + reservee.VisitorCode.ToSqlFormat()).FirstOrDefault();
-            var visitors = Visitor.Select("RESERVATIONID = " + Reservation.Id);
+            IEnumerable<Visitor> visitors = Visitor.Select("RESERVATIONID = " + Reservation.Id);
 
             string defaultBody = string.Format(
                 "Geachte {0}, <br><br>bij deze is uw reservering succesvol verwerkt in ons systeem! <br>Uw bestelde polsbandjes zullen zo snel mogelijk naar u verstuurd worden. <br>" +
                 "Op de dag van het evenement kunt u dit polsbandje gebruiken om toegang te krijgen tot het evenemententerein. <br>" +
-                "U kunt het te betalen bedrag overmaken naar het volgende rekeningnummer: <b>123456</b>.<br><br>" + 
+                "U kunt het te betalen bedrag overmaken naar het volgende rekeningnummer: <b>123456</b>.<br><br>" +
                 "Geef de bandjes met de juiste code aan de juiste bezoeker.<br><br>",
                 visitor.FirstName +
                 (!string.IsNullOrWhiteSpace(visitor.Insertion) ? " " + visitor.Insertion + " " : "") +
                 visitor.LastName);
 
             foreach (Visitor v in visitors)
-            {
                 defaultBody += v.FullName + "  -  " + v.VisitorCode + "<br>";
-            }
 
             defaultBody += "<br>Veel plezier op het event!";
 
             string body = defaultBody;
 
-                    
 
             using (var mail = new MailMessage())
             {
@@ -229,16 +226,15 @@ namespace ReservationSystem.Controllers
             // Popup window which shows input fields based on the amount of RFIDs required.
             var rfidPopup = MainForm.PopupControllerOptions<ControllerAddVisitorsToReservation>(true,
                 new KeyValuePair<string, object>("Visitors",
-                    randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation), new KeyValuePair<string, object>("Reservee", View.TextBoxReservee.Tag));
+                    randomRFIDs), new KeyValuePair<string, object>("Reservation", Reservation),
+                new KeyValuePair<string, object>("Reservee", View.TextBoxReservee.Tag));
             if (rfidPopup.DialogResult == DialogResult.OK)
             {
                 // Send the mail.
                 SendReservationConfirmationEmail(((Reservee)View.TextBoxReservee.Tag));
             }
             else
-            {
                 Reservation.Delete();
-            }
         }
 
         private void ViewOnCancelClick(object sender, EventArgs eventArgs)

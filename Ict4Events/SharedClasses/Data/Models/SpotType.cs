@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using SharedClasses.Data.Attributes;
+﻿using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
@@ -7,10 +6,13 @@ namespace SharedClasses.Data.Models
     {
         [EnumDisplayName("Geen eigenschappen")]
         None,
+
         [EnumDisplayName("Luidruchtig")]
         Loud,
+
         [EnumDisplayName("Dicht bij de wc")]
         CloseToToilet,
+
         [EnumDisplayName("Dicht bij het zwembad")]
         CloseToPool
     }

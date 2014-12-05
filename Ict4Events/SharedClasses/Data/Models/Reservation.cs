@@ -33,17 +33,14 @@ namespace SharedClasses.Data.Models
         [Browsable(false)]
         public Event Event
         {
-            get { return Models.Event.Select("EVENTID = " + EventId.ToSqlFormat()).FirstOrDefault(); }
+            get { return Event.Select("EVENTID = " + EventId.ToSqlFormat()).FirstOrDefault(); }
         }
 
         [DbIgnore]
         [Browsable(false)]
         public IEnumerable<Spot> Spots
         {
-            get
-            {
-                return Spot.Select("LOCATIONID = " + Event.LocationId);
-            }
+            get { return Spot.Select("LOCATIONID = " + Event.LocationId); }
         }
 
         [DbIgnore]

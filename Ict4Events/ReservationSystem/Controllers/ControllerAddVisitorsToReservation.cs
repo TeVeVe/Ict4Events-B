@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ReservationSystem.Views;
 using SharedClasses.Controls.WinForms;
@@ -12,12 +10,8 @@ using SharedClasses.MVC;
 
 namespace ReservationSystem.Controllers
 {
-    class ControllerAddVisitorsToReservation : ControllerMVC<ViewAddVisitorsToReservation>
+    internal class ControllerAddVisitorsToReservation : ControllerMVC<ViewAddVisitorsToReservation>
     {
-        public DialogResult DialogResult { get; set; }
-        public List<VisitorInfoPanel> Panels { get; set; }
-        public Reservation Reservation { get; set; }
-
         public ControllerAddVisitorsToReservation()
         {
             Panels = new List<VisitorInfoPanel>();
@@ -28,6 +22,10 @@ namespace ReservationSystem.Controllers
             DialogResult = DialogResult.None;
         }
 
+        public DialogResult DialogResult { get; set; }
+        public List<VisitorInfoPanel> Panels { get; set; }
+        public Reservation Reservation { get; set; }
+
         private void ViewOnButtonCancel(object sender, EventArgs eventArgs)
         {
             DialogResult = DialogResult.Cancel;
@@ -37,9 +35,9 @@ namespace ReservationSystem.Controllers
         private void ViewOnButtonSave(object sender, EventArgs eventArgs)
         {
             // Save visitors to the database.
-            foreach (var panel in Panels)
+            foreach (VisitorInfoPanel panel in Panels)
             {
-                Visitor v = new Visitor();
+                var v = new Visitor();
 
                 v.VisitorCode = (string)panel.Tag;
                 v.FirstName = panel.FirstName;
@@ -64,7 +62,7 @@ namespace ReservationSystem.Controllers
             if (rfids != null)
             {
                 int num = 0;
-                foreach (var rfid in rfids)
+                foreach (string rfid in rfids)
                 {
                     num++;
                     var panel = new VisitorInfoPanel
@@ -80,7 +78,7 @@ namespace ReservationSystem.Controllers
 
             if (reservee != null)
             {
-                var panel = Panels.First();
+                VisitorInfoPanel panel = Panels.First();
                 panel.FirstName = reservee.FirstName;
                 panel.Insertion = reservee.Insertion;
                 panel.LastName = reservee.LastName;

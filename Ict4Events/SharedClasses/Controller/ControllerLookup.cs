@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Windows.Controls;
 using System.Windows.Forms;
 using SharedClasses.Data;
 using SharedClasses.Extensions;
@@ -14,13 +11,26 @@ namespace SharedClasses.Controller
 {
     public class ControllerLookup<T> : ControllerMVC<ViewLookup> where T : DataModel, new()
     {
-        public DialogResult DialogResult { get; set; }
-
         public ControllerLookup()
         {
             View.SaveClick += ViewOnSaveClick;
             View.CancelClick += ViewOnCancelClick;
             View.CellDoubleClick += ViewOnCellDoubleClick;
+        }
+
+        public DialogResult DialogResult { get; set; }
+
+        public IEnumerable<T> SelectedRows
+        {
+            get
+            {
+                return
+                    View.DataGridView.SelectedCells.Cast<DataGridViewCell>()
+                        .Select(c => c.OwningRow)
+                        .Distinct()
+                        .Select(r => r.DataBoundItem)
+                        .Cast<T>();
+            }
         }
 
         private void ViewOnCellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -38,19 +48,6 @@ namespace SharedClasses.Controller
         {
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-        public IEnumerable<T> SelectedRows
-        {
-            get
-            {
-                return
-                    View.DataGridView.SelectedCells.Cast<DataGridViewCell>()
-                        .Select(c => c.OwningRow)
-                        .Distinct()
-                        .Select(r => r.DataBoundItem)
-                        .Cast<T>();
-            }
         }
 
         public override void Activate()

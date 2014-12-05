@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace SharedClasses.Extensions
 {
     public static class TypeExtensions
     {
-        private static HashSet<Type> _numericTypes = new HashSet<Type>()
+        private static readonly HashSet<Type> _numericTypes = new HashSet<Type>
         {
             typeof(float),
             typeof(double),
@@ -20,16 +18,16 @@ namespace SharedClasses.Extensions
             typeof(int),
             typeof(long),
             typeof(ulong)
-        }; 
+        };
 
-        private static HashSet<Type> _floatingPointNumberTypes = new HashSet<Type>()
+        private static readonly HashSet<Type> _floatingPointNumberTypes = new HashSet<Type>
         {
             typeof(float),
             typeof(decimal),
             typeof(double)
         };
 
-        private static HashSet<Type> _wholeNumberTypes = new HashSet<Type>()
+        private static readonly HashSet<Type> _wholeNumberTypes = new HashSet<Type>
         {
             typeof(byte),
             typeof(sbyte),
@@ -42,10 +40,10 @@ namespace SharedClasses.Extensions
         };
 
         /// <summary>
-        /// Returns the default value of the supplied <see cref="Type"/>.
+        ///     Returns the default value of the supplied <see cref="Type" />.
         /// </summary>
-        /// <param name="type"><see cref="Type"/> to return the default value of.</param>
-        /// <returns>Default value of the supplied <see cref="Type"/></returns>
+        /// <param name="type"><see cref="Type" /> to return the default value of.</param>
+        /// <returns>Default value of the supplied <see cref="Type" /></returns>
         public static object GetDefaultValue(this Type type)
         {
             if (type.IsValueType)
@@ -53,7 +51,7 @@ namespace SharedClasses.Extensions
             return null;
         }
 
-        public static bool IsNumericType( this Type type)
+        public static bool IsNumericType(this Type type)
         {
             return _numericTypes.Contains(type);
         }

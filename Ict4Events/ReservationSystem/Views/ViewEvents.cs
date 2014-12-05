@@ -5,6 +5,11 @@ namespace ReservationSystem.Views
 {
     public partial class ViewEvents : UserControl
     {
+        public ViewEvents()
+        {
+            InitializeComponent();
+        }
+
         public event EventHandler ButtonSave;
         public event EventHandler ButtonDeleteEvent;
 
@@ -20,11 +25,6 @@ namespace ReservationSystem.Views
             EventHandler handler = ButtonSave;
             if (handler != null)
                 handler(this, EventArgs.Empty);
-        }
-
-        public ViewEvents()
-        {
-            InitializeComponent();
         }
 
         private void buttonDeleteEvent_Click(object sender, EventArgs e)

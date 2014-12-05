@@ -16,13 +16,15 @@ namespace ReservationSystem.Views
         protected virtual void OnButtonCancelClick()
         {
             EventHandler handler = ButtonCancelClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         protected virtual void OnButtonSaveClick()
         {
             EventHandler handler = ButtonSaveClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

@@ -104,7 +104,7 @@ namespace SharedClasses.MVC
                 }
 
                 // Refresh user code in controller.
-                _activeController.View.InvokeSafe((c) =>
+                _activeController.View.InvokeSafe(c =>
                 {
                     if (c != null)
                     {
@@ -272,17 +272,18 @@ namespace SharedClasses.MVC
         ///     Creates a new window for the controller and displays it.
         /// </summary>
         /// <typeparam name="T">A type of controller for displaying.</typeparam>
-        /// <param name="allowUserResize">If true, users can resize the <see cref="Form"/>.</param>
+        /// <param name="allowUserResize">If true, users can resize the <see cref="Form" />.</param>
         /// <param name="values">A controller to display.</param>
         /// <returns></returns>
-        public T PopupControllerOptions<T>(bool allowUserResize, params KeyValuePair<string, object>[] values) where T : IController, new()
+        public T PopupControllerOptions<T>(bool allowUserResize, params KeyValuePair<string, object>[] values)
+            where T : IController, new()
         {
             // Activate a new temporary host.
             var host = new FormMVC();
             host.AllowUserResize = allowUserResize;
 
             // Mark controller as popup.
-            var controller = host.Open<T>(values);
+            IController controller = host.Open<T>(values);
             controller.IsPopup = true;
 
             // Show and block code.

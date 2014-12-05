@@ -69,7 +69,7 @@ namespace SharedClasses.Controls.WinForms
         }
 
         /// <summary>
-        /// Clears the <see cref="TextBox.Text"/>.
+        ///     Clears the <see cref="TextBox.Text" />.
         /// </summary>
         public void Clear()
         {

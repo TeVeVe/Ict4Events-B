@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using AccessControlSystem.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
@@ -31,7 +30,8 @@ namespace AccessControlSystem.Controllers
                 else
                 {
                     // Visitor does exist in database.
-                    IEnumerable<Reservation> reservation = Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
+                    IEnumerable<Reservation> reservation =
+                        Reservation.Select("RESERVATIONID = " + wristbands.First().ReservationId);
 
                     if (reservation.First().PaymentStatus)
                     {
@@ -43,7 +43,8 @@ namespace AccessControlSystem.Controllers
                             // User is not yet on site but checkin is successful: access granted, update database to set guest as present (on site).
                             visitor.IsOnSite = true;
                             visitor.Update();
-                            FormMain.Form.Open<ControllerLocationDetails>(new KeyValuePair<string, object>("visitor", wristbands.First()));
+                            FormMain.Form.Open<ControllerLocationDetails>(new KeyValuePair<string, object>("visitor",
+                                wristbands.First()));
                         }
                         else
                         {

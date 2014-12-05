@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using SharedClasses.Data.Attributes;
+﻿using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {

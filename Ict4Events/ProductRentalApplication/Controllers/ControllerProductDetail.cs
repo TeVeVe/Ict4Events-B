@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using ProductRentalApplication.Views;
 using SharedClasses.Controller;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
 using SharedClasses.MVC;
-using SharedClasses.Views;
 
 namespace ProductRentalApplication.Controllers
 {
     public class ControllerProductDetail : ControllerMVC<ViewProductDetail>
     {
-        public UserAccount Account { get; set; }
-
         public ControllerProductDetail()
         {
             View.ButtonCancelClick += ViewOnButtonCancelClick;
             View.BrowseProductsClick += ViewOnBrowseProductsClick;
             View.ButtonOKClick += ViewOnButtonOkClick;
         }
+
+        public UserAccount Account { get; set; }
 
         public override void Activate()
         {
@@ -32,7 +30,7 @@ namespace ProductRentalApplication.Controllers
         {
             // Aquiring user session
 
-            MessageBox.Show("Je hebt "+ View.numericUpDownAmount.Value +" " + View.Product.Name +"(s) gehuurd!");
+            MessageBox.Show("Je hebt " + View.numericUpDownAmount.Value + " " + View.Product.Name + "(s) gehuurd!");
 
             IEnumerable<Rental> rentals = Rental.Select("VISITORCODE = " + Account.VisitorCode.ToSqlFormat());
 
@@ -50,7 +48,7 @@ namespace ProductRentalApplication.Controllers
         private void ViewOnBrowseProductsClick(object sender, EventArgs eventArgs)
         {
             var lookup = MainForm.PopupController<ControllerLookup<Product>>();
-            var product = lookup.SelectedRows.FirstOrDefault();
+            Product product = lookup.SelectedRows.FirstOrDefault();
 
             View.Product = product;
         }

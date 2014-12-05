@@ -12,18 +12,21 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("RENTALID")]
         public int Id { get; set; }
+
         [Browsable(false)]
         public string VisitorCode { get; set; }
+
         [DbIgnore]
         [Browsable(false)]
         public TimeSpan RentalLength { get; set; }
+
         [DisplayName("Productnaam")]
         [DbIgnore]
         public string ProductName
         {
             get
             {
-                var product = Product.Select("PRODUCTID = " + ProductId.ToSqlFormat()).FirstOrDefault();
+                Product product = Product.Select("PRODUCTID = " + ProductId.ToSqlFormat()).FirstOrDefault();
                 return product.Name;
             }
         }
@@ -31,10 +34,10 @@ namespace SharedClasses.Data.Models
         [DisplayName("Aantal")]
         public int Amount { get; set; }
 
-        [System.ComponentModel.DisplayName("Is betaald")]
+        [DisplayName("Is betaald")]
         public bool IsPaid { get; set; }
 
-        [System.ComponentModel.DisplayName("Ingangsdatum")]
+        [DisplayName("Ingangsdatum")]
         public DateTime StartTime { get; set; }
 
         [Browsable(false)]

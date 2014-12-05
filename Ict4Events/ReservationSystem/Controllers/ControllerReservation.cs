@@ -14,7 +14,7 @@ namespace ReservationSystem.Controllers
         {
             View.ButtonAddReservationClick += ViewButtonAddReservationClick;
             View.ButtonDeleteReservationClick += ViewOnButtonDeleteReservationClick;
-            
+
             View.GridDoubleClick += ViewOnGridDoubleClick;
         }
 

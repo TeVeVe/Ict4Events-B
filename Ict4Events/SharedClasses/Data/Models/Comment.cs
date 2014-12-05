@@ -10,12 +10,16 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("COMMENTID")]
         public int Id { get; set; }
-        [System.ComponentModel.DisplayName("Bericht")]
+
+        [DisplayName("Bericht")]
         public string Content { get; set; }
-        [System.ComponentModel.DisplayName("Geplaatst op")]
+
+        [DisplayName("Geplaatst op")]
         public DateTime PostTime { get; set; }
+
         [FieldName("ParentId")]
         public int? ParentComment { get; set; }
+
         public int UserAccountId { get; set; }
         public int FileId { get; set; }
     }

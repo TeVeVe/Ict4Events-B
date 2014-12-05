@@ -3,11 +3,8 @@
 namespace SharedClasses.Data.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class ForeignKeyAttribute : System.Attribute
+    public class ForeignKeyAttribute : Attribute
     {
-        public string PropertyName { get; set; }
-        public string TargetPropertyName { get; set; }
-
         // When the PropertyName is the same as the TargetPropertyName
         public ForeignKeyAttribute(string propertyName)
         {
@@ -21,5 +18,8 @@ namespace SharedClasses.Data.Attributes
             PropertyName = propertyName;
             TargetPropertyName = targetPropertyName;
         }
+
+        public string PropertyName { get; set; }
+        public string TargetPropertyName { get; set; }
     }
 }

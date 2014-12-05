@@ -5,11 +5,11 @@ namespace SharedClasses.Events
 {
     public class DatabaseConnectionChangedEventArgs : EventArgs
     {
-        public ConnectionState State { get; set; }
-
         public DatabaseConnectionChangedEventArgs(ConnectionState state)
         {
             State = state;
         }
+
+        public ConnectionState State { get; set; }
     }
 }

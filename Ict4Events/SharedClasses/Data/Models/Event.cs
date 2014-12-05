@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using SharedClasses.Data.Attributes;
@@ -14,36 +13,40 @@ namespace SharedClasses.Data.Models
         [FieldName("EVENTID")]
         public int Id { get; set; }
 
-        [System.ComponentModel.DisplayName("Naam")]
+        [DisplayName("Naam")]
         public string Name { get; set; }
 
-        [System.ComponentModel.DisplayName("Huisadres")]
+        [DisplayName("Huisadres")]
         [DbIgnore]
         public string HomeAddress
         {
             get { return Street + (!string.IsNullOrEmpty(HouseNumber) ? ' ' + HouseNumber : ""); }
         }
 
-        [System.ComponentModel.DisplayName("Straat")]
+        [DisplayName("Straat")]
         [Browsable(false)]
         public string Street { get; set; }
-        [System.ComponentModel.DisplayName("Huisnummer")]
+
+        [DisplayName("Huisnummer")]
         [Browsable(false)]
         public string HouseNumber { get; set; }
-        [System.ComponentModel.DisplayName("Postcode")]
+
+        [DisplayName("Postcode")]
         public string PostalCode { get; set; }
-        [System.ComponentModel.DisplayName("Begindatum")]
+
+        [DisplayName("Begindatum")]
         public DateTime StartDate { get; set; }
-        [System.ComponentModel.DisplayName("Einddatum")]
+
+        [DisplayName("Einddatum")]
         public DateTime EndDate { get; set; }
 
-        [System.ComponentModel.DisplayName("Plaats")]
+        [DisplayName("Plaats")]
         public string City { get; set; }
 
         [Browsable(false)]
         public int LocationId { get; set; }
 
-        [System.ComponentModel.DisplayName("Max aantal personen")]
+        [DisplayName("Max aantal personen")]
         public int MaxGuests { get; set; }
 
         [DbIgnore]

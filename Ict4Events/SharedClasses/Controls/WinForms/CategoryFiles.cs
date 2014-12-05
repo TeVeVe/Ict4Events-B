@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Forms;
-using SharedClasses.Data.Models;
-using SharedClasses.FTP;
 
 namespace SharedClasses.Controls.WinForms
 {
@@ -33,7 +29,6 @@ namespace SharedClasses.Controls.WinForms
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            
         }
     }
 }

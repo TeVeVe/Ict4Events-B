@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using SharedClasses.Events;
-using SharedClasses.Views;
 
 namespace ProductRentalApplication
 {

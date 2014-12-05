@@ -1,7 +1,4 @@
 ﻿using AccessControlSystem.Controllers;
-using SharedClasses.Data;
-using SharedClasses.Data.Models;
-using SharedClasses.Interfaces;
 using SharedClasses.MVC;
 
 namespace AccessControlSystem
@@ -13,7 +10,7 @@ namespace AccessControlSystem
         public FormMain()
         {
             InitializeComponent();
-            
+
             // Needed for cross-threading access.
             Form = this;
 

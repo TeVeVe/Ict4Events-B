@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace SharedClasses.Controls.WinForms
@@ -13,19 +12,19 @@ namespace SharedClasses.Controls.WinForms
             Width = 140;
             Height = 140;
 
-            Panel textPanel = new Panel();
+            var textPanel = new Panel();
             textPanel.BackColor = Color.Black;
             Controls.Add(textPanel);
             textPanel.Height = 30;
             textPanel.Dock = DockStyle.Bottom;
 
-            Label primaryLabel = new Label();
+            var primaryLabel = new Label();
             textPanel.Controls.Add(primaryLabel);
             primaryLabel.Text = primaryText;
             primaryLabel.ForeColor = Color.White;
             primaryLabel.AutoSize = true;
-            
-            Label secondaryLabel = new Label();
+
+            var secondaryLabel = new Label();
             textPanel.Controls.Add(secondaryLabel);
             secondaryLabel.Text = secondaryText;
             secondaryLabel.ForeColor = Color.White;
@@ -33,7 +32,7 @@ namespace SharedClasses.Controls.WinForms
             secondaryLabel.AutoSize = true;
             secondaryLabel.Font = new Font(secondaryLabel.Font.FontFamily, 6);
 
-            PictureBox pictureBox = new PictureBox();
+            var pictureBox = new PictureBox();
             pictureBox.Dock = DockStyle.Fill;
         }
     }

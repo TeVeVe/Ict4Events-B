@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using SharedClasses.Controls.WinForms;
+﻿using System.Windows.Forms;
 
 namespace AccessControlSystem.Views
 {

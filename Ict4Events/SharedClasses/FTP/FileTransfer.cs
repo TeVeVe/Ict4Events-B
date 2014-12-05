@@ -30,9 +30,7 @@ namespace SharedClasses.FTP
 
             //Creating a path from the categories
             foreach (string c in categories)
-            {
                 categoriesPath += c + '/';
-            }
 
             if (CreateFolder(categoriesPath))
             {
@@ -54,7 +52,7 @@ namespace SharedClasses.FTP
                     requestStream.Flush();
                 }
 
-                var response = (FtpWebResponse) uploadRequest.GetResponse();
+                var response = (FtpWebResponse)uploadRequest.GetResponse();
                 MessageBox.Show(String.Format("File upload complete, status: {0}", response.StatusDescription));
                 response.Close();
                 return true;
@@ -78,17 +76,15 @@ namespace SharedClasses.FTP
                 directoryRequest.Method = WebRequestMethods.Ftp.MakeDirectory;
                 directoryRequest.Credentials = credentials;
 
-                using (var resp = (FtpWebResponse) directoryRequest.GetResponse())
-                {
+                using (var resp = (FtpWebResponse)directoryRequest.GetResponse())
                     Console.WriteLine(resp.StatusCode);
-                }
 
                 return true;
             }
 
             catch (WebException ex)
             {
-                var response = (FtpWebResponse) ex.Response;
+                var response = (FtpWebResponse)ex.Response;
                 if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
                 {
                     response.Close();
@@ -103,14 +99,14 @@ namespace SharedClasses.FTP
         public static bool DownloadFile(string fileName)
         {
             var request =
-                (FtpWebRequest) WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
+                (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(Settings.Default.FTP_UserID, Settings.Default.FTP_Password);
 
             FtpWebResponse response = null;
             try
             {
-                response = (FtpWebResponse) request.GetResponse();
+                response = (FtpWebResponse)request.GetResponse();
             }
             catch (WebException)
             {
@@ -147,14 +143,14 @@ namespace SharedClasses.FTP
         {
             success = false;
             var request =
-                (FtpWebRequest) WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
+                (FtpWebRequest)WebRequest.Create(String.Format("ftp://{0}/{1}", Settings.Default.FTP_Server, fileName));
             request.Method = WebRequestMethods.Ftp.DownloadFile;
             request.Credentials = new NetworkCredential(Settings.Default.FTP_UserID, Settings.Default.FTP_Password);
 
             FtpWebResponse response = null;
             try
             {
-                response = (FtpWebResponse) request.GetResponse();
+                response = (FtpWebResponse)request.GetResponse();
             }
             catch (WebException)
             {

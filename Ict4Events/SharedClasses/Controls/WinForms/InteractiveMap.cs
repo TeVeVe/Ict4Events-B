@@ -33,15 +33,6 @@ namespace SharedClasses.Controls.WinForms
             MouseDown += OnMouseDown;
         }
 
-        public event EventHandler<InteractiveMouseDownEventArgs> InteractiveMouseDown;
-
-        protected virtual void OnInteractiveMouseDown(InteractiveMouseDownEventArgs e)
-        {
-            EventHandler<InteractiveMouseDownEventArgs> handler = InteractiveMouseDown;
-            if (handler != null)
-                handler(this, e);
-        }
-
         public bool KeepAspectRatio { get; set; }
 
 
@@ -112,6 +103,15 @@ namespace SharedClasses.Controls.WinForms
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public SpotCollection Spots { get; set; }
 
+        public event EventHandler<InteractiveMouseDownEventArgs> InteractiveMouseDown;
+
+        protected virtual void OnInteractiveMouseDown(InteractiveMouseDownEventArgs e)
+        {
+            EventHandler<InteractiveMouseDownEventArgs> handler = InteractiveMouseDown;
+            if (handler != null)
+                handler(this, e);
+        }
+
         public event EventHandler<SpotHoverEventArgs> SpotHover;
         public event EventHandler<SpotClickEventArgs> SpotClick;
 
@@ -141,7 +141,8 @@ namespace SharedClasses.Controls.WinForms
 
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
-            OnInteractiveMouseDown(new InteractiveMouseDownEventArgs(e, (float)e.X / MapBounds.Width, (float)e.Y / MapBounds.Height));
+            OnInteractiveMouseDown(new InteractiveMouseDownEventArgs(e, (float)e.X / MapBounds.Width,
+                (float)e.Y / MapBounds.Height));
 
             // Only with the left mouse button.
             if (e.Button != MouseButtons.Left)
@@ -251,10 +252,7 @@ namespace SharedClasses.Controls.WinForms
 
             public PointF RelativePosition
             {
-                get
-                {
-                    return new PointF(Position.X / Map.MapBounds.Width, Position.Y / Map.MapBounds.Height);
-                }
+                get { return new PointF(Position.X / Map.MapBounds.Width, Position.Y / Map.MapBounds.Height); }
             }
 
             public int BorderWidth { get; set; }

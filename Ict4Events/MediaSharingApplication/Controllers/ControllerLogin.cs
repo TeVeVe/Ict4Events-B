@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using MediaSharingApplication.Views;
 using SharedClasses.Data.Models;
 using SharedClasses.Detectors;
 using SharedClasses.Events;
@@ -12,7 +10,7 @@ using SharedClasses.Views;
 
 namespace MediaSharingApplication.Controllers
 {
-    class ControllerLogin : ControllerMVC<ViewLogin>
+    internal class ControllerLogin : ControllerMVC<ViewLogin>
     {
         private RadioFrequency _rfidDetector;
 
@@ -34,11 +32,14 @@ namespace MediaSharingApplication.Controllers
             switch (e.AuthMethod)
             {
                 case AuthenticateEventArgs.AuthenticationMethod.Account:
-                    account = UserAccount.Select(string.Format("USERNAME = {0} AND PASSWORD = {1}", e.Username.ToSqlFormat(), e.Password.ToSqlFormat())).FirstOrDefault();
+                    account =
+                        UserAccount.Select(string.Format("USERNAME = {0} AND PASSWORD = {1}", e.Username.ToSqlFormat(),
+                            e.Password.ToSqlFormat())).FirstOrDefault();
                     e.Authorized = account != null;
                     break;
                 case AuthenticateEventArgs.AuthenticationMethod.RFIDNumber:
-                    visitor = Visitor.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
+                    visitor =
+                        Visitor.Select(string.Format("VISITORCODE = {0}", e.RFIDNumber.ToSqlFormat())).FirstOrDefault();
                     e.Authorized = visitor != null;
                     break;
             }
@@ -56,7 +57,8 @@ namespace MediaSharingApplication.Controllers
             else if (e.AuthMethod == AuthenticateEventArgs.AuthenticationMethod.RFIDNumber)
             {
                 // Check if the RFID number already has an account.
-                var rfidAccount = UserAccount.Select("VISITORCODE = " + visitor.VisitorCode.ToSqlFormat()).FirstOrDefault();
+                UserAccount rfidAccount =
+                    UserAccount.Select("VISITORCODE = " + visitor.VisitorCode.ToSqlFormat()).FirstOrDefault();
                 if (rfidAccount != null)
                 {
                     MessageBox.Show("Er is al een account aangemaakt voor het pasnummer.", "Account bestaat al",
@@ -64,7 +66,8 @@ namespace MediaSharingApplication.Controllers
                     return;
                 }
 
-                MainForm.Open<ControllerRegisterAccount>(new KeyValuePair<string, object>("VisitorCode", visitor.VisitorCode));
+                MainForm.Open<ControllerRegisterAccount>(new KeyValuePair<string, object>("VisitorCode",
+                    visitor.VisitorCode));
             }
             else
             {

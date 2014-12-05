@@ -3,7 +3,7 @@
 namespace SharedClasses.Data.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class KeyAttribute : System.Attribute
+    public class KeyAttribute : Attribute
     {
     }
 }

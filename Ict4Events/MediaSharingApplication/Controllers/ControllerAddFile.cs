@@ -46,7 +46,7 @@ namespace MediaSharingApplication.Controllers
                     file.Name = Path.GetFileName(_filePath);
                     file.PostTime = DateTime.Now;
                     file.ReportCount = 0;
-                    file.CategoryId = (int) selectedNode.Tag;
+                    file.CategoryId = (int)selectedNode.Tag;
                     file.Description = View.TextBoxDescription.Text;
 
                     // TODO: Use user session.
@@ -60,9 +60,7 @@ namespace MediaSharingApplication.Controllers
                 }
 
                 else
-                {
                     MessageBox.Show("Vul alstublieft beide velden in.");
-                }
             };
         }
 

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
@@ -11,7 +8,7 @@ using SharedClasses.Views;
 
 namespace ProductRentalApplication.Controllers
 {
-    class ControllerRegisterAccount : ControllerMVC<ViewRegisterAccount>
+    internal class ControllerRegisterAccount : ControllerMVC<ViewRegisterAccount>
     {
         public ControllerRegisterAccount()
         {
@@ -34,7 +31,9 @@ namespace ProductRentalApplication.Controllers
             }
 
             // Check if user already exists.
-            var account = UserAccount.Select(string.Format("upper(USERNAME) = upper({0})", View.Username.ToSqlFormat())).FirstOrDefault();
+            UserAccount account =
+                UserAccount.Select(string.Format("upper(USERNAME) = upper({0})", View.Username.ToSqlFormat()))
+                    .FirstOrDefault();
             if (account != null)
             {
                 MessageBox.Show("Deze gebruikersnaam is al in gebruik.", "Gebruikersnaam in gebruik.",
@@ -51,10 +50,10 @@ namespace ProductRentalApplication.Controllers
             }
 
             // Insert a new account in the group "Gebruikers".
-            var group = Group.Select("NAME = 'Gebruikers'").FirstOrDefault();
+            Group group = Group.Select("NAME = 'Gebruikers'").FirstOrDefault();
             if (group != null)
             {
-                account = new UserAccount()
+                account = new UserAccount
                 {
                     Username = View.Username,
                     Password = View.Password,
@@ -63,13 +62,12 @@ namespace ProductRentalApplication.Controllers
                 };
                 account.Insert();
 
-                MessageBox.Show("Uw account is aangemaakt.", "Account aangemaakt", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Uw account is aangemaakt.", "Account aangemaakt", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 MainForm.Open<ControllerMain>();
             }
             else
-            {
                 MessageBox.Show("De gebruikers groep bestaat niet in de database.");
-            }
         }
     }
 }

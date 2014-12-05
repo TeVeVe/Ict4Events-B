@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SharedClasses.Controls.WinForms
 {
     public partial class VisitorInfoPanel : UserControl
     {
+        public VisitorInfoPanel()
+        {
+            InitializeComponent();
+        }
+
         public string FirstName
         {
             get { return TextBoxFirstName.Text; }
@@ -38,7 +36,7 @@ namespace SharedClasses.Controls.WinForms
 
         public string PhoneNumber
         {
-            get { return TextBoxPhoneNumber.Text;  }
+            get { return TextBoxPhoneNumber.Text; }
             set { TextBoxPhoneNumber.Text = value; }
         }
 
@@ -46,11 +44,6 @@ namespace SharedClasses.Controls.WinForms
         {
             get { return groupBox.Text; }
             set { groupBox.Text = value; }
-        }
-
-        public VisitorInfoPanel()
-        {
-            InitializeComponent();
         }
     }
 }

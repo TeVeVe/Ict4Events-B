@@ -24,7 +24,8 @@ namespace ReservationSystem.Controllers
 
         private void ViewOnCellModifyVisitorClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            MainForm.Open<ControllerVisitorDetail>(new KeyValuePair<string, object>("VISITOR", View.DataGridViewVisitors.Rows[e.RowIndex].DataBoundItem));
+            MainForm.Open<ControllerVisitorDetail>(new KeyValuePair<string, object>("VISITOR",
+                View.DataGridViewVisitors.Rows[e.RowIndex].DataBoundItem));
         }
 
         private void ViewOnCheckboxIsOnSiteCheckChanged(object sender, EventArgs eventArgs)
@@ -39,13 +40,9 @@ namespace ReservationSystem.Controllers
                 if (NumberOfVisitorsOnSite > 0)
                 {
                     if (NumberOfVisitorsOnSite == 1)
-                    {
                         MessageBox.Show("Er is " + NumberOfVisitorsOnSite + " gast aanwezig.");
-                    }
                     else
-                    {
                         MessageBox.Show("Er zijn " + NumberOfVisitorsOnSite + " gasten aanwezig.");
-                    }
                     View.DataGridViewVisitors.DataSource = Visitor.Select("IsOnSite = 'Y'").ToList();
                 }
                 else

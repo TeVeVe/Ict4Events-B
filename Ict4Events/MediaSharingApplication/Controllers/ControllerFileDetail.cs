@@ -19,10 +19,8 @@ namespace MediaSharingApplication.Controllers
 {
     internal class ControllerFileDetail : ControllerMVC<ViewFileDetail>
     {
-        private File _file = null;
+        private File _file;
         private UserAccount _userAccount;
-
-        public CancellationTokenSource DownloadFileTokenSource { get; set; }
 
         public ControllerFileDetail()
         {
@@ -32,6 +30,8 @@ namespace MediaSharingApplication.Controllers
             View.ButtonMinus.Click += ButtonMinus_Click;
             View.Comment.SendCommentButton.Click += SendCommentButton_Click;
         }
+
+        public CancellationTokenSource DownloadFileTokenSource { get; set; }
 
         public override void Activate()
         {
@@ -48,12 +48,15 @@ namespace MediaSharingApplication.Controllers
             View.TextBoxOmschrijving.Text = _file.Description;
             View.LabelDescription.Text = _file.Description;
 
-            if (new[] { ".png", ".jpg", ".gif" }.Contains(ext))
+            if (new[]
+            {
+                ".png", ".jpg", ".gif"
+            }.Contains(ext))
             {
                 View.FilePicture.Visible = true;
-                DownloadPhoto(); 
+                DownloadPhoto();
             }
-             
+
             FillCommentSection();
             CalculateScore();
         }
@@ -68,9 +71,7 @@ namespace MediaSharingApplication.Controllers
             directoryList = FileTransfer.GetDirectoryNames(Values.SafeGetValue<TreeNode>("TreeNode"));
 
             foreach (string d in directoryList)
-            {
                 filePath += d + "/";
-            }
 
             filePath += fileName;
 
@@ -79,7 +80,7 @@ namespace MediaSharingApplication.Controllers
             {
                 bool success = false;
                 string path = null;
-                var downloadTask =
+                Task<string> downloadTask =
                     Task.Factory.StartNew(() => path = FileTransfer.DownloadFileTemp(filePath, out success));
 
                 while (!downloadTask.IsCompleted && !DownloadFileTokenSource.IsCancellationRequested)
@@ -100,10 +101,11 @@ namespace MediaSharingApplication.Controllers
             }, DownloadFileTokenSource.Token);
         }
 
-        void ButtonMinus_Click(object sender, EventArgs e)
+        private void ButtonMinus_Click(object sender, EventArgs e)
         {
             Vote currentVote =
-                Vote.Select(String.Format("UserAccountId = {0} AND FILEID = {1} ", _userAccount.Id, _file.Id)).FirstOrDefault();
+                Vote.Select(String.Format("UserAccountId = {0} AND FILEID = {1} ", _userAccount.Id, _file.Id))
+                    .FirstOrDefault();
 
             if (currentVote != null)
             {
@@ -133,7 +135,8 @@ namespace MediaSharingApplication.Controllers
         private void ButtonPlus_Click(object sender, EventArgs e)
         {
             Vote currentVote =
-                Vote.Select(String.Format("UserAccountId = {0} AND FILEID = {1} ", _userAccount.Id, _file.Id)).FirstOrDefault();
+                Vote.Select(String.Format("UserAccountId = {0} AND FILEID = {1} ", _userAccount.Id, _file.Id))
+                    .FirstOrDefault();
 
             if (currentVote != null)
             {
@@ -160,13 +163,11 @@ namespace MediaSharingApplication.Controllers
         private void SendCommentButton_Click(object sender, EventArgs e)
         {
             if (View.Comment.CommentTextBox.Text.Length >= 140)
-            {
                 MessageBox.Show("Vul alstublieft niet meer dan 140 tekens in.");
-            }
 
             else
             {
-                var comment = new SharedClasses.Data.Models.Comment();
+                var comment = new Comment();
 
                 comment.Content = View.Comment.CommentTextBox.Text;
                 comment.ParentComment = null;
@@ -186,14 +187,12 @@ namespace MediaSharingApplication.Controllers
 
             if (Values.SafeGetValue<TreeNode>("TreeNode") != null && pt != null && pt.Tag != null)
             {
-                string fileName = ((File) pt.Tag).Name;
+                string fileName = ((File)pt.Tag).Name;
                 string filePath = null;
                 directoryList = FileTransfer.GetDirectoryNames(Values.SafeGetValue<TreeNode>("TreeNode"));
 
                 foreach (string d in directoryList)
-                {
                     filePath += d + "/";
-                }
 
                 filePath += fileName;
 
@@ -203,7 +202,6 @@ namespace MediaSharingApplication.Controllers
 
         private void FillCommentSection()
         {
-
             if (_file.Id != 0)
             {
                 View.CommentSection.FlowLayoutPanel.Controls.Clear();
@@ -224,7 +222,9 @@ namespace MediaSharingApplication.Controllers
 
         private void CalculateScore()
         {
-            Vote vote = Vote.Select(String.Format("USERACCOUNTID = {0} AND FILEID = {1}", _userAccount.Id.ToSqlFormat(), _file.Id)).FirstOrDefault();
+            Vote vote =
+                Vote.Select(String.Format("USERACCOUNTID = {0} AND FILEID = {1}", _userAccount.Id.ToSqlFormat(),
+                    _file.Id)).FirstOrDefault();
             int positiveVotes = Vote.Count(String.Format("FILEID = {0} AND VOTETYPE = 'Y'", _file.Id.ToSqlFormat()));
             int negativeVotes = Vote.Count(String.Format("FILEID = {0} AND VOTETYPE = 'N'", _file.Id.ToSqlFormat()));
 
@@ -234,16 +234,12 @@ namespace MediaSharingApplication.Controllers
             {
                 bool currentVote = vote.Type;
                 if (currentVote)
-                {
                     View.LabelScore.ForeColor = Color.Green;
-                }
 
                 else
-                {
                     View.LabelScore.ForeColor = Color.Red;
-                }
             }
-            
+
 
             View.LabelScore.Text = (positiveVotes - negativeVotes).ToString();
         }
@@ -251,10 +247,8 @@ namespace MediaSharingApplication.Controllers
         private void ViewOnBackButtonClick(object sender, EventArgs eventArgs)
         {
             if (DownloadFileTokenSource != null)
-            {
                 DownloadFileTokenSource.Cancel();
-            }
-            
+
             MainForm.Open<ControllerMain>();
         }
     }

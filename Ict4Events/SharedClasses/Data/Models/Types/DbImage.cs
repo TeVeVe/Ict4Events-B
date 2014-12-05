@@ -27,38 +27,6 @@ namespace SharedClasses.Data.Models.Types
         /// </summary>
         public Uri Uri { get; set; }
 
-        /// <summary>
-        ///     Downloads the <see cref="Image" /> using the <see cref="Uri" /> as location.
-        /// </summary>
-        /// <returns></returns>
-        public bool DownloadImage()
-        {
-            if (string.IsNullOrWhiteSpace(Uri.OriginalString)) return false;
-
-            using (var client = new WebClient())
-                client.DownloadString(Uri);
-            return true;
-        }
-
-        /// <summary>
-        ///     Returns the <see cref="Uri" /> location.
-        /// </summary>
-        /// <param name="image">Image to cast from.</param>
-        /// <returns>Locations details of the <see cref="Uri" />.</returns>
-        public static explicit operator string(DbImage image)
-        {
-            return image.Uri.AbsoluteUri;
-        }
-
-        /// <summary>
-        ///     Returns the <see cref="Uri" />'s location.
-        /// </summary>
-        /// <returns>Location of the <see cref="Uri" />.</returns>
-        public override string ToString()
-        {
-            return Uri.AbsoluteUri;
-        }
-
         public TypeCode GetTypeCode()
         {
             return TypeCode.String;
@@ -71,7 +39,8 @@ namespace SharedClasses.Data.Models.Types
 
         public char ToChar(IFormatProvider provider)
         {
-            if (Uri == null) return '\0';
+            if (Uri == null)
+                return '\0';
             return Uri.AbsoluteUri[0];
         }
 
@@ -137,13 +106,47 @@ namespace SharedClasses.Data.Models.Types
 
         public string ToString(IFormatProvider provider)
         {
-            if (Uri == null) return "";
+            if (Uri == null)
+                return "";
             return Uri.AbsoluteUri;
         }
 
         public object ToType(Type conversionType, IFormatProvider provider)
         {
             return Convert.ChangeType(Uri.AbsoluteUri, conversionType);
+        }
+
+        /// <summary>
+        ///     Downloads the <see cref="Image" /> using the <see cref="Uri" /> as location.
+        /// </summary>
+        /// <returns></returns>
+        public bool DownloadImage()
+        {
+            if (string.IsNullOrWhiteSpace(Uri.OriginalString))
+                return false;
+
+            using (var client = new WebClient())
+                client.DownloadString(Uri);
+            return true;
+        }
+
+        /// <summary>
+        ///     Returns the <see cref="Uri" /> location.
+        /// </summary>
+        /// <param name="image">Image to cast from.</param>
+        /// <returns>Locations details of the <see cref="Uri" />.</returns>
+        public static explicit operator string(DbImage image)
+        {
+            return image.Uri.AbsoluteUri;
+        }
+
+        /// <summary>
+        ///     Returns the <see cref="Uri" />'s location.
+        /// </summary>
+        /// <returns>Location of the <see cref="Uri" />.</returns>
+        public override string ToString()
+        {
+            return Uri.AbsoluteUri;
         }
     }
 }

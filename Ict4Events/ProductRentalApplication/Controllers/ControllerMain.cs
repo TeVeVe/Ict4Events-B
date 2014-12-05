@@ -17,13 +17,14 @@ namespace ProductRentalApplication.Controllers
 
         public override void Activate()
         {
-            var account = ((FormMain) MainForm).UserSession;
+            UserAccount account = ((FormMain)MainForm).UserSession;
             View.DataGridView.DataSource = Rental.Select("VISITORCODE = " + account.VisitorCode.ToSqlFormat()).ToList();
         }
 
         private void ViewOnAddProductClick(object sender, EventArgs eventArgs)
         {
-            MainForm.PopupController<ControllerProductDetail>(new KeyValuePair<string, object>("UserAccount", ((FormMain)MainForm).UserSession));
+            MainForm.PopupController<ControllerProductDetail>(new KeyValuePair<string, object>("UserAccount",
+                ((FormMain)MainForm).UserSession));
             MainForm.ResetController();
         }
     }

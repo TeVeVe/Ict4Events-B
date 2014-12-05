@@ -35,7 +35,8 @@ namespace SharedClasses.Controls.WinForms
         protected virtual void OnPost(MessageEventArgs e)
         {
             EventHandler<MessageEventArgs> handler = Post;
-            if (handler != null) handler(this, e);
+            if (handler != null)
+                handler(this, e);
         }
 
         public event EventHandler PostDoubleClicked;
@@ -43,7 +44,8 @@ namespace SharedClasses.Controls.WinForms
         protected virtual void OnPostDoubleClicked(object sender)
         {
             EventHandler handler = PostDoubleClicked;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

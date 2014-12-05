@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharedClasses.Events;
 
@@ -40,8 +33,9 @@ namespace SharedClasses.Views
 
         protected virtual void OnAuthenticate(AuthenticateEventArgs e)
         {
-            var handler = Authenticate;
-            if (handler != null) handler(this, e);
+            EventHandler<AuthenticateEventArgs> handler = Authenticate;
+            if (handler != null)
+                handler(this, e);
         }
 
         private void buttonOK_Click(object sender, EventArgs e)

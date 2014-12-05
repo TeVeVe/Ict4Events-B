@@ -23,6 +23,7 @@ namespace SharedClasses.Data.Models
         [DisplayName("Voornaam")]
         [FieldName("FIRSTNAME")]
         public string FirstName { get; set; }
+
         [DisplayName("Tussenvoegsel")]
         [FieldName("INSERTION")]
         public string Insertion { get; set; }

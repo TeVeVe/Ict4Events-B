@@ -1,6 +1,5 @@
-﻿using SharedClasses.Data.Attributes;
-using System;
-using SharedClasses.MVC;
+﻿using System;
+using SharedClasses.Data.Attributes;
 
 namespace SharedClasses.Data.Models
 {
@@ -10,8 +9,10 @@ namespace SharedClasses.Data.Models
         [Key]
         [FieldName("FEEDPOSTID")]
         public int Id { get; set; }
+
         public string Content { get; set; }
         public DateTime PostTime { get; set; }
+
         [FieldName("USERACCOUNTID")]
         public int UserAccount { get; set; }
     }

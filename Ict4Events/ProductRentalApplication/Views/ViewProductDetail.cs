@@ -34,7 +34,8 @@ namespace ProductRentalApplication.Views
             get { return (int)numericUpDownAmount.Maximum; }
             set
             {
-                if (value < numericUpDownAmount.Minimum || value < 0) return;
+                if (value < numericUpDownAmount.Minimum || value < 0)
+                    return;
                 numericUpDownAmount.Maximum = value;
             }
         }
@@ -54,13 +55,15 @@ namespace ProductRentalApplication.Views
         protected virtual void OnButtonCancelClick()
         {
             EventHandler handler = ButtonCancelClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         protected virtual void OnBrowseProductsClick()
         {
             EventHandler handler = BrowseProductsClick;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null)
+                handler(this, EventArgs.Empty);
         }
 
         private void buttonBrowseProducts_Click(object sender, EventArgs e)

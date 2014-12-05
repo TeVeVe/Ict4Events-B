@@ -12,7 +12,6 @@ using SharedClasses.Controls.WinForms;
 using SharedClasses.Data;
 using SharedClasses.Data.Models;
 using SharedClasses.Extensions;
-using SharedClasses.FTP;
 using SharedClasses.MVC;
 using File = SharedClasses.Data.Models.File;
 
@@ -55,15 +54,24 @@ namespace MediaSharingApplication.Controllers
                 }
             };
 
-            var addToolStripButton = new ToolStripMenuItem("Toevoegen") {Name = "ContextMenuNodeAddSub"};
+            var addToolStripButton = new ToolStripMenuItem("Toevoegen")
+            {
+                Name = "ContextMenuNodeAddSub"
+            };
             var addSubCategoryToolStripButton = new ToolStripMenuItem("Subcategorie")
             {
                 Width = TextRenderer.MeasureText("Subcategorie", addToolStripButton.Font).Width
             };
             var addCategoryToolStripButton = new ToolStripMenuItem("Categorie");
-            var editToolStripButton = new ToolStripMenuItem("Wijzigen") { Name = "ContextMenuNodeEdit" };
-            var deleteToolStripButton = new ToolStripMenuItem("Verwijderen") {Name = "ContextMenuNodeDelete"};
-            
+            var editToolStripButton = new ToolStripMenuItem("Wijzigen")
+            {
+                Name = "ContextMenuNodeEdit"
+            };
+            var deleteToolStripButton = new ToolStripMenuItem("Verwijderen")
+            {
+                Name = "ContextMenuNodeDelete"
+            };
+
 
             addCategoryToolStripButton.Click += (sender, args) =>
             {
@@ -81,9 +89,7 @@ namespace MediaSharingApplication.Controllers
                 }
 
                 else
-                {
                     MessageBox.Show("Selecteer alstublieft een categorie als u een subcategorie toe wilt voegen.");
-                }
             };
 
             View.CategoryTreeView.TreeViewContextMenu.Items.Add(addToolStripButton);
@@ -94,9 +100,7 @@ namespace MediaSharingApplication.Controllers
             View.CommentInput.SendCommentButton.Click += (sender, args) =>
             {
                 if (View.CommentInput.CommentTextBox.Text.Length > 140)
-                {
                     MessageBox.Show("Vul alstublieft niet meer dan 140 tekens in.");
-                }
 
                 else
                 {
@@ -126,7 +130,7 @@ namespace MediaSharingApplication.Controllers
             IEnumerable<FeedPost> feedPosts = FeedPost.Select();
             View.CommentSection.FlowLayoutPanel.Controls.Clear();
 
-            foreach (var feedPost in feedPosts)
+            foreach (FeedPost feedPost in feedPosts)
             {
                 var cc = new CommentControl();
                 cc.LabelNaam.Text =
@@ -149,24 +153,25 @@ namespace MediaSharingApplication.Controllers
                 return;
             }
 
-            MainForm.PopupController<ControllerAddFile>(new KeyValuePair<string, object>("selectedNode", selectedNode), new KeyValuePair<string, object>("UserSession", _userAccount));
+            MainForm.PopupController<ControllerAddFile>(new KeyValuePair<string, object>("selectedNode", selectedNode),
+                new KeyValuePair<string, object>("UserSession", _userAccount));
 
             FillFileFlowPanel((int)selectedNode.Tag);
         }
 
         private void CategoryTreeView_NodeClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            FillFileFlowPanel((int) e.Node.Tag);
+            FillFileFlowPanel((int)e.Node.Tag);
         }
 
         private void pt_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(((PictureBox) sender).Parent.Tag);
-            
+            Debug.WriteLine(((PictureBox)sender).Parent.Tag);
+
             MainForm.Open<ControllerFileDetail>(
-                new KeyValuePair<string, object>("File", ((PictureBox) sender).Parent.Tag),
+                new KeyValuePair<string, object>("File", ((PictureBox)sender).Parent.Tag),
                 new KeyValuePair<string, object>("TreeNode", View.CategoryTreeView.LastSelectedNode),
-                new KeyValuePair<string, object>("fileName", ((PictureBox) sender).Parent));
+                new KeyValuePair<string, object>("fileName", ((PictureBox)sender).Parent));
         }
 
         private string setFileImage(string fileName)
@@ -174,20 +179,23 @@ namespace MediaSharingApplication.Controllers
             string ext = Path.GetExtension(fileName);
             Debug.WriteLine(ext);
 
-            if (new[] {".png", ".jpg", ".gif"}.Contains(ext))
+            if (new[]
             {
+                ".png", ".jpg", ".gif"
+            }.Contains(ext))
                 return "Icons\\camera.png";
-            }
 
-            if (new[] {".avi", ".mkv", ".wmv"}.Contains(ext))
+            if (new[]
             {
+                ".avi", ".mkv", ".wmv"
+            }.Contains(ext))
                 return "Icons\\music.png";
-            }
 
-            if (new[] {".mp3", ".aac", ".ac3"}.Contains(ext))
+            if (new[]
             {
+                ".mp3", ".aac", ".ac3"
+            }.Contains(ext))
                 return "Icons\\wmp.png";
-            }
 
             return "Icons\\writing.png";
         }
@@ -219,14 +227,14 @@ namespace MediaSharingApplication.Controllers
             foreach (DataRow dr in rows)
             {
                 prevLevel = level;
-                level = (int) dr["LEVEL"];
+                level = (int)dr["LEVEL"];
 
                 if (level == 1)
                 {
                     root = new TreeNode();
-                    root.Text = (string) dr["NAME"];
-                    root.ToolTipText = (string) dr["DESCRIPTION"];
-                    root.Tag = (int) dr["CATEGORYID"];
+                    root.Text = (string)dr["NAME"];
+                    root.ToolTipText = (string)dr["DESCRIPTION"];
+                    root.Tag = (int)dr["CATEGORYID"];
 
                     treeView.Nodes.Add(root);
                     prevNode = root;
@@ -236,9 +244,9 @@ namespace MediaSharingApplication.Controllers
                     parent = prevNode;
 
                     node = new TreeNode();
-                    node.Text = (string) dr["NAME"];
-                    node.ToolTipText = (string) dr["DESCRIPTION"];
-                    node.Tag = (int) dr["CATEGORYID"];
+                    node.Text = (string)dr["NAME"];
+                    node.ToolTipText = (string)dr["DESCRIPTION"];
+                    node.Tag = (int)dr["CATEGORYID"];
 
                     parent.Nodes.Add(node);
                     prevNode = node;
@@ -246,9 +254,9 @@ namespace MediaSharingApplication.Controllers
                 else
                 {
                     node = new TreeNode();
-                    node.Text = (string) dr["NAME"];
-                    node.ToolTipText = (string) dr["DESCRIPTION"];
-                    node.Tag = (int) dr["CATEGORYID"];
+                    node.Text = (string)dr["NAME"];
+                    node.ToolTipText = (string)dr["DESCRIPTION"];
+                    node.Tag = (int)dr["CATEGORYID"];
 
                     prevNode.Parent.Nodes.Add(node);
                 }

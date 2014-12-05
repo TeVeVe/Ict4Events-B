@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using MediaSharingApplication.Controllers;
+﻿using MediaSharingApplication.Controllers;
 using SharedClasses.Data.Models;
-using SharedClasses.Extensions;
 using SharedClasses.MVC;
 
 namespace MediaSharingApplication
